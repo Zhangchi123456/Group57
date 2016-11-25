@@ -72,7 +72,7 @@ public class Clientmainui extends Application {
 				 try {
 					informationui.start(reservationstage);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					// TODO Auto-generated catch bloc
 					e.printStackTrace();
 				}
 		   }
