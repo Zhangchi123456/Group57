@@ -60,7 +60,7 @@
             </VBox>
          </left>
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox BorderPane.alignment="CENTER">
                <children>
                   <Label text="用户名">
                      <HBox.margin>
@@ -82,7 +82,7 @@
             </HBox>
          </top>
          <center>
-            <SplitPane dividerPositions="0.33527696793002915" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.33527696793002915" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
@@ -91,6 +91,9 @@
                             <TableColumn prefWidth="110.0" text="用户名" />
                             <TableColumn prefWidth="120.0" text="账号" />
                           </columns>
+                           <padding>
+                              <Insets bottom="8.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -109,7 +112,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="名称：">
+                              <Label text="姓名：">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -129,19 +132,19 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1">
+                              <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <TextField prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <HBox spacing="10.0" GridPane.columnIndex="2">
@@ -150,10 +153,10 @@
                                     <Button mnemonicParsing="false" text="保存" />
                                  </children>
                                  <padding>
-                                    <Insets top="30.0" />
+                                    <Insets top="25.0" />
                                  </padding>
                                  <GridPane.margin>
-                                    <Insets />
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                  </GridPane.margin>
                               </HBox>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -167,8 +170,11 @@
                                     <Button mnemonicParsing="false" text="保存" />
                                  </children>
                                  <padding>
-                                    <Insets top="30.0" />
+                                    <Insets top="25.0" />
                                  </padding>
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
                               </HBox>
                               <Label text="酒店：" GridPane.rowIndex="1">
                                  <GridPane.margin>
@@ -177,7 +183,7 @@
                               </Label>
                               <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">

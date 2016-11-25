@@ -20,7 +20,7 @@
    <children>
       <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="491.0" prefWidth="814.0">
          <left>
-            <VBox prefHeight="366.0" prefWidth="147.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
@@ -61,7 +61,7 @@
             </VBox>
          </left>
          <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <HBox BorderPane.alignment="CENTER">
                <children>
                   <Label text="用户名">
                      <HBox.margin>
@@ -92,6 +92,9 @@
                             <TableColumn prefWidth="110.0" text="用户名" />
                             <TableColumn prefWidth="110.0" text="账号" />
                           </columns>
+                           <padding>
+                              <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -111,7 +114,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="名称：">
+                              <Label text="姓名：">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -143,29 +146,42 @@
                               </Label>
                               <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <TextField prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <TextField prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <GridPane.margin>
-                                    <Insets right="80.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
-                                    <Insets right="100.0" />
+                                    <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <DatePicker prefHeight="30.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <DatePicker prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin></DatePicker>
                               <HBox spacing="10.0" GridPane.columnIndex="2">
                                  <children>
-                                    <Button mnemonicParsing="false" text="修改" />
-                                    <Button mnemonicParsing="false" text="保存" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="修改" />
+                                          <Button mnemonicParsing="false" text="保存" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="25.0" />
+                                       </padding>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets top="20.0" />
@@ -176,8 +192,18 @@
                               </HBox>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Button mnemonicParsing="false" text="修改" />
-                                    <Button mnemonicParsing="false" text="保存" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="修改" />
+                                          <Button mnemonicParsing="false" text="保存" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="25.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </HBox.margin>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets top="20.0" />
@@ -185,8 +211,18 @@
                               </HBox>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <children>
-                                    <Button mnemonicParsing="false" text="修改" />
-                                    <Button mnemonicParsing="false" text="保存" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="修改" />
+                                          <Button mnemonicParsing="false" text="保存" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="25.0" />
+                                       </padding>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets top="20.0" />
@@ -194,8 +230,18 @@
                               </HBox>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <children>
-                                    <Button mnemonicParsing="false" text="修改" />
-                                    <Button mnemonicParsing="false" text="保存" />
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="修改" />
+                                          <Button mnemonicParsing="false" text="保存" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="25.0" />
+                                       </padding>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets top="20.0" />
