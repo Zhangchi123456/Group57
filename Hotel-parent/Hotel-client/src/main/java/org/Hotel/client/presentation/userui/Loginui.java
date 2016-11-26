@@ -70,8 +70,6 @@ public class Loginui extends Application{
 		
 		login.setOnAction(e->{
 			System.out.print("zero");
-			AStage demoStage=new AStage();
-			window.setScene(demoStage.getScene());
 			
 		});
 			
