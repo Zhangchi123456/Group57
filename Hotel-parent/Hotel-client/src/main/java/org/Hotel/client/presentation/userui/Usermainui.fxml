@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="preserntationController.UsermainuiController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="你好,">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="membernamelabel" text="xxx">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox prefHeight="400.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="个人信息">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="信用记录">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="我的订单">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="我的评价">
+               <font>
+                  <Font size="20.0" />
+               </font>
+          </Button> 
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="50.0" right="20.0" top="50.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox onMouseClicked="#ProvinceChoiceClicked" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Label text="开始搜索您心仪的酒店:">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <Label text="省:" />
+                  <ChoiceBox fx:id="ProvinceChoicebox" prefWidth="80.0" />
+                  <Label text="市:" />
+                  <ChoiceBox fx:id="CityChoicebox" prefWidth="80.0" />
+                  <Label text="县/商区:" />
+                  <ChoiceBox fx:id="BusinessdistrictChoicebox" prefWidth="80.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Label text="其他搜索条件(可选填):" />
+                  <Label text="酒店名称:" />
+                  <TextField maxWidth="80.0" />
+                  <Label text="房间类型:" />
+                  <ChoiceBox fx:id="RoomtypeChoicebox" onMouseClicked="#RoomtypeChoiceClicked" prefWidth="60.0" />
+                  <Label text="房间数量:" />
+                  <ChoiceBox fx:id="RoomnumChoicebox" onMouseClicked="#RoomnumChoiceClicked" prefWidth="60.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                  <Label text="酒店星级:" />
+                  <ChoiceBox fx:id="HotelstarChoicebox" onMouseClicked="#HotelstarChoiceClicked" prefWidth="80.0" />
+                  <Label text="酒店评分:" />
+                  <ChoiceBox fx:id="HotelgradeChoicebox" onMouseClicked="#HotelgradeChoiceClicked" prefWidth="60.0" />
+                  <Label text=" 价格:      " />
+                  <ChoiceBox fx:id="HotelpriceChoicebox" onMouseClicked="#HotelpriceChoiceClicked" prefWidth="60.0" />
+               </children>
+               <padding>
+                  <Insets left="132.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="入住日期:  " />
+                  <DatePicker fx:id="CheckinDatepicker" prefWidth="120.0" />
+                  <Label text="       离开日期:  " />
+                  <DatePicker fx:id="CheckoutDatepicker" prefWidth="120.0" />
+               </children>
+               <padding>
+                  <Insets left="130.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="开始搜索">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="40.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="20.0" right="50.0" top="20.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
