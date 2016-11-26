@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ResourceBundle;
 
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,56 +26,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	private Stage mainStage;
+	private Stage modalStage;							//模式窗口的Stage
+	
 	public static void main(String[] args){
 		launch(args);
 	}
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		GridPane grid=new GridPane();
-		
-		grid.setPrefSize(600, 400);
-		grid.setVgap(10);
-		grid.setHgap(10);
-		grid.setAlignment(Pos.CENTER);
-		grid.setPadding(new Insets(20,20,20,20));
-		
-		Text account=new Text("账号");
-		Text password=new Text("密码");
-		
-		TextField acountField=new TextField();
-		PasswordField psField=new PasswordField();
-		
-		Button login=new Button();
-		Button signin=new Button();
-		login.setText("注册");
-		signin.setText("登入");
-		HBox hbOfLogSign=new HBox();
-		hbOfLogSign.setSpacing(10);
-		hbOfLogSign.setAlignment(Pos.BOTTOM_RIGHT);
-		hbOfLogSign.getChildren().addAll(signin,login);
-		
-		grid.add(account, 0, 0);
-		grid.add(password, 0, 2);
-		grid.add(acountField,1,0);
-		grid.add(psField, 1, 2);
-		grid.add(hbOfLogSign,1, 3);
-		
-		login.setOnAction(e->{
-			System.out.print("zero");
-			
-		});
-			
-		
-		
-		
-		Scene scene=new Scene(grid);
-		
-		primaryStage.setScene(scene);
-		
-		primaryStage.setTitle("用户登录");
-		
-		primaryStage.show();
-		
+	public void start(Stage stage) throws Exception {
+		init(stage);
+		stage.show();
 	}
 	
 	//stage的初始化
@@ -87,7 +47,7 @@ public class Main extends Application{
     //跳转到用户主界面
     public void goto_Usermainui(){
     	try {
-			replaceSceneContent("/userui/Usermainui.fxml");
+			replaceSceneContent("Usermainui.fxml");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

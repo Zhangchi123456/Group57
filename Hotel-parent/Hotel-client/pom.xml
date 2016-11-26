@@ -29,5 +29,11 @@
     	<type>jar</type>
     	<scope>compile</scope>
     </dependency>
+     <!—— https://mvnrepository.com/artifact/com.zenjava/javafx-maven-plugin ——>
+     <dependency>
+     <groupId>com.zenjava</groupId>
+     <artifactedId>javafx-maven-plugin</artifactedId>
+     <version>2.0</version>
+     </dependency>
   </dependencies>
 </project>
