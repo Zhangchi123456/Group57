@@ -1,4 +1,4 @@
-package org.Hotel.server.po;
+package org.Hotel.common.po;
 
 public class OrderPO {
 
