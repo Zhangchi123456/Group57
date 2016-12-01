@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.Hotel.server.dataService.LogDataService;
-import org.Hotel.server.po.LogPO;
+import org.Hotel.common.dataService.LogDataService;
+import org.Hotel.common.po.LogPO;
 
 public class LogDataImpl extends UnicastRemoteObject implements LogDataService,Serializable{
 	
