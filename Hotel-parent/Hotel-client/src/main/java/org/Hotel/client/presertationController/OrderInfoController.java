@@ -2,6 +2,7 @@ package org.Hotel.client.presertationController;
 
 import java.awt.Button;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,8 +33,18 @@ public class OrderInfoController implements Initializable {
     private Button Sure;
     @FXML
     private Button Return;
-	@Override
 	
+	
+	  @FXML
+	  private void  ret(ActionEvent event){
+		  
+		  close(null);
+	  }
+	  //关闭
+	  @FXML
+		public void close(ActionEvent event){
+		
+		}
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		

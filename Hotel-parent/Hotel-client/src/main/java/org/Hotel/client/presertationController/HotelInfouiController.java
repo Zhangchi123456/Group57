@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class HotelhotelInfouiController implements Initializable{
+public class HotelInfouiController implements Initializable{
 	@FXML
 	private Button ok,back;
 	
@@ -35,7 +35,7 @@ public class HotelhotelInfouiController implements Initializable{
 	}
 	@FXML
 	private void backButtonClicked(ActionEvent event){
-		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
+//		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
 		
 	}
 	@FXML
