@@ -1,11 +1,11 @@
-package org.Hotel.server.data.datahelp.impl;
+package org.Hotel.server.datahelp.impl;
 
-import org.Hotel.server.data.datahelp.DataFactory;
-import org.Hotel.server.data.datahelp.HotelDataHelper;
-import org.Hotel.server.data.datahelp.MemberDataHelper;
-import org.Hotel.server.data.datahelp.OrderDataHelper;
-import org.Hotel.server.data.datahelp.PromotionDataHelper;
-import org.Hotel.server.data.datahelp.UserDataHelper;
+import org.Hotel.server.datahelp.DataFactory;
+import org.Hotel.server.datahelp.HotelDataHelper;
+import org.Hotel.server.datahelp.MemberDataHelper;
+import org.Hotel.server.datahelp.OrderDataHelper;
+import org.Hotel.server.datahelp.PromotionDataHelper;
+import org.Hotel.server.datahelp.UserDataHelper;
 
 public class DataFactoryImpl implements DataFactory {
 
@@ -19,7 +19,7 @@ public class DataFactoryImpl implements DataFactory {
 		return memberDao;
 	}
 
-	public UserDataHelper getUserUserDataHelper() {
+	public UserDataHelper getUserDataHelper() {
 		UserDataHelper userDao=new UserDataMysqlHelper();
 		return userDao;
 	}
@@ -33,7 +33,6 @@ public class DataFactoryImpl implements DataFactory {
 		PromotionDataHelper promotionDao=new PromotionDataMysqlHelper();
 		return promotionDao;
 	}
-
 	
 
 }
