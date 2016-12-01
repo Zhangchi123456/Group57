@@ -1,15 +1,7 @@
 package org.Hotel.server.dataImpl;
 
-import orderDataImpl.Date;
-import orderDataImpl.OrdersDataService;
-import orderDataImpl.RemoteException;
-import orderDataImpl.ResultMessage;
-import orderDataImpl.Serializable;
-import orderDataImpl.Type;
-import orderDataImpl.UnicastRemoteObject;
-import orderDataImpl.orderlist;
 
-public class OrdersDataImpl extends UnicastRemoteObject implements OrdersDataService,Serializable{
+public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService,Serializable{
 
 	public orderlist view(int Userid, Type Asktype)throws RemoteException{
 		

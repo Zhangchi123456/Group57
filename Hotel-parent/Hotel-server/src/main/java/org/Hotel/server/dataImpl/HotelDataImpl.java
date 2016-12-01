@@ -1,12 +1,5 @@
 package org.Hotel.server.dataImpl;
 
-import hotelDataImpl.ArrayList;
-import hotelDataImpl.HotelDataService;
-import hotelDataImpl.HotelPO;
-import hotelDataImpl.RemoteException;
-import hotelDataImpl.Serializable;
-import hotelDataImpl.UnicastRemoteObject;
-
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
 	public HotelDataImpl() throws RemoteException{

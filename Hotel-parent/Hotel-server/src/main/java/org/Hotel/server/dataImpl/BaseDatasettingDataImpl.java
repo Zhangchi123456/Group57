@@ -1,13 +1,6 @@
 package org.Hotel.server.dataImpl;
 
-import reservationDataImpl.ArrayList;
-import reservationDataImpl.BaseDatasettingDataService;
-import reservationDataImpl.RemoteException;
-import reservationDataImpl.ReservationPO;
-import reservationDataImpl.ReservationRecordInPO;
-import reservationDataImpl.Serializable;
-import reservationDataImpl.UnicastRemoteObject;
-import reservationDataImpl.string;
+
 
 public class BaseDatasettingDataImpl extends UnicastRemoteObject implements BaseDatasettingDataService,Serializable{
 
