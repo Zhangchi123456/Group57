@@ -6,13 +6,13 @@ import org.Hotel.server.po.ReservationPO;
 
 public interface ReservationDataService {
 
-	public boolean add(ReservationPO reservationpo)throws RemoteException;
+	public void add(ReservationPO reservationpo)throws RemoteException;
 
-    public boolean delete(ReservationPO reservationpo)throws RemoteException;
+    public void delete(ReservationPO reservationpo)throws RemoteException;
     
-    public boolean show(ReservationPO reservationpo)throws RemoteException;
+    public void show(ReservationPO reservationpo)throws RemoteException;
     
-    public boolean update(ReservationPO reservationpo)throws RemoteException;
+    public void update(ReservationPO reservationpo)throws RemoteException;
     
-    public boolean find(String id)throws RemoteException;
+    public void find(String id)throws RemoteException;
 }

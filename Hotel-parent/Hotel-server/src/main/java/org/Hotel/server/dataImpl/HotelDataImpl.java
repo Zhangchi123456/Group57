@@ -12,6 +12,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 
 	public HotelDataImpl() throws RemoteException{
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	public void insert(HotelPO hotelpo)throws RemoteException{

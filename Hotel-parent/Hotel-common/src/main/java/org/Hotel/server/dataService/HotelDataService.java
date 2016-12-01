@@ -5,7 +5,8 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface HotelDataService {
-public void insert(HotelPO hotelpo)throws RemoteException;
+
+	public void insert(HotelPO hotelpo)throws RemoteException;
 	
 	public void delete(HotelPO hotelpo)throws RemoteException;
 	

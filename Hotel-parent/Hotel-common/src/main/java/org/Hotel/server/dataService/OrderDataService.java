@@ -6,17 +6,15 @@ import java.util.ArrayList;
 
 public interface OrderDataService {
 
-	public orderlist view(int Userid, Type Asktype)throws RemoteException;
+    public void insert(OrderPO orderpo)throws RemoteException;
 	
-	public ResultMessage add(int userId,String hotelName, String roomType,int roomNum, int peopleNum, Date beginDate, Date endDate, Date deadline)throws RemoteException;
+	public void delete(OrderPO orderpo)throws RemoteException;
 	
-	public ResultMessage revoke(int orderId)throws RemoteException;
+	public void update(OrderPO orderPO)throws RemoteException;
 	
-	public void confirm()throws RemoteException;
+	public void find(OrderPO orderpo)throws RemoteException;
 	
-	public void cancel()throws RemoteException;
+    public ArrayList<OrderPO> showAll()throws RemoteException;
 	
-	public void recover(int orderId)throws RemoteException;
-
-	public void changeError(int orderId)throws RemoteException;
+	public ArrayList<OrderPO> orderShowAll(int Order_id)throws RemoteException;
 }

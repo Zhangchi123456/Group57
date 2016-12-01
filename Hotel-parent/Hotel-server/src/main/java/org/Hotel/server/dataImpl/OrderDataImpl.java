@@ -1,33 +1,43 @@
 package org.Hotel.server.dataImpl;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import org.Hotel.server.dataService.OrderDataService;
+import org.Hotel.server.po.OrderPO;
 
 public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService,Serializable{
 
-	public orderlist view(int Userid, Type Asktype)throws RemoteException{
-		
-	}
-	
-	public ResultMessage add(int userId,String hotelName, String roomType,int roomNum, int peopleNum, Date beginDate, Date endDate, Date deadline)throws RemoteException{
-		
-	}
-	
-	public ResultMessage revoke(int orderId)throws RemoteException{
-		
-	}
-	
-	public void confirm()throws RemoteException{
-		
-	}
-	
-	public void cancel()throws RemoteException{
-		
-	}
-	
-	public void recover(int orderId)throws RemoteException{
-		
+	    protected OrderDataImpl() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public void changeError(int orderId)throws RemoteException{
+		public void insert(OrderPO orderpo)throws RemoteException{
+	    	
+	    }
 		
-	}
+		public void delete(OrderPO orderpo)throws RemoteException{
+			
+		}
+		
+		public void update(OrderPO orderPO)throws RemoteException{
+			
+		}
+		
+		public void find(OrderPO orderpo)throws RemoteException{
+			
+		}
+		
+	    public ArrayList<OrderPO> showAll()throws RemoteException{
+			return null;
+	    	
+	    }
+		
+		public ArrayList<OrderPO> orderShowAll(int Order_id)throws RemoteException{
+			return null;
+			
+		}
 }
