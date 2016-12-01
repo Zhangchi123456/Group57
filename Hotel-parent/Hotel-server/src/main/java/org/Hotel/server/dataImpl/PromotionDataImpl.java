@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.Hotel.server.dataService.PromotionDataService;
-import org.Hotel.server.po.PromotionPO;
+import org.Hotel.common.dataService.PromotionDataService;
+import org.Hotel.common.po.PromotionPO;
 
 public class PromotionDataImpl extends UnicastRemoteObject implements PromotionDataService,Serializable{
 	

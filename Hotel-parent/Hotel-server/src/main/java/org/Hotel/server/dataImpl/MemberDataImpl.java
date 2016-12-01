@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import org.Hotel.server.dataService.MemberDataService;
-import org.Hotel.server.po.MemberPO;
+import org.Hotel.common.dataService.MemberDataService;
+import org.Hotel.common.po.MemberPO;
 
 public class MemberDataImpl extends UnicastRemoteObject implements MemberDataService,Serializable{
 	

@@ -5,8 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import org.Hotel.server.dataService.OrderDataService;
-import org.Hotel.server.po.OrderPO;
+import org.Hotel.common.dataService.OrderDataService;
+import org.Hotel.common.po.OrderPO;
 
 public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService,Serializable{
 
