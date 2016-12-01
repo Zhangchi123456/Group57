@@ -41,18 +41,15 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		
 	}
 	
-	public boolean updateRoom(HotelPO roomInfo)throws RemoteException{
-		return false;
+	public void updateRoom(HotelPO roomInfo)throws RemoteException{
 		
 	}
 	
-	public boolean deleteRoom(HotelPO roomInfo)throws RemoteException{
-		return false;
+	public void deleteRoom(HotelPO roomInfo)throws RemoteException{
 		
 	}
 	
-	public boolean updateState(String stateinfo)throws RemoteException{
-		return false;
+	public void updateState(String stateinfo)throws RemoteException{
 		
 	}
 

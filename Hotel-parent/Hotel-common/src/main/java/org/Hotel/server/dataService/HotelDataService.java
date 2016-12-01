@@ -18,9 +18,9 @@ public interface HotelDataService {
 	
 	public ArrayList<HotelPO> hotelShowAll(int Hotel_id)throws RemoteException;
 	
-	public boolean updateRoom(HotelPO roomInfo)throws RemoteException;
+	public void updateRoom(HotelPO roomInfo)throws RemoteException;
 	
-	public boolean deleteRoom(HotelPO roomInfo)throws RemoteException;
+	public void deleteRoom(HotelPO roomInfo)throws RemoteException;
 	
-	public boolean updateState(String stateinfo)throws RemoteException;
+	public void updateState(String stateinfo)throws RemoteException;
 }

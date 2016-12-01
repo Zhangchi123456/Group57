@@ -5,11 +5,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface UserDataService {
-	public boolean insert(UserPO po) throws RemoteException;
+	public void insert(UserPO po) throws RemoteException;
 	
-	public boolean delete(UserPO po) throws RemoteException;
+	public void delete(UserPO po) throws RemoteException;
 	
-	public boolean update(UserPO po) throws RemoteException;
+	public void update(UserPO po) throws RemoteException;
 	
 	public UserPO find(long id) throws RemoteException;
 	

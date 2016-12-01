@@ -14,16 +14,16 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean insert(PromotionPO po) throws RemoteException{
-		return true;
+	public void insert(PromotionPO po) throws RemoteException{
+
 	}
 	
-	public boolean delete(PromotionPO po) throws RemoteException{
-		return true;
+	public void delete(PromotionPO po) throws RemoteException{
+
 	}
 	
-	public boolean update(PromotionPO po) throws RemoteException{
-		return true;
+	public void update(PromotionPO po) throws RemoteException{
+
 	}
 	
 	public PromotionPO findByID(String id) throws RemoteException{

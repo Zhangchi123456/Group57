@@ -14,12 +14,10 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService,S
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean insert(LogPO po) throws RemoteException{
-		return true;
+	public void insert(LogPO po) throws RemoteException{
 	}
 	
-	public boolean delete(LogPO po) throws RemoteException{
-		return true;
+	public void delete(LogPO po) throws RemoteException{
 	}
 	
 }

@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface LogDataService {
-	public boolean insert(LogPO po) throws RemoteException;
+	public void insert(LogPO po) throws RemoteException;
 	
-	public boolean delete(LogPO po) throws RemoteException;
+	public void delete(LogPO po) throws RemoteException;
 }

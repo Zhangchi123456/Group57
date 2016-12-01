@@ -14,16 +14,16 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean insert(MemberPO po) throws RemoteException{
-		return true;
+	public void insert(MemberPO po) throws RemoteException{
+	
 	}
 	
-	public boolean delete(MemberPO po) throws RemoteException{
-		return true;
+	public void delete(MemberPO po) throws RemoteException{
+	
 	}
 	
-	public boolean update(MemberPO po) throws RemoteException{
-		return true;
+	public void update(MemberPO po) throws RemoteException{
+
 	}
 	
 	public MemberPO find(long id) throws RemoteException{
