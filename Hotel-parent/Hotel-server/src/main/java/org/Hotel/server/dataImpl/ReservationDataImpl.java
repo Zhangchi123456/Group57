@@ -10,7 +10,7 @@ import org.Hotel.server.po.ReservationPO;
 public class ReservationDataImpl extends UnicastRemoteObject implements ReservationDataService,Serializable{
 
 	
-	protected ReservationDataImpl() throws RemoteException {
+	public ReservationDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

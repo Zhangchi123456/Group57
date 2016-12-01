@@ -5,14 +5,14 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface MemberDataService {
-	public boolean insert(MemberPO po);
+	public boolean insert(MemberPO po) throws RemoteException;
 	
-	public boolean delete(MemberPO po);
+	public boolean delete(MemberPO po) throws RemoteException;
 	
-	public boolean update(MemberPO po);
+	public boolean update(MemberPO po) throws RemoteException;
 	
-	public MemberPO find(long id);
+	public MemberPO find(long id) throws RemoteException;
 	
-	public MemberPO showAll();
+	public MemberPO showAll() throws RemoteException;
 
 }
