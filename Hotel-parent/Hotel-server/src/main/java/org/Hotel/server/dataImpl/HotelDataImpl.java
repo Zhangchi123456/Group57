@@ -1,5 +1,13 @@
 package org.Hotel.server.dataImpl;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import org.Hotel.server.dataService.HotelDataService;
+import org.Hotel.server.po.HotelPO;
+
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
 	public HotelDataImpl() throws RemoteException{
@@ -23,27 +31,30 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	}
 	
 	public ArrayList<HotelPO> showAll()throws RemoteException{
+		return null;
 		
 	}
 	
 	public ArrayList<HotelPO> hotelShowAll(int Hotel_id)throws RemoteException{
+		return null;
 		
 	}
 	
-	public boolean update(HotelPO roomInfo)throws RemoteException{
+	public boolean updateRoom(HotelPO roomInfo)throws RemoteException{
+		return false;
 		
 	}
 	
-	public boolean delete(HotelPO roomInfo)throws RemoteException{
+	public boolean deleteRoom(HotelPO roomInfo)throws RemoteException{
+		return false;
 		
 	}
 	
-	public boolean showAll()throws RemoteException{
+	public boolean updateState(String stateinfo)throws RemoteException{
+		return false;
 		
 	}
-	
-	public boolean update(String stateinfo)throws RemoteException{
-		
-	}
+
+
 	
 }

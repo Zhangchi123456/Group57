@@ -1,32 +1,19 @@
 package org.Hotel.server.dataService;
 
 import org.Hotel.server.po.PromotionPO;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface PromotionDataService {
-	public boolean insert(PromotionPO po){
-		return true;
-	}
+	public boolean insert(PromotionPO po);
 	
-	public boolean delete(PromotionPO po){
-		return true;
-	}
+	public boolean delete(PromotionPO po);
 	
-	public boolean update(PromotionPO po){
-		return true;
-	}
+	public boolean update(PromotionPO po);
 	
-	public PromotionPO findByID(String id){
-		PromotionPO po = new PromotionPO();
-		return po;
-	}
+	public PromotionPO findByID(String id);
 	
-	public PromotionPO findByType(String type){
-		PromotionPO po = new PromotionPO();
-		return po;
-	}
+	public PromotionPO findByType(String type);
 	
-	public PromotionPO showAll(){
-		PromotionPO po = new PromotionPO();
-		return po;
-	}
+	public PromotionPO showAll();
 }
