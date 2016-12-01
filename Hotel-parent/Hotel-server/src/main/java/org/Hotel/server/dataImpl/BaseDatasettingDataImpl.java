@@ -1,4 +1,4 @@
-package org.Hotel.server.data;
+package org.Hotel.server.dataImpl;
 
 import reservationDataImpl.ArrayList;
 import reservationDataImpl.BaseDatasettingDataService;

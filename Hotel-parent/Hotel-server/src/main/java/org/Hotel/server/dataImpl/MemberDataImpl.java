@@ -1,4 +1,4 @@
-package org.Hotel.server.data;
+package org.Hotel.server.dataImpl;
 
 import org.Hotel.server.po.MemberPO;
 
