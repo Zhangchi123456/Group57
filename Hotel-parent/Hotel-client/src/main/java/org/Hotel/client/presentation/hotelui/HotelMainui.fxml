@@ -23,7 +23,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="title" alignment="TOP_CENTER" text="快速管理酒店" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.columnSpan="2">
+      <Label fx:id="title" alignment="TOP_CENTER" text="快速管理酒店" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2">
          <font>
             <Font size="40.0" />
          </font>
@@ -61,6 +61,6 @@
       <Insets />
    </opaqueInsets>
    <padding>
-      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+      <Insets bottom="50.0" left="100.0" right="1.0" top="1.0" />
    </padding>
 </GridPane>
