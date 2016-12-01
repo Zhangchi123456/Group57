@@ -1,10 +1,11 @@
 package org.Hotel.server.dataService;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import org.Hotel.server.po.ReservationPO;
 
-public interface ReservationDataService {
+public interface ReservationDataService extends Remote{
 
 	public void add(ReservationPO reservationpo)throws RemoteException;
 

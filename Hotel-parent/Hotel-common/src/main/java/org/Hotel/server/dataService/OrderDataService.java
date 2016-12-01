@@ -1,10 +1,12 @@
 package org.Hotel.server.dataService;
 
 import org.Hotel.server.po.OrderPO;
+
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface OrderDataService {
+public interface OrderDataService extends Remote{
 
     public void insert(OrderPO orderpo)throws RemoteException;
 	
