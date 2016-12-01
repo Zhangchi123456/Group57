@@ -8,7 +8,7 @@ public interface DataFactory {
 	
 	public MemberDataHelper getMemberDataHelper();
 	
-	public UserDataHelper getUserUserDataHelper();
+	public UserDataHelper getUserDataHelper();
 	
 	public OrderDataHelper getOrderDataHelper();
 	
