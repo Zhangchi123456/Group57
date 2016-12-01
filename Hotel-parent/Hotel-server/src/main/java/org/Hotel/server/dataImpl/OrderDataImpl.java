@@ -10,7 +10,7 @@ import org.Hotel.server.po.OrderPO;
 
 public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService,Serializable{
 
-	    protected OrderDataImpl() throws RemoteException {
+	    public OrderDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
