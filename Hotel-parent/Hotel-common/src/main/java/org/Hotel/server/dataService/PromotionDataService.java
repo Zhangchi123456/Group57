@@ -5,15 +5,15 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface PromotionDataService {
-	public boolean insert(PromotionPO po);
+	public boolean insert(PromotionPO po) throws RemoteException;
 	
-	public boolean delete(PromotionPO po);
+	public boolean delete(PromotionPO po) throws RemoteException;
 	
-	public boolean update(PromotionPO po);
+	public boolean update(PromotionPO po) throws RemoteException;
 	
-	public PromotionPO findByID(String id);
+	public PromotionPO findByID(String id) throws RemoteException;
 	
-	public PromotionPO findByType(String type);
+	public PromotionPO findByType(String type) throws RemoteException;
 	
-	public PromotionPO showAll();
+	public PromotionPO showAll() throws RemoteException;
 }
