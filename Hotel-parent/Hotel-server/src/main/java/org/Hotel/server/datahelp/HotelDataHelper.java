@@ -1,4 +1,4 @@
-package org.Hotel.server.data.datahelp;
+package org.Hotel.server.datahelp;
 
 import java.util.List;
 import java.util.Map;
