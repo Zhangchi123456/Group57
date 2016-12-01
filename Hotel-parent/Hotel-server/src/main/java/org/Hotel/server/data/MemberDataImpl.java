@@ -1,5 +1,7 @@
 package org.Hotel.server.data;
 
+import org.Hotel.server.po.MemberPO;
+
 public class MemberDataImpl {
 	
 	public boolean insert(MemberPO po){
@@ -15,10 +17,12 @@ public class MemberDataImpl {
 	}
 	
 	public MemberPO find(long id){
+		MemberPO po = new MemberPO();
 		return po;
 	}
 	
 	public MemberPO showAll(){
+		MemberPO po = new MemberPO();
 		return po;
 	}
 

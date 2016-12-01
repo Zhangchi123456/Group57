@@ -1,5 +1,7 @@
 package org.Hotel.server.data;
 
+import org.Hotel.server.po.UserPO;
+
 public class UserDataImpl {
 	
 	public boolean insert(UserPO po){
@@ -15,10 +17,12 @@ public class UserDataImpl {
 	}
 	
 	public UserPO find(long id){
+		UserPO po = new UserPO();
 		return po;
 	}
 	
 	public UserPO showAll(){
+		UserPO po = new UserPO();
 		return po;
 	}
 
