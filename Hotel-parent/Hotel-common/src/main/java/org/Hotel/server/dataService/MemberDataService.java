@@ -1,5 +1,5 @@
 package org.Hotel.server.dataService;
 
-public class MemberDataService {
+public interface MemberDataService {
 
 }
