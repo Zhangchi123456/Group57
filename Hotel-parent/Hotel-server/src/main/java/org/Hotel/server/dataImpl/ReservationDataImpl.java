@@ -7,7 +7,7 @@ import reservationDataImpl.Serializable;
 import reservationDataImpl.UnicastRemoteObject;
 import reservationDataImpl.string;
 
-public class ReservationRecordInDataImpl extends UnicastRemoteObject implements ReservationRecordInDataService,Serializable{
+public class ReservationDataImpl extends UnicastRemoteObject implements ReservationDataService,Serializable{
 
 	
 	public boolean add(ReservationPO reservationpo)throws RemoteException{
