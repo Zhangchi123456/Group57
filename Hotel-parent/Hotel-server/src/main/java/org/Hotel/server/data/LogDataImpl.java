@@ -1,6 +1,6 @@
 package org.Hotel.server.data;
 
-public class LogDatalmpl {
+public class LogDataImpl {
 	
 	public boolean insert(LogPO po){
 		return true;
