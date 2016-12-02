@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 
 public class OrderInfoController implements Initializable {
 	@FXML
-	private Label OrderId,HotelName,UserNum,Child,Telephone,RoomType,TimeBegin,TimeEnd;
+	private Label OrderId,HotelName,UserNum,Child,Telephone,RoomType,TimeBegin,TimeEnd,RoomnumLabel,RTotalpriceLabel;
     
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
