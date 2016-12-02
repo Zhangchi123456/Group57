@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+	<IPconfig>
+		<!-- Set_IP_Connection-->
+		<IPaddress>172.26.107.225</IPaddress>
+        <Port>40000</Port>
+	</IPconfig>
+</CONFIG> 
+
+  

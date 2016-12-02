@@ -9,20 +9,19 @@ import org.dom4j.io.SAXReader;
 
 public class XMLReader {
 	
-	private static String filename = "src/main/resources/config.xml";
 	private static IPConfig ipconfig;
 		
 		/**
 		 * 从配置文件中读取参数并保存到Config类中;
 		 * 
 		 */
-		public static IPConfig loadipconfig() {
+		public static IPConfig loadipconfig(String filename) {
 			if (ipconfig == null)
-				ipconfig = getconfig();
+				ipconfig = getconfig(filename);
 			return ipconfig;
 	    }
 		
-		private static IPConfig getconfig() {
+		private static IPConfig getconfig(String filename) {
 			IPConfig config = new IPConfig();
 			try {
 				File f = new File(filename);

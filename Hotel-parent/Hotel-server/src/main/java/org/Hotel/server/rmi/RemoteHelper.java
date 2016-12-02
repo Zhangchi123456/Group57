@@ -25,18 +25,18 @@ import org.Hotel.common.dataService.UserDataService;;
 
 public class RemoteHelper {
 	
-	private static final int PORT=XMLReader.loadipconfig().getPORT();
+	private static final int PORT=XMLReader.loadipconfig("src/main/resources/config.xml").getPORT();
 	
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP=XMLReader.loadipconfig().getIP();
+	private static final String IP=XMLReader.loadipconfig("src/main/resources/config.xml").getIP();
 
 	
 	public static void init(){
 
 		if(IP==null){
-			System.out.println("error IP config! Please set your ip.");
+			System.out.println("error IP config!");
 		    System.exit(0);	
 		}
 		
