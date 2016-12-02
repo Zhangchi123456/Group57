@@ -10,6 +10,7 @@ import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.server.datahelp.DataFactory;
 import org.Hotel.server.datahelp.HotelDataHelper;
+import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
@@ -21,32 +22,51 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	
 	private static HotelDataImpl hotelDataImpl;
 	
-	public static HotelDataImpl getInstance(){
+	public static HotelDataImpl getInstance() throws RemoteException{
 		if(hotelDataImpl == null){
 			hotelDataImpl = new HotelDataImpl();
 		}
 		return hotelDataImpl;
 	}
 	
-	public boolean insert(HotelPO hotelpo)throws RemoteException{
-		return false;
-		
+	public HotelDataImpl()throws RemoteException{
+		if(map == null){
+			dataFactory = new DataFactoryImpl();
+			hotelDataHelper = dataFactory.getHotelDataHelper();
+			map = hotelDataHelper.getHotelData();
+		}
 	}
+	
+	public boolean insert(HotelPO hotelpo)throws RemoteException{
+		int hotel_id = hotelpo.getId();
+		if(map.get(hotel_id) == null){
+			map.put(hotel_id, hotelpo);
+			hotelDataHelper.updateHotelData(map);
+			return true;
+		}
+		return false;	
+	}//添加酒店信息
 	
 	public boolean delete(HotelPO hotelpo)throws RemoteException{
+		int hotel_id = hotelpo.getId();
+		if(map.get(hotel_id) != null){
+			map.remove(hotel_id);
+			hotelDataHelper.updateHotelData(map);
+			return true;
+		}
 		return false;
 		
-	}
+	}//删除酒店信息
 	
 	public boolean update(HotelPO hotelpo)throws RemoteException{
-		return false;
-		
-	}
-	
-	public boolean find(HotelPO hotelpo)throws RemoteException{
-		return false;
-		
-	}
+		int hotel_id = hotelpo.getId();
+		if(map.get(hotel_id) != null){
+			map.put(hotel_id, hotelpo);
+			hotelDataHelper.updateHotelData(map);
+			return true;
+		}
+		return false;	
+	}//更新酒店信息
 	
 	public ArrayList<HotelPO> showAll()throws RemoteException{
 		return null;
@@ -61,22 +81,5 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	public ArrayList<HotelPO> roomShowAll(int room_id)throws RemoteException{
 		return null;
 	}
-	
-	public boolean updateRoom(int room_id)throws RemoteException{
-		return false;
-		
-	}
-	
-	public boolean deleteRoom(int room_id)throws RemoteException{
-		return false;
-		
-	}
-	
-	public boolean updateState(String stateinfo)throws RemoteException{
-		return false;
-		
-	}
-
-
 	
 }

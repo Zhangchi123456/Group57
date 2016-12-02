@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
    <top>
       <Label prefHeight="102.0" prefWidth="300.0" text="          订单信息" BorderPane.alignment="CENTER">
          <font>
@@ -31,6 +31,12 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
+                  <Label text="                    房间数量:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="RoomnumLabel" text="Label" />
                </children>
             </HBox>
             <HBox prefHeight="69.0" prefWidth="800.0">
@@ -45,6 +51,12 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
+                  <Label text="                    总价:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="TotalpriceLabel" text="Label" />
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0">
@@ -89,7 +101,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="OrderId" prefHeight="60.0" prefWidth="800.0">
+            <HBox prefHeight="60.0" prefWidth="800.0">
                <children>
                   <Label text="            房间类型：">
                      <font>
