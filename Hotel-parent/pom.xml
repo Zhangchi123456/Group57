@@ -26,5 +26,6 @@
   	<module>Hotel-server</module>
   	<module>Hotel-client</module>
   	<module>Hotel-common</module>
+  	
   </modules>
 </project>

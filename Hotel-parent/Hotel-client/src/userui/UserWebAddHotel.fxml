@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="643.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentationController.UserWebAddHotelController">
+   <children>
+      <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="650.0" prefWidth="1007.0">
+         <left>
+            <VBox prefHeight="551.0" prefWidth="154.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#MemberMangementClicked" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#AddHotelMangement" prefHeight="61.0" prefWidth="109.0" text="酒工管理" textAlignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Webmanange" prefHeight="60.0" prefWidth="108.0" text="网营管理" textAlignment="CENTER">
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="59.0" prefWidth="109.0" text="添加酒店">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </left>
+         <top>
+            <HBox spacing="124.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="用户名">
+                     <HBox.margin>
+                        <Insets left="30.0" top="40.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="46.0" prefWidth="94.0" text="登出">
+                     <HBox.margin>
+                        <Insets left="600.0" top="40.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </BorderPane.margin>
+            </HBox>
+         </top>
+         <center>
+            <SplitPane dividerPositions="0.20451127819548873" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <TableView prefHeight="462.0" prefWidth="206.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-36.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn prefWidth="174.0" text="酒店名" />
+                          </columns>
+                           <padding>
+                              <Insets bottom="8.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </TableView>
+                        <HBox layoutX="-2.0" layoutY="347.0" prefHeight="46.0" prefWidth="134.0" />
+                        <Button layoutX="-1.0" layoutY="473.0" mnemonicParsing="false" onAction="#AddHotelStuffButtonClicked" prefHeight="44.0" prefWidth="173.0" text="添加酒店工作人员">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="642.0">
+                     <children>
+                        <GridPane layoutX="16.0" layoutY="54.0" prefHeight="546.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="96.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="144.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="160.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="247.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="32.0" prefWidth="80.0" text="酒店名称：">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label>
+                                 <GridPane.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="HotelnameText" prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </TextField>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2">
+                                 <padding>
+                                    <Insets bottom="10.0" left="50.0" top="25.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </GridPane.margin>
+                                 <children>
+                                    <Label text="具体地址:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Label prefHeight="28.0" prefWidth="77.0" text="   地址 ：" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" prefWidth="149.0" text="              商圈  ：" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="229.0" layoutY="147.0" prefHeight="19.0" prefWidth="90.0" text="   星级：" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label layoutX="229.0" layoutY="147.0" prefHeight="29.0" prefWidth="155.0" text="              评分  ：" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#AddRoomClicked" prefHeight="45.0" prefWidth="102.0" text="添加房间" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#AddIntroductionClicked" prefHeight="44.0" prefWidth="102.0" text="添加简介" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font>
+                              </Button>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <children>
+                                    <HBox prefHeight="34.0" prefWidth="262.0" />
+                                    <HBox prefHeight="121.0" prefWidth="216.0" spacing="10.0">
+                                       <padding>
+                                          <Insets top="25.0" />
+                                       </padding>
+                                       <children>
+                                          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="恢复" />
+                                          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" text="保存" />
+                                          <Button layoutX="70.0" layoutY="35.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="63.0" text="新增" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="AdressText" prefHeight="26.0" prefWidth="151.0" GridPane.columnIndex="3" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
