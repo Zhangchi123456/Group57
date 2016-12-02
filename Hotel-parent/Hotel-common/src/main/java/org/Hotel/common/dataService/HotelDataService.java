@@ -8,21 +8,23 @@ import org.Hotel.common.po.HotelPO;
 
 public interface HotelDataService extends Remote{
 
-	public void insert(HotelPO hotelpo)throws RemoteException;
+	public boolean insert(HotelPO hotelpo)throws RemoteException;
 	
-	public void delete(HotelPO hotelpo)throws RemoteException;
+	public boolean delete(HotelPO hotelpo)throws RemoteException;
 	
-	public void update(HotelPO hotelpo)throws RemoteException;
+	public boolean update(HotelPO hotelpo)throws RemoteException;
 	
-	public void find(HotelPO hotelpo)throws RemoteException;
+	public boolean find(HotelPO hotelpo)throws RemoteException;
 	
 	public ArrayList<HotelPO> showAll()throws RemoteException;
 	
-	public ArrayList<HotelPO> hotelShowAll(int Hotel_id)throws RemoteException;
+	public ArrayList<HotelPO> hotelShowAll(int hotel_id)throws RemoteException;
 	
-	public void updateRoom(HotelPO roomInfo)throws RemoteException;
+	public ArrayList<HotelPO> roomShowAll(int room_id)throws RemoteException;
 	
-	public void deleteRoom(HotelPO roomInfo)throws RemoteException;
+	public boolean updateRoom(int room_id)throws RemoteException;
 	
-	public void updateState(String stateinfo)throws RemoteException;
+	public boolean deleteRoom(int room_id)throws RemoteException;
+	
+	public boolean updateState(String stateinfo)throws RemoteException;
 }

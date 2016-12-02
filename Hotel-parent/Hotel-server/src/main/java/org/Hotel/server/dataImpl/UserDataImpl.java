@@ -14,15 +14,15 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		// TODO Auto-generated constructor stub
 	}
 
-	public void insert(UserPO po) throws RemoteException{
+	public boolean insert(UserPO po) throws RemoteException{
 
 	}
 	
-	public void delete(UserPO po) throws RemoteException{
+	public boolean delete(UserPO po) throws RemoteException{
 
 	}
 	
-	public void update(UserPO po) throws RemoteException{
+	public boolean update(UserPO po) throws RemoteException{
 
 	}
 	

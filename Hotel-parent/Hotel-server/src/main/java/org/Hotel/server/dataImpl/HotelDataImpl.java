@@ -4,30 +4,47 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.server.datahelp.DataFactory;
+import org.Hotel.server.datahelp.HotelDataHelper;
 
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
-	public HotelDataImpl() throws RemoteException{
-		super();
-		// TODO Auto-generated constructor stub
+	private Map<Integer, HotelPO> map;
+	
+	private HotelDataHelper hotelDataHelper;
+	
+	private DataFactory dataFactory;
+	
+	private static HotelDataImpl hotelDataImpl;
+	
+	public static HotelDataImpl getInstance(){
+		if(hotelDataImpl == null){
+			hotelDataImpl = new HotelDataImpl();
+		}
+		return hotelDataImpl;
 	}
 	
-	public void insert(HotelPO hotelpo)throws RemoteException{
+	public boolean insert(HotelPO hotelpo)throws RemoteException{
+		return false;
 		
 	}
 	
-	public void delete(HotelPO hotelpo)throws RemoteException{
+	public boolean delete(HotelPO hotelpo)throws RemoteException{
+		return false;
 		
 	}
 	
-	public void update(HotelPO hotelpo)throws RemoteException{
+	public boolean update(HotelPO hotelpo)throws RemoteException{
+		return false;
 		
 	}
 	
-	public void find(HotelPO hotelpo)throws RemoteException{
+	public boolean find(HotelPO hotelpo)throws RemoteException{
+		return false;
 		
 	}
 	
@@ -36,20 +53,27 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		
 	}
 	
-	public ArrayList<HotelPO> hotelShowAll(int Hotel_id)throws RemoteException{
+	public ArrayList<HotelPO> hotelShowAll(int hotel_id)throws RemoteException{
 		return null;
 		
 	}
 	
-	public void updateRoom(HotelPO roomInfo)throws RemoteException{
+	public ArrayList<HotelPO> roomShowAll(int room_id)throws RemoteException{
+		return null;
+	}
+	
+	public boolean updateRoom(int room_id)throws RemoteException{
+		return false;
 		
 	}
 	
-	public void deleteRoom(HotelPO roomInfo)throws RemoteException{
+	public boolean deleteRoom(int room_id)throws RemoteException{
+		return false;
 		
 	}
 	
-	public void updateState(String stateinfo)throws RemoteException{
+	public boolean updateState(String stateinfo)throws RemoteException{
+		return false;
 		
 	}
 
