@@ -1,6 +1,21 @@
 package application;
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import java.io.InputStream;
+
 
 import org.Hotel.common.dataService.HotelDataService;
 
@@ -16,7 +31,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+import Helper.UiswitchHelper;
 
 public class Main extends Application {
 	 private Stage mainStage;
@@ -146,7 +161,7 @@ public class Main extends Application {
 	    //跳转到登录界面
 	    public void goto_Loginui(){
 	    	try {
-				replaceSceneContent("/userui/Login.fxml");
+				replaceSceneContent("/presentation/userui/Login.fxml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

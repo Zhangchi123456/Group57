@@ -1,9 +1,13 @@
 package Helper;
 
 import java.util.HashMap;
+
+
 import java.util.Map;
 
 import application.Main;
+
+
 
 public class UiswitchHelper {
 	private final static Map<String,Object> parameneters = new HashMap<>();
