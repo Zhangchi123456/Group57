@@ -33,9 +33,13 @@ public class UserinformationuiController implements Initializable{
      private void ReturnButtonClicked(ActionEvent event){
     	 UiswitchHelper.getApplication().goto_Usermainui();
      }
+     
+     private String getText(){
+    	 return null;
+     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

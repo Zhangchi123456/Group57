@@ -11,6 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelListuiController">
    <top>
@@ -34,7 +37,15 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="SortChoicebox" prefWidth="150.0" />
+                  <ChoiceBox fx:id="SortChoicebox" prefWidth="150.0" >
+                  <items>
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="按酒店评分从高到低" />
+                    <String fx:value="按酒店价格从低到高" />
+                    <String fx:value="按酒店星级从高到低" />
+                  </FXCollections>
+                  </items>
+                  </ChoiceBox>
                   <CheckBox fx:id="ReservationCheckbox" mnemonicParsing="false" onAction="#ObservedHotel" text="曾经预定">
                      <font>
                         <Font size="20.0" />
