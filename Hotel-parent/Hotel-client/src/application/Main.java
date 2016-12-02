@@ -17,8 +17,10 @@ package application;
 import java.io.InputStream;
 
 
-import org.Hotel.common.dataService.HotelDataService;
 
+import org.Hotel.common.dataService.HotelDataService;
+import presentation.presentationController.RMIConnection;
+import BusinessLogicService.impl.RMIHelper;
 import Helper.UiswitchHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +50,8 @@ public class Main extends Application {
 		//stage的初始化
 	    public void init(Stage stage){
 	    	this.mainStage=stage;
+	    	RMIHelper.init();
+	    	new RMIConnection();
 	    	UiswitchHelper.setApplication(this);
 	    	goto_Loginui();
 	    }
