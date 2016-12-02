@@ -71,19 +71,23 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return false;	
 	}//更新酒店信息
 	
-	public ArrayList<HotelPO> showAll()throws RemoteException{
-		return null;
-		
-	}
+	public ArrayList<HotelPO> hotelShowAll(String circle, int hotel_id, HotelPO hotelpo, double price, int star, double grade, String room_type)throws RemoteException{	
+		ArrayList<HotelPO> hotellist=new ArrayList<HotelPO>();
+		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getID()||price==hotelpo.getPrice()||star==hotelpo.getStar()||grade==hotelpo.getGrade()||room_type==hotelpo.getRoomtype()){
+			hotellist.add(hotelpo);
+			return hotellist;
+		}
+		return null;		
+	}//显示所有酒店信息
 	
-	public ArrayList<HotelPO> hotelShowAll(int hotel_id)throws RemoteException{
+	public ArrayList<RoomPO> roomShowAll(RoomPO roompo, int room_id, int room_num, int room_type)throws RemoteException{
+		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
+		if(room_id==roompo.getID()||room_num==roompo.getNum()||room_type==roompo.getRoomtype()){
+			roomlist.add(roompo);
+			return roomlist;
+		}
 		return null;
-		
-	}
-	
-	public ArrayList<HotelPO> roomShowAll(HotelPO hotelpo, int room_id)throws RemoteException{
-		return null;
-	}
+	}//显示所有客房信息
 	
 	public boolean updateRoom(RoomPO roompo)throws RemoteException{
 		int room_id = roompo.getId();
