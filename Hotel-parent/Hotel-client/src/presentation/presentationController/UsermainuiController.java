@@ -1,7 +1,7 @@
 package presentation.presentationController;
 
 import java.net.URL;
-
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import Helper.InituiHelper;
 import Helper.UiswitchHelper;
@@ -63,12 +63,55 @@ public class UsermainuiController implements Initializable{
 	}
 	
 	private String getMustSearchText(){
-		String cityname=CityChoicebox.getSelectionModel().toString();
-		String Businessname=BusinessChoicebox.getSelectionModel().toString();
+		String cityname=CityChoicebox.getValue().toString();
+		String Businessname=BusinessChoicebox.getValue().toString();
 		return cityname+" "+Businessname;
 	}
 	
-
+    private boolean Isdate(){
+    	LocalDate checkindate=CheckindateDatepicker.getValue();
+    	LocalDate checkoutdate=CheckoutdateDatepicker.getValue();
+    	if(checkindate.isAfter(checkoutdate)){
+    		return false;
+    	}
+    	return true;
+    }
+    
+    private String getOtherSearchText(){
+    	String roomtype;
+    	String roomnum;
+    	String hotelstar;
+    	String hotelgrade;
+    	String hotelprice;
+    	String allresult;
+    	if(RoomtypeChoicebox.getValue()!=null){
+    		roomtype=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		roomtype="null";
+    	}
+    	if(RoomnumChoicebox.getValue()!=null){
+    		roomnum=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		roomnum="null";
+    	}
+    	if(HotelstarChoicebox.getValue()!=null){
+    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelstar="null";
+    	}
+    	if(HotelgradeChoicebox.getValue()!=null){
+    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelgrade="null";
+    	}
+    	if(HotelpriceChoicebox.getValue()!=null){
+    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelprice="null";
+    	}
+    	allresult=roomtype+"/"+roomnum+"/"+hotelstar+"/"+hotelgrade+"/"+hotelprice;
+    	return allresult;
+    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
