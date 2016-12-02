@@ -1,5 +1,5 @@
 package org.Hotel.common.po;
 
-public class PromotionPO {
+public class WebPromotionPO {
 
 }

@@ -261,7 +261,7 @@ public class Main extends Application {
 	  //用户跳到确认订单界面 1.0.1.1
 	    public void goto_confirmUi(){
 	    	try {
-					replaceSceneContent("/presentation/orderui/OrderInfoUi.fxml");
+					replaceSceneContent("/presentation/orderui/OrderInfo.fxml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -292,7 +292,7 @@ public class Main extends Application {
 	    //从管理人员主界面跳转至酒店工作人员管理界面 num2.0.1
 	    public  void goto_UserWebManagementHotelui(){
 	    	try {
-				AreplaceSceneContent("/userui/UserWebManagementHotel.fxml");
+				AreplaceSceneContent("/presentation/userui/UserWebManagementHotel.fxml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
