@@ -52,6 +52,8 @@ public class UsermainuiController implements Initializable{
 	
 	@FXML
 	private void SearchButtonClicked(ActionEvent event){
+		
+		
 		UiswitchHelper.getApplication().goto_HotelListui();
 	}
 
@@ -60,6 +62,13 @@ public class UsermainuiController implements Initializable{
 		UiswitchHelper.getApplication().goto_Loginui();
 	}
 	
+	private String getMustSearchText(){
+		String cityname=CityChoicebox.getSelectionModel().toString();
+		String Businessname=BusinessChoicebox.getSelectionModel().toString();
+		return cityname+" "+Businessname;
+	}
+	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
