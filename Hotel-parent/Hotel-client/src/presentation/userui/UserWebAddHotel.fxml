@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="643.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentationController.UserWebAddHotelController">
+<AnchorPane prefHeight="643.0" prefWidth="1008.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UserWebAddHotelController">
    <children>
       <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="650.0" prefWidth="1007.0">
          <left>
