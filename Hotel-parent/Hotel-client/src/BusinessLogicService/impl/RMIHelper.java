@@ -6,8 +6,8 @@ import org.Hotel.common.config.XMLReader;
 
 public class RMIHelper {
 	
-	public static final String IP = XMLReader.loadipconfig("/Hotel-client/src/resources/config.xml").getIP(); //Can be read from config file
-    public static final int PORT=XMLReader.loadipconfig("/Hotel-client/src/resources/config.xml").getPORT();//端口号
+	public static final String IP = XMLReader.loadipconfig("src/resources/config.xml").getIP(); //Can be read from config file
+    public static final int PORT=XMLReader.loadipconfig("src/resources/config.xml").getPORT();//端口号
     
     public static Object find(String serviceName){
     	if(IP==null){
@@ -35,6 +35,7 @@ public class RMIHelper {
     	System.setProperty("sun.rmi.transport.connectionTimeout", "2000"); 
     	System.setProperty("sun.rmi.transport.proxy.connectTimeout", "2000"); 
     	System.setProperty("sun.rmi.transport.tcp.handshakeTimeout", "2000");
+    	System.out.println("Connected!");
     }
 
 

@@ -1,4 +1,4 @@
-package presentation.presentationController;
+       package presentation.presentationController;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -26,7 +26,6 @@ public class RMIConnection implements Runnable{
 				Thread.sleep(1000);
 				Object service = (Object) Naming.lookup("rmi://"+RMIHelper.IP+":"+RMIHelper.PORT+"/"+"ConnectionDataService");
 				number++;
-				System.out.println("Connected!");
 			} catch (InterruptedException | MalformedURLException | RemoteException | NotBoundException e) {
 				System.out.println("Connection Failed!");
 				break;
