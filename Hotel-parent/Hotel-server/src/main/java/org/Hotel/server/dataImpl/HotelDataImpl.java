@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.common.po.RoomPO;
 import org.Hotel.server.datahelp.DataFactory;
 import org.Hotel.server.datahelp.HotelDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
@@ -15,6 +16,8 @@ import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
 	private Map<Integer, HotelPO> map;
+	
+	private Map<Integer, RoomPO> map_room;
 	
 	private HotelDataHelper hotelDataHelper;
 	
@@ -78,8 +81,30 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		
 	}
 	
-	public ArrayList<HotelPO> roomShowAll(int room_id)throws RemoteException{
+	public ArrayList<HotelPO> roomShowAll(HotelPO hotelpo, int room_id)throws RemoteException{
 		return null;
 	}
 	
+	public boolean updateRoom(RoomPO roompo)throws RemoteException{
+		int room_id = roompo.getId();
+		if(map_room.get(room_id) != null){
+			map_room.put(room_id, roompo);
+			hotelDataHelper.updateRoomData(map_room);
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public boolean insertRoom(RoomPO roompo)throws RemoteException{
+		int room_id = roompo.getId();
+		if(map_room.get(room_id) == null){
+			map_room.put(room_id, roompo);
+			hotelDataHelper.updateRoomData(map_room);
+			return true;
+		}
+        return false;
+		
+	}
+
 }

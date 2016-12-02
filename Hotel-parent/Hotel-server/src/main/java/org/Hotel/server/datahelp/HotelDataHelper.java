@@ -3,6 +3,7 @@ package org.Hotel.server.datahelp;
 import java.util.Map;
 
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.common.po.RoomPO;
 
 public interface HotelDataHelper {
 	/**
@@ -15,4 +16,13 @@ public interface HotelDataHelper {
 	 */
 	public void updateHotelData(Map<Integer,HotelPO> map);
 
+	/**
+	 * @return	从数据文件读入客房信息
+	 */
+	public Map<Integer,RoomPO> getRoomData();
+	/**
+	 * 从数据文件中写入客房信息
+	 * @param map	
+	 */
+	public void updateRoomData(Map<Integer,RoomPO> map);
 }
