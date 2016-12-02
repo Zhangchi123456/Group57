@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.Hotel.common.dataService.HotelDataService;
@@ -21,6 +22,8 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	
 	private HotelDataHelper hotelDataHelper;
 	
+	private HotelDataHelper roomDataHelper;
+	
 	private DataFactory dataFactory;
 	
 	private static HotelDataImpl hotelDataImpl;
@@ -37,6 +40,11 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			dataFactory = new DataFactoryImpl();
 			hotelDataHelper = dataFactory.getHotelDataHelper();
 			map = hotelDataHelper.getHotelData();
+		}
+		if(map_room == null){
+			dataFactory = new DataFactoryImpl();
+			roomDataHelper = dataFactory.getHotelDataHelper();
+			map_room = roomDataHelper.getRoomData();
 		}
 	}
 	
@@ -71,20 +79,30 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return false;	
 	}//更新酒店信息
 	
-	public ArrayList<HotelPO> hotelShowAll(String circle, int hotel_id, HotelPO hotelpo, double price, int star, double grade, String room_type)throws RemoteException{	
+	public ArrayList<HotelPO> hotelShowAll(String circle, int hotel_id, double price, int star, double grade, String room_type)throws RemoteException{	
 		ArrayList<HotelPO> hotellist=new ArrayList<HotelPO>();
+		Iterator<Map.Entry<Integer,HotelPO>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry<Integer, HotelPO> entry = iterator.next();
+			HotelPO hotelpo = entry.getValue();
 		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getID()||price==hotelpo.getPrice()||star==hotelpo.getStar()||grade==hotelpo.getGrade()||room_type==hotelpo.getRoomtype()){
 			hotellist.add(hotelpo);
 			return hotellist;
 		}
+		}
 		return null;		
 	}//显示所有酒店信息
 	
-	public ArrayList<RoomPO> roomShowAll(RoomPO roompo, int room_id, int room_num, int room_type)throws RemoteException{
+	public ArrayList<RoomPO> roomShowAll(int room_id, int room_num, int room_type)throws RemoteException{
 		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
+		Iterator<Map.Entry<Integer,RoomPO>> iterator = map_room.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry<Integer, RoomPO> entry = iterator.next();
+			RoomPO roompo = entry.getValue();
 		if(room_id==roompo.getID()||room_num==roompo.getNum()||room_type==roompo.getRoomtype()){
 			roomlist.add(roompo);
 			return roomlist;
+		}
 		}
 		return null;
 	}//显示所有客房信息

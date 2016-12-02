@@ -8,15 +8,13 @@ import org.Hotel.common.po.OrderPO;
 
 public interface OrderDataService extends Remote{
 
-    public void insert(OrderPO orderpo)throws RemoteException;
+    public boolean insert(OrderPO orderpo)throws RemoteException;
 	
-	public void delete(OrderPO orderpo)throws RemoteException;
+	public boolean delete(OrderPO orderpo)throws RemoteException;
 	
-	public void update(OrderPO orderPO)throws RemoteException;
+	public boolean update(OrderPO orderpO)throws RemoteException;
 	
-	public void find(OrderPO orderpo)throws RemoteException;
+	public ArrayList<OrderPO> showAll()throws RemoteException;
 	
-    public ArrayList<OrderPO> showAll()throws RemoteException;
-	
-	public ArrayList<OrderPO> orderShowAll(int Order_id)throws RemoteException;
+	public ArrayList<OrderPO> orderShowAll(int order_id)throws RemoteException;
 }
