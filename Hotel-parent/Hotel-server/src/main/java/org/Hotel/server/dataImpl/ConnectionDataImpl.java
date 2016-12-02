@@ -8,7 +8,7 @@ import org.Hotel.common.dataService.ConnectionDataService;
 
 public class ConnectionDataImpl extends UnicastRemoteObject implements ConnectionDataService,Serializable {
 
-	protected ConnectionDataImpl() throws RemoteException {
+	public ConnectionDataImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}

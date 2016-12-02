@@ -7,6 +7,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import org.Hotel.server.dataImpl.ConnectionDataImpl;
 import org.Hotel.server.dataImpl.HotelDataImpl;
 import org.Hotel.server.dataImpl.LogDataImpl;
 import org.Hotel.server.dataImpl.MemberDataImpl;
@@ -15,6 +16,7 @@ import org.Hotel.server.dataImpl.PromotionDataImpl;
 import org.Hotel.server.dataImpl.ReservationDataImpl;
 import org.Hotel.server.dataImpl.UserDataImpl;
 import org.Hotel.common.config.XMLReader;
+import org.Hotel.common.dataService.ConnectionDataService;
 import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.dataService.LogDataService;
 import org.Hotel.common.dataService.MemberDataService;
@@ -25,18 +27,18 @@ import org.Hotel.common.dataService.UserDataService;;
 
 public class RemoteHelper {
 	
-	private static final int PORT=XMLReader.loadipconfig().getPORT();
+	private static final int PORT=XMLReader.loadipconfig("src/main/resources/config.xml").getPORT();
 	
 	/**
 	 * 服务器ip地址
 	 */
-	private static final String IP=XMLReader.loadipconfig().getIP();
+	private static final String IP=XMLReader.loadipconfig("src/main/resources/config.xml").getIP();
 
 	
 	public static void init(){
 
 		if(IP==null){
-			System.out.println("error IP config! Please set your ip.");
+			System.out.println("error IP config!");
 		    System.exit(0);	
 		}
 		
@@ -47,6 +49,7 @@ public class RemoteHelper {
 			LocateRegistry.createRegistry(PORT);
 			
 			//创建实现类
+			ConnectionDataService ConnectionDataImpl = new ConnectionDataImpl();
 			HotelDataService HotelDataImpl=new HotelDataImpl();
 			LogDataService LogDataImpl=new LogDataImpl();
 			MemberDataService MemberDataImpl=new MemberDataImpl();
@@ -56,6 +59,7 @@ public class RemoteHelper {
 			PromotionDataService PromotionDataImpl=new PromotionDataImpl();
 	
 			//注册通讯路径，把所有的Impl实现类注册到RMI服务器上
+			Naming.rebind("rmi://"+IP+":"+PORT+"/ConnectionDataService", ConnectionDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/HotelDataService", HotelDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/LogDataService", LogDataImpl);
