@@ -7,15 +7,22 @@ import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class UserWebManagementHotelController implements Initializable{
     @FXML
-    private TextField MembernameText,HotelnameText,PhonenumberText;
-    
+    private TextField MembernameText,PasswordText,PhonenumberText;
+    @FXML
+    private Label HotelLabel;
     @FXML
     private TableView HotelstuffTable;
+    
+    @FXML
+    private void SaveButtonClicked(ActionEvent event){
+    	
+    }
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Loginui();;

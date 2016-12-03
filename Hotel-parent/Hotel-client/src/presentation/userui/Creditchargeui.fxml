@@ -31,7 +31,7 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="192.0" />
+                  <TextField fx:id="UsernameText" prefHeight="26.0" prefWidth="192.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="90.0">
@@ -41,7 +41,7 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="26.0" prefWidth="191.0" />
+                  <TextField fx:id="ChargenumText" prefHeight="26.0" prefWidth="191.0" />
                </children>
             </HBox>
          </children>
@@ -53,7 +53,7 @@
    <bottom>
       <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="270.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="确认">
+            <Button mnemonicParsing="false" onAction="#ConfirmClicked" text="确认">
                <font>
                   <Font size="20.0" />
                </font>

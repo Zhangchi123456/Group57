@@ -135,6 +135,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label prefHeight="29.0" prefWidth="98.0" text="    姓名：">
@@ -184,9 +185,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="156.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -197,9 +195,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -210,9 +205,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -223,9 +215,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -236,9 +225,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -265,6 +251,11 @@
                                     <Font size="17.0" />
                                  </font>
                               </Label>
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </GridPane>
                      </children>

@@ -112,7 +112,7 @@
                         <TableView fx:id="HotelstuffTable" prefHeight="389.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn prefWidth="110.0" text="用户名" />
-                            <TableColumn prefWidth="120.0" text="账号" />
+                            <TableColumn prefWidth="120.0" text="所属酒店" />
                           </columns>
                            <padding>
                               <Insets bottom="20.0" left="2.0" right="2.0" top="2.0" />
@@ -136,6 +136,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label>
@@ -148,7 +149,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="PhonenumberText" prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="PhonenumberText" prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -157,15 +158,7 @@
                                  <padding>
                                     <Insets left="10.0" top="52.0" />
                                  </padding>
-                                 <children>
-                                    <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                 </children>
                               </HBox>
-                              <TextField fx:id="HotelnameText" prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </TextField>
                               <HBox spacing="10.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets top="30.0" />
@@ -176,12 +169,12 @@
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="31.0" prefWidth="142.0" text="          酒店 ：" GridPane.rowIndex="1">
+                              <Label prefHeight="31.0" prefWidth="142.0" text="          酒店 ：" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="31.0" prefWidth="142.0" text="        联系方式 ：" GridPane.rowIndex="2">
+                              <Label prefHeight="31.0" prefWidth="142.0" text="        联系方式 ：" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -190,9 +183,6 @@
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="保存" />
-                                       </children>
                                        <padding>
                                           <Insets left="10.0" />
                                        </padding>
@@ -209,6 +199,18 @@
                                     </HBox>
                                  </children>
                               </VBox>
+                              <Label text="          密码  :" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="PasswordText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
+                              <Label fx:id="Hotellabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>

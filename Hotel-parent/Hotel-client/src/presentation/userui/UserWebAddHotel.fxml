@@ -128,7 +128,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="642.0">
                      <children>
-                        <GridPane layoutX="16.0" layoutY="54.0" prefHeight="546.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <GridPane layoutX="7.0" prefHeight="546.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="96.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="144.0" />
@@ -178,7 +178,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <Label prefHeight="28.0" prefWidth="77.0" text="   地址 ：" GridPane.rowIndex="1">
+                              <Label prefHeight="28.0" prefWidth="77.0" text="   城市 ：" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
@@ -186,7 +186,7 @@
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="CityChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" prefWidth="149.0" text="              商圈  ：" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <padding>
                                     <Insets left="8.0" />
@@ -203,21 +203,8 @@
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label layoutX="229.0" layoutY="147.0" prefHeight="29.0" prefWidth="155.0" text="              评分  ：" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <padding>
-                                    <Insets left="8.0" />
-                                 </padding>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <Button mnemonicParsing="false" onAction="#AddRoomClicked" prefHeight="45.0" prefWidth="102.0" text="添加房间" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#AddIntroductionClicked" prefHeight="44.0" prefWidth="102.0" text="添加简介" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <ChoiceBox fx:id="StarChoicebox" layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Button mnemonicParsing="false" onAction="#AddRoomClicked" prefHeight="45.0" prefWidth="180.0" text="添加房间" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
@@ -230,16 +217,22 @@
                                           <Insets top="25.0" />
                                        </padding>
                                        <children>
-                                          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="恢复" />
-                                          <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="70.0" text="保存" />
-                                          <Button layoutX="70.0" layoutY="35.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="63.0" text="新增" />
+                                          <Button mnemonicParsing="false" onAction="#AddIntroductionClicked" prefHeight="44.0" prefWidth="150.0" text="添加简介">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                     </HBox>
                                  </children>
                               </VBox>
-                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <ChoiceBox fx:id="BusinessChoicebox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <TextField fx:id="AdressText" prefHeight="26.0" prefWidth="151.0" GridPane.columnIndex="3" />
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="34.0" prefWidth="150.0" text="保存酒店信息" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </GridPane>
                      </children>
