@@ -69,9 +69,49 @@ public class OrderPO {
 		return hotelid;
 	}
 	
-	public void setHotelid() {
+	public void setHotelid(int hotelid) {
 		
 		this.hotelid = hotelid;
 	}
+	
+	public String getIntime() {
+		
+		return intime;
+	}
 
+	public void setIntime(String intime) {
+		
+		this.intime = intime;
+	}
+	
+    public String getOuttime() {
+		
+		return outtime;
+	}
+    
+    public void setOuttime(String outtime) {
+		
+		this.outtime = outtime;
+	}
+    
+    public int getState() {
+    	
+    	return state;
+    }
+    
+    public void setState(int state) {
+    	
+    	this.state = state;
+    }
+    
+    public double getPrice() {
+    	
+    	return price;
+    }
+    
+    public void setPrice(double price) {
+    	
+    	this.price = price;
+    }
+    
 }

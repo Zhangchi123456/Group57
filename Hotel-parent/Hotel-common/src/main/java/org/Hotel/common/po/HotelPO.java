@@ -12,9 +12,7 @@ public class HotelPO {
 	
 	private int grade;
 	
-	private String roomtype;
-	
-	private int roomid;
+	private int roomtype;
 	
 	private int roomnum;
 	
@@ -28,7 +26,7 @@ public class HotelPO {
 		super();
 	}
 	
-	public HotelPO(int id, String circle, double price, int star, int grade, String roomtype,int roomid, int roomnum, String intime, String outtime, String lasttime){
+	public HotelPO(int id, String circle, double price, int star, int grade, int roomtype, int roomnum, String intime, String outtime, String lasttime){
 		super();
 		 
 		this.id = id;				 
@@ -36,8 +34,7 @@ public class HotelPO {
 		this.price = price;				 
 		this.star = star;			 
 		this.grade = grade;				 
-		this.roomtype = roomtype;			 
-		this.roomid = roomid;				
+		this.roomtype = roomtype;			 				
 		this.roomnum = roomnum;	
 		this.intime = intime;				 
 		this.outtime = outtime;				 
@@ -95,24 +92,14 @@ public class HotelPO {
 		this.grade = grade;
 	}
 
-	public String getRoomtype() {
+	public int getRoomtype() {
 		
 		return roomtype;
 	}
 	
-	public void setRoomtype(String roomtype) {
+	public void setRoomtype(int roomtype) {
 		
 		this.roomtype = roomtype;
-	}
-
-	public int getRoomid() {
-		
-		return roomid;
-	}
-	
-	public void setRoomid(int roomid) {
-		
-		this.roomid = roomid;
 	}
 	
 	public int getRoomnum() {
