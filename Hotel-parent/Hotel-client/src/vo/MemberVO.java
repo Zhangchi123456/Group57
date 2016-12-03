@@ -1,5 +1,6 @@
 package vo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class MemberVO {
@@ -7,8 +8,9 @@ public class MemberVO {
     private int membercreditvalue;
     private String membername;
     private String memberlevel;
-    private Date memberbirthday;
+    private LocalDate memberbirthday;
     private String memberproperty;
+    private String password;
     
     //手机号码暂未确定是否用到。
     private String phonenumber; 
@@ -27,6 +29,13 @@ public class MemberVO {
     public void setname(String Membername){
     	this.membername=Membername;
     }
+    
+    public void setbyString(String memberProperty,String memberName,String Password,LocalDate birthday){
+    	this.memberbirthday=birthday;
+    	this.membername=memberName;
+    	this.memberproperty=memberProperty;
+    	this.password=Password;
+    }
     public int getid(){
    	 return this.memberid;
     }
@@ -42,7 +51,7 @@ public class MemberVO {
    	 return this.memberlevel;
     }
     
-    public Date getbirthday(){
+    public LocalDate getbirthday(){
    	 return this.memberbirthday;
     }
     
