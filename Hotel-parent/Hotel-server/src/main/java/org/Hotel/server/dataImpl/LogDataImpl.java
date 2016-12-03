@@ -18,7 +18,7 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService,S
 
 	private Map<Integer, LogPO> map;
 	
-	private LogDataHelper logDataHelper;
+	private LogDataImpl logDataHelper;
 	
 	private DataFactory dataFactory;
 	
@@ -34,8 +34,8 @@ public class LogDataImpl extends UnicastRemoteObject implements LogDataService,S
 	public LogDataImpl()throws RemoteException{
 		if(map == null){
 			dataFactory = new DataFactoryImpl();
-			logDataHelper = dataFactory.getLogDataHelper();
-			map = logDataHelper.getHotelData();
+//			logDataHelper = dataFactory.getLogDataHelper();
+//			map = logDataHelper.getHotelData();
 		}
 	}
 

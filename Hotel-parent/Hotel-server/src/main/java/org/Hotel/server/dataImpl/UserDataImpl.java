@@ -19,7 +19,7 @@ import org.Hotel.server.datahelp.PromotionDataHelper;
 import org.Hotel.server.datahelp.UserDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
-public class extends UnicastRemoteObject implements UserDataService,Serializable{
+public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
 	
 
 	private Map<Integer, HotelStaffPO> map_hotels;
@@ -157,7 +157,7 @@ public class extends UnicastRemoteObject implements UserDataService,Serializable
 		while(iterator.hasNext()){
 			Map.Entry<Integer, HotelStaffPO> entry = iterator.next();
 			HotelStaffPO hotelspo = entry.getValue();
-			if(id==hotelspo.getID())
+			if(id==hotelspo.getId())
 			hotelslist.add(hotelspo);
 		}
 		return hotelslist;
@@ -169,7 +169,7 @@ public class extends UnicastRemoteObject implements UserDataService,Serializable
 		while(iterator.hasNext()){
 			Map.Entry<Integer, WebStaffPO> entry = iterator.next();
 			WebStaffPO webspo = entry.getValue();
-			if(id==webspo.getID())
+			if(id==webspo.getId())
 			webslist.add(webspo);
 		}
 		return webslist;
@@ -181,7 +181,7 @@ public class extends UnicastRemoteObject implements UserDataService,Serializable
 		while(iterator.hasNext()){
 			Map.Entry<Integer, WebManagerPO> entry = iterator.next();
 			WebManagerPO webmpo = entry.getValue();
-			if(id==webmpo.getID())
+			if(id==webmpo.getId())
 			webmlist.add(webmpo);
 		}
 		return webmlist;

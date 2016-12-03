@@ -92,7 +92,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				OrderPO orderpo = entry.getValue();
-				if(order_id==orderpo.getID())
+				if(order_id==orderpo.getId())
 				orderlist.add(orderpo);
 			}
 			return orderlist;

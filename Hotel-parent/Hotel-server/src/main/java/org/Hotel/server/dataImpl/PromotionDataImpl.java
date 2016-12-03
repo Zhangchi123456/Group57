@@ -9,11 +9,8 @@ import java.util.Map;
 
 import org.Hotel.common.dataService.PromotionDataService;
 import org.Hotel.common.po.HotelPromotionPO;
-import org.Hotel.common.po.OrderPO;
-import org.Hotel.common.po.PromotionPO;
 import org.Hotel.common.po.WebPromotionPO;
 import org.Hotel.server.datahelp.DataFactory;
-import org.Hotel.server.datahelp.OrderDataHelper;
 import org.Hotel.server.datahelp.PromotionDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
@@ -125,7 +122,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		while(iterator.hasNext()){
 			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
 			WebPromotionPO webpropo = entry.getValue();
-			if(id==webpropo.getID())
+			if(id==webpropo.getId())
 			webprolist.add(webpropo);
 		}
 		return webprolist;
@@ -143,7 +140,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return webprolist;
 	}
 	
-	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException{
+	public ArrayList<HotelPromotionPO> showAllHotelPro12() throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
 		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
@@ -160,7 +157,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		while(iterator.hasNext()){
 			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
-			if(id==hotelpropo.getID())
+			if(id==hotelpropo.getId())
 				hotelprolist.add(hotelpropo);
 		}
 		return hotelprolist;
@@ -187,6 +184,11 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			hotelprolist.add(hotelpropo);
 	}
 		return hotelprolist;
+	}
+
+	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

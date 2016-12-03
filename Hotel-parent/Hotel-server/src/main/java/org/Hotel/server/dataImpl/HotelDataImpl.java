@@ -85,7 +85,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Map.Entry<Integer, HotelPO> entry = iterator.next();
 			HotelPO hotelpo = entry.getValue();
-		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getID()||price==hotelpo.getPrice()||star==hotelpo.getStar()||grade==hotelpo.getGrade()||room_type==hotelpo.getRoomtype()){
+		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getId()||price==hotelpo.getPrice()||star==hotelpo.getStar()||grade==hotelpo.getGrade()||room_type==hotelpo.getRoomtype()){
 			hotellist.add(hotelpo);
 			return hotellist;
 		}
@@ -99,7 +99,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Map.Entry<Integer, RoomPO> entry = iterator.next();
 			RoomPO roompo = entry.getValue();
-		if(room_id==roompo.getID()||room_num==roompo.getNum()||room_type==roompo.getRoomtype()){
+		if(room_id==roompo.getId()||room_num==roompo.getNum()||room_type==roompo.getRoomtype()){
 			roomlist.add(roompo);
 			return roomlist;
 		}

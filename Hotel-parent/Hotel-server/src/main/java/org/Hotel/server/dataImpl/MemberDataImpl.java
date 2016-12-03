@@ -90,4 +90,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		return memberlist;
 	}
 
+	public MemberPO find(long id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
