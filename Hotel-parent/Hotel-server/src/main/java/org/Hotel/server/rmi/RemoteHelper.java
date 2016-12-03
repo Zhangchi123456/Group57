@@ -9,20 +9,16 @@ import java.rmi.registry.LocateRegistry;
 
 import org.Hotel.server.dataImpl.ConnectionDataImpl;
 import org.Hotel.server.dataImpl.HotelDataImpl;
-import org.Hotel.server.dataImpl.LogDataImpl;
 import org.Hotel.server.dataImpl.MemberDataImpl;
 import org.Hotel.server.dataImpl.OrderDataImpl;
 import org.Hotel.server.dataImpl.PromotionDataImpl;
-import org.Hotel.server.dataImpl.ReservationDataImpl;
 import org.Hotel.server.dataImpl.UserDataImpl;
 import org.Hotel.common.config.XMLReader;
 import org.Hotel.common.dataService.ConnectionDataService;
 import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.LogDataService;
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
 import org.Hotel.common.dataService.PromotionDataService;
-import org.Hotel.common.dataService.ReservationDataService;
 import org.Hotel.common.dataService.UserDataService;;
 
 public class RemoteHelper {
@@ -51,10 +47,8 @@ public class RemoteHelper {
 			//创建实现类
 			ConnectionDataService ConnectionDataImpl = new ConnectionDataImpl();
 			HotelDataService HotelDataImpl=new HotelDataImpl();
-			LogDataService LogDataImpl=new LogDataImpl();
 			MemberDataService MemberDataImpl=new MemberDataImpl();
 			OrderDataService OrderDataImpl=new OrderDataImpl();
-			ReservationDataService ReservationDataImpl=new ReservationDataImpl();
 			UserDataService UserDataImpl=new UserDataImpl();
 			PromotionDataService PromotionDataImpl=new PromotionDataImpl();
 	
@@ -62,10 +56,8 @@ public class RemoteHelper {
 			Naming.rebind("rmi://"+IP+":"+PORT+"/ConnectionDataService", ConnectionDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/HotelDataService", HotelDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
-			Naming.rebind("rmi://"+IP+":"+PORT+"/LogDataService", LogDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/MemberDataService", MemberDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
-			Naming.rebind("rmi://"+IP+":"+PORT+"/ReservationDataService", ReservationDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/PromotionDataService", PromotionDataImpl);
 			

@@ -8,14 +8,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.Hotel.common.dataService.UserDataService;
-import org.Hotel.common.po.HotelPromotionPO;
 import org.Hotel.common.po.HotelStaffPO;
-import org.Hotel.common.po.UserPO;
 import org.Hotel.common.po.WebManagerPO;
-import org.Hotel.common.po.WebPromotionPO;
 import org.Hotel.common.po.WebStaffPO;
 import org.Hotel.server.datahelp.DataFactory;
-import org.Hotel.server.datahelp.PromotionDataHelper;
 import org.Hotel.server.datahelp.UserDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
