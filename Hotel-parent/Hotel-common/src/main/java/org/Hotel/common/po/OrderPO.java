@@ -6,34 +6,184 @@ public class OrderPO {
 	
 	private String name;
 	
-	private String orderinfo;
+	private String child;
 	
 	private String hotelid;
 	
 	private String intime;
 	
-	private int state;
+	private String state;
 	
 	private String outtime;
 	
+	private String lasttime;
+	
 	private double price;
+	
+	private String dischargetime;
+	
+	private int peoplenum;
+	
+	private boolean havekids;
+	
+	private int singleRoom;
+	
+	private int standardRoom;
+	
+	private int familyRoom;
+	
+	private int suiteRoom;
 	
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String orderinfo, String hotelid, String intime, String outtime, int state, double price) {
+	public OrderPO(int id, String name, String child, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom) {
 		super();
 		
 		this.id = id;
+		
 		this.name = name;
-		this.orderinfo = orderinfo;
+		
+		this.child = child;
+		
 		this.hotelid = hotelid;
+		
 		this.intime = intime;
+		
 		this.outtime = outtime;
+		
 		this.state = state;
+		
 		this.price = price;
 		
+		this.lasttime = lasttime;
+		
+		this.dischargetime = dischargetime;
+		
+		this.peoplenum = peoplenum;
+		
+		this.havekids = havekids;
+		
+		this.singleRoom = singleRoom;
+		
+		this.standardRoom = standardRoom;
+		
+		this.familyRoom = familyRoom;
+		
+		this.suiteRoom = suiteRoom;
+		
 	}
+	/**
+	 * @return the child
+	 */
+	public String getChild() {
+		return child;
+	}
+	/**
+	 * @param child the child to set
+	 */
+	public void setChild(String child) {
+		this.child = child;
+	}
+	/**
+	 * @return the lasttime
+	 */
+	public String getLasttime() {
+		return lasttime;
+	}
+	/**
+	 * @param lasttime the lasttime to set
+	 */
+	public void setLasttime(String lasttime) {
+		this.lasttime = lasttime;
+	}
+	/**
+	 * @return the dischargetime
+	 */
+	public String getDischargetime() {
+		return dischargetime;
+	}
+	/**
+	 * @param dischargetime the dischargetime to set
+	 */
+	public void setDischargetime(String dischargetime) {
+		this.dischargetime = dischargetime;
+	}
+	/**
+	 * @return the peoplenum
+	 */
+	public int getPeoplenum() {
+		return peoplenum;
+	}
+	/**
+	 * @param peoplenum the peoplenum to set
+	 */
+	public void setPeoplenum(int peoplenum) {
+		this.peoplenum = peoplenum;
+	}
+	/**
+	 * @return the havekids
+	 */
+	public boolean isHavekids() {
+		return havekids;
+	}
+	/**
+	 * @param havekids the havekids to set
+	 */
+	public void setHavekids(boolean havekids) {
+		this.havekids = havekids;
+	}
+	/**
+	 * @return the singleRoom
+	 */
+	public int getSingleRoom() {
+		return singleRoom;
+	}
+	/**
+	 * @param singleRoom the singleRoom to set
+	 */
+	public void setSingleRoom(int singleRoom) {
+		this.singleRoom = singleRoom;
+	}
+	/**
+	 * @return the standardRoom
+	 */
+	public int getStandardRoom() {
+		return standardRoom;
+	}
+	/**
+	 * @param standardRoom the standardRoom to set
+	 */
+	public void setStandardRoom(int standardRoom) {
+		this.standardRoom = standardRoom;
+	}
+	/**
+	 * @return the familyRoom
+	 */
+	public int getFamilyRoom() {
+		return familyRoom;
+	}
+	/**
+	 * @param familyRoom the familyRoom to set
+	 */
+	public void setFamilyRoom(int familyRoom) {
+		this.familyRoom = familyRoom;
+	}
+	/**
+	 * @return the suiteRoom
+	 */
+	public int getSuiteRoom() {
+		return suiteRoom;
+	}
+	/**
+	 * @param suiteRoom the suiteRoom to set
+	 */
+	public void setSuiteRoom(int suiteRoom) {
+		this.suiteRoom = suiteRoom;
+	}
+	/**
+	 * @param state the state to set
+	 */
 	public int getId() {
 		// TODO Auto-generated method stub
 		return id;
@@ -52,16 +202,6 @@ public class OrderPO {
 	public void setName(String name) {
 		
 		this.name = name;
-	}
-
-	public String getOrderinfo() {
-		
-		return orderinfo;
-	}
-	
-	public void setOrderinfo(String orderinfo) {
-		
-		this.orderinfo = orderinfo;
 	}
 	
 	public String getHotelid() {
@@ -94,12 +234,13 @@ public class OrderPO {
 		this.outtime = outtime;
 	}
     
-    public int getState() {
+    public String getState() {
     	
     	return state;
     }
+   
     
-    public void setState(int state) {
+    public void setState(String state) {
     	
     	this.state = state;
     }

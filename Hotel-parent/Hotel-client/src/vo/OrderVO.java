@@ -36,7 +36,22 @@ public class OrderVO {
     }
     
   
-    public String getOrderstate() {
+    public int getOrderid() {
+		return orderid;
+	}
+
+
+	public double getOrderprice() {
+		return orderprice;
+	}
+
+
+	public String getRoomname() {
+		return roomname;
+	}
+
+
+	public String getOrderstate() {
 		return orderstate;
 	}
 
