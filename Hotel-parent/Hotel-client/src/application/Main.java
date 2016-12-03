@@ -38,8 +38,8 @@ public class Main extends Application {
 		//stage鐨勫垵濮嬪寲
 	    public void init(Stage stage){
 	    	this.mainStage=stage;
-	    	//RMIHelper.init();
-	    	//new RMIConnection();
+	    //	RMIHelper.init();
+	    //	new RMIConnection();
 	    	UiswitchHelper.setApplication(this);
 	    	goto_Loginui();
 	    }

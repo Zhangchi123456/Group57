@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.Hotel.common.po.HotelPromotionPO;
-import org.Hotel.common.po.PromotionPO;
 import org.Hotel.common.po.WebPromotionPO;
 
 public interface PromotionDataService extends Remote{
