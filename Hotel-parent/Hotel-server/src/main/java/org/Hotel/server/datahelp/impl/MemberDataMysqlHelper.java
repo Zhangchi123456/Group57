@@ -33,7 +33,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		
 	}
 
-	public Map<Integer, MemberLevelPO> getMemberLevelData() {
+	public Map<String, MemberLevelPO> getMemberLevelData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
