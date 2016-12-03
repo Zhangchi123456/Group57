@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreatorderController">
    <top>
@@ -71,7 +74,17 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="RoomType" prefWidth="150.0" />
+                        <ChoiceBox fx:id="RoomType" prefWidth="150.0" >
+                        <items>
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="单人房" />
+                    <String fx:value="标准间" />
+                    <String fx:value="家庭房" />
+                    <String fx:value="套间" />
+                    
+                  </FXCollections>
+                  </items>
+                  </ChoiceBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="55.0" prefWidth="800.0">
@@ -81,7 +94,15 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="Child" prefWidth="150.0" />
+                        <ChoiceBox fx:id="Child" prefWidth="150.0" >
+                         <items>
+                  <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="有" />
+                    <String fx:value="无" />
+                    
+                  </FXCollections>
+                  </items>
+                  </ChoiceBox>
                      </children>
                   </HBox>
                   <HBox prefHeight="60.0" prefWidth="800.0">

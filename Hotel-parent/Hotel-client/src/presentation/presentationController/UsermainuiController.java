@@ -3,6 +3,8 @@ package presentation.presentationController;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+import Controller.ReservationController;
 import Helper.InituiHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
@@ -115,6 +117,7 @@ public class UsermainuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
+		ReservationController.setMembervo(membervo);
 		InituiHelper.setMemberVO(membervo);
 		membernamelabel.setText(InituiHelper.getMembername());
 		

@@ -4,6 +4,7 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -48,6 +49,10 @@ public class LoginController implements Initializable{
 		}
 		
 		else	{
+			String LogId=UserId.getText().toString();
+			String Logpassword=PassWord.getText().toString();
+			LogVO logvo=new LogVO(LogId,Logpassword);
+			LoginHelper.setLogVO(logvo);
 			if(UserId.getText().trim().substring(0, 1).equals("1"))
 		    UiswitchHelper.getApplication().goto_Usermainui();
 		    if(UserId.getText().trim().substring(0, 1).equals("2"))

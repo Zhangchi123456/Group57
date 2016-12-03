@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 
 public class UserWebAddRoomController implements Initializable{
     @FXML
-    private TextField RoomtypeText,RoomnumText;
+    private TextField RoomtypeText,RoomnumText,RoompriceText;
     
     
 	@FXML
