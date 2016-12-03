@@ -5,7 +5,8 @@ import java.util.Date;
 public class OrderVO {
 	public int orderid;
     public double  orderprice;
-    public String orderstate;
+
+	public String orderstate;
     public String orderEvaluation;
     public String membername;  
     public String hotelname;
@@ -35,14 +36,139 @@ public class OrderVO {
     }
     
   
+    public String getOrderstate() {
+		return orderstate;
+	}
 
-	public int getOrderid(){
-    	return this.orderid;
-    }
-    public double getOrderprice(){
-    	return this.getOrderprice();
-    }
-    public String getRoomname(){
-    	return null;
-    }
+
+
+	public void setOrderstate(String orderstate) {
+		this.orderstate = orderstate;
+	}
+
+
+
+	public String getOrderEvaluation() {
+		return orderEvaluation;
+	}
+
+
+
+	public void setOrderEvaluation(String orderEvaluation) {
+		this.orderEvaluation = orderEvaluation;
+	}
+
+
+
+	public String getMembername() {
+		return membername;
+	}
+
+
+
+	public void setMembername(String membername) {
+		this.membername = membername;
+	}
+
+
+
+	public String getHotelname() {
+		return hotelname;
+	}
+
+
+
+	public void setHotelname(String hotelname) {
+		this.hotelname = hotelname;
+	}
+
+
+
+	public String getBeginDate() {
+		return BeginDate;
+	}
+
+
+
+	public void setBeginDate(String beginDate) {
+		BeginDate = beginDate;
+	}
+
+
+
+	public String getEndDate() {
+		return EndDate;
+	}
+
+
+
+	public void setEndDate(String endDate) {
+		EndDate = endDate;
+	}
+
+
+
+	public String getUserNUm() {
+		return UserNUm;
+	}
+
+
+
+	public void setUserNUm(String userNUm) {
+		UserNUm = userNUm;
+	}
+
+
+
+	public String getTelePhone() {
+		return TelePhone;
+	}
+
+
+
+	public void setTelePhone(String telePhone) {
+		TelePhone = telePhone;
+	}
+
+
+
+	public String getChild() {
+		return Child;
+	}
+
+
+
+	public void setChild(String child) {
+		Child = child;
+	}
+
+
+
+	public String getRoomNum() {
+		return RoomNum;
+	}
+
+
+
+	public void setRoomNum(String roomNum) {
+		RoomNum = roomNum;
+	}
+
+
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
+
+
+	public void setOrderprice(double orderprice) {
+		this.orderprice = orderprice;
+	}
+
+
+
+	public void setRoomname(String roomname) {
+		this.roomname = roomname;
+	}
 }

@@ -37,7 +37,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <TextField id="UserName" fx:id="UserId1" />
+                  <TextField id="UserName" fx:id="PassWord" />
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0" spacing="11.0">

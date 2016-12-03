@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
 
 public class CreatorderController implements Initializable{
 	 private String username,usernum,telephone,roomnum,roomtype,havechild,timebegin,timeend;
@@ -27,6 +28,13 @@ public class CreatorderController implements Initializable{
     
     @FXML
     private void ConfirmButtonClicked(ActionEvent event){
+    	if(!Allisfilled()){
+    		AlertBox alt = new AlertBox();
+			alt.display("信息填写不全");
+    	}else if(!Isdateright()){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("日期选择错误");
+    	}else{
     	username=UserName.getText();
     	usernum=UserNum.getText();
     	telephone=TelePhone.getText();
@@ -36,6 +44,23 @@ public class CreatorderController implements Initializable{
     	timebegin=TimeBegin.getValue().toString();
     	timeend=TimeEnd.getValue().toString();
          UiswitchHelper.getApplication().goto_confirmUi();
+    	}
+    }
+    
+    private boolean Allisfilled(){
+    	if(UserName.getText().isEmpty()||UserNum.getText().isEmpty()||TelePhone.getText().isEmpty()||
+    			RoomnumText.getText().isEmpty()||RoomType.getValue().toString().equals(null)||Child.getValue().toString().equals(null)||
+    			TimeBegin.getValue().toString().equals(null)||TimeEnd.getValue().toString().equals(null)){
+    		return false;
+    	}
+    	return true;
+    }
+    
+    private boolean Isdateright(){
+    	if(TimeEnd.getValue().isBefore(TimeBegin.getValue())){
+    		return false;
+    	}
+    	return true;
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
