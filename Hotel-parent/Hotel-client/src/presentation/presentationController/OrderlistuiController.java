@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -17,7 +18,9 @@ public class OrderlistuiController implements Initializable{
    @FXML
    private TableView OrderList;
    @FXML
-   private TableColumn HotelName,OrderId,Time,Price,Room,Evaluate;
+   private TableColumn HotelName,OrderId,Time,Price,Room,Evaluate,OrderStation;
+   @FXML
+   private ChoiceBox OrderStationChoiceBox;
    
    @FXML
    private void ReturnButtonClicked(ActionEvent event){
@@ -30,7 +33,9 @@ public class OrderlistuiController implements Initializable{
    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		OrderStationChoiceBox.setValue("所有订单");
+		
+		
 		
 	}
 

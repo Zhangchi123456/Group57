@@ -4,6 +4,8 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,8 +14,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import vo.OrderVO;
 
-public class OrderEvaluateController  implements Initializable{
+public class OrderEvaluateController  implements Initializable {
 	    @FXML
 	    private Label OrderId;//订单号
 	    @FXML
@@ -44,7 +47,12 @@ public class OrderEvaluateController  implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		OrderLogicService a = new OrderLogicServiceImpl();
+		OrderVO ordervo;
+		ordervo=(a.findUserOrderinfo(null, 0));
+		OrderId.setText(String.valueOf(ordervo.orderid));
+        HotelName.setText(String.valueOf(ordervo.hotelname));
+        
 	}
 
 }
