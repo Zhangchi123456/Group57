@@ -37,36 +37,12 @@ public class LoginController implements Initializable{
 	private void SureClicked(ActionEvent event)throws Exception{
 	
 		if(UserId.getText().toString().equals("")){
-			Stage window = new Stage();
-			 window.setTitle("错误提示");
-			    //modality要使用Modality.APPLICATION_MODEL
-			   
-			    window.setMinWidth(300);
-			    window.setMinHeight(200);
-
-			    Button button = new Button("确认");
-			    button.setMinWidth(105);
-			    button.setMinHeight(40);
-			    button.setOnAction(new EventHandler<ActionEvent>(){
-					public void handle(ActionEvent event) {
-						window.close();
-						
-					}
-	        		
-	        	});
-
-			    Label label = new Label("用户名为空");
-			    
-                label.setFont(new Font(20));
-			    VBox layout = new VBox(10);
-			    layout.getChildren().addAll(label , button);
-			    layout.setSpacing(20);
-			    layout.setAlignment(Pos.CENTER);
-                
-			    Scene scene = new Scene(layout);
-			    window.setScene(scene);
-			    window.show();
-			
+				AlertBox alt = new AlertBox();
+				alt.display("用户名为空");
+		}
+		else	if(PassWord.getText().toString().equals("")){
+			AlertBox alt = new AlertBox();
+			alt.display("密码为空");
 		}
 		else	if(UserId.getText().trim().substring(0, 1).equals("1"))
 		UiswitchHelper.getApplication().goto_Usermainui();
