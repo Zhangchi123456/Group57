@@ -2,13 +2,14 @@ package org.Hotel.server.datahelp.impl;
 
 import java.util.Map;
 
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.RoomPO;
 import org.Hotel.server.datahelp.HotelDataHelper;
 
 public class HotelDataMysqlHelper implements HotelDataHelper {
 
-	public Map<Integer, HotelPO> getHotelData() {
+	public Map<String, HotelPO> getHotelData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -54,6 +55,26 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	}
 
 	public void deleteRoomData(RoomPO roompo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Map<String, CirclePO> getCircleData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateCircleData(CirclePO circlepo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertCircleData(CirclePO circlepo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteCircleData(CirclePO circlepo) {
 		// TODO Auto-generated method stub
 		
 	}

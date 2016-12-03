@@ -2,6 +2,7 @@ package org.Hotel.server.datahelp.impl;
 
 import java.util.Map;
 
+import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 import org.Hotel.server.datahelp.*;
 
@@ -28,6 +29,26 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public void deleteMemberData(MemberPO meberpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Map<Integer, MemberLevelPO> getMemberLevelData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateMemberLevelData(MemberLevelPO memberlvpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertMemberLevelData(MemberLevelPO memberlvpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteMemberLevelData(MemberLevelPO meberlvpo) {
 		// TODO Auto-generated method stub
 		
 	}

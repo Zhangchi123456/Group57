@@ -125,7 +125,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			
 		}
 		
-		public ArrayList<OrderPO> orderShowAllByName(String name, int state)throws RemoteException{
+		public ArrayList<OrderPO> orderShowAllByName(String name, String state)throws RemoteException{
 			ArrayList<OrderPO> orderlist = new ArrayList<OrderPO>();
 			Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();
 			while(iterator.hasNext()){

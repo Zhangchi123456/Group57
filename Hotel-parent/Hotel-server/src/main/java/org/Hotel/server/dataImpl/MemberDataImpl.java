@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 import org.Hotel.common.po.RoomPO;
 import org.Hotel.server.datahelp.DataFactory;
@@ -21,7 +22,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	private Map<Integer, MemberPO> map;
 	
-	private MemberDataHelper memberDataHelper;
+	private Map<String, MemberLevelPO> map_lv;
+	
+	private MemberDataHelper memberDataHelper, memberlvDataHelper;
 	
 	private DataFactory dataFactory;
 	
@@ -40,6 +43,12 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			memberDataHelper = dataFactory.getMemberDataHelper();
 			map = memberDataHelper.getMemberData();
 		}
+		
+		if(map_lv == null){
+			dataFactory = new DataFactoryImpl();
+			memberlvDataHelper = dataFactory.getMemberDataHelper();
+			map_lv = memberlvDataHelper.getMemberLevelData();
+		}
 	}
 
 	public boolean insert(MemberPO po) throws RemoteException{
@@ -47,6 +56,16 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		if(map.get(member_id) == null){
 			map.put(member_id, po);
 			memberDataHelper.insertMemberData(po);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean insert(MemberLevelPO po) throws RemoteException{
+		String member_name = po.getName();
+		if(map_lv.get(member_name) == null){
+			map_lv.put(member_name, po);
+			memberlvDataHelper.insertMemberLevelData(po);
 			return true;
 		}
 		return false;
@@ -74,6 +93,18 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	}
 	
+	public boolean update(MemberLevelPO po) throws RemoteException{
+		String member_name = po.getName();
+		if(map_lv.get(member_name) != null){
+			map_lv.put(member_name, po);
+			memberlvDataHelper.updateMemberLevelData(po);
+			return true;
+		}
+		return false;
+
+	}
+
+	
 	public MemberPO find(String name) throws RemoteException{
 		MemberPO po = map.get(name);
 		return po;
@@ -84,10 +115,21 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		Iterator<Map.Entry<Integer,MemberPO>> iterator = map.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, MemberPO> entry = iterator.next();
-			MemberPO orderPo = entry.getValue();
-			memberlist.add(orderPo);
+			MemberPO memberpo = entry.getValue();
+			memberlist.add(memberpo);
 		}
 		return memberlist;
+	}
+	
+	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException{
+		ArrayList<MemberLevelPO> memberlvlist = new ArrayList<MemberLevelPO>();
+		Iterator<Map.Entry<String,MemberLevelPO>> iterator = map_lv.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry<String, MemberLevelPO> entry = iterator.next();
+			MemberLevelPO po = entry.getValue();
+			memberlvlist.add(po);
+		}
+		return memberlvlist;
 	}
 
 }

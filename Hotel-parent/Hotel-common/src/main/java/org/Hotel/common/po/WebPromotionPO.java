@@ -10,12 +10,6 @@ public class WebPromotionPO {
 	
 	private int type;
 	
-	private double birthdaydiscount;
-	
-	private double multiorderdiscount;
-	
-	private double enterpricediscount;
-	
 	private double datediscount;
 	
 	private Date startdate;
@@ -26,7 +20,7 @@ public class WebPromotionPO {
 		super();
 	}
 	
-	public WebPromotionPO(int id, int type, String hotelid, double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
+	public WebPromotionPO(int id, int type, String hotelid, double datediscount,Date startdate,Date enddate) {
 		super();
 		
 		this.id = id;
@@ -34,12 +28,6 @@ public class WebPromotionPO {
 		this.type = type;
 		
 		this.hotelid = hotelid;
-		
-		this.birthdaydiscount = birthdaydiscount;
-		
-		this.multiorderdiscount = multiorderdiscount;
-		
-		this.enterpricediscount = enterpricediscount;
 		
 		this.datediscount = datediscount;
 		
@@ -75,36 +63,6 @@ public class WebPromotionPO {
 	public void setHotelid(String hotelid) {
 		
 		this.hotelid = hotelid;
-	}
-	
-	public double getBirthdaydiscount() {
-		
-		return birthdaydiscount;
-	}
-	
-	public void setBirthdaydiscount(double birthdaydiscount) {
-		
-		this.birthdaydiscount = birthdaydiscount;
-	}
-	
-    public double getMultiorderdiscount() {
-		
-		return multiorderdiscount;
-	}
-	
-	public void setMultiorderdiscount(double multiorderdiscount) {
-		
-		this.multiorderdiscount = multiorderdiscount;
-	}
-	
-    public double getEnterpricediscount() {
-		
-		return enterpricediscount;
-	}
-	
-	public void setEnterpricediscount(double enterpricediscount) {
-		
-		this.enterpricediscount = enterpricediscount;
 	}
 	
 	public double getDatediscount() {

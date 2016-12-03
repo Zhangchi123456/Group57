@@ -2,6 +2,7 @@ package org.Hotel.server.datahelp;
 
 import java.util.Map;
 
+import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 
 public interface MemberDataHelper {
@@ -19,4 +20,17 @@ public interface MemberDataHelper {
 	
 	public void deleteMemberData(MemberPO meberpo);
 	
+	/**
+	 * @return	从数据文件读入会员信息
+	 */
+	public Map<String,MemberLevelPO> getMemberLevelData();
+	/**
+	 * 从数据文件中写入会员信息
+	 * @param map	
+	 */
+	public void updateMemberLevelData(MemberLevelPO memberlvpo);
+	
+	public void insertMemberLevelData(MemberLevelPO memberlvpo);
+	
+	public void deleteMemberLevelData(MemberLevelPO meberlvpo);
 }
