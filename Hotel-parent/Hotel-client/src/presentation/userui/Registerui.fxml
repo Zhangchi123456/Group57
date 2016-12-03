@@ -37,7 +37,7 @@
                         <Font size="20.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="Member" mnemonicParsing="false" onAction="#MemberClicked" text="个人会员">
+                  <RadioButton fx:id="Member" mnemonicParsing="false" onAction="#MemberClicked" selected="true" text="个人会员">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -84,9 +84,9 @@
                   <TextField fx:id="PhonenumberText" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="172.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="167.0">
                <children>
-                  <Label fx:id="BirthdayLabel" text="生日:               ">
+                  <Label fx:id="BirthdayLabel" text="生日(选填):        ">
                      <font>
                         <Font size="20.0" />
                      </font>

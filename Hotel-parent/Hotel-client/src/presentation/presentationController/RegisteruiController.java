@@ -17,15 +17,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
 public class RegisteruiController implements Initializable {
+	
+	 private String name,password,confirmpassword,phonenumber,birthday;
+	  
      @FXML
      private TextField NameText,PhonenumberText;
+     //                姓名，     手机号码
      
      @FXML
      private PasswordField PasswordText,PasswordconfirmText;
+     //                    密码           确认密码
      
      @FXML
      private RadioButton Member,Company;
-     
+                        
      @FXML
      private Label NameLabel,BirthdayLabel;
      
@@ -47,13 +52,28 @@ public class RegisteruiController implements Initializable {
     	 Member.setSelected(false);
     	 NameLabel.setText("企业名:        ");
     	 BirthdayLabel.setVisible(false);
-    	 BirthdayDatepicker.setVisible(false);
-    	 
-    	 
+    	 BirthdayDatepicker.setVisible(false); 	 
      }
+     
+     
+     
      @FXML
      private void CommitbuttonClicked(ActionEvent event){
-    	 
+    	 if(Member.isSelected()){
+    		 name=NameText.getText();
+    		 password=PasswordText.getText();
+    		 confirmpassword=PasswordconfirmText.getText();
+    		 phonenumber=PhonenumberText.getText();
+    		 birthday=BirthdayDatepicker.getValue().toString();
+    	 }else if(Company.isSelected()){
+    		 name=NameText.getText();
+    		 password=PasswordText.getText();
+    		 confirmpassword=PasswordconfirmText.getText();
+    		 phonenumber=PhonenumberText.getText();
+    		 birthday="null";
+    	 }else{
+    		 
+    	 }
      }
      @FXML
      private void ReturnbuttonClicked(ActionEvent event){
