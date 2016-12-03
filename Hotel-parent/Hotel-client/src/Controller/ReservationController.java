@@ -1,18 +1,22 @@
 package Controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import vo.MemberVO;
 
 public class ReservationController {
-       private MemberVO membervo;
+	private final static Map<String,Object> membermap = new HashMap<>();
+	private final static String membervokey = "vo";	
        
-       public ReservationController(){
+       private ReservationController(){
     	   
        }
-       public void setMmembervo(MemberVO vo){
-    	   this.membervo=vo;
+       public static void setMmembervo(MemberVO vo){
+    	   membermap.put(membervokey, vo);
        }
-       public MemberVO getMembervo(){
-    	   return membervo;
+       public static  MemberVO getMembervo(){
+    	   return (MemberVO)membermap.get(membervokey);
        }
 }

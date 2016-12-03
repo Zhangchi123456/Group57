@@ -2,6 +2,7 @@ package presentation.presentationController;
 
 import java.net.URL;
 
+
 import java.util.ResourceBundle;
 
 import Helper.UiswitchHelper;
@@ -16,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import presentation.userui.AlertBox;
 
 public class RegisteruiController implements Initializable {
 	
@@ -60,6 +62,14 @@ public class RegisteruiController implements Initializable {
      
      @FXML
      private void CommitbuttonClicked(ActionEvent event){
+    	 if(!Allisfilled()){
+    		 AlertBox alt = new AlertBox();
+				alt.display("信息填写不全");
+    	 }
+    	 else if(!Passwordcorrect()){
+    		 AlertBox alt2 = new AlertBox();
+				alt2.display("密码两次填写不一致");
+    	 }
     	 if(Member.isSelected()){
     		 name=NameText.getText();
     		 password=PasswordText.getText();
@@ -72,9 +82,23 @@ public class RegisteruiController implements Initializable {
     		 confirmpassword=PasswordconfirmText.getText();
     		 phonenumber=PhonenumberText.getText();
     		 birthday="null";
-    	 }else{
-    		 
     	 }
+     }
+     
+     private boolean Allisfilled(){
+    	 if(NameText.getText().isEmpty()||PasswordText.getText().isEmpty()
+    		||PasswordconfirmText.getText().isEmpty()||PhonenumberText.getText().isEmpty()
+    		||(!Member.isSelected()&&!Company.isSelected())){
+    		 return false;
+    	 }
+    	 return true;
+    		 
+     }
+     private boolean Passwordcorrect(){
+    	 if(PasswordText.getText().equals(PasswordconfirmText.getText())){
+    		 return true;
+    	 }
+    	 return false;
      }
      @FXML
      private void ReturnbuttonClicked(ActionEvent event){
