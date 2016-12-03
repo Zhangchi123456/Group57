@@ -29,12 +29,18 @@ public class MemberVO {
     public void setname(String Membername){
     	this.membername=Membername;
     }
-    
+    //该方法用于在注册界面构造membervo
     public void setbyString(String memberProperty,String memberName,String Password,LocalDate birthday){
     	this.memberbirthday=birthday;
     	this.membername=memberName;
     	this.memberproperty=memberProperty;
     	this.password=Password;
+    }
+    //该方法用于在个人信息界面更新信息
+    public void updateInfo(String name,LocalDate Date,String phonenumber){
+    	this.memberbirthday=Date;
+    	this.membername=name;
+    	this.phonenumber=phonenumber;
     }
     public int getid(){
    	 return this.memberid;

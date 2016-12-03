@@ -1,8 +1,10 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
 
 public class UserinformationuiController implements Initializable{
+	 private String membername,phonenumber;
+	 private LocalDate birthday;
      @FXML
      private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel;
      //             会员性质              会员等级          会员信用值
@@ -26,7 +31,16 @@ public class UserinformationuiController implements Initializable{
      
      @FXML
      private void SaveButtonClicked(ActionEvent event){
-    	 
+    	 if(!Allisfilled()){
+    		 AlertBox alt = new AlertBox();
+				alt.display("请务必将用户名和联系方式填写完全");
+    	 }else{
+    		 membername=MembernameText.getText().toString();
+    		 phonenumber=PhonenumberText.getText().toString();
+    		 birthday=BirthdayDatepicker.getValue();
+    		 MemberActController.getmemberVo().updateInfo(membername, birthday, phonenumber);
+    		 
+    	 }
      }
      
      @FXML
@@ -34,9 +48,13 @@ public class UserinformationuiController implements Initializable{
     	 UiswitchHelper.getApplication().goto_Usermainui();
      }
      
-     private String getText(){
-    	 return null;
+     private boolean Allisfilled(){
+    	 if(MembernameText.getText().isEmpty()||PhonenumberText.getText().isEmpty()){
+    		 return false;
+    	 }
+    	 return true;
      }
+     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

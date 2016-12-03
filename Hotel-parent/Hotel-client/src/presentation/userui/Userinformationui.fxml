@@ -50,7 +50,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="215.0">
                <children>
-                  <Label text="会员名:">
+                  <Label text="用户名:">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -97,7 +97,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="450.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SaveButton" mnemonicParsing="false" text="保存">
+            <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#SaveButtonClicked" text="保存">
                <font>
                   <Font size="20.0" />
                </font></Button>

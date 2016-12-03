@@ -7,13 +7,12 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfouiController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfouiController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,15 +27,22 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="150.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="160.0">
                <children>
                   <Label text="酒店名称:">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="HotelName" prefHeight="26.0" prefWidth="180.0" />
+                  <Label fx:id="HotelnameLabel" text="Label">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                </children>
+               <padding>
+                  <Insets left="188.0" />
+               </padding>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="158.0">
                <children>
@@ -59,7 +65,7 @@
                      </font>
                   </Label>
                   
-                  <ChoiceBox fx:id="HotelStar" prefHeight="26.0" prefWidth="181.0" >
+                  <ChoiceBox fx:id="HotelStar" prefHeight="26.0" prefWidth="181.0">
                    <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="一星" />
@@ -89,7 +95,7 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="保存">
+            <Button mnemonicParsing="false" onAction="#SaveClicked" text="保存">
                <font>
                   <Font size="20.0" />
                </font>
