@@ -22,16 +22,16 @@ public interface PromotionDataService extends Remote{
 	public boolean update(HotelPromotionPO po) throws RemoteException;
 	
 	
-	public ArrayList<WebPromotionPO> findByWebProID(int id) throws RemoteException;
+	public ArrayList<WebPromotionPO> findByWebProID(String hotel_id) throws RemoteException;
 	
-	public ArrayList<WebPromotionPO> findByWebProType(int type) throws RemoteException;
+	public WebPromotionPO findByWebProType(int type, String hotel_id) throws RemoteException;
 	
 	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException;
 	
 
-	public ArrayList<HotelPromotionPO> findByHotelProID(int id) throws RemoteException;
+	public ArrayList<HotelPromotionPO> findByHotelProID(String hotel_id) throws RemoteException;
 	
-	public ArrayList<HotelPromotionPO> findByHotelProType(int type) throws RemoteException;
+	public HotelPromotionPO findByHotelProType(int type, String hotel_id) throws RemoteException;
 	
 	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException;
 }

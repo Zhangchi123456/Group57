@@ -28,4 +28,34 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		
 	}
 
+	public void updateHotelPromotionData(HotelPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteHotelPromotionData(HotelPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertHotelPromotionData(HotelPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateWebPromotionData(WebPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteWebPromotionData(WebPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertWebPromotionData(WebPromotionPO po) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.po.HotelPO;
@@ -16,7 +17,7 @@ import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
-	private Map<Integer, HotelPO> map;
+	private Map<String, HotelPO> map;
 	
 	private Map<Integer, RoomPO> map_room;
 	
@@ -49,20 +50,20 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	}
 	
 	public boolean insert(HotelPO hotelpo)throws RemoteException{
-		int hotel_id = hotelpo.getId();
+		String hotel_id = hotelpo.getName();
 		if(map.get(hotel_id) == null){
 			map.put(hotel_id, hotelpo);
-			hotelDataHelper.updateHotelData(map);
+			hotelDataHelper.insertHotelData(hotelpo);
 			return true;
 		}
 		return false;	
 	}//添加酒店信息
 	
 	public boolean delete(HotelPO hotelpo)throws RemoteException{
-		int hotel_id = hotelpo.getId();
+		String hotel_id = hotelpo.getName();
 		if(map.get(hotel_id) != null){
 			map.remove(hotel_id);
-			hotelDataHelper.updateHotelData(map);
+			hotelDataHelper.deleteHotelData(hotelpo);
 			return true;
 		}
 		return false;
@@ -70,22 +71,22 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	}//删除酒店信息
 	
 	public boolean update(HotelPO hotelpo)throws RemoteException{
-		int hotel_id = hotelpo.getId();
+		String hotel_id = hotelpo.getName();
 		if(map.get(hotel_id) != null){
 			map.put(hotel_id, hotelpo);
-			hotelDataHelper.updateHotelData(map);
+			hotelDataHelper.updateHotelData(hotelpo);
 			return true;
 		}
 		return false;	
 	}//更新酒店信息
 	
-	public ArrayList<HotelPO> hotelShowAll(String circle, int hotel_id, double price, int star, double grade, String room_type)throws RemoteException{	
+	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id, int star, double grade)throws RemoteException{	
 		ArrayList<HotelPO> hotellist=new ArrayList<HotelPO>();
-		Iterator<Map.Entry<Integer,HotelPO>> iterator = map.entrySet().iterator();
+		Iterator<Entry<String, HotelPO>> iterator = map.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelPO> entry = iterator.next();
+			Entry<String, HotelPO> entry = iterator.next();
 			HotelPO hotelpo = entry.getValue();
-		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getId()||price==hotelpo.getPrice()||star==hotelpo.getStar()||grade==hotelpo.getGrade()||room_type==hotelpo.getRoomtype()){
+		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getName()||star==hotelpo.getStar()||grade==hotelpo.getGrade()){
 			hotellist.add(hotelpo);
 			return hotellist;
 		}
@@ -93,13 +94,13 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return null;		
 	}//显示所有酒店信息
 	
-	public ArrayList<RoomPO> roomShowAll(int room_id, int room_num, int room_type)throws RemoteException{
+	public ArrayList<RoomPO> roomShowAll(String hotel_id, int room_id, int room_num, int room_type)throws RemoteException{
 		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
 		Iterator<Map.Entry<Integer,RoomPO>> iterator = map_room.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, RoomPO> entry = iterator.next();
 			RoomPO roompo = entry.getValue();
-		if(room_id==roompo.getId()||room_num==roompo.getNum()||room_type==roompo.getRoomtype()){
+		if(hotel_id==roompo.getHotelid()||room_id==roompo.getId()||room_num==roompo.getRoomnum()||room_type==roompo.getRoomtype()){
 			roomlist.add(roompo);
 			return roomlist;
 		}
@@ -111,18 +112,28 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) != null){
 			map_room.put(room_id, roompo);
-			hotelDataHelper.updateRoomData(map_room);
+			hotelDataHelper.updateRoomData(roompo);
 			return true;
 		}
 		return false;
 		
 	}
 	
+	public boolean deleteRoom(RoomPO roompo)throws RemoteException{
+		int room_id = roompo.getId();
+		if(map_room.get(room_id) != null){
+			map_room.remove(room_id, roompo);
+			hotelDataHelper.deleteRoomData(roompo);
+			return true;
+		}
+		return false;
+		
+	}
 	public boolean insertRoom(RoomPO roompo)throws RemoteException{
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) == null){
 			map_room.put(room_id, roompo);
-			hotelDataHelper.updateRoomData(map_room);
+			hotelDataHelper.insertRoomData(roompo);
 			return true;
 		}
         return false;

@@ -46,7 +46,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		int member_id = po.getId();
 		if(map.get(member_id) == null){
 			map.put(member_id, po);
-			memberDataHelper.updateMemberData(map);
+			memberDataHelper.insertMemberData(po);
 			return true;
 		}
 		return false;
@@ -56,7 +56,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		int member_id = po.getId();
 		if(map.get(member_id) != null){
 			map.remove(member_id, po);
-			memberDataHelper.updateMemberData(map);
+			memberDataHelper.deleteMemberData(po);
 			return true;
 		}
 		return false;
@@ -67,14 +67,14 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		int member_id = po.getId();
 		if(map.get(member_id) != null){
 			map.put(member_id, po);
-			memberDataHelper.updateMemberData(map);
+			memberDataHelper.updateMemberData(po);
 			return true;
 		}
 		return false;
 
 	}
 	
-	public MemberPO find(int name) throws RemoteException{
+	public MemberPO find(String name) throws RemoteException{
 		MemberPO po = map.get(name);
 		return po;
 	}
@@ -88,11 +88,6 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			memberlist.add(orderPo);
 		}
 		return memberlist;
-	}
-
-	public MemberPO find(long id) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

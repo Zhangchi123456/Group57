@@ -65,7 +65,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int hotels_id = po.getId();
 		if(map_hotels.get(hotels_id) == null){
 			map_hotels.put(hotels_id, po);
-			hotelsDataHelper.updateHotelStaffData(map_hotels);
+			hotelsDataHelper.insertHotelStaffData(po);
 			return true;
 		}
 		return false;
@@ -75,7 +75,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webs_id = po.getId();
 		if(map_webs.get(webs_id) == null){
 			map_webs.put(webs_id, po);
-			websDataHelper.updateWebStaffData(map_webs);
+			websDataHelper.insertWebStaffData(po);
 			return true;
 		}
 		return false;
@@ -85,7 +85,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webm_id = po.getId();
 		if(map_webm.get(webm_id) == null){
 			map_webm.put(webm_id, po);
-			webmDataHelper.updateWebManagerData(map_webm);
+			webmDataHelper.insertWebManagerData(po);
 			return true;
 		}
 		return false;
@@ -95,7 +95,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			int hotels_id = po.getId();
 			if(map_hotels.get(hotels_id) != null){
 				map_hotels.remove(hotels_id, po);
-				hotelsDataHelper.updateHotelStaffData(map_hotels);
+				hotelsDataHelper.deleteHotelStaffData(po);
 				return true;
 			}
 			return false;
@@ -105,7 +105,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webs_id = po.getId();
 		if(map_webs.get(webs_id) != null){
 			map_webs.remove(webs_id, po);
-			websDataHelper.updateWebStaffData(map_webs);
+			websDataHelper.deleteWebStaffData(po);
 			return true;
 		}
 		return false;
@@ -115,7 +115,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webm_id = po.getId();
 		if(map_webm.get(webm_id) != null){
 			map_webm.remove(webm_id, po);
-			webmDataHelper.updateWebManagerData(map_webm);
+			webmDataHelper.deleteWebManagerData(po);
 			return true;
 		}
 		return false;
@@ -125,7 +125,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int hotels_id = po.getId();
 		if(map_hotels.get(hotels_id) != null){
 			map_hotels.put(hotels_id, po);
-			hotelsDataHelper.updateHotelStaffData(map_hotels);
+			hotelsDataHelper.updateHotelStaffData(po);
 			return true;
 		}
 		return false;
@@ -135,7 +135,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webs_id = po.getId();
 		if(map_webs.get(webs_id) != null){
 			map_webs.put(webs_id, po);
-			websDataHelper.updateWebStaffData(map_webs);
+			websDataHelper.updateWebStaffData(po);
 			return true;
 		}
 		return false;
@@ -145,7 +145,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		int webm_id = po.getId();
 		if(map_webm.get(webm_id) != null){
 			map_webm.put(webm_id, po);
-			webmDataHelper.updateWebManagerData(map_webm);
+			webmDataHelper.updateWebManagerData(po);
 			return true;
 		}
 		return false;

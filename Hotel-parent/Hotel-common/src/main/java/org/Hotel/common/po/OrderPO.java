@@ -8,7 +8,7 @@ public class OrderPO {
 	
 	private String orderinfo;
 	
-	private int hotelid;
+	private String hotelid;
 	
 	private String intime;
 	
@@ -21,7 +21,7 @@ public class OrderPO {
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String orderinfo, int hotelid, String intime, String outtime, int state, double price) {
+	public OrderPO(int id, String name, String orderinfo, String hotelid, String intime, String outtime, int state, double price) {
 		super();
 		
 		this.id = id;
@@ -64,12 +64,12 @@ public class OrderPO {
 		this.orderinfo = orderinfo;
 	}
 	
-	public int getHotelid() {
+	public String getHotelid() {
 		
 		return hotelid;
 	}
 	
-	public void setHotelid(int hotelid) {
+	public void setHotelid(String hotelid) {
 		
 		this.hotelid = hotelid;
 	}

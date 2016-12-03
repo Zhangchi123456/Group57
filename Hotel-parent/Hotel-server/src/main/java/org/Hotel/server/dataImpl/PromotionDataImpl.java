@@ -52,7 +52,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		int webpro_id = po.getId();
 		if(map_web.get(webpro_id) == null){
 			map_web.put(webpro_id, po);
-			webproDataHelper.updateWebPromotionData(map_web);
+			webproDataHelper.insertWebPromotionData(po);
 			return true;
 		}
 		return false;
@@ -64,18 +64,18 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		int webpro_id = po.getId();
 		if(map_web.get(webpro_id) != null){
 			map_web.remove(webpro_id, po);
-			webproDataHelper.updateWebPromotionData(map_web);
+			webproDataHelper.deleteWebPromotionData(po);
 			return true;
 		}
 		return false;
 
 	}
-	
 	public boolean update(WebPromotionPO po) throws RemoteException{
+
 		int webpro_id = po.getId();
 		if(map_web.get(webpro_id) != null){
 			map_web.put(webpro_id, po);
-			webproDataHelper.updateWebPromotionData(map_web);
+			webproDataHelper.updateWebPromotionData(po);
 			return true;
 		}
 		return false;
@@ -86,7 +86,8 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		int hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) == null){
 			map_hotel.put(hotelpro_id, po);
-			hotelproDataHelper.updateHotelPromotionData(map_hotel);
+			hotelproDataHelper.insertHotelPromotionData(po);
+			update(po);
 			return true;
 		}
 		return false;
@@ -98,7 +99,8 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		int hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.remove(hotelpro_id, po);
-			hotelproDataHelper.updateHotelPromotionData(map_hotel);
+			hotelproDataHelper.deleteHotelPromotionData(po);
+			update(po);
 			return true;
 		}
 		return false;
@@ -106,74 +108,76 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	}
 	
 	public boolean update(HotelPromotionPO po) throws RemoteException{
+
 		int hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.put(hotelpro_id, po);
-			hotelproDataHelper.updateHotelPromotionData(map_hotel);
+			hotelproDataHelper.updateHotelPromotionData(po);
+			update(po);
 			return true;
 		}
 		return false;
-
 	}
 	
-	public ArrayList<WebPromotionPO> findByWebProID(int id) throws RemoteException{
+	public ArrayList<WebPromotionPO> findByWebProID(String hotel_id) throws RemoteException{
 		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
 		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
 			WebPromotionPO webpropo = entry.getValue();
-			if(id==webpropo.getId())
+			if(hotel_id==webpropo.getHotelid())
 			webprolist.add(webpropo);
 		}
 		return webprolist;
 	}
 	
-	public ArrayList<WebPromotionPO> findByWebProType(int type) throws RemoteException{
+	public WebPromotionPO findByWebProType(int type, String hotel_id) throws RemoteException{
+		WebPromotionPO webpropo = new WebPromotionPO();
+		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
+			webpropo = entry.getValue();
+			if(type==webpropo.getType()&&hotel_id == webpropo.getHotelid())
+			break;
+		}
+		return webpropo;
+	}
+	
+	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException{
 		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
 		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
 			WebPromotionPO webpropo = entry.getValue();
-			if(type==webpropo.getType())
 			webprolist.add(webpropo);
-		}
+	}
 		return webprolist;
 	}
 	
-	public ArrayList<HotelPromotionPO> showAllHotelPro12() throws RemoteException{
+	public ArrayList<HotelPromotionPO> findByHotelProID(String hotel_id) throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
 		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
-			hotelprolist.add(hotelpropo);
-	}
-		return hotelprolist;
-	}
-	
-	public ArrayList<HotelPromotionPO> findByHotelProID(int id) throws RemoteException{
-		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
-		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
-		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
-			HotelPromotionPO hotelpropo = entry.getValue();
-			if(id==hotelpropo.getId())
+			if(hotel_id==hotelpropo.getHotelid())
 				hotelprolist.add(hotelpropo);
 		}
 		return hotelprolist;
 	}
 	
-	public ArrayList<HotelPromotionPO> findByHotelProType(int type) throws RemoteException{
-		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
+	public HotelPromotionPO findByHotelProType(int type, String hotel_id) throws RemoteException{
+		HotelPromotionPO hotelpropo = new HotelPromotionPO();
 		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
-			HotelPromotionPO hotelpropo = entry.getValue();
-			if(type==hotelpropo.getType())
-				hotelprolist.add(hotelpropo);
+			
+		    hotelpropo = entry.getValue();
+			if(type==hotelpropo.getType()&&hotel_id == hotelpropo.getHotelid())
+            break;
 		}
-		return hotelprolist;
-	}
+		return hotelpropo;
+		}
 	
 	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
@@ -186,9 +190,5 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return hotelprolist;
 	}
 
-	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

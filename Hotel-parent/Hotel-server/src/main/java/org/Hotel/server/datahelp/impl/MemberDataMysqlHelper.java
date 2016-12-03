@@ -17,4 +17,19 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		
 	}
 
+	public void updateMemberData(MemberPO memberpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertMemberData(MemberPO memberpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteMemberData(MemberPO meberpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

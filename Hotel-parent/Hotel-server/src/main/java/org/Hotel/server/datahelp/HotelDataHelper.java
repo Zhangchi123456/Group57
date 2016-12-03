@@ -9,12 +9,16 @@ public interface HotelDataHelper {
 	/**
 	 * @return	从数据文件读入酒店信息
 	 */
-	public Map<Integer,HotelPO> getHotelData();
+	public Map<String,HotelPO> getHotelData();
 	/**
 	 * 从数据文件中写入酒店信息
 	 * @param map	
 	 */
-	public void updateHotelData(Map<Integer,HotelPO> map);
+	public void updateHotelData(HotelPO hotelpo);
+	
+	public void insertHotelData(HotelPO hotelpo);
+	
+	public void deleteHotelData(HotelPO hotelpo);
 
 	/**
 	 * @return	从数据文件读入客房信息
@@ -24,5 +28,11 @@ public interface HotelDataHelper {
 	 * 从数据文件中写入客房信息
 	 * @param map	
 	 */
-	public void updateRoomData(Map<Integer,RoomPO> map);
+	public void updateRoomData(RoomPO roompo);
+	
+	public void insertRoomData(RoomPO roompo);
+	
+	public void deleteRoomData(RoomPO roompo);
+		
+	
 }

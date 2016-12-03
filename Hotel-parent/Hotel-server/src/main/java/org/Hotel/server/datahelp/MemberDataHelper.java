@@ -13,6 +13,10 @@ public interface MemberDataHelper {
 	 * 从数据文件中写入会员信息
 	 * @param map	
 	 */
-	public void updateMemberData(Map<Integer,MemberPO> map);
+	public void updateMemberData(MemberPO memberpo);
+	
+	public void insertMemberData(MemberPO memberpo);
+	
+	public void deleteMemberData(MemberPO meberpo);
 	
 }

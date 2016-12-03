@@ -39,4 +39,49 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		
 	}
 
+	public void updateWebStaffData(WebStaffPO webstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertWebStaffData(WebStaffPO webstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteWebStaffData(WebStaffPO webstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateWebManagerData(WebStaffPO webmanagerpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertWebManagerData(WebStaffPO webmanagerpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteWebManagerData(WebStaffPO webmanagerpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateHotelStaffData(HotelStaffPO hotelstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertHotelStaffData(HotelStaffPO hotelstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteHotelStaffData(HotelStaffPO hotelstaffpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

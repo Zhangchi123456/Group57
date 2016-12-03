@@ -13,7 +13,7 @@ public interface MemberDataService extends Remote{
 	
 	public boolean update(MemberPO po) throws RemoteException;
 	
-	public MemberPO find(long id) throws RemoteException;
+	public MemberPO find(String name) throws RemoteException;
 	
 	public ArrayList<MemberPO> showAll() throws RemoteException;
 

@@ -28,4 +28,34 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		
 	}
 
+	public void updateHotelData(HotelPO hotelpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertHotelData(HotelPO hotelpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteHotelData(HotelPO hotelpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateRoomData(RoomPO roompo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertRoomData(RoomPO roompo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteRoomData(RoomPO roompo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

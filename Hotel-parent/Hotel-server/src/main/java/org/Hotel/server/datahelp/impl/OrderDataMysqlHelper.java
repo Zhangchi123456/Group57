@@ -17,4 +17,19 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		
 	}
 
+	public void updateOrderData(OrderPO orderpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertOrderData(OrderPO orderpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteOrderData(OrderPO orderpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
