@@ -1,5 +1,7 @@
 package BusinessLogicService.impl;
 
+import java.util.ArrayList;
+
 import BusinessLogicService.Service.OrderLogicService;
 import vo.OrderVO;
 
@@ -44,6 +46,18 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 	@Override
 	public OrderVO  HotelOrderList(String UserName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<OrderVO> findUserOrderListAll(String UserName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<OrderVO> findUserOrderListStation(String UserName, String OrderStation) {
 		// TODO Auto-generated method stub
 		return null;
 	}
