@@ -10,19 +10,33 @@ public class OrderVO {
     public String membername;  
     public String hotelname;
     public String roomname;
-    public Date date;
+    public String BeginDate;
+    public String EndDate;
+    public String UserNUm;
+    public String TelePhone;
+    public String Child;
+    public String RoomNum;
     
-    public OrderVO(int Orderid,double Orderprice,String Orderstate,String Hotelname,String Roomname,Date dat,String Membername){
+    
+    public OrderVO(int Orderid,double Orderprice,String Orderstate,String Hotelname,String Roomname,String BeginDate,String EndDate,String Membername,
+    		String UserNum,String TelePhone,String Child,String RoomNum	){
     	this.orderid=Orderid;
-    	this.date=dat;
+    	this.BeginDate=BeginDate;
+    	this.EndDate=EndDate;
     	this.hotelname=Hotelname;
     	this.membername=Membername;
     	this.orderprice=Orderprice;
     	this.roomname=Roomname;
     	this.orderprice=Orderprice;
+    	this.UserNUm = UserNum;
+    	this.TelePhone = TelePhone;
+    	this.Child = Child;
+    	this.RoomNum = RoomNum;
     }
     
-    public int getOrderid(){
+  
+
+	public int getOrderid(){
     	return this.orderid;
     }
     public double getOrderprice(){
