@@ -1,10 +1,10 @@
 package presentation.presentationController;
 
 import java.net.URL;
-
-
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import Helper.RegisterHelper;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,10 +18,13 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import presentation.userui.AlertBox;
+import vo.MemberVO;
 
 public class RegisteruiController implements Initializable {
 	
-	 private String name,password,confirmpassword,phonenumber,birthday;
+	 private String name,password,confirmpassword,phonenumber;
+	 
+	 LocalDate birthday;
 	  
      @FXML
      private TextField NameText,PhonenumberText;
@@ -62,6 +65,7 @@ public class RegisteruiController implements Initializable {
      
      @FXML
      private void CommitbuttonClicked(ActionEvent event){
+    	 MemberVO membervo=new MemberVO(0, 0, null, null, null);
     	 if(!Allisfilled()){
     		 AlertBox alt = new AlertBox();
 				alt.display("信息填写不全");
@@ -75,13 +79,18 @@ public class RegisteruiController implements Initializable {
     		 password=PasswordText.getText();
     		 confirmpassword=PasswordconfirmText.getText();
     		 phonenumber=PhonenumberText.getText();
-    		 birthday=BirthdayDatepicker.getValue().toString();
+    		 birthday=BirthdayDatepicker.getValue();
+    		 
+    		 membervo.setbyString("Personalmember", name, password, birthday);
+    		 RegisterHelper.setmembervo(membervo);
     	 }else if(Company.isSelected()){
     		 name=NameText.getText();
     		 password=PasswordText.getText();
     		 confirmpassword=PasswordconfirmText.getText();
     		 phonenumber=PhonenumberText.getText();
-    		 birthday="null";
+    		 birthday=null;
+    		 membervo.setbyString("Compaanymember", name, password, birthday);
+    		 RegisterHelper.setmembervo(membervo);
     	 }
      }
      
