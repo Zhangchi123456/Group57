@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import presentation.userui.AlertBox;
+import vo.LogVO;
 
 
 public class LoginController implements Initializable{
@@ -40,21 +41,24 @@ public class LoginController implements Initializable{
 				AlertBox alt = new AlertBox();
 				alt.display("用户名为空");
 		}
-		else	if(PassWord.getText().toString().equals("")){
+		else if(PassWord.getText().toString().equals("")){
 			AlertBox alt = new AlertBox();
 			alt.display("密码为空");
 		}
-		else	if(UserId.getText().trim().substring(0, 1).equals("1"))
-		UiswitchHelper.getApplication().goto_Usermainui();
-		else    if(UserId.getText().trim().substring(0, 1).equals("2"))
-			UiswitchHelper.getApplication().goto_HotelMainui();
-		else	if(UserId.getText().trim().substring(0, 1).equals("3"))
-			UiswitchHelper.getApplication().goto_UserWebManagementui();
-		else if(UserId.getText().trim().substring(0, 1).equals("4"))
-			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 		
+		else	{
+			if(UserId.getText().trim().substring(0, 1).equals("1"))
+		    UiswitchHelper.getApplication().goto_Usermainui();
+		    if(UserId.getText().trim().substring(0, 1).equals("2"))
+			UiswitchHelper.getApplication().goto_HotelMainui();
+			if(UserId.getText().trim().substring(0, 1).equals("3"))
+			UiswitchHelper.getApplication().goto_UserWebManagementui();
+		    if(UserId.getText().trim().substring(0, 1).equals("4"))
+			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+		    LogVO a=new LogVO(UserId.getText(),PassWord.getText());
+		}
 	}
-	
+	    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

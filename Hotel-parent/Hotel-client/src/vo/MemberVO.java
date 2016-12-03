@@ -11,7 +11,7 @@ public class MemberVO {
     private String memberproperty;
     
     //手机号码暂未确定是否用到。
-    private String phonenumber;
+    private String phonenumber; 
     
     public MemberVO(int id,int creditvalue,String name,String level
    		 ,String property){
@@ -35,7 +35,7 @@ public class MemberVO {
    	 return this.membercreditvalue;
     }
     
-    public String getname(){
+    public  String getname(){
    	 return this.membername;
     }
     public String getlevel(){
