@@ -3,12 +3,16 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.PromotionLogicService;
+import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
+import vo.HotelPromotionVO;
 
 public class roomnumberuiController implements Initializable{
 	
@@ -47,7 +51,24 @@ public class roomnumberuiController implements Initializable{
 	
 	@FXML
 	public void update(ActionEvent event){
-		
+		String input = roomnumberdiscount.getText();
+		if(input != null){
+			double discount = Double.parseDouble(input);
+				if(discount<0||discount>100){
+					AlertBox alt = new AlertBox();
+					alt.display("超出输入范围！");
+				}else if(discount==0){
+					AlertBox alt = new AlertBox();
+					alt.display("不可为0！");
+				}else{
+					String name = "多间折扣";
+					int id;
+					HotelPromotionVO vo = new HotelPromotionVO(id, name, 0, 0, discount/100, 0, null, null);
+			
+					PromotionLogicService promotion = new PromotionLogicServiceImpl();
+					promotion.updateHotelPromotion(vo);
+				}
+		}
 	}
 	
 	@FXML
@@ -57,7 +78,13 @@ public class roomnumberuiController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		HotelPromotionVO vo;
+		int id ;
+		String name = "多间折扣";
+		vo = promotion.getHotelPromotion(id,name);
+		double discount = vo.getMultiorderDiscount()*100;
+		roomnumberdiscount.setText(String.valueOf(discount));
 		
 	}
 
