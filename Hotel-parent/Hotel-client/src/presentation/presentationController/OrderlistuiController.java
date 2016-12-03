@@ -36,7 +36,7 @@ public class OrderlistuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		OrderStationChoiceBox.setValue("所有订单");
 		
-		String UserName =memberVO.getname();
+	
 		
 		
 	}
