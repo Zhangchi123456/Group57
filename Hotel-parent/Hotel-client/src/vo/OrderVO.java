@@ -28,11 +28,12 @@ public class OrderVO {
     	this.membername=Membername;
     	this.orderprice=Orderprice;
     	this.roomname=Roomname;
-    	this.orderprice=Orderprice;
     	this.UserNUm = UserNum;
     	this.TelePhone = TelePhone;
     	this.Child = Child;
     	this.RoomNum = RoomNum;
+    	this.orderstate = Orderstate;
+    	
     }
     
   
