@@ -182,7 +182,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 					"'"+String.valueOf(pfamilyRoom)+"',"+
 					"'"+String.valueOf(suiteRoom)+"',"+
 					"'"+String.valueOf(lsuiteRoom)+"',"+
-					"'"+String.valueOf(psuiteRoom)+"',"+")";
+					"'"+String.valueOf(psuiteRoom)+"'"+")";
 			
 			db.update(query);
 			

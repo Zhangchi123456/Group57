@@ -190,7 +190,7 @@ public class OrderlistuiController implements Initializable{
 	         SimpleStringProperty hotel;
 	         SimpleStringProperty order;
 	        private SimpleOrder(String hotelName,String orderid,String time,String price,String roomname,String evaluate,String orderstate){
-	        	 this.hotel = new SimpleStringProperty(hotelName);
+	        	  this.hotel = new SimpleStringProperty(hotelName);
 	        	  this.order = new SimpleStringProperty(orderid);
 	        	  this.time = new SimpleStringProperty(time);    	  
 	        	  this.price = new SimpleStringProperty(price);

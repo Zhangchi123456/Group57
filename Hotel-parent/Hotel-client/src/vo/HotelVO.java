@@ -6,7 +6,7 @@ public class HotelVO {
 	private String name;
 	private String circle;
 	private int star;
-	private double grade;
+	private double grade; 
 	private String introduction;
 	private String city;
 	private String address;

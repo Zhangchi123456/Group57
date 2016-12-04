@@ -8,6 +8,8 @@ public class CreditPO {
 	
 	private int id;
 	
+	private int orderid;
+	
 	private int creditchange;
 	
 	private int credit;
@@ -20,7 +22,7 @@ public class CreditPO {
 		
 	}
 	
-	public CreditPO(String name, int id, int creditchange, int credit, Date time, String action) {
+	public CreditPO(String name, int id, int orderid, int creditchange, int credit, Date time, String action) {
 		
 		super();
 		
@@ -30,6 +32,14 @@ public class CreditPO {
 		this.credit = credit;
 		this.time = time;
 		this.action = action;
+		this.orderid = orderid;
+	}
+
+	/**
+	 * @return the orderid
+	 */
+	public int getOrderid() {
+		return orderid;
 	}
 
 	/**
