@@ -22,7 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-
+import Controller.MemberActController;
 import Controller.ReservationController;
 
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -38,8 +38,8 @@ public class OrderlistuiController implements Initializable{
    private ChoiceBox OrderStationChoiceBox;
    
    
-   
-   String UserName = "";
+  
+   String UserName = MemberActController.getmemberVo().getname();
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    
@@ -93,8 +93,10 @@ public class OrderlistuiController implements Initializable{
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
     	ObservableList<SimpleOrder> temp =FXCollections.observableArrayList();
     	for(int i=0;i<orderlist.size();i++){
-    		temp.add(new SimpleOrder(orderlist.get(i).hotelname,String.valueOf(orderlist.get(i).orderid),String.valueOf(orderlist.get(i).BeginDate)+"——"
-   		+String.valueOf(orderlist.get(i).EndDate),String.valueOf(orderlist.get(i).orderprice),orderlist.get(i).roomname,orderlist.get(i).orderEvaluation,orderlist.get(i).orderstate));
+    	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getIntime()+"——"
+   		+orderlist.get(i).getOuttime(),orderlist.get(i).getPrice(),
+   		String.valueOf(orderlist.get(i).getSingleRoom()+orderlist.get(i).getFamilyRoom()+orderlist.get(i).getStandardRoom()+orderlist.get(i).getSuiteRoom()),
+   		orderlist.get(i).getComment(),orderlist.get(i).getState()));
     	}
 	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
 	//			  new SimpleOrder("aweqwqwe","bqweqqwess","c","d","f","g","q"),

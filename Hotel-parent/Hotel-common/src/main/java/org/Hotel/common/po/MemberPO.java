@@ -14,11 +14,15 @@ public class MemberPO {
 	
 	private Date birthday;
 	
+	private int credit;
+	
+	private boolean enterprice;
+	
 	public MemberPO() {
 		super();
 	}
 	
-	public MemberPO(int id, String password, String connection, Date birthday, String name) {
+	public MemberPO(int id, String password, String connection, Date birthday, String name, int credit, boolean enterprice) {
 		
 		super();
 		
@@ -28,6 +32,41 @@ public class MemberPO {
 		this.birthday = birthday;
 		this.name = name;
 	}
+	/**
+	 * @return the credit
+	 */
+	public int getCredit() {
+		return credit;
+	}
+
+	/**
+	 * @param credit the credit to set
+	 */
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+	/**
+	 * @return the enterprice
+	 */
+	public boolean isEnterprice() {
+		return enterprice;
+	}
+
+	/**
+	 * @param enterprice the enterprice to set
+	 */
+	public void setEnterprice(boolean enterprice) {
+		this.enterprice = enterprice;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	/**
 	 * @return the name
 	 */

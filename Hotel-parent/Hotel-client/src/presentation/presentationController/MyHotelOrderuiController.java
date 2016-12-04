@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
+import vo.MemberVO;
 import vo.OrderVO;
 
 public class MyHotelOrderuiController implements Initializable{
@@ -34,7 +36,7 @@ public class MyHotelOrderuiController implements Initializable{
 	@FXML
 	private TableColumn<SimpleOrder,String> HotelName,OrderTime,OrderStation;//表中项目
 	
-	   String UserName = "";
+	String UserName = MemberActController.getmemberVo().getname();
 	   OrderLogicService am = new OrderLogicServiceImpl();
 	   ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
 	   
@@ -63,8 +65,8 @@ public class MyHotelOrderuiController implements Initializable{
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
 	    	ObservableList<SimpleOrder> temp =FXCollections.observableArrayList();
 	    	for(int i=0;i<orderlist.size();i++){
-	    		temp.add(new SimpleOrder(orderlist.get(i).hotelname,String.valueOf(orderlist.get(i).BeginDate)+"——"
-	   		+String.valueOf(orderlist.get(i).EndDate),orderlist.get(i).orderstate));
+	    		temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getIntime()+"——"
+	   		+orderlist.get(i).getOuttime(),orderlist.get(i).getState()));
 	    	}
 		//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
 		//			  new SimpleOrder("aweqwqwe","bqweqqwess","c","d","f","g","q"),

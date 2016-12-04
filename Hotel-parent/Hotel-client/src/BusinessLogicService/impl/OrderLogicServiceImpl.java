@@ -2,6 +2,8 @@ package BusinessLogicService.impl;
 
 import java.util.ArrayList;
 
+import org.Hotel.common.dataService.OrderDataService;
+
 import BusinessLogicService.Service.OrderLogicService;
 import vo.OrderVO;
 
@@ -17,6 +19,8 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	@Override
 	public boolean input(OrderVO VO) {
 		// TODO Auto-generated method stub
+		OrderDataService a ;
+		
 		return false;
 	}
 
@@ -54,8 +58,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	public ArrayList<OrderVO> findUserOrderListAll(String UserName) {
 		// TODO Auto-generated method stub
 		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
-		a.add(new OrderVO(0,0.0,"a","b","aweqwqwe","bqweqqwess","c","d","f","g","q"	,"aweqwqwe"));
-		a.add(new OrderVO(0,0.0,"a","b","aweqwqwe","bqweqqwess","c","d","f","g","q"	,"aweqwqwe"));
+		
 		
 		return a;
 	}
