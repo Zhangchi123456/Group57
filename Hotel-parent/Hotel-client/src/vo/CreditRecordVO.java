@@ -14,6 +14,9 @@ public class CreditRecordVO {
     public String creditchange;
     public String creditlast;
     
+    public CreditRecordVO(){
+    	
+    }
     public void setbyCreditPO(CreditPO po){
     	this.action=po.getAction();
     	this.orderid=String.valueOf(po.getId());
