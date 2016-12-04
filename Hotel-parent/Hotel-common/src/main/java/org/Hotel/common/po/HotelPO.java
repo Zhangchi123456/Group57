@@ -5,7 +5,7 @@ public class HotelPO {
 	private String name;
 	private String circle;
 	private int star;
-	private int grade;
+	private double grade;
 	private String introduction;
 	private String city;
 	private String address;
@@ -26,7 +26,7 @@ public class HotelPO {
 	}
 	
 	public HotelPO(String name, String circle, 
-			int star, int grade,
+			int star, double grade,
 			String introduction,
 			String city,String address,
 			int singleRoom,int leftSingleRoom,
@@ -98,7 +98,7 @@ public class HotelPO {
 		return grade;
 	}
 	
-	public void setGrade(int grade) {
+	public void setGrade(double grade) {
 		
 		this.grade = grade;
 	}

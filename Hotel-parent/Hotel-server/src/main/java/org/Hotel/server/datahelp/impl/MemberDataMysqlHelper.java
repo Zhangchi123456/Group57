@@ -2,6 +2,7 @@ package org.Hotel.server.datahelp.impl;
 
 import java.util.Map;
 
+import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 import org.Hotel.server.datahelp.*;
@@ -49,6 +50,26 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public void deleteMemberLevelData(MemberLevelPO meberlvpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Map<Integer, CreditPO> getCreditData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateCreditData(CreditPO creditpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertCreditData(CreditPO creditpo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteCreditData(CreditPO creditpo) {
 		// TODO Auto-generated method stub
 		
 	}

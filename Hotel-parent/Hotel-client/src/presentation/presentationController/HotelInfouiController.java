@@ -53,7 +53,7 @@ public class HotelInfouiController implements Initializable{
 		}
 		return true;
 	}
-	//出初始化界面
+	//初始化界面
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
