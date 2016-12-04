@@ -6,7 +6,7 @@ public class HotelPromotionPO {
 
 	private int id;
 	
-	private int type;
+	private String type;
 	
 	private String hotelid;
 	
@@ -26,7 +26,7 @@ public class HotelPromotionPO {
 		super();
 	}
 	
-	public HotelPromotionPO(int id, int type, String hotelid,double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
+	public HotelPromotionPO(int id, String type, String hotelid,double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
 		super();
 		
 		this.id = id;
@@ -57,12 +57,12 @@ public class HotelPromotionPO {
 		this.id = id;
 	}
 
-	public int getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		
 		this.type = type;
 	}

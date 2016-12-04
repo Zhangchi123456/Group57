@@ -131,7 +131,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return webprolist;
 	}
 	
-	public WebPromotionPO findByWebProType(int type, String hotel_id) throws RemoteException{
+	public WebPromotionPO findByWebProType(String type, String hotel_id) throws RemoteException{
 		WebPromotionPO webpropo = new WebPromotionPO();
 		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
 		while(iterator.hasNext()){
@@ -166,7 +166,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return hotelprolist;
 	}
 	
-	public HotelPromotionPO findByHotelProType(int type, String hotel_id) throws RemoteException{
+	public HotelPromotionPO findByHotelProType(String type, String hotel_id) throws RemoteException{
 		HotelPromotionPO hotelpropo = new HotelPromotionPO();
 		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){

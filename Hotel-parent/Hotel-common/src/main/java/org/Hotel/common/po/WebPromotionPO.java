@@ -8,7 +8,7 @@ public class WebPromotionPO {
 
 	private int id;
 	
-	private int type;
+	private String type;
 	
 	private double datediscount;
 	
@@ -20,7 +20,7 @@ public class WebPromotionPO {
 		super();
 	}
 	
-	public WebPromotionPO(int id, int type, String hotelid, double datediscount,Date startdate,Date enddate) {
+	public WebPromotionPO(int id, String type, String hotelid, double datediscount,Date startdate,Date enddate) {
 		super();
 		
 		this.id = id;
@@ -45,12 +45,12 @@ public class WebPromotionPO {
 		this.id = id;
 	}
 
-	public int getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		
 		this.type = type;
 	}
