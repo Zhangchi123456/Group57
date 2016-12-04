@@ -1,5 +1,7 @@
 package vo;
 
+import org.Hotel.common.po.HotelPO;
+
 public class HotelVO {
 	private String name;
 	private String circle;
@@ -60,7 +62,53 @@ public class HotelVO {
 		this.singleRoomPrice=singleRoomPrice;
 	}
 
+	public void setbuHotelPO(HotelPO po){
+		this.address=po.getAddress();
+		this.circle=po.getCircle();
+		this.city=po.getCity();
+		this.introduction=po.getIntroduction();
+		this.familyRoom=po.getFamilyRoom();
+		this.familyRoomPrice=po.getFamilyRoomPrice();
+		this.grade=po.getGrade();
+		this.leftFamilyRoom=po.getLeftFamilyRoom();
+		this.leftSingleRoom=po.getLeftSingleRoom();
+		this.leftStandardRoom=po.getLeftStandardRoom();
+		this.leftSuiteRoom=po.getLeftSuiteRoom();
+		this.name=po.getName();
+		this.standardRoom=this.getStandardRoom();
+		this.standardRoomPrice=this.getStandardRoomPrice();
+		this.star=this.getStar();
+		this.suiteRoom=po.getSuiteRoom();
+		this.suiteRoomPrice=po.getSuiteRoomPrice();
+		this.singleRoom=po.getSingleRoom();
+		this.singleRoomPrice=po.getSingleRoomPrice();
+		
+	}
 	
+	public HotelPO Tohotelpo(){
+		HotelPO po=new HotelPO();
+		po.setAdsress(address);
+		po.setCircle(circle);
+		po.setCity(city);
+		po.setFamilyRoom(familyRoom);
+		po.setFamilyRoomPrice(familyRoomPrice);
+		po.setGrade(grade);
+		po.setIntroduction(introduction);
+		po.setLeftFamilyRoom(leftFamilyRoom);
+		po.setLeftSingleRoom(leftSingleRoom);
+		po.setLeftStandardRoom(leftStandardRoom);
+		po.setLeftSuiteRoom(leftSuiteRoom);
+		po.setName(name);
+		po.setSingleRoom(singleRoom);
+		po.setSingleRoomPrice(singleRoomPrice);
+		po.setStandardRoom(standardRoom);
+		po.setStandardRoomPrice(standardRoomPrice);
+		po.setStar(star);
+		po.setSuiteRoom(suiteRoom);
+		po.setSuiteRoomPrice(suiteRoomPrice);
+		
+		return po;
+	}
 	//getters and setters
 	public String getName() {
 		return name;

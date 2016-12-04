@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.HotelVO;
 import vo.OrderVO;
 
 public class OrderEvaluateController  implements Initializable {
@@ -32,6 +33,7 @@ public class OrderEvaluateController  implements Initializable {
 	    @FXML
 	    private Button Return;
 	    OrderVO ordervo;
+	    HotelVO hotelvo;
 	 //界面跳转
 	  @FXML
 	  private void  ReturnClicked(ActionEvent event){
@@ -45,8 +47,8 @@ public class OrderEvaluateController  implements Initializable {
 				alt.display("信息填写不完整");
 		}
 		  else{
-		  
-		  ordervo.setOrderEvaluation(EvaluateInfo.getText().toString());
+		  ordervo.setComment(EvaluateInfo.getText().toString());
+		
 		  UiswitchHelper.getApplication().goto_Usermainui();
 		  } 
 	  }
@@ -58,9 +60,15 @@ public class OrderEvaluateController  implements Initializable {
 		// TODO Auto-generated method stub
 		OrderLogicService a = new OrderLogicServiceImpl();
 		
+<<<<<<< HEAD
 		ordervo=(a.findUserOrderinfo(null, 0));
 		OrderId.setText(String.valueOf(ordervo.orderid));
         HotelName.setText(String.valueOf(ordervo.hotelidname));
+=======
+		
+		OrderId.setText(ordervo.getId());
+        HotelName.setText(ordervo.getHotelid());
+>>>>>>> branch 'master' of https://github.com/Zhangchi123456/Group57.git
         
 	}
 

@@ -218,9 +218,9 @@ public class HotelPO {
 		return singleRoomPrice;
 	}
 
-	public void setSingleRoomPrice(int singleRoomPrice) {
+	public void setSingleRoomPrice(double singleRoomPrice2) {
 				
-		this.singleRoomPrice = singleRoomPrice;
+		this.singleRoomPrice = singleRoomPrice2;
 	}
 
 	public double getStandardRoomPrice() {
@@ -228,9 +228,9 @@ public class HotelPO {
 		return standardRoomPrice;
 	}
 
-	public void setStandardRoomPrice(int standardRoomPrice) {
+	public void setStandardRoomPrice(double standardRoomPrice2) {
 					
-		this.standardRoomPrice = standardRoomPrice;
+		this.standardRoomPrice = standardRoomPrice2;
 	}
 	
 	public double getFamilyRoomPrice() {
@@ -238,9 +238,9 @@ public class HotelPO {
 		return familyRoomPrice;
 	}
 
-	public void setFamilyRoomPrice(int familyRoomPrice) {
+	public void setFamilyRoomPrice(double familyRoomPrice2) {
 				
-		this.familyRoomPrice = familyRoomPrice;
+		this.familyRoomPrice = familyRoomPrice2;
 	}
 
 	public double getSuiteRoomPrice() {
@@ -248,9 +248,9 @@ public class HotelPO {
 		return suiteRoomPrice;
 	}
 
-	public void setSuiteRoomPrice(int suiteRoomPrice) {
+	public void setSuiteRoomPrice(double suiteRoomPrice2) {
 					
-		this.suiteRoomPrice = suiteRoomPrice;
+		this.suiteRoomPrice = suiteRoomPrice2;
 	}
 	
 }

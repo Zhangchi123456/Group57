@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class HotelPromotionVO {
 	
-	private int hotel_id;
+	private String hotel_name;
 	private String name;
 	private double birthday_discount;
 	private double enterprice_discount;
@@ -13,9 +13,9 @@ public class HotelPromotionVO {
 	private Date start_date;
 	private Date end_date;
 	
-	public HotelPromotionVO(int hotel_id,String name,double birthday_discount,double enterprice_discount,
+	public HotelPromotionVO(String hotel_name,String name,double birthday_discount,double enterprice_discount,
 			double multiorder_discount, double date_discount,Date start_date,Date end_date){
-		this.hotel_id = hotel_id;
+		this.hotel_name = hotel_name;
 		this.name = name;
 		this.birthday_discount = birthday_discount;
 		this.enterprice_discount = enterprice_discount;
@@ -25,8 +25,8 @@ public class HotelPromotionVO {
 		this.end_date = end_date;
 	}
 	
-	public int getHotelID(){
-		return hotel_id;
+	public String getHotelID(){
+		return hotel_name;
 	}
 	
 	public String getName(){
