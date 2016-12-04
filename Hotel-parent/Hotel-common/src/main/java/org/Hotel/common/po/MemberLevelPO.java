@@ -10,16 +10,34 @@ public class MemberLevelPO {
 	
 	private double discount;
 	
+	private String type;
+	
 	public MemberLevelPO() {
 		
 	}
 	
-	public MemberLevelPO(int level, int credit, double discount) {
+	public MemberLevelPO(String name, int level, int credit, double discount, String type) {
 		super();
 		
 		this.level = level;
 		this.credit = credit;
 		this.discount = discount;
+		this.name = name;
+		this.type = type;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/**
