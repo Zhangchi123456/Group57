@@ -25,11 +25,12 @@ import vo.HotelVO;
 
 public class HotelListuiController implements Initializable{
 	
+	private ObservableList<SimpleHotel> finallist;
 	
 	@FXML
 	private CheckBox ReservationCheckbox;//是否预定过该酒店
 	@FXML
-	private TableView<SimpleHotel> HotelTable;//酒店列表
+	private TableView<SimpleHotel> Hoteltable;//酒店列表
 	@FXML
 	private TableColumn<SimpleHotel,String> HotelName,HotelStar,HotelScore,HotelPrice,Reservation;//表中项目
 	@FXML
@@ -41,33 +42,42 @@ public class HotelListuiController implements Initializable{
     private void ReturnButtonClicked(ActionEvent event){
         UiswitchHelper.getApplication().goto_Usermainui();
     }
-    @FXML
-    private void ObservedHotel(ActionEvent event){
-        UiswitchHelper.getApplication().goto_Usermainui();
-    }
+  @FXML
+  private void CheckhotelClicked(ActionEvent event){
+      
+  }
     @FXML
     private void CheckButtonClicked(ActionEvent event){
+    	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
+    	System.out.println(finallist.get(selectnumber).getHotel());
         UiswitchHelper.getApplication().goto_hotelInfoBrowseui();
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ArrayList<HotelVO> hotellist1=new ArrayList<HotelVO>();
+		HotelVO vo1=new HotelVO();
+		vo1.setName("123");vo1.setStar(5);
+		HotelVO vo2=new HotelVO();
+		vo2.setName("456");vo2.setStar(3);
+		hotellist1.add(vo1);
+		hotellist1.add(vo2);
 		ArrayList<SimpleHotel> hotellist2=new ArrayList<SimpleHotel>();
 		for(int i=0;i<hotellist1.size();i++){
 			hotellist2.add(new SimpleHotel(hotellist1.get(i).getName(),String.valueOf(hotellist1.get(i).getStar())
 					,String.valueOf(hotellist1.get(i).getGrade()),String.valueOf(hotellist1.get(i).getSingleRoomPrice()),"否"));
 		}
 		
-		ObservableList<SimpleHotel> finallist =FXCollections.observableArrayList();
+		finallist =FXCollections.observableArrayList(hotellist2);
+		
 		HotelName.setCellValueFactory(
-	            new PropertyValueFactory<>("hotelname"));
+	            new PropertyValueFactory<>("hotel"));
 	 
 		HotelName.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
 		HotelName.setOnEditCommit(
 	            (CellEditEvent<SimpleHotel, String> t) -> {
 	                ((SimpleHotel) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
-	                        ).setHotelnamen((t.getNewValue()));
+	                        ).setHotel(((t.getNewValue())));
 	        });
 		
 		HotelStar.setCellValueFactory(
@@ -93,6 +103,16 @@ public class HotelListuiController implements Initializable{
 		                        ).setHotelgrade(((t.getNewValue())));
 		        });
 			
+			HotelPrice.setCellValueFactory(
+		            new PropertyValueFactory<>("hotelprice"));
+	   	 
+			HotelPrice.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
+			HotelPrice.setOnEditCommit(
+		            (CellEditEvent<SimpleHotel, String> t) -> {
+		                ((SimpleHotel) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setHotelprice((((t.getNewValue()))));
+		        });
 
 			Reservation.setCellValueFactory(
 		            new PropertyValueFactory<>("Ifreservationed"));
@@ -104,21 +124,21 @@ public class HotelListuiController implements Initializable{
 		                        t.getTablePosition().getRow())
 		                        ).setIfReservation((((t.getNewValue()))));
 		        });
-		  HotelTable.setItems(finallist);
-		
+		  Hoteltable.setItems(finallist);
+		System.out.println(1);
 	}
 	
 	public static class SimpleHotel {
 		 
-        private final SimpleStringProperty hotelname;
+        
         private final SimpleStringProperty hotelstar;
         private final SimpleStringProperty hotelgrade;
         private final SimpleStringProperty hotelprice;
         private final SimpleStringProperty Ifreservationed;
-       
+        private final SimpleStringProperty hotel;
  
-        private SimpleHotel(String Hotelname,String Orderid,String Time,String Creditchange,String Creditlast){
-        	  this.hotelname = new SimpleStringProperty(Hotelname);
+        private SimpleHotel(String Hotel,String Orderid,String Time,String Creditchange,String Creditlast){
+        	  this.hotel = new SimpleStringProperty(Hotel);
         	  this.hotelstar = new SimpleStringProperty(String.valueOf(Orderid));
         	  this.hotelgrade = new SimpleStringProperty(Time);    	  
         	  this.hotelprice = new SimpleStringProperty(String.valueOf(Creditchange));
@@ -126,10 +146,9 @@ public class HotelListuiController implements Initializable{
         	
         }  
  
-        public void setHotelnamen(String Action) {
-			
-        	this.hotelname.set(Action);
-		}
+       public void setHotel(String name){
+    	   hotel.set(name);
+       }
 
 		public void setHotelstar(String Creditchange) {
 			
@@ -154,9 +173,9 @@ public class HotelListuiController implements Initializable{
 
 
 
-		public String getName() {
-            return hotelname.get();
-        }
+		public String getHotel(){
+			return hotel.get();
+		}
  
      
 

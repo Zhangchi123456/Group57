@@ -24,6 +24,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 
 public class UsercreditrecorduiController implements Initializable{
+	private ObservableList<CreditRecord> finallist;
   @FXML
   private TableView<CreditRecord> CreditrecordTable;
   
@@ -34,6 +35,7 @@ public class UsercreditrecorduiController implements Initializable{
   
   @FXML
   private void ReturnButtonClicked(ActionEvent event){
+	 
 	  UiswitchHelper.getApplication().goto_Usermainui();
   }
 	@Override
@@ -53,7 +55,7 @@ public class UsercreditrecorduiController implements Initializable{
 			creditlist2.add(new CreditRecord(creditlist.get(i).action,creditlist.get(i).orderid
 					,creditlist.get(i).time,creditlist.get(i).creditchange,creditlist.get(i).creditlast));
 		}
-		ObservableList<CreditRecord> finallist =FXCollections.observableArrayList(creditlist2);
+		 finallist =FXCollections.observableArrayList(creditlist2);
 		
 		//设置订单号列表项
 		orderid.setCellValueFactory(
@@ -113,6 +115,7 @@ public class UsercreditrecorduiController implements Initializable{
 				
 				
 				CreditrecordTable.setItems(finallist);
+				
 	}
 	
 	
