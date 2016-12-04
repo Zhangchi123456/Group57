@@ -25,5 +25,6 @@ public interface HotelDataService extends Remote{
 	public boolean updateRoom(RoomPO roompo)throws RemoteException;
 	
 	public boolean insertRoom(RoomPO roompo)throws RemoteException;
-
+    
+	public HotelPO Findhotelbyname(String hotelname)throws RemoteException;
 }

@@ -179,5 +179,19 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			return po;
 	
 	}
+	
+	public HotelPO Findhotelbyname(String hotelname)throws RemoteException{
+		HotelPO po=new HotelPO();
+		Iterator<Map.Entry<String, HotelPO>> iterator=map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String,HotelPO> entry=iterator.next();
+			po=entry.getValue();
+			if(hotelname==po.getName()){
+				break;
+			}
+			
+		}
+		return po;
+	}
 
 }
