@@ -6,8 +6,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.MemberDataService;
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
@@ -97,12 +99,27 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	public MemberPO find(String name) throws RemoteException{
 		MemberPO po = map.get(name);
-		return po;
+		Iterator<Entry<Integer, MemberPO>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<Integer, MemberPO> entry = iterator.next();
+			po = entry.getValue();
+		if(name==po.getName())
+        break;
+		}
+			return po;
+	
 	}
 	
-	public MemberPO findLV(String level) throws RemoteException{
-		MemberPO po = map.get(level);
-		return po;
+	public MemberLevelPO findLV(int level) throws RemoteException{
+		MemberLevelPO po = map_lv.get(level);
+		Iterator<Entry<Integer, MemberLevelPO>> iterator = map_lv.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<Integer, MemberLevelPO> entry = iterator.next();
+			po = entry.getValue();
+		if(level==po.getLevel())
+        break;
+		}
+			return po;
 	}
 	
 	public ArrayList<MemberPO> showAll() throws RemoteException{

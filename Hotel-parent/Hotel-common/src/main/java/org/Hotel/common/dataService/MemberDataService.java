@@ -10,8 +10,6 @@ import org.Hotel.common.po.MemberPO;
 public interface MemberDataService extends Remote{
 	public boolean insert(MemberPO po) throws RemoteException;
 	
-	public boolean insert(MemberLevelPO po) throws RemoteException;
-	
 	public boolean delete(MemberPO po) throws RemoteException;
 	
 	public boolean update(MemberPO po) throws RemoteException;
@@ -19,6 +17,8 @@ public interface MemberDataService extends Remote{
 	public boolean update(MemberLevelPO po) throws RemoteException;
 	
 	public MemberPO find(String name) throws RemoteException;
+	
+	public MemberLevelPO findLV(int level) throws RemoteException;
 	
 	public ArrayList<MemberPO> showAll() throws RemoteException;
 	
