@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,13 +24,20 @@ public class OrderInfoController implements Initializable {
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 	
-		OrderVO order=new  OrderVO(0,Integer.parseInt(RTotalpriceLabel.getText()),"未执行", HotelName.getText(),RoomType.getText(),TimeBegin.getText(),TimeEnd.getText(),UserName.getText(),
-	   		 UserNum.getText(),Telephone.getText(), Child.getText(), RoomnumLabel.getText());
+	    OrderLogicService a = new OrderLogicServiceImpl();
+	    a.input(MemberActController.getOrdervo());
 		UiswitchHelper.getApplication().goto_Usermainui();
 	}
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+	OrderVO vo =	MemberActController.getOrdervo();
+	OrderId.setText(vo.getId());
+	HotelName.setText(vo.getHotelid());
+	UserNum.setText(String.valueOf(vo.getPeoplenum()));
+	if(vo.isHavekids()){
+		Child.setText("有");
+	}
+
 	}
 }
