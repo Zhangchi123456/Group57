@@ -39,7 +39,7 @@ public class OrderlistuiController implements Initializable{
    
    
   
-   String UserName = MemberActController.getmemberVo().getname();
+   String UserName ="";// MemberActController.getmemberVo().getname();
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    

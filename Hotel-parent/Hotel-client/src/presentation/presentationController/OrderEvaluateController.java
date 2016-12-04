@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,8 +40,8 @@ public class OrderEvaluateController  implements Initializable {
 	    
 	    
 		OrderLogicService a = new OrderLogicServiceImpl();
-	    OrderVO ordervo;
-	    HotelVO hotelvo;
+	    
+	    
 	 //界面跳转
 	  @FXML
 	  private void  ReturnClicked(ActionEvent event){
@@ -53,11 +54,17 @@ public class OrderEvaluateController  implements Initializable {
 				AlertBox alt = new AlertBox();
 				alt.display("信息填写不完整");
 		}
-		  else{
-		 a.evaluate(ordervo.getId(), Score.getText().toString(), EvaluateInfo.getText().toString());
-		  ordervo.setComment(EvaluateInfo.getText().toString());
+		  else{ 
+	     MemberActController.getOrdervo().setComment(EvaluateInfo.getText().toString());
+		 boolean tem= a.evaluate(MemberActController.getOrdervo().getId(), Score.getText().toString(), EvaluateInfo.getText().toString());
 		
-		  UiswitchHelper.getApplication().goto_Usermainui();
+		
+				UiswitchHelper.getApplication().goto_Usermainui();
+		
+		 
+		
+		
+		 
 		  } 
 	  }
 	 
@@ -66,18 +73,8 @@ public class OrderEvaluateController  implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-	
-		
-<<<<<<< HEAD
-		ordervo=(a.findUserOrderinfo(null, 0));
-		OrderId.setText(String.valueOf(ordervo.orderid));
-        HotelName.setText(String.valueOf(ordervo.hotelidname));
-=======
-		
-		OrderId.setText(ordervo.getId());
-        HotelName.setText(ordervo.getHotelid());
->>>>>>> branch 'master' of https://github.com/Zhangchi123456/Group57.git
-        
+		OrderId.setText(String.valueOf(MemberActController.getOrdervo().getId()));
+        HotelName.setText(String.valueOf(MemberActController.getOrdervo().getHotelid()));	       
 	}
 
 }
