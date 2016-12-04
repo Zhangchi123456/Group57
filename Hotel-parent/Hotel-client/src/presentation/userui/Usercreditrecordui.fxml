@@ -24,11 +24,11 @@
    <center>
       <TableView fx:id="CreditrecordTable" prefHeight="450.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="160.0" text="时间" />
-          <TableColumn prefWidth="160.0" text="订单号" />
-            <TableColumn prefWidth="160.0" text="动作" />
-            <TableColumn prefWidth="160.0" text="信用值变化" />
-            <TableColumn prefWidth="160.0" text="最终信用值" />
+          <TableColumn fx:id="time" prefWidth="160.0" text="时间" />
+          <TableColumn fx:id="orderid" prefWidth="160.0" text="订单号" />
+            <TableColumn fx:id="action" prefWidth="160.0" text="动作" />
+            <TableColumn fx:id="creditchange" prefWidth="160.0" text="信用值变化" />
+            <TableColumn fx:id="creditlast" prefWidth="160.0" text="最终信用值" />
         </columns>
       </TableView>
    </center>
