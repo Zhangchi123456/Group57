@@ -8,4 +8,6 @@ public interface PromotionLogicService {
 
 	void updateHotelPromotion(HotelPromotionVO vo);
 
+	void addHotelPromotion(HotelPromotionVO vo);
+
 }

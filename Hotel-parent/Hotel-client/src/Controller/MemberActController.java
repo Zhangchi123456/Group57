@@ -7,13 +7,14 @@ import java.util.Map;
 import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.MemberVO;
+import vo.OrderVO;
 
 public class MemberActController {
 	private final static Map<String,Object> memberactmap = new HashMap<>();
 	private final static String memberVokey="memberVo";
 	private final static String creditrecordkey="creditrecord";
 	private final static String hotelListkey="HotelList";
-	
+	private final static String currentorderkey="ordervo";
 	
 	private MemberActController(){
 		
@@ -42,4 +43,11 @@ public class MemberActController {
 	public static  ArrayList<HotelVO> getHotelVOList(){
    	   return (ArrayList<HotelVO>)memberactmap.get(hotelListkey);
       }
+	
+	 public static void setcurrentOrdervo(OrderVO ordervo){
+	  	   memberactmap.put(currentorderkey,ordervo );
+	     }
+	     public static  OrderVO getOrdervo(){
+	  	   return (OrderVO)memberactmap.get(currentorderkey);
+	     }
 }
