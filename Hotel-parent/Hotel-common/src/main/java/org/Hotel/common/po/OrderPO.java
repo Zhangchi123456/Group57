@@ -1,5 +1,7 @@
 package org.Hotel.common.po;
 
+import java.util.Date;
+
 public class OrderPO {
 
 	private int id;
@@ -8,17 +10,17 @@ public class OrderPO {
 	
 	private String hotelid;
 	
-	private String intime;
+	private Date intime;
 	
 	private String state;
 	
-	private String outtime;
+	private Date expectleavetime;
 	
-	private String lasttime;
+	private Date realleavetime;
 	
 	private double price;
 	
-	private String dischargetime;
+	private Date dischargetime;
 	
 	private int peoplenum;
 	
@@ -37,7 +39,7 @@ public class OrderPO {
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+	public OrderPO(int id, String name, String hotelid, Date intime, Date expectleavetime, String state, double price, Date realleavetime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
 		super();
 		
 		this.id = id;
@@ -48,13 +50,13 @@ public class OrderPO {
 		
 		this.intime = intime;
 		
-		this.outtime = outtime;
+		this.expectleavetime = expectleavetime;
 		
 		this.state = state;
 		
 		this.price = price;
 		
-		this.lasttime = lasttime;
+		this.realleavetime = realleavetime;
 		
 		this.dischargetime = dischargetime;
 		
@@ -84,30 +86,8 @@ public class OrderPO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	/**
-	 * @return the lasttime
-	 */
-	public String getLasttime() {
-		return lasttime;
-	}
-	/**
-	 * @param lasttime the lasttime to set
-	 */
-	public void setLasttime(String lasttime) {
-		this.lasttime = lasttime;
-	}
-	/**
-	 * @return the dischargetime
-	 */
-	public String getDischargetime() {
-		return dischargetime;
-	}
-	/**
-	 * @param dischargetime the dischargetime to set
-	 */
-	public void setDischargetime(String dischargetime) {
-		this.dischargetime = dischargetime;
-	}
+
+
 	/**
 	 * @return the peoplenum
 	 */
@@ -211,29 +191,56 @@ public class OrderPO {
 	public void setHotelid(String hotelid) {
 		
 		this.hotelid = hotelid;
-	}
-	
-	public String getIntime() {
-		
+	}  
+    /**
+	 * @return the intime
+	 */
+	public Date getIntime() {
 		return intime;
 	}
-
-	public void setIntime(String intime) {
-		
+	/**
+	 * @param intime the intime to set
+	 */
+	public void setIntime(Date intime) {
 		this.intime = intime;
 	}
-	
-    public String getOuttime() {
-		
-		return outtime;
+	/**
+	 * @return the expectleavetime
+	 */
+	public Date getExpectleavetime() {
+		return expectleavetime;
 	}
-    
-    public void setOuttime(String outtime) {
-		
-		this.outtime = outtime;
+	/**
+	 * @param expectleavetime the expectleavetime to set
+	 */
+	public void setExpectleavetime(Date expectleavetime) {
+		this.expectleavetime = expectleavetime;
 	}
-    
-    public String getState() {
+	/**
+	 * @return the realleavetime
+	 */
+	public Date getRealleavetime() {
+		return realleavetime;
+	}
+	/**
+	 * @param realleavetime the realleavetime to set
+	 */
+	public void setRealleavetime(Date realleavetime) {
+		this.realleavetime = realleavetime;
+	}
+	/**
+	 * @return the dischargetime
+	 */
+	public Date getDischargetime() {
+		return dischargetime;
+	}
+	/**
+	 * @param dischargetime the dischargetime to set
+	 */
+	public void setDischargetime(Date dischargetime) {
+		this.dischargetime = dischargetime;
+	}
+	public String getState() {
     	
     	return state;
     }
