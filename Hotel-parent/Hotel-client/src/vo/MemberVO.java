@@ -25,9 +25,9 @@ public class MemberVO {
    	 this.memberproperty=property;
     }
     
-    //测试用方法
-    public void setname(String Membername){
-    	this.membername=Membername;
+    //测试用方法,实际不能有setid
+    public void setid(int num){
+    	this.memberid=num;
     }
     //该方法用于在注册界面构造membervo
     public void setbyString(String memberProperty,String memberName,String Password,LocalDate birthday){

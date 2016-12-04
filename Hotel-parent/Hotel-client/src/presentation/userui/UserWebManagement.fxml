@@ -112,8 +112,8 @@
                      <children>
                         <TableView fx:id="MemberTable" prefHeight="359.0" prefWidth="221.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="167.0" text="用户名" />
-                            <TableColumn prefWidth="251.0" text="账号" />
+                            <TableColumn fx:id="Memberid" prefWidth="167.0" sortable="false" text="用户ID" />
+                            <TableColumn fx:id="Membername" prefWidth="251.0" sortable="false" text="用户名" />
                           </columns>
                            <padding>
                               <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
