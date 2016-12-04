@@ -2,6 +2,7 @@ package Helper;
 
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import vo.MemberVO;
@@ -21,7 +22,7 @@ public class InituiHelper {
         public static String getMemberlevel(){
         	return membervo.getlevel();
         }
-        public static Date getMemberBirthday(){
+        public static LocalDate getMemberBirthday(){
         	return  membervo.getbirthday();
         }
         public static String getMemberproperty(){
