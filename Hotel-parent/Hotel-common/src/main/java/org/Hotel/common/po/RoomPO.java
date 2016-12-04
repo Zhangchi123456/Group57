@@ -9,20 +9,16 @@ public class RoomPO {
 	
 	private int roomid;
 	
-	private double price;
-	
 	public RoomPO() {
 		super();
 	}
 	
-	public RoomPO(String roomtype, int roomid, double price, String hotelid) {
+	public RoomPO(String roomtype, int roomid, String hotelid) {
 		super();
 		
 		this.roomtype = roomtype;
 		
 		this.roomid = roomid;
-		
-		this.price = price;
 		
 		this.hotelid =hotelid;
 	}
@@ -45,16 +41,6 @@ public class RoomPO {
 	public void setRoomtype(String roomtype) {
 		
 		this.roomtype = roomtype;
-	}
-
-	public double getPrice() {
-		// TODO Auto-generated method stub
-		return price;
-	}
-
-	public void setPrice(double price) {
-		
-		this.price = price;
 	}
 	
 	public String getHotelid() {
