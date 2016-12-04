@@ -61,16 +61,6 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		return false;
 	}
 	
-	public boolean insert(MemberLevelPO po) throws RemoteException{
-		int member_lv = po.getLevel();
-		if(map_lv.get(member_lv) == null){
-			map_lv.put(member_lv, po);
-			memberlvDataHelper.insertMemberLevelData(po);
-			return true;
-		}
-		return false;
-	}
-	
 	public boolean delete(MemberPO po) throws RemoteException{
 		int member_id = po.getId();
 		if(map.get(member_id) != null){
@@ -107,6 +97,11 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	public MemberPO find(String name) throws RemoteException{
 		MemberPO po = map.get(name);
+		return po;
+	}
+	
+	public MemberPO findLV(String level) throws RemoteException{
+		MemberPO po = map.get(level);
 		return po;
 	}
 	

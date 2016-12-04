@@ -1,5 +1,6 @@
 package org.Hotel.server.datahelp.impl;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.Hotel.common.po.HotelPromotionPO;
@@ -8,7 +9,7 @@ import org.Hotel.server.datahelp.PromotionDataHelper;
 
 public class PromotionDataMysqlHelper implements PromotionDataHelper {
 
-	public Map<Integer, HotelPromotionPO> getHotelPromotionData() {
+	public Map<String, HotelPromotionPO> getHotelPromotionData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -18,7 +19,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		
 	}
 
-	public Map<Integer, WebPromotionPO> getWebPromotionData() {
+	public Map<Date, WebPromotionPO> getWebPromotionData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
