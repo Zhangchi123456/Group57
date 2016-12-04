@@ -17,8 +17,12 @@ import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import vo.OrderVO;
+import vo.RoomVO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
@@ -57,7 +61,7 @@ public class HotelroomInfouiController implements Initializable{
         SimpleStringProperty last;
  
        private SimpleRoom(String roomnum, String roominfo, String state, String last) {
-       	 this.roomnum = new SimpleStringProperty(roomnum);
+       	  this.roomnum = new SimpleStringProperty(roomnum);
        	  this.roominfo = new SimpleStringProperty(roominfo);
        	  this.state = new SimpleStringProperty(state);    	  
        	  this.last = new SimpleStringProperty(last);
@@ -67,68 +71,110 @@ public class HotelroomInfouiController implements Initializable{
 	/**
 	 * @return the roomnum
 	 */
-	public SimpleStringProperty getRoomnum() {
-		return roomnum;
+	public String getRoomnum() {
+		return roomnum.get();
 	}
 
 	/**
-	 * @param roomnum the roomnum to set
+	 * @param string the roomnum to set
 	 */
-	public void setRoomnum(SimpleStringProperty roomnum) {
-		this.roomnum = roomnum;
+	public void setRoomnum(String string) {
+		roomnum.set(string);;
 	}
 
 	/**
 	 * @return the roominfo
 	 */
-	public SimpleStringProperty getRoominfo() {
-		return roominfo;
+	public String getRoominfo() {
+		return roominfo.get();
 	}
 
 	/**
-	 * @param roominfo the roominfo to set
+	 * @param string the roominfo to set
 	 */
-	public void setRoominfo(SimpleStringProperty roominfo) {
-		this.roominfo = roominfo;
+	public void setRoominfo(String string) {
+		roominfo.set(string);;
 	}
 
 	/**
 	 * @return the state
 	 */
-	public SimpleStringProperty getState() {
-		return state;
+	public String getState() {
+		return state.get();
 	}
 
 	/**
-	 * @param state the state to set
+	 * @param string the state to set
 	 */
-	public void setState(SimpleStringProperty state) {
-		this.state = state;
+	public void setState(String string) {
+		state.set(string);
 	}
 
 	/**
 	 * @return the last
 	 */
-	public SimpleStringProperty getLast() {
-		return last;
+	public String getLast() {
+		return last.get();
 	}
 
 	/**
-	 * @param last the last to set
+	 * @param string the last to set
 	 */
-	public void setLast(SimpleStringProperty last) {
-		this.last = last;
+	public void setLast(String string) {
+		last.set(string);;
 	}  
      
 	}
 	
-	public void  Roomlist(ArrayList<RoomVO> orderlist){
+	public void  Roomlist(ArrayList<RoomVO> roomlist, ArrayList<OrderVO> orderlist){
     	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
-    	for(int i=0;i<orderlist.size();i++){
-    	temp.add(new SimpleRoom(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getIntime()+"——"
-   		+orderlist.get(i).getOuttime(),orderlist.get(i).getPrice(),
-   		String.valueOf(orderlist.get(i).getSingleRoom()+orderlist.get(i).getFamilyRoom()+orderlist.get(i).getStandardRoom()+orderlist.get(i).getSuiteRoom()),
-   		orderlist.get(i).getComment(),orderlist.get(i).getState()));
+    	for(int i=0;i<roomlist.size();i++){
+    	temp.add(new SimpleRoom(String.valueOf(roomlist.get(i).getId()), 
+    			roomlist.get(i).getRoomtype(), 
+    			orderlist.get(i).getState(), orderlist.get(i).
+    			getLasttime()));
     	}
+    	  roomNum.setCellValueFactory(
+		            new PropertyValueFactory<>("roomnum"));		 
+		  roomNum.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  roomNum.setOnEditCommit(
+		            (CellEditEvent<SimpleRoom, String> t) -> {
+		                ((SimpleRoom) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setRoomnum(t.getNewValue());
+		        });
+		  RoomInfo.setCellValueFactory(
+		            new PropertyValueFactory<>("roominfo"));
+		 
+		  RoomInfo.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  RoomInfo.setOnEditCommit(
+		            (CellEditEvent<SimpleRoom, String> t) -> {
+		                ((SimpleRoom) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setRoominfo(t.getNewValue());
+		        });
+		  State.setCellValueFactory(
+		            new PropertyValueFactory<>("state"));
+		 
+		  State.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  State.setOnEditCommit(
+		            (CellEditEvent<SimpleRoom, String> t) -> {
+		                ((SimpleRoom) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setState(t.getNewValue());
+		        });
+		  Last.setCellValueFactory(
+		            new PropertyValueFactory<>("last"));
+		 
+		  Last.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  Last.setOnEditCommit(
+		            (CellEditEvent<SimpleRoom, String> t) -> {
+		                ((SimpleRoom) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setLast(t.getNewValue());
+		        });
+	
+    	}
+    	
 
 }
