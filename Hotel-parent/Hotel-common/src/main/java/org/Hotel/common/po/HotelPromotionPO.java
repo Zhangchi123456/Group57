@@ -4,8 +4,6 @@ import java.util.Date;
 
 public class HotelPromotionPO {
 
-	private int id;
-	
 	private String type;
 	
 	private String hotelid;
@@ -22,14 +20,14 @@ public class HotelPromotionPO {
 	
 	private Date enddate;
 	
+	private String hoteltype = hotelid + type;
+	
 	public HotelPromotionPO() {
 		super();
 	}
 	
-	public HotelPromotionPO(int id, String type, String hotelid,double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
+	public HotelPromotionPO(String type, String hotelid,double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
 		super();
-		
-		this.id = id;
 		
 		this.type = type;
 		
@@ -47,15 +45,12 @@ public class HotelPromotionPO {
 		
 		this.enddate = enddate;
 	}
-	public int getId() {
-		// TODO Auto-generated method stub
-		return id;
-	}
 	
-	public void setId(int id) {
+	public String getId(){
 		
-		this.id = id;
+		return hoteltype;
 	}
+
 
 	public String getType() {
 		// TODO Auto-generated method stub
