@@ -226,8 +226,38 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 			db.close();
 		}
 	}
-
+	// return all roominfo
 	public Map<Integer, RoomPO> getRoomData() {
+//		Map<Integer, RoomPO> map=new HashMap<Integer,RoomPO>();
+//		String query="SELECT * FROM room";
+//		//try{
+//			db=new Database();
+//			ResultSet roomrs=db.select(query);
+//			
+//			//while(roomrs.next()){
+//				//room info
+//				//int id=roomrs.getInt("id");
+//				//String roomtype=roomrs.getString("type");
+//				//get hotelname 
+//				//int hotelid=roomrs.getInt("hotel_id");
+//				//String hotelname=getHotelName(db,hotelid);
+//				
+//				//RoomPO roompo=new RoomPO(roomtype, int roomnum, int roomid, double price, String hotelid) {
+//				
+//				
+//				
+//			}//end while
+//			return map;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
+		return null;
+	}//end getRoomData
+	
+
+	private String getHotelName(Database db2, int hotelid) {
 		// TODO Auto-generated method stub
 		return null;
 	}
