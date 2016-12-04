@@ -16,13 +16,15 @@ public class MemberPO {
 	
 	private int credit;
 	
-	private boolean enterprice;
+	private boolean enterprise;
+	
+	private int level;
 	
 	public MemberPO() {
 		super();
 	}
 	
-	public MemberPO(int id, String password, String connection, Date birthday, String name, int credit, boolean enterprice) {
+	public MemberPO(int id, String password, String connection, Date birthday, String name, int credit, boolean enterprise, int level) {
 		
 		super();
 		
@@ -31,6 +33,8 @@ public class MemberPO {
 		this.connection = connection;
 		this.birthday = birthday;
 		this.name = name;
+		this.enterprise = enterprise;
+		this.level = level;
 	}
 	/**
 	 * @return the credit
@@ -47,17 +51,31 @@ public class MemberPO {
 	}
 
 	/**
-	 * @return the enterprice
+	 * @return the enterprise
 	 */
-	public boolean isEnterprice() {
-		return enterprice;
+	public boolean isEnterprise() {
+		return enterprise;
 	}
 
 	/**
-	 * @param enterprice the enterprice to set
+	 * @param enterprice the enterprise to set
 	 */
-	public void setEnterprice(boolean enterprice) {
-		this.enterprice = enterprice;
+	public void setEnterprise(boolean enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	/**
+	 * @return the level
+	 */
+	public int getLevel() {
+		return level;
+	}
+
+	/**
+	 * @param level the level to set
+	 */
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	/**
