@@ -5,11 +5,16 @@ public class HotelStaffPO {
 	private int id;
 	
 	private String password;
+	private String name;
+	private String hotelname;
 	
 	public HotelStaffPO() {
 		super();
 	}
-	
+	//Jerry
+	public HotelStaffPO(String name,String hotelname,String password){
+		
+	}
 	public HotelStaffPO(int id, String password) {
 		super();
 		
@@ -35,6 +40,28 @@ public class HotelStaffPO {
 	public void setPassword(String password) {
 			
 		this.password = password;
+		
+	}
+	
+
+	public void setName(String name) {
+			
+		this.name = name;
+		
+	}
+	public String getName() {
+		
+		return name;
+		
+	}
+	public String getHotelName() {
+		
+		return hotelname;
+		
+	}
+	public void setHotelName(String hotelname) {
+			
+		this.hotelname =hotelname;
 		
 	}
 }

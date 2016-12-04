@@ -7,7 +7,7 @@ public interface UserDataHelper {
 	/**
 	 * @return	从数据文件读入网站营销人员
 	 */
-	public Map<Integer,WebStaffPO> getWebStaffData();
+	public Map<String,WebStaffPO> getWebStaffData();
 	/**
 	 * 从数据文件中写入网站营销人员
 	 * @param map	
@@ -21,7 +21,7 @@ public interface UserDataHelper {
 	/**
 	 * @return	从数据文件读入网站管理人员
 	 */
-	public Map<Integer,WebManagerPO> getWebManagerData();
+	public Map<String,WebManagerPO> getWebManagerData();
 	/**
 	 * 从数据文件中写入网站管理人员
 	 * @param map	
@@ -35,7 +35,7 @@ public interface UserDataHelper {
 	/**
 	 * @return	从数据文件读入酒店工作人员
 	 */
-	public Map<Integer,HotelStaffPO> getHotelStaffData();
+	public Map<String,HotelStaffPO> getHotelStaffData();
 	/**
 	 * 从数据文件中写入酒店工作人员
 	 * @param map	

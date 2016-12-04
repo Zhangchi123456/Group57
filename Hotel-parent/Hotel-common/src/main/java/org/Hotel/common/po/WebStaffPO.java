@@ -2,7 +2,9 @@ package org.Hotel.common.po;
 
 public class WebStaffPO {
 
-private int id;
+	private int id;
+	
+	private String name;
 	
 	private String password;
 	
@@ -15,6 +17,9 @@ private int id;
 		
 		this.id = id;
 		this.password = password;
+	}
+	public WebStaffPO(String name,String password){
+		
 	}
 	public int getId() {
 		// TODO Auto-generated method stub
@@ -35,6 +40,17 @@ private int id;
 	public void setPassword(String password) {
 			
 		this.password = password;
+		
+	}
+	
+	public void setName(String name){
+		
+		this.name = name;
+	}
+	
+	public String getName() {
+			
+		return name;
 		
 	}
 

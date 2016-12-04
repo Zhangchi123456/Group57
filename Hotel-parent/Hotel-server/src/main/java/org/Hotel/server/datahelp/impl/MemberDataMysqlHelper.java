@@ -164,7 +164,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		double discount=memberlevelpo.getDiscount();
 		int level=memberlevelpo.getLevel();
 		int credit=memberlevelpo.getCredit();
-		String query="UPDATE member_level SET discout='"+String.valueOf(discount)+"',"
+		String query="UPDATE member_level SET discount='"+String.valueOf(discount)+"',"
 				+ "credit='"+String.valueOf(credit)+"' WHERE level='"+String.valueOf(level)+"'";
 		try{
 			db.update(query);

@@ -6,8 +6,14 @@ public class WebManagerPO {
 	
 	private String password;
 	
+	private String name;
+	
 	public WebManagerPO() {
 		super();
+	}
+	//Jerry 
+	public WebManagerPO(String name,String password){
+		
 	}
 	
 	public WebManagerPO(int id, String password) {
