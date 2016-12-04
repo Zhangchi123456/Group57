@@ -11,17 +11,17 @@ public class OrderVO {
 		
 	private String hotelid;
 	
-	private Date intime;
+	private Date starttime;
 	
 	private String state;
 	
-	private Date expectleavetime;
-	
-	private Date realleavetime;
+	private Date leavetime;
 	
 	private String price;
 	
 	private Date dischargetime;
+	
+	private Date lasttime;
 	
 	private int peoplenum;
 	
@@ -37,33 +37,30 @@ public class OrderVO {
 	
 	private String comment;
 	
-<<<<<<< HEAD
-
-	public OrderVO(String id, String name, String child, String hotelid, Date intime, Date outtime, String state, String price, Date lasttime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
-			
-=======
+	private double grade;
+	
 	public OrderVO() {
 		super();
 	}
-	public OrderVO(String id, String name, String child, String hotelid, String intime, String outtime, String state, String price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+	public OrderVO(String id, String name, String child, String hotelid, Date starttime, Date leavetime, String state, String price, Date lasttime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment, double grade) {
 		
 		super();
->>>>>>> branch 'master' of https://github.com/Zhangchi123456/Group57.git
+
 		this.id = id;
 		
 		this.name = name;
 			
 		this.hotelid = hotelid;
 		
-		this.intime = intime;
+		this.starttime = starttime;
 		
-		this.expectleavetime = outtime;
+		this.leavetime = leavetime;
 		
 		this.state = state;
 		
 		this.price = price;
 		
-		this.realleavetime = lasttime;
+		this.lasttime = lasttime;
 		
 		this.dischargetime = dischargetime;
 		
@@ -88,15 +85,15 @@ public class OrderVO {
 		this.name = po.getName();
 		this.hotelid = po.getHotelid();
 		
-		this.intime = po.getIntime();
+		this.starttime = po.getStarttime();
 		
-		this.expectleavetime = po.getExpectleavetime();
+		this.leavetime = po.getLeavetime();
 		
 		this.state = po.getState();
 		
 		this.price = String.valueOf( po.getPrice());
 		
-		this.realleavetime = po.getRealleavetime();
+		this.lasttime = po.getLasttime();
 		
 		this.dischargetime = po.getDischargetime();
 		
@@ -113,6 +110,8 @@ public class OrderVO {
 		this.suiteRoom = po.getSuiteRoom();
 		
 		this.comment = po.getComment();
+		
+		this.grade = po.getGrade();
 	}
 	
 	//vo转po
@@ -124,16 +123,17 @@ public class OrderVO {
 		po.setFamilyRoom(familyRoom);
 		po.setHavekids(havekids);
 		po.setHotelid(hotelid);
-		po.setIntime(intime);
-		po.setRealleavetime(realleavetime);
+		po.setStarttime(starttime);
+		po.setLeavetime(leavetime);
 		po.setName(name);
-		po.setExpectleavetime(expectleavetime);
+		po.setLasttime(lasttime);
 		po.setPeoplenum(peoplenum);
 		po.setPrice(Integer.parseInt(price));
 		po.setSingleRoom(singleRoom);
 		po.setStandardRoom(standardRoom);
 		po.setState(state);
 		po.setSuiteRoom(suiteRoom);
+		po.setGrade(grade);
 		return po;
 	}
 	
@@ -149,38 +149,9 @@ public class OrderVO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	/**
-	 * @return the child
-	 */
 	
-	/**
-	 * @param child the child to set
-	 */
-	
-	/**
-	 * @return the lasttime
-	 */
-	public String getLasttime() {
-		return lasttime;
-	}
-	/**
-	 * @param lasttime the lasttime to set
-	 */
-	public void setLasttime(String lasttime) {
-		this.lasttime = lasttime;
-	}
-	/**
-	 * @return the dischargetime
-	 */
-	public String getDischargetime() {
-		return dischargetime;
-	}
-	/**
-	 * @param dischargetime the dischargetime to set
-	 */
-	public void setDischargetime(String dischargetime) {
-		this.dischargetime = dischargetime;
-	}
+
+
 	/**
 	 * @return the peoplenum
 	 */
@@ -286,27 +257,68 @@ public class OrderVO {
 		this.hotelid = hotelid;
 	}
 	
-	public String getIntime() {
-		
-		return intime;
-	}
-
-	public void setIntime(String intime) {
-		
-		this.intime = intime;
-	}
-	
-    public String getOuttime() {
-		
-		return outtime;
-	}
     
-    public void setOuttime(String outtime) {
-		
-		this.outtime = outtime;
+    /**
+	 * @return the starttime
+	 */
+	public Date getStarttime() {
+		return starttime;
 	}
-    
-    public String getState() {
+	/**
+	 * @param starttime the starttime to set
+	 */
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+	/**
+	 * @return the leavetime
+	 */
+	public Date getLeavetime() {
+		return leavetime;
+	}
+	/**
+	 * @param leavetime the leavetime to set
+	 */
+	public void setLeavetime(Date leavetime) {
+		this.leavetime = leavetime;
+	}
+	/**
+	 * @return the dischargetime
+	 */
+	public Date getDischargetime() {
+		return dischargetime;
+	}
+	/**
+	 * @param dischargetime the dischargetime to set
+	 */
+	public void setDischargetime(Date dischargetime) {
+		this.dischargetime = dischargetime;
+	}
+	/**
+	 * @return the lasttime
+	 */
+	public Date getLasttime() {
+		return lasttime;
+	}
+	/**
+	 * @param lasttime the lasttime to set
+	 */
+	public void setLasttime(Date lasttime) {
+		this.lasttime = lasttime;
+	}
+	/**
+	 * @return the grade
+	 */
+	public double getGrade() {
+		return grade;
+	}
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+	public String getState() {
     	
     	return state;
     }
