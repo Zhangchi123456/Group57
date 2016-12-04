@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 
-public class OrdereController implements Initializable{
+public class OrderController implements Initializable{
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

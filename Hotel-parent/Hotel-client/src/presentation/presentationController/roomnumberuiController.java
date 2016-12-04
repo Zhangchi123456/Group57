@@ -62,7 +62,7 @@ public class roomnumberuiController implements Initializable{
 					alt.display("不可为0！");
 				}else{
 					String name = "多间折扣";
-					int id;
+					int id = 0;
 					HotelPromotionVO vo = new HotelPromotionVO(id, name, 0, 0, discount/100, 0, null, null);
 			
 					PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -80,7 +80,7 @@ public class roomnumberuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		HotelPromotionVO vo;
-		int id ;
+		int id = 0 ;
 		String name = "多间折扣";
 		vo = promotion.getHotelPromotion(id,name);
 		double discount = vo.getMultiorderDiscount()*100;

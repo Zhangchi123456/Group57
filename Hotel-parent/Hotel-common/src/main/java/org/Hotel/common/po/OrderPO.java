@@ -34,10 +34,12 @@ public class OrderPO {
 	
 	private int suiteRoom;
 	
+	private String comment;
+	
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String child, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom) {
+	public OrderPO(int id, String name, String child, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
 		super();
 		
 		this.id = id;
@@ -72,6 +74,19 @@ public class OrderPO {
 		
 		this.suiteRoom = suiteRoom;
 		
+		this.comment = comment;
+	}
+	/**
+	 * @return the comment
+	 */
+	public String getComment() {
+		return comment;
+	}
+	/**
+	 * @param comment the comment to set
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	/**
 	 * @return the child

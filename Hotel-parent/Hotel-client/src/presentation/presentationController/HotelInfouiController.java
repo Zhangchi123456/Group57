@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
 
 public class HotelInfouiController implements Initializable{
-	 private String hotelstar,hoteldescription,hoteladdress;
+	private String hotelstar,hoteldescription,hoteladdress;
 	@FXML
 	private Button ReturnButton;//返回按钮
 	@FXML

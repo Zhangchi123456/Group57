@@ -67,7 +67,7 @@ public class birthdayuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 				String name = "生日折扣";
-				int id;
+				int id = 0;
 				HotelPromotionVO vo = new HotelPromotionVO(id, name, discount/100, 0, 0, 0, null, null);
 			
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -86,7 +86,7 @@ public class birthdayuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		HotelPromotionVO vo;
-		int id ;
+		int id = 0 ;
 		String name = "生日折扣";
 		vo = promotion.getHotelPromotion(id,name);
 		double discount = vo.getBirthdayDiscount()*100;
