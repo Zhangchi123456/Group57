@@ -6,8 +6,6 @@ public class OrderPO {
 	
 	private String name;
 	
-	private String child;
-	
 	private String hotelid;
 	
 	private String intime;
@@ -39,14 +37,12 @@ public class OrderPO {
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String child, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+	public OrderPO(int id, String name, String hotelid, String intime, String outtime, String state, double price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
 		super();
 		
 		this.id = id;
 		
 		this.name = name;
-		
-		this.child = child;
 		
 		this.hotelid = hotelid;
 		
@@ -87,18 +83,6 @@ public class OrderPO {
 	 */
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-	/**
-	 * @return the child
-	 */
-	public String getChild() {
-		return child;
-	}
-	/**
-	 * @param child the child to set
-	 */
-	public void setChild(String child) {
-		this.child = child;
 	}
 	/**
 	 * @return the lasttime
