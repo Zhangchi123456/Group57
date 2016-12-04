@@ -60,7 +60,7 @@ public class OrderEvaluateController  implements Initializable {
 		
 		ordervo=(a.findUserOrderinfo(null, 0));
 		OrderId.setText(String.valueOf(ordervo.orderid));
-        HotelName.setText(String.valueOf(ordervo.hotelname));
+        HotelName.setText(String.valueOf(ordervo.hotelidname));
         
 	}
 
