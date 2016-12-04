@@ -4,7 +4,7 @@ import vo.HotelPromotionVO;
 
 public interface PromotionLogicService {
 
-	HotelPromotionVO getHotelPromotion(int id, String name);
+	HotelPromotionVO getHotelPromotion(String hotel_name, String name);
 
 	void updateHotelPromotion(HotelPromotionVO vo);
 
