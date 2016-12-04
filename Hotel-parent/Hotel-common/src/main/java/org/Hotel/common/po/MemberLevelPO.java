@@ -1,8 +1,6 @@
 package org.Hotel.common.po;
 
 public class MemberLevelPO {
-
-	private String name;
 	
 	private int level;
 	
@@ -10,34 +8,16 @@ public class MemberLevelPO {
 	
 	private double discount;
 	
-	private String type;
-	
 	public MemberLevelPO() {
 		
 	}
 	
-	public MemberLevelPO(String name, int level, int credit, double discount, String type) {
+	public MemberLevelPO(int level, int credit, double discount) {
 		super();
 		
 		this.level = level;
 		this.credit = credit;
 		this.discount = discount;
-		this.name = name;
-		this.type = type;
-	}
-
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	/**
@@ -80,13 +60,5 @@ public class MemberLevelPO {
 	 */
 	public void setDiscount(double discount) {
 		this.discount = discount;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 }

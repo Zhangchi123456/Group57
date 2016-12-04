@@ -68,9 +68,15 @@ public class OrderEvaluateController  implements Initializable {
 		// TODO Auto-generated method stub
 	
 		
+<<<<<<< HEAD
+		ordervo=(a.findUserOrderinfo(null, 0));
+		OrderId.setText(String.valueOf(ordervo.orderid));
+        HotelName.setText(String.valueOf(ordervo.hotelidname));
+=======
 		
 		OrderId.setText(ordervo.getId());
         HotelName.setText(ordervo.getHotelid());
+>>>>>>> branch 'master' of https://github.com/Zhangchi123456/Group57.git
         
 	}
 
