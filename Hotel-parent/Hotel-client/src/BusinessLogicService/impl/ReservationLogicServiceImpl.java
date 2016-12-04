@@ -30,4 +30,8 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 public ArrayList<HotelVO> findbysearch(String searchmust,String searchother){
 		 return null;
 	 }
+	 
+	 public HotelVO findbyname(String name){
+		 return null;
+	 }
 }

@@ -23,5 +23,8 @@ public interface ReservationLogicService {
 	
 	//通过搜索界面的条件从数据库找到酒店列表
 	 public ArrayList<HotelVO> findbysearch(String searchmust,String searchother);
+	 
+	//通过酒店名找到酒店
+	 public HotelVO findbyname(String name);
 	
 }
