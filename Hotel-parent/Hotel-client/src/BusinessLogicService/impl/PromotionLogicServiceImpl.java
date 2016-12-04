@@ -1,7 +1,10 @@
 package BusinessLogicService.impl;
 
+import java.util.ArrayList;
+
 import BusinessLogicService.Service.PromotionLogicService;
 import vo.HotelPromotionVO;
+import vo.WebPromotionVO;
 
 public class PromotionLogicServiceImpl implements PromotionLogicService{
 
@@ -21,6 +24,24 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 	public void addHotelPromotion(HotelPromotionVO vo) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public ArrayList<HotelPromotionVO> getHotelPromotionList(String name, String hotel_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addWebPromotion(WebPromotionVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<WebPromotionVO> getWebPromotionList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
