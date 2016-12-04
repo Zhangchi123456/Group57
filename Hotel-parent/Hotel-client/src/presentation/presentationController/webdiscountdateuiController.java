@@ -1,9 +1,19 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.PromotionLogicService;
+import BusinessLogicService.impl.PromotionLogicServiceImpl;
+import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +22,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import presentation.presentationController.hoteldiscountdateuiController.DateInfo;
+import presentation.userui.AlertBox;
+import vo.HotelPromotionVO;
+import vo.WebPromotionVO;
 
 public class webdiscountdateuiController implements Initializable{
 	
@@ -50,6 +65,7 @@ public class webdiscountdateuiController implements Initializable{
 	
 	@FXML
 	private Button back;
+	
 	//跳到会员等级折扣
 	@FXML
 	public void MemberClicked(ActionEvent event){
@@ -68,7 +84,44 @@ public class webdiscountdateuiController implements Initializable{
 	//添加策略确认按钮
 	@FXML
 	public void SureClicked(ActionEvent event){
+		String start = TimeBegin.getValue().toString();
+		String end = TimeEnd.getValue().toString();
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date start_date = null;
+		Date end_date = null;
+		try {
+			start_date = sdf.parse(start);
+			end_date = sdf.parse(end);
+		} catch (ParseException e) {
+			AlertBox alt = new AlertBox();
+			alt.display("请指定日期！");
+		}
+		
+		String input = newDiscount.getText();
+		
+		if(input!=null){
+			
+			double discount = Double.parseDouble(input);
+			
+			if(discount<0||discount>100){
+				AlertBox alt = new AlertBox();
+				alt.display("超出输入范围！");
+			}else if(discount==0){
+				AlertBox alt = new AlertBox();
+				alt.display("不可为0！");
+			}else{
+		
+				WebPromotionVO vo = new WebPromotionVO(discount/100, start_date, end_date);
+				
+				PromotionLogicService promotion = new PromotionLogicServiceImpl();
+				promotion.addWebPromotion(vo);
+				
+				this.showTable();
+			}
+			
+		}
 	}
 	//删除策略按钮
 	@FXML
@@ -81,9 +134,76 @@ public class webdiscountdateuiController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
+		this.showTable();
 		
 	}
+	
+	public void showTable(){
+		
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		ArrayList<WebPromotionVO> proList= promotion.getWebPromotionList();
+		
+		final ObservableList<DateInfo> data = FXCollections.observableArrayList();
+		
+		for(int i=0;i<proList.size();i++){
+			
+			WebPromotionVO vo = proList.get(i);
+			String start = vo.getStartDate().toString();
+			String end = vo.getEndDate().toString();
+			double discount = vo.getDateDiscount();;
+			
+			DateInfo info = new DateInfo(start,end,discount);
+			
+			data.add(info);
+        }
+		
+		webdiscountdateTable_start.setCellValueFactory( new PropertyValueFactory<>("start") );
+		webdiscountdateTable_end.setCellValueFactory( new PropertyValueFactory<>("end") );
+		webdiscountdateTable_discount.setCellValueFactory( new PropertyValueFactory<>("discount") );
+		
+		webdiscountdateTable.setItems(data);
+		
+	}
+
+	public static class DateInfo{
+	
+		private final SimpleStringProperty start;
+		private final SimpleStringProperty end;
+    	private final SimpleStringProperty discount;
+    
+    	private DateInfo(String start, String end, double discount){
+    		this.start = new SimpleStringProperty(start);
+    		this.end = new SimpleStringProperty(end);
+    		this.discount = new SimpleStringProperty(String.valueOf(discount));
+    	}
+    
+    	public void setStart(String start){
+    		this.start.set(start);
+    	}
+    
+    	public void setEnd(String end){
+    		this.end.set(end);
+    	}
+    
+    	public void setDiscount(double discount){
+    		this.discount.set(String.valueOf(discount));
+    	}
+    
+    	public String getStart(){
+    		return start.get();
+    	}
+    
+    	public String getEnd(){
+    		return end.get();
+    	}
+    
+    	public double getDiscount(){
+    		return Double.parseDouble(discount.get());
+    	}
+	}
+
+
 
 
 }

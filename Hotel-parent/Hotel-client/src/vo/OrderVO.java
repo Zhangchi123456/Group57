@@ -37,9 +37,18 @@ public class OrderVO {
 	
 	private String comment;
 	
+<<<<<<< HEAD
 
 	public OrderVO(String id, String name, String child, String hotelid, Date intime, Date outtime, String state, String price, Date lasttime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
 			
+=======
+	public OrderVO() {
+		super();
+	}
+	public OrderVO(String id, String name, String child, String hotelid, String intime, String outtime, String state, String price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+		
+		super();
+>>>>>>> branch 'master' of https://github.com/Zhangchi123456/Group57.git
 		this.id = id;
 		
 		this.name = name;
@@ -74,8 +83,8 @@ public class OrderVO {
 	}
 	//po转vo
 	public void SetbyOrderPO(OrderPO po){
-           this.id = String.valueOf(po.getId());
-		
+
+        this.id = String.valueOf(po.getId());
 		this.name = po.getName();
 		this.hotelid = po.getHotelid();
 		

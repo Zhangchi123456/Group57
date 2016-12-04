@@ -41,9 +41,13 @@ public class UsercreditrecorduiController implements Initializable{
 		//ArrayList<CreditRecordVO> creditlist=MemberActController.getCreditRecordVOList();
 		ArrayList<CreditRecordVO> creditlist=new ArrayList<CreditRecordVO>();
 		CreditRecordVO cred=new CreditRecordVO();
-		cred.action="act";
+		cred.action="1";
 		cred.creditlast="credilast";
+		CreditRecordVO cred2=new CreditRecordVO();
+		cred2.action="2";
+		cred2.creditlast="last2";
 		creditlist.add(cred);
+		creditlist.add(cred2);
 		ArrayList<CreditRecord> creditlist2=new ArrayList<CreditRecord>();
 		for(int i=0;i<creditlist.size();i++){
 			creditlist2.add(new CreditRecord(creditlist.get(i).action,creditlist.get(i).orderid
