@@ -5,14 +5,22 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +29,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.userui.AlertBox;
 import vo.HotelPromotionVO;
 
@@ -65,6 +74,9 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	private Button back;
 	
+	String hotel_name = HotelmanageController.getHotelVO().getName();
+	String name = "日期折扣";
+	
 	@FXML
 	public void toBusinesspartner(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesspartnerui();
@@ -82,7 +94,7 @@ public class hoteldiscountdateuiController implements Initializable{
 	
 	@FXML
 	public void delete(ActionEvent event){
-		
+
 	}
 	
 	@FXML
@@ -103,7 +115,6 @@ public class hoteldiscountdateuiController implements Initializable{
 			alt.display("请指定日期！");
 		}
 		
-		
 		String input = newDiscount.getText();
 		
 		if(input!=null){
@@ -117,14 +128,14 @@ public class hoteldiscountdateuiController implements Initializable{
 				AlertBox alt = new AlertBox();
 				alt.display("不可为0！");
 			}else{
-				
-				String name = "日期折扣";
 		
-				String hotel_name = HotelmanageController.getHotelVO().getName();
 				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date, end_date);
 				
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.addHotelPromotion(vo);
+				
+				this.showTable(name,hotel_name);
+			
 			}
 		}
 	}
@@ -134,10 +145,77 @@ public class hoteldiscountdateuiController implements Initializable{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 	}
 
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
+		this.showTable(name,hotel_name);
+	
+	}
+	
+	public void showTable(String name,String hotel_name){
+		
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		ArrayList<HotelPromotionVO> proList= promotion.getHotelPromotionList(name,hotel_name);
+		
+		final ObservableList<DateInfo> data = FXCollections.observableArrayList();
+		
+		for(int i=0;i<proList.size();i++){
+			
+			HotelPromotionVO vo = proList.get(i);
+			String start = vo.getStartDate().toString();
+			String end = vo.getEndDate().toString();
+			double discount = vo.getDateDiscount();;
+			
+			DateInfo info = new DateInfo(start,end,discount);
+			
+			data.add(info);
+        }
+		
+		hoteldiscountdateTable_start.setCellValueFactory( new PropertyValueFactory<>("start") );
+		hoteldiscountdateTable_end.setCellValueFactory( new PropertyValueFactory<>("end") );
+		hoteldiscountdateTable_discount.setCellValueFactory( new PropertyValueFactory<>("discount") );
+		
+		hoteldiscountdateTable.setItems(data);
+		
+	}
+	
+	
+	public static class DateInfo{
+		
+		private final SimpleStringProperty start;
+        private final SimpleStringProperty end;
+        private final SimpleStringProperty discount;
+        
+        private DateInfo(String start, String end, double discount){
+        	this.start = new SimpleStringProperty(start);
+        	this.end = new SimpleStringProperty(end);
+        	this.discount = new SimpleStringProperty(String.valueOf(discount));
+        }
+        
+        public void setStart(String start){
+        	this.start.set(start);
+        }
+        
+        public void setEnd(String end){
+        	this.end.set(end);
+        }
+        
+        public void setDiscount(double discount){
+        	this.discount.set(String.valueOf(discount));
+        }
+        
+        public String getStart(){
+        	return start.get();
+        }
+        
+        public String getEnd(){
+        	return end.get();
+        }
+        
+        public double getDiscount(){
+        	return Double.parseDouble(discount.get());
+        }
 	}
 
 
