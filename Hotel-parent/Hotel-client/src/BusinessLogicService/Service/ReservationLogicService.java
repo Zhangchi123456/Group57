@@ -1,5 +1,9 @@
 package BusinessLogicService.Service;
 
+import java.util.ArrayList;
+
+import vo.HotelVO;
+
 public interface ReservationLogicService {
     
 	
@@ -17,5 +21,7 @@ public interface ReservationLogicService {
 	//计算订单总价
 	public double Computeprice();
 	
+	//通过搜索界面的条件从数据库找到酒店列表
+	 public ArrayList<HotelVO> findbysearch(String searchmust,String searchother);
 	
 }

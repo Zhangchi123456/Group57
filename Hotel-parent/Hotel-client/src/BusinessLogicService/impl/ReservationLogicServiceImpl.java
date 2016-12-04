@@ -1,6 +1,9 @@
 package BusinessLogicService.impl;
 
+import java.util.ArrayList;
+
 import BusinessLogicService.Service.ReservationLogicService;
+import vo.HotelVO;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     
@@ -23,4 +26,8 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		return 0;
 		
 	}
+	
+	 public ArrayList<HotelVO> findbysearch(String searchmust,String searchother){
+		 return null;
+	 }
 }
