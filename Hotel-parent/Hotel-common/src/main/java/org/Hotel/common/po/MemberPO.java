@@ -6,6 +6,8 @@ public class MemberPO {
 
 	private int id;
 	
+	private String name;
+	
 	private String password;
 	
 	private String connection;
@@ -16,7 +18,7 @@ public class MemberPO {
 		super();
 	}
 	
-	public MemberPO(int id, String password, String connection, Date birthday) {
+	public MemberPO(int id, String password, String connection, Date birthday, String name) {
 		
 		super();
 		
@@ -24,7 +26,22 @@ public class MemberPO {
 		this.password = password;
 		this.connection = connection;
 		this.birthday = birthday;
+		this.name = name;
 	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getId() {
 		// TODO Auto-generated method stub
 		return id;

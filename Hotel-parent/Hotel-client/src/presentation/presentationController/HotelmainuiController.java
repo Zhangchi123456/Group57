@@ -26,16 +26,16 @@ public class HotelmainuiController implements Initializable{
      
 	@FXML
 	private void RoomInfoButtonClicked(ActionEvent event) {
-	   UiswitchHelper.getApplication().goto_roomInfoui();
+	    UiswitchHelper.getApplication().goto_roomInfoui();
 		
 	}
 	@FXML
 	private void OrderButtonClicked(ActionEvent event) {
-		UiswitchHelper.getApplication().goto_orderui();
+	    UiswitchHelper.getApplication().goto_orderui();
 	}
 	@FXML
 	private void UpdateButtonClicked(ActionEvent event) {
-	  UiswitchHelper.getApplication().goto_updateui();
+	    UiswitchHelper.getApplication().goto_updateui();
 	}
 	@FXML
 	private void HotelInfoButtonClicked(ActionEvent event) {

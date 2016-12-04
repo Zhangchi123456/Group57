@@ -94,13 +94,13 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return null;		
 	}//显示所有酒店信息
 	
-	public ArrayList<RoomPO> roomShowAll(String hotel_id, int room_id, int room_num, String room_type)throws RemoteException{
+	public ArrayList<RoomPO> roomShowAll(String hotel_id, int room_id, String room_type)throws RemoteException{
 		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
 		Iterator<Map.Entry<Integer,RoomPO>> iterator = map_room.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, RoomPO> entry = iterator.next();
 			RoomPO roompo = entry.getValue();
-		if(hotel_id==roompo.getHotelid()||room_id==roompo.getId()||room_num==roompo.getRoomnum()||room_type==roompo.getRoomtype()){
+		if(hotel_id==roompo.getHotelid()||room_id==roompo.getId()||room_type==roompo.getRoomtype()){
 			roomlist.add(roompo);
 			return roomlist;
 		}
