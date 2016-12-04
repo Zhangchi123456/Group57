@@ -1,8 +1,6 @@
-
 package presentation.presentationController;
 
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -29,6 +27,7 @@ import Controller.ReservationController;
 
 import javafx.scene.control.TableColumn.CellEditEvent;
 public class OrderlistuiController implements Initializable{
+	//界面项目
    @FXML
    private Button ReturnButton;
    @FXML
@@ -38,6 +37,14 @@ public class OrderlistuiController implements Initializable{
    @FXML
    private ChoiceBox OrderStationChoiceBox;
    
+   
+   
+   String UserName = "";
+   OrderLogicService am = new OrderLogicServiceImpl();
+   ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
+   
+   
+   //监听
    @FXML
    private void ReturnButtonClicked(ActionEvent event){
 	   UiswitchHelper.getApplication().goto_Usermainui();
@@ -47,40 +54,74 @@ public class OrderlistuiController implements Initializable{
    private void EvaluateClicked(ActionEvent event){
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
    }
+   @FXML 
+   private void ChoiceBoxClicked(ActionEvent event){
+	  if(OrderStationChoiceBox.getValue().equals("已执行订单")){
+		  orderlist = am.findUserOrderListStation(UserName, "已执行订单");
+		  if(orderlist!=null);
+		  Orderlist(orderlist);
+	  }
+	  if(OrderStationChoiceBox.getValue().equals("未执行订单")){
+		  orderlist = am.findUserOrderListStation(UserName, "未执行订单");
+		  if(orderlist!=null);
+		  Orderlist(orderlist);
+	  }
+	  if(OrderStationChoiceBox.getValue().equals("异常订单")){
+		  orderlist = am.findUserOrderListStation(UserName, "异常订单");
+		  if(orderlist!=null);
+		  Orderlist(orderlist);
+	  }
+	  if(OrderStationChoiceBox.getValue().equals("所有订单")){
+		  orderlist = am.findUserOrderListAll(UserName);
+		  if(orderlist!=null);
+		  Orderlist(orderlist);
+	  }
+   }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		OrderLogicService am = new OrderLogicServiceImpl();
-		String UserName = "";
-    	ArrayList<OrderVO> orderlist =am.findUserOrderListAll(UserName);
-    	ArrayList<SimpleOrder> temp = new ArrayList<SimpleOrder>();
+		
+		OrderStationChoiceBox.setValue("所有订单");
+    	 orderlist =am.findUserOrderListAll(UserName);
+    	 if(orderlist!=null);
+    	 Orderlist(orderlist);
+	}
+	
+	
+	
+	
+//orderlist在表中显示的方法	
+	 public void  Orderlist(ArrayList<OrderVO > orderlist){
+    	ObservableList<SimpleOrder> temp =FXCollections.observableArrayList();
     	for(int i=0;i<orderlist.size();i++){
-    		temp.add(new SimpleOrder(orderlist.get(i).hotelname,String.valueOf(orderlist.get(i).orderid),String.valueOf(orderlist.get(i).BeginDate)+"-"
-    		+String.valueOf(orderlist.get(i).EndDate),String.valueOf(orderlist.get(i).orderprice),orderlist.get(i).roomname,orderlist.get(i).orderEvaluation,orderlist.get(i).orderstate));
+    		temp.add(new SimpleOrder(orderlist.get(i).hotelname,String.valueOf(orderlist.get(i).orderid),String.valueOf(orderlist.get(i).BeginDate)+"——"
+   		+String.valueOf(orderlist.get(i).EndDate),String.valueOf(orderlist.get(i).orderprice),orderlist.get(i).roomname,orderlist.get(i).orderEvaluation,orderlist.get(i).orderstate));
     	}
-    	
-	    	OrderStationChoiceBox.setValue("所有订单");
-		  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(temp);
+	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
+	//			  new SimpleOrder("aweqwqwe","bqweqqwess","c","d","f","g","q"),
+		//		  new SimpleOrder("a","b","c","d","f","g","q"),
+			//	  new SimpleOrder("a","b","c","d","f","g","q")
+		//		  );
 	//		  new SimpleOrder("a","b","c","d","f","","")
 		     
+
 		  HotelName.setCellValueFactory(
-		            new PropertyValueFactory<>("hotelname"));
-		 
+		            new PropertyValueFactory<>("hotel"));		 
 		  HotelName.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());
 		  HotelName.setOnEditCommit(
 		            (CellEditEvent<SimpleOrder, String> t) -> {
 		                ((SimpleOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setHotelName(t.getNewValue());
+		                        ).setHotel(t.getNewValue());
 		        });
-		 OrderId.setCellValueFactory(
-		            new PropertyValueFactory<>("orderid"));
+		  OrderId.setCellValueFactory(
+		            new PropertyValueFactory<>("order"));
 		 
 		  OrderId.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());
 		  OrderId.setOnEditCommit(
 		            (CellEditEvent<SimpleOrder, String> t) -> {
 		                ((SimpleOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setOrderId(t.getNewValue());
+		                        ).setOrder(t.getNewValue());
 		        });
 		  Time.setCellValueFactory(
 		            new PropertyValueFactory<>("time"));
@@ -132,76 +173,73 @@ public class OrderlistuiController implements Initializable{
 		                        t.getTablePosition().getRow())
 		                        ).setOrderStation(t.getNewValue());
 		        });
-		       OrderList.setItems(data);
+	
+		       OrderList.setItems(temp);
 
 
 	}
-		public static class SimpleOrder {
-		 
-	        private final SimpleStringProperty hotelname;
-	        private final SimpleStringProperty orderid;
-	        private final SimpleStringProperty time;
-	        private final SimpleStringProperty price;
-	        private final SimpleStringProperty room;
-	        private final SimpleStringProperty evaluate;
-	        private final SimpleStringProperty orderstation;
-	 
-	        private SimpleOrder(String hotelname,String orderid,String time,String price,String roomname,String evaluate,String orderstate){
-	        	  this.hotelname = new SimpleStringProperty(hotelname);
-	        	  this.orderid = new SimpleStringProperty(String.valueOf(orderid));
+//Order 的简化
+		public static class SimpleOrder {		 		         
+	         SimpleStringProperty time;
+	         SimpleStringProperty price;
+	         SimpleStringProperty room;
+	         SimpleStringProperty evaluate;
+	         SimpleStringProperty orderstation;
+	         SimpleStringProperty hotel;
+	         SimpleStringProperty order;
+	        private SimpleOrder(String hotelName,String orderid,String time,String price,String roomname,String evaluate,String orderstate){
+	        	 this.hotel = new SimpleStringProperty(hotelName);
+	        	  this.order = new SimpleStringProperty(orderid);
 	        	  this.time = new SimpleStringProperty(time);    	  
-	        	  this.price = new SimpleStringProperty(String.valueOf(price));
+	        	  this.price = new SimpleStringProperty(price);
 	        	  this.room = new SimpleStringProperty(roomname);
 	        	  this.evaluate = new SimpleStringProperty(evaluate);
 	        	  this.orderstation = new SimpleStringProperty(orderstate);
 	        }  
-	 
-	        public void setHotelName(String hotelname) {
+	       public void setHotel(String hotelName){
+	    	   hotel.set(hotelName);
+	       }
+	       public String getHotel(){
+	    	   return hotel.get();
+	       }
+	       public void setOrder(String hotelName){
+	    	   order.set(hotelName);
+	    	   
+	       }
+	       public String getOrder(){
+	    	   return order.get();
+	       }
+	        public void setRoom(String hotelName) {
 				// TODO Auto-generated method stub
-	        	this.hotelname.set(hotelname);
+	        	room.set(hotelName);
 			}
 
-			public void setOrderStation(String hotelname) {
+			public void setOrderStation(String hotelName) {
 				// TODO Auto-generated method stub
-				orderstation.set(hotelname);
+				orderstation.set(hotelName);
 			}
 
-			public void setEvaluate(String hotelname) {
+			public void setEvaluate(String hotelName) {
 				// TODO Auto-generated method stub
-				evaluate.set(hotelname);
+				evaluate.set(hotelName);
 			}
 
-			public void setRoom(String hotelname) {
+			public void setPrice(String hotelName) {
 				// TODO Auto-generated method stub
-				room.set(hotelname);
+				price.set(hotelName);
 			}
 
-			public void setPrice(String hotelname) {
+			public void setTime(String hotelName) {
 				// TODO Auto-generated method stub
-				price.set(hotelname);
+				time.set(hotelName);
 			}
 
-			public void setTime(String hotelname) {
-				// TODO Auto-generated method stub
-				time.set(hotelname);
-			}
-
-			public void setOrderId(String hotelname) {
-				// TODO Auto-generated method stub
-				orderid.set(hotelname);
-			}
-
+			
 	
 
-			public String getHotelName() {
-	            return hotelname.get();
-	        }
-	 
 	     
 
-			public String getOrderId() {
-				return orderid.get();
-			}
+			
 
 			public String getTime() {
 				return time.get();
@@ -228,3 +266,4 @@ public class OrderlistuiController implements Initializable{
 	    
 	  }
 }
+

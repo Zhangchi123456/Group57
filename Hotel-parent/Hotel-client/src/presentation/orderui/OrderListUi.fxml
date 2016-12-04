@@ -30,12 +30,12 @@
          <children>
             <HBox prefHeight="28.0" prefWidth="798.0">
                <children>
-                  <ChoiceBox fx:id="OrderStationChoiceBox" prefWidth="150.0">
+                  <ChoiceBox fx:id="OrderStationChoiceBox" onAction="#ChoiceBoxClicked" prefWidth="150.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="所有订单" />
-                    <String fx:value="已执行" />
-                    <String fx:value="未执行" />
+                    <String fx:value="已执行订单" />
+                    <String fx:value="未执行订单" />
                     <String fx:value="异常订单" />
                     
                   </FXCollections>
@@ -43,15 +43,15 @@
                   </ChoiceBox>
                </children>
             </HBox>
-            <TableView fx:id="OrderLIst" prefHeight="450.0" prefWidth="800.0">
+            <TableView fx:id="OrderList"   prefHeight="450.0" prefWidth="800.0">
               <columns>
-                <TableColumn fx:id="HotelName" prefWidth="102.0" text="酒店" />
-                <TableColumn fx:id="OrderId" prefWidth="123.0" text="订单号" />
+                <TableColumn fx:id="HotelName" minWidth="0.0" prefWidth="102.0" text="酒店" />
+                <TableColumn fx:id="OrderId" minWidth="0.0" prefWidth="123.0" text="订单号" />
                   <TableColumn fx:id="Time" minWidth="8.0" prefWidth="195.0" text="时间" />
                   <TableColumn fx:id="Price" minWidth="0.0" prefWidth="88.0" text="价格" />
                   <TableColumn fx:id="Room" minWidth="0.0" prefWidth="98.0" text="房间" />
                   <TableColumn fx:id="Evaluate" minWidth="0.0" prefWidth="86.0" text="评价" />
-                  <TableColumn fx:id="OrderStation" prefWidth="107.0" text="订单状态" />
+                  <TableColumn fx:id="OrderStation" minWidth="0.0" prefWidth="107.0" text="订单状态" />
               </columns>
             </TableView>
             <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="800.0" spacing="520.0">

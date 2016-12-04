@@ -53,13 +53,19 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	@Override
 	public ArrayList<OrderVO> findUserOrderListAll(String UserName) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
+		a.add(new OrderVO(0,0.0,"a","b","aweqwqwe","bqweqqwess","c","d","f","g","q"	,"aweqwqwe"));
+		a.add(new OrderVO(0,0.0,"a","b","aweqwqwe","bqweqqwess","c","d","f","g","q"	,"aweqwqwe"));
+		
+		return a;
 	}
 
 	@Override
 	public ArrayList<OrderVO> findUserOrderListStation(String UserName, String OrderStation) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderVO> a = new ArrayList<OrderVO>();
+		
+		return a;
 	}
 
 }
