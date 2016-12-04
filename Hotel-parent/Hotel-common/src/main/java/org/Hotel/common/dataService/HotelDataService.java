@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.RoomPO;
 
@@ -14,6 +15,8 @@ public interface HotelDataService extends Remote{
 	public boolean delete(HotelPO hotelpo)throws RemoteException;
 	
 	public boolean update(HotelPO hotelpo)throws RemoteException;
+	
+	public boolean update(CirclePO po)throws RemoteException;
 	
 	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id, int star, double grade)throws RemoteException;
 	
