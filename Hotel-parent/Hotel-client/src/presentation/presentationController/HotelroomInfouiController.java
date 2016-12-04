@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +43,7 @@ public class HotelroomInfouiController implements Initializable{
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
+		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
@@ -173,6 +175,7 @@ public class HotelroomInfouiController implements Initializable{
 		                        t.getTablePosition().getRow())
 		                        ).setLast(t.getNewValue());
 		        });
+		  table.setItems(temp);
 	
     	}
     	

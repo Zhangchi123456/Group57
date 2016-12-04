@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.PromotionDataService;
 import org.Hotel.common.po.HotelPromotionPO;
@@ -17,9 +19,9 @@ import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 public class PromotionDataImpl extends UnicastRemoteObject implements PromotionDataService,Serializable{
 	
 
-	private Map<Integer, WebPromotionPO> map_web;
+	private Map<Date, WebPromotionPO> map_web;
 	
-	private Map<Integer, HotelPromotionPO> map_hotel;
+	private Map<String, HotelPromotionPO> map_hotel;
 	
 	private PromotionDataHelper webproDataHelper,hotelproDataHelper;
 	
@@ -49,41 +51,23 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	}
 	
 	public boolean insert(WebPromotionPO po) throws RemoteException{
-		int webpro_id = po.getId();
-		if(map_web.get(webpro_id) == null){
-			map_web.put(webpro_id, po);
+		Date date = po.getStartdate();
+		if(map_web.get(date)==null)	
+		map_web.put(date, po);
 			webproDataHelper.insertWebPromotionData(po);
 			return true;
-		}
-		return false;
 
 	}
 	
 	public boolean delete(WebPromotionPO po) throws RemoteException{
-
-		int webpro_id = po.getId();
-		if(map_web.get(webpro_id) != null){
-			map_web.remove(webpro_id, po);
+			map_web.remove(po);
 			webproDataHelper.deleteWebPromotionData(po);
 			return true;
-		}
-		return false;
-
-	}
-	public boolean update(WebPromotionPO po) throws RemoteException{
-
-		int webpro_id = po.getId();
-		if(map_web.get(webpro_id) != null){
-			map_web.put(webpro_id, po);
-			webproDataHelper.updateWebPromotionData(po);
-			return true;
-		}
-		return false;
 
 	}
 	
 	public boolean insert(HotelPromotionPO po) throws RemoteException{
-		int hotelpro_id = po.getId();
+		String hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) == null){
 			map_hotel.put(hotelpro_id, po);
 			hotelproDataHelper.insertHotelPromotionData(po);
@@ -96,7 +80,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean delete(HotelPromotionPO po) throws RemoteException{
 
-		int hotelpro_id = po.getId();
+		String hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.remove(hotelpro_id, po);
 			hotelproDataHelper.deleteHotelPromotionData(po);
@@ -109,7 +93,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean update(HotelPromotionPO po) throws RemoteException{
 
-		int hotelpro_id = po.getId();
+		String hotelpro_id = po.getId();
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.put(hotelpro_id, po);
 			hotelproDataHelper.updateHotelPromotionData(po);
@@ -119,35 +103,11 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return false;
 	}
 	
-	public ArrayList<WebPromotionPO> findByWebProID(String hotel_id) throws RemoteException{
-		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
-		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
-		while(iterator.hasNext()){
-			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
-			WebPromotionPO webpropo = entry.getValue();
-			if(hotel_id==webpropo.getHotelid())
-			webprolist.add(webpropo);
-		}
-		return webprolist;
-	}
-	
-	public WebPromotionPO findByWebProType(String type, String hotel_id) throws RemoteException{
-		WebPromotionPO webpropo = new WebPromotionPO();
-		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
-		while(iterator.hasNext()){
-			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
-			webpropo = entry.getValue();
-			if(type==webpropo.getType()&&hotel_id == webpropo.getHotelid())
-			break;
-		}
-		return webpropo;
-	}
-	
 	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException{
 		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
-		Iterator<Map.Entry<Integer,WebPromotionPO>> iterator = map_web.entrySet().iterator();
+		Iterator<Entry<Date, WebPromotionPO>> iterator = map_web.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, WebPromotionPO> entry = iterator.next();
+			Entry<Date, WebPromotionPO> entry = iterator.next();
 			WebPromotionPO webpropo = entry.getValue();
 			webprolist.add(webpropo);
 	}
@@ -156,9 +116,9 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public ArrayList<HotelPromotionPO> findByHotelProID(String hotel_id) throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
-		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
+		Iterator<Entry<String, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
+			Entry<String, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
 			if(hotel_id==hotelpropo.getHotelid())
 				hotelprolist.add(hotelpropo);
@@ -168,9 +128,9 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public HotelPromotionPO findByHotelProType(String type, String hotel_id) throws RemoteException{
 		HotelPromotionPO hotelpropo = new HotelPromotionPO();
-		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
+		Iterator<Entry<String, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
+			Entry<String, HotelPromotionPO> entry = iterator.next();
 			
 		    hotelpropo = entry.getValue();
 			if(type==hotelpropo.getType()&&hotel_id == hotelpropo.getHotelid())
@@ -181,9 +141,9 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
-		Iterator<Map.Entry<Integer,HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
+		Iterator<Entry<String, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelPromotionPO> entry = iterator.next();
+			Entry<String, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
 			hotelprolist.add(hotelpropo);
 	}

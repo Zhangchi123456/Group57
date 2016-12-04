@@ -11,17 +11,17 @@ public class OrderVO {
 		
 	private String hotelid;
 	
-	private String intime;
+	private Date intime;
 	
 	private String state;
 	
-	private String outtime;
+	private Date expectleavetime;
 	
-	private String lasttime;
+	private Date realleavetime;
 	
 	private String price;
 	
-	private String dischargetime;
+	private Date dischargetime;
 	
 	private int peoplenum;
 	
@@ -38,7 +38,7 @@ public class OrderVO {
 	private String comment;
 	
 
-	public OrderVO(String id, String name, String child, String hotelid, String intime, String outtime, String state, String price, String lasttime, String dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+	public OrderVO(String id, String name, String child, String hotelid, Date intime, Date outtime, String state, String price, Date lasttime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
 			
 		this.id = id;
 		
@@ -48,13 +48,13 @@ public class OrderVO {
 		
 		this.intime = intime;
 		
-		this.outtime = outtime;
+		this.expectleavetime = outtime;
 		
 		this.state = state;
 		
 		this.price = price;
 		
-		this.lasttime = lasttime;
+		this.realleavetime = lasttime;
 		
 		this.dischargetime = dischargetime;
 		
@@ -81,13 +81,13 @@ public class OrderVO {
 		
 		this.intime = po.getIntime();
 		
-		this.outtime = po.getOuttime();
+		this.expectleavetime = po.getExpectleavetime();
 		
 		this.state = po.getState();
 		
 		this.price = String.valueOf( po.getPrice());
 		
-		this.lasttime = po.getLasttime();
+		this.realleavetime = po.getRealleavetime();
 		
 		this.dischargetime = po.getDischargetime();
 		
@@ -116,9 +116,9 @@ public class OrderVO {
 		po.setHavekids(havekids);
 		po.setHotelid(hotelid);
 		po.setIntime(intime);
-		po.setLasttime(lasttime);
+		po.setRealleavetime(realleavetime);
 		po.setName(name);
-		po.setOuttime(outtime);
+		po.setExpectleavetime(expectleavetime);
 		po.setPeoplenum(peoplenum);
 		po.setPrice(Integer.parseInt(price));
 		po.setSingleRoom(singleRoom);

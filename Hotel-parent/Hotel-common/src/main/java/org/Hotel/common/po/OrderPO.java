@@ -10,17 +10,17 @@ public class OrderPO {
 	
 	private String hotelid;
 	
-	private Date intime;
+	private Date starttime;
 	
 	private String state;
 	
-	private Date expectleavetime;
-	
-	private Date realleavetime;
+	private Date leavetime;
 	
 	private double price;
 	
 	private Date dischargetime;
+	
+	private Date lasttime;
 	
 	private int peoplenum;
 	
@@ -36,10 +36,12 @@ public class OrderPO {
 	
 	private String comment;
 	
+	private double grade;
+	
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String hotelid, Date intime, Date expectleavetime, String state, double price, Date realleavetime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment) {
+	public OrderPO(int id, String name, String hotelid, Date starttime, Date leavetime, String state, double price, Date dischargetime, Date lasttime, int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment,double grade) {
 		super();
 		
 		this.id = id;
@@ -48,17 +50,17 @@ public class OrderPO {
 		
 		this.hotelid = hotelid;
 		
-		this.intime = intime;
+		this.starttime = starttime;
 		
-		this.expectleavetime = expectleavetime;
+		this.leavetime = leavetime;
 		
 		this.state = state;
 		
 		this.price = price;
 		
-		this.realleavetime = realleavetime;
-		
 		this.dischargetime = dischargetime;
+		
+		this.lasttime = lasttime;
 		
 		this.peoplenum = peoplenum;
 		
@@ -73,6 +75,20 @@ public class OrderPO {
 		this.suiteRoom = suiteRoom;
 		
 		this.comment = comment;
+		
+		this.grade = grade;
+	}
+	/**
+	 * @return the grade
+	 */
+	public double getGrade() {
+		return grade;
+	}
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(double grade) {
+		this.grade = grade;
 	}
 	/**
 	 * @return the comment
@@ -192,41 +208,42 @@ public class OrderPO {
 		
 		this.hotelid = hotelid;
 	}  
-    /**
-	 * @return the intime
+
+	/**
+	 * @return the starttime
 	 */
-	public Date getIntime() {
-		return intime;
+	public Date getStarttime() {
+		return starttime;
 	}
 	/**
-	 * @param intime the intime to set
+	 * @param starttime the starttime to set
 	 */
-	public void setIntime(Date intime) {
-		this.intime = intime;
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
 	}
 	/**
-	 * @return the expectleavetime
+	 * @return the leavetime
 	 */
-	public Date getExpectleavetime() {
-		return expectleavetime;
+	public Date getLeavetime() {
+		return leavetime;
 	}
 	/**
-	 * @param expectleavetime the expectleavetime to set
+	 * @param leavetime the leavetime to set
 	 */
-	public void setExpectleavetime(Date expectleavetime) {
-		this.expectleavetime = expectleavetime;
+	public void setLeavetime(Date leavetime) {
+		this.leavetime = leavetime;
 	}
 	/**
-	 * @return the realleavetime
+	 * @return the lasttime
 	 */
-	public Date getRealleavetime() {
-		return realleavetime;
+	public Date getLasttime() {
+		return lasttime;
 	}
 	/**
-	 * @param realleavetime the realleavetime to set
+	 * @param lasttime the lasttime to set
 	 */
-	public void setRealleavetime(Date realleavetime) {
-		this.realleavetime = realleavetime;
+	public void setLasttime(Date lasttime) {
+		this.lasttime = lasttime;
 	}
 	/**
 	 * @return the dischargetime
