@@ -42,6 +42,10 @@ public class MemberPO {
 		this.name = name;
 	}
 	
+	public int getId(){
+		return id;
+	}
+	
 	public String getPassword() {
 			
 		return password;
