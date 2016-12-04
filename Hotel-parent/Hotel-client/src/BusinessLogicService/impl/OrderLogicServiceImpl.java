@@ -10,9 +10,9 @@ import vo.OrderVO;
 public class OrderLogicServiceImpl implements OrderLogicService {
 
 	@Override
-	public boolean evaluate(int OrderId, String score, String EvaluateInfo) {		
+	public boolean evaluate(String OrderId, String score, String EvaluateInfo) {		
 		// TODO Auto-generated method stub
-		
+	  
 		return false;
 	}
 

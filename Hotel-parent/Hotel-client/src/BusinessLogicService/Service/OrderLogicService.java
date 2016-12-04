@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import vo.OrderVO;
 
 public interface OrderLogicService {
-	public boolean evaluate(int OrderId,String score ,String EvaluateInfo); //评价订单信息的保存。
+	public boolean evaluate(String string,String score ,String EvaluateInfo); //评价订单信息的保存。
     public boolean input(OrderVO VO);//订单信息的保存
     public OrderVO findUserOrderinfo(String UserName,int OrderId);//通过订单号查找订单；返回订单信息
     public ArrayList<OrderVO> findUserOrderListAll(String UserName);//通过用户名查找所有该用户的订单

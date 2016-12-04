@@ -1,3 +1,7 @@
+
+
+
+
 package presentation.presentationController;
 
 
@@ -32,6 +36,9 @@ public class OrderEvaluateController  implements Initializable {
 	    private Button Sure;
 	    @FXML
 	    private Button Return;
+	    
+	    
+		OrderLogicService a = new OrderLogicServiceImpl();
 	    OrderVO ordervo;
 	    HotelVO hotelvo;
 	 //界面跳转
@@ -47,6 +54,7 @@ public class OrderEvaluateController  implements Initializable {
 				alt.display("信息填写不完整");
 		}
 		  else{
+		 a.evaluate(ordervo.getId(), Score.getText().toString(), EvaluateInfo.getText().toString());
 		  ordervo.setComment(EvaluateInfo.getText().toString());
 		
 		  UiswitchHelper.getApplication().goto_Usermainui();
@@ -58,7 +66,7 @@ public class OrderEvaluateController  implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		OrderLogicService a = new OrderLogicServiceImpl();
+	
 		
 		
 		OrderId.setText(ordervo.getId());

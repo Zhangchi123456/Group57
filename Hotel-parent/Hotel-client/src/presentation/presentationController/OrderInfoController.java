@@ -21,8 +21,7 @@ public class OrderInfoController implements Initializable {
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 	
-		OrderVO order=new  OrderVO(0,Integer.parseInt(RTotalpriceLabel.getText()),"未执行", HotelName.getText(),RoomType.getText(),TimeBegin.getText(),TimeEnd.getText(),UserName.getText(),
-	   		 UserNum.getText(),Telephone.getText(), Child.getText(), RoomnumLabel.getText());
+	
 		UiswitchHelper.getApplication().goto_Usermainui();
 	}
 	
