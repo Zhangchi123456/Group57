@@ -22,7 +22,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	private Map<Integer, MemberPO> map;
 	
-	private Map<String, MemberLevelPO> map_lv;
+	private Map<Integer, MemberLevelPO> map_lv;
 	
 	private MemberDataHelper memberDataHelper, memberlvDataHelper;
 	
@@ -62,9 +62,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 	
 	public boolean insert(MemberLevelPO po) throws RemoteException{
-		String member_name = po.getName();
-		if(map_lv.get(member_name) == null){
-			map_lv.put(member_name, po);
+		int member_lv = po.getLevel();
+		if(map_lv.get(member_lv) == null){
+			map_lv.put(member_lv, po);
 			memberlvDataHelper.insertMemberLevelData(po);
 			return true;
 		}
@@ -94,9 +94,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 	
 	public boolean update(MemberLevelPO po) throws RemoteException{
-		String member_name = po.getName();
-		if(map_lv.get(member_name) != null){
-			map_lv.put(member_name, po);
+		int member_lv = po.getLevel();
+		if(map_lv.get(member_lv) != null){
+			map_lv.put(member_lv, po);
 			memberlvDataHelper.updateMemberLevelData(po);
 			return true;
 		}
@@ -123,9 +123,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException{
 		ArrayList<MemberLevelPO> memberlvlist = new ArrayList<MemberLevelPO>();
-		Iterator<Map.Entry<String,MemberLevelPO>> iterator = map_lv.entrySet().iterator();
+		Iterator<Map.Entry<Integer,MemberLevelPO>> iterator = map_lv.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<String, MemberLevelPO> entry = iterator.next();
+			Map.Entry<Integer, MemberLevelPO> entry = iterator.next();
 			MemberLevelPO po = entry.getValue();
 			memberlvlist.add(po);
 		}

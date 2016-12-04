@@ -24,7 +24,7 @@ public interface MemberDataHelper {
 	/**
 	 * @return	从数据文件读入会员信息
 	 */
-	public Map<String,MemberLevelPO> getMemberLevelData();
+	public Map<Integer, MemberLevelPO> getMemberLevelData();
 	/**
 	 * 从数据文件中写入会员信息
 	 * @param map	
