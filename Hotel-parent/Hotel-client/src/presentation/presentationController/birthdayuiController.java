@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.impl.PromotionLogicServiceImpl;
+import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,8 +68,8 @@ public class birthdayuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 				String name = "生日折扣";
-				int id = 0;
-				HotelPromotionVO vo = new HotelPromotionVO(id, name, discount/100, 0, 0, 0, null, null);
+				String hotelname = HotelmanageController.getHotelVO().getName();
+				HotelPromotionVO vo = new HotelPromotionVO(hotelname, name, discount/100, 0, 0, 0, null, null);
 			
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.updateHotelPromotion(vo);
@@ -86,9 +87,9 @@ public class birthdayuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		HotelPromotionVO vo;
-		int id = 0 ;
+		String hotel_name = HotelmanageController.getHotelVO().getName();
 		String name = "生日折扣";
-		vo = promotion.getHotelPromotion(id,name);
+		vo = promotion.getHotelPromotion(hotel_name,name);
 		double discount = vo.getBirthdayDiscount()*100;
 		birthdaydiscount.setText(String.valueOf(discount));
 	}
