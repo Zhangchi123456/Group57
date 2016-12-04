@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.RoomPO;
 import org.Hotel.server.datahelp.DataFactory;
@@ -20,6 +21,8 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	private Map<String, HotelPO> map;
 	
 	private Map<Integer, RoomPO> map_room;
+	
+	private Map<String, CirclePO> map_circle;
 	
 	private HotelDataHelper hotelDataHelper;
 	
@@ -80,6 +83,16 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return false;	
 	}//更新酒店信息
 	
+	public boolean update(CirclePO po)throws RemoteException{
+		String name = po.getName();
+		if(map_circle.get(name) != null){
+			map_circle.put(name, po);
+			hotelDataHelper.updateCircleData(po);
+			return true;
+		}
+		return false;	
+	}
+	
 	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id, int star, double grade)throws RemoteException{	
 		ArrayList<HotelPO> hotellist=new ArrayList<HotelPO>();
 		Iterator<Entry<String, HotelPO>> iterator = map.entrySet().iterator();
@@ -138,6 +151,33 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		}
         return false;
 		
+	}
+	
+	public ArrayList<CirclePO> circleShowAll(String city)throws RemoteException{
+		ArrayList<CirclePO> list=new ArrayList<CirclePO>();
+		Iterator<Map.Entry<String,CirclePO>> iterator = map_circle.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CirclePO> entry = iterator.next();
+			CirclePO po = entry.getValue();
+		if(city==po.getCity()){
+			list.add(po);
+			return list;
+		}
+		}
+		return null;
+	}
+	
+	public CirclePO circleFind(String city, String circle)throws RemoteException{
+		CirclePO po = new CirclePO();
+		Iterator<Map.Entry<String,CirclePO>> iterator = map_circle.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CirclePO> entry = iterator.next();
+			po = entry.getValue();
+		if(city==po.getCity()&&circle==po.getName())
+        break;
+		}
+			return po;
+	
 	}
 
 }
