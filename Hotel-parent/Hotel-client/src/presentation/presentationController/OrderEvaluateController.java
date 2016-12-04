@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
 import vo.OrderVO;
 
 public class OrderEvaluateController  implements Initializable {
@@ -30,6 +31,7 @@ public class OrderEvaluateController  implements Initializable {
 	    private Button Sure;
 	    @FXML
 	    private Button Return;
+	    OrderVO ordervo;
 	 //界面跳转
 	  @FXML
 	  private void  ReturnClicked(ActionEvent event){
@@ -38,9 +40,15 @@ public class OrderEvaluateController  implements Initializable {
 	  }
 	  @FXML
 	  private void  SureClicked(ActionEvent event){
+		  if(Score.getText().toString().equals("")||EvaluateInfo.getText().toString().equals("")){
+				AlertBox alt = new AlertBox();
+				alt.display("信息填写不完整");
+		}
+		  else{
 		  
+		  ordervo.setOrderEvaluation(EvaluateInfo.getText().toString());
 		  UiswitchHelper.getApplication().goto_Usermainui();
-		 
+		  } 
 	  }
 	 
 	 
@@ -49,7 +57,7 @@ public class OrderEvaluateController  implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		OrderLogicService a = new OrderLogicServiceImpl();
-		OrderVO ordervo;
+		
 		ordervo=(a.findUserOrderinfo(null, 0));
 		OrderId.setText(String.valueOf(ordervo.orderid));
         HotelName.setText(String.valueOf(ordervo.hotelname));

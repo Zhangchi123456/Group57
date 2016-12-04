@@ -1,16 +1,42 @@
 package org.Hotel.server.datahelp.impl;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.sql.*;
 
 import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
+import org.Hotel.server.config.Database;
 import org.Hotel.server.datahelp.*;
 
+/**
+ * @author Jerry
+ *
+ */
 public class MemberDataMysqlHelper implements MemberDataHelper{
-
+	Database db;
+	//Member
+	/* 
+	 * return all member data from member table
+	 */
 	public Map<Integer, MemberPO> getMemberData() {
-		// TODO Auto-generated method stub
+		db=new Database();
+		Map<Integer,MemberPO> map=new HashMap<Integer,MemberPO>();
+		String query="SELECT * FROM member";
+		try{
+			ResultSet memrs=db.select(query);
+			while(memrs.next()){
+				int id=memrs.getInt("id");
+				int credit=memrs.getInt("credit");
+				String name=memrs.getString("name");
+			}//end while
+			return map;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 		return null;
 	}
 
