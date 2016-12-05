@@ -131,7 +131,7 @@ public class UserWebManagementController implements Initializable{
 		finallist =FXCollections.observableArrayList(memberlist2);
 		System.out.println(finallist.get(0).getmemberName());
 		Memberid.setCellValueFactory(
-	            new PropertyValueFactory<>("MemberID"));
+	            new PropertyValueFactory<SimpleMember,String>("MemberID"));
 	 
 		Memberid.setCellFactory(TextFieldTableCell.<SimpleMember>forTableColumn());
 		Memberid.setOnEditCommit(
@@ -142,7 +142,7 @@ public class UserWebManagementController implements Initializable{
 	        });
 		
 		Membername.setCellValueFactory(
-	            new PropertyValueFactory<>("hotel"));
+	            new PropertyValueFactory<SimpleMember,String>("hotel"));
 	 
 		Membername.setCellFactory(TextFieldTableCell.<SimpleMember>forTableColumn());
 		Membername.setOnEditCommit(
