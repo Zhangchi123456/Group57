@@ -24,7 +24,17 @@ public interface HotelDataService extends Remote{
 	
 	public boolean updateRoom(RoomPO roompo)throws RemoteException;
 	
+	public boolean deleteRoom(RoomPO roompo)throws RemoteException;
+	
 	public boolean insertRoom(RoomPO roompo)throws RemoteException;
     
+	public ArrayList<String> cityShowAll()throws RemoteException;
+	
+	public CirclePO circleFind(String city, String circle)throws RemoteException;
+	
 	public HotelPO Findhotelbyname(String hotelname)throws RemoteException;
+	
+	public ArrayList<HotelPO> FindhotelByCircle(String circle)throws RemoteException;
+	
+	public ArrayList<CirclePO> circleShowAll(String city)throws RemoteException;
 }
