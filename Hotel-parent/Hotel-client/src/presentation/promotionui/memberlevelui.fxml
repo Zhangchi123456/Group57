@@ -59,7 +59,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="level" prefHeight="23.0" prefWidth="100.0" />
+                  <ChoiceBox fx:id="level" onMouseClicked="#levelChoose" prefHeight="23.0" prefWidth="100.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">

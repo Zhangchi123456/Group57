@@ -3,13 +3,18 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.PromotionLogicService;
+import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Helper.UiswitchHelper;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import vo.MemberLevelVO;
 
 public class memberleveluiController implements Initializable{
 	
@@ -44,20 +49,38 @@ public class memberleveluiController implements Initializable{
 		UiswitchHelper.getApplication().goto_webdiscoutdatenui();
 	}
 	
+	public void levelChoose(MouseEvent event){
+		
+		int lv = Integer.parseInt(level.getValue().toString());
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		MemberLevelVO vo = promotion.getMemberLevel(lv);
+		credit.setText(String.valueOf(vo.getCredit()));
+		discount.setText(String.valueOf(vo.getDiscount()));
+		
+	}
+	
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
+		int lv = Integer.parseInt(level.getValue().toString());
+		int cre = Integer.parseInt(credit.getText());
+		double dis = Double.parseDouble(discount.getText());
+		MemberLevelVO vo = new MemberLevelVO(lv,cre,dis);
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		promotion.updateMemberLevel(vo);
+		
 	}
 	//返回网站营销人员主界面
-			@FXML
-			public void ReturnClicked(ActionEvent event){
-				UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-			}
+	@FXML
+	public void ReturnClicked(ActionEvent event){
+		UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+	}
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		
+		level.setItems(FXCollections.observableArrayList("1","2","3","4","5","6"));
 		
 	}
 }

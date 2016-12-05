@@ -2,6 +2,7 @@ package BusinessLogicService.Service;
 
 import java.util.ArrayList;
 
+import vo.MemberLevelVO;
 import vo.HotelPromotionVO;
 import vo.WebPromotionVO;
 
@@ -18,5 +19,9 @@ public interface PromotionLogicService {
 	void addWebPromotion(WebPromotionVO vo);
 
 	ArrayList<WebPromotionVO> getWebPromotionList();
+
+	MemberLevelVO getMemberLevel(int lv);
+
+	void updateMemberLevel(MemberLevelVO vo);
 
 }
