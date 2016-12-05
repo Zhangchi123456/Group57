@@ -28,11 +28,11 @@ public interface UserDataService extends Remote{
 	
 	public boolean update(WebManagerPO po) throws RemoteException;
 	
-	public ArrayList<HotelStaffPO> findByHotelStaff(int id) throws RemoteException;
+	public ArrayList<HotelStaffPO> findByHotelStaff(String name) throws RemoteException;
 	
-	public ArrayList<WebStaffPO> findByWebStaff(int id) throws RemoteException;
+	public ArrayList<WebStaffPO> findByWebStaff(String name) throws RemoteException;
 	
-	public ArrayList<WebManagerPO> findByWebManager(int id) throws RemoteException;
+	public ArrayList<WebManagerPO> findByWebManager(String name) throws RemoteException;
 	
 	public ArrayList<HotelStaffPO> showAllHotelStaff() throws RemoteException;
 	

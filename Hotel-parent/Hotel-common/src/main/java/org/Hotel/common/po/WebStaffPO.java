@@ -19,7 +19,9 @@ public class WebStaffPO {
 		this.password = password;
 	}
 	public WebStaffPO(String name,String password){
-		
+		this.password = password;
+		this.name = name;
+		id = -1;
 	}
 	public int getId() {
 		// TODO Auto-generated method stub

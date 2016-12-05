@@ -12,15 +12,30 @@ public class WebManagerPO {
 		super();
 	}
 	//Jerry 
-	public WebManagerPO(String name,String password){
-		
+	public WebManagerPO(String name, String password){
+		this.password = password;
+		this.name = name;
+		id=-1;
 	}
 	
-	public WebManagerPO(int id, String password) {
+	public WebManagerPO(int id, String password, String name) {
 		super();
 		
 		this.id = id;
 		this.password = password;
+		this.name = name;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getId() {
 		// TODO Auto-generated method stub
