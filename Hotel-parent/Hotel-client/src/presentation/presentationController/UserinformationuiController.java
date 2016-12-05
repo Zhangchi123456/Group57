@@ -19,8 +19,8 @@ public class UserinformationuiController implements Initializable{
 	 private String membername,phonenumber;
 	 private LocalDate birthday;
      @FXML
-     private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel;
-     //             会员性质              会员等级          会员信用值
+     private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel,DiscountLabel;
+     //             会员性质              会员等级          会员信用值               会员折扣
      @FXML
      private TextField MembernameText,PhonenumberText;
      //                 会员名          手机号码（联系方式）

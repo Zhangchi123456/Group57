@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import org.Hotel.common.po.HotelPO;
 
 import BusinessLogicService.impl.RMIHelper;
+import vo.HotelPromotionVO;
 import vo.HotelVO;
+import vo.MemberLevelVO;
+import vo.MemberVO;
+import vo.WebPromotionVO;
 import BusinessLogicService.Service.ReservationLogicService;
 
 import org.Hotel.common.dataService.HotelDataService;
@@ -30,8 +34,13 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	public void getOrderInfo(){
 		
 	}
-	public double Computeprice(){
-		return 0;
+	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price){
+             double finalprice=0.0;
+             MemberLevelVO level=new MemberLevelVO(Integer.parseInt(member.getlevel()),member.getcredit(),9.5);
+             finalprice=num*price*level.getDiscount();
+            		 
+			return finalprice;
+             
 		
 	}
 	
@@ -109,4 +118,5 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return vo;
 		 
 	 }
+	
 }

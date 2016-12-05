@@ -3,7 +3,10 @@ package BusinessLogicService.Service;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import vo.HotelPromotionVO;
 import vo.HotelVO;
+import vo.MemberVO;
+import vo.WebPromotionVO;
 
 public interface ReservationLogicService {
     
@@ -18,7 +21,7 @@ public interface ReservationLogicService {
 	
 	
 	//计算订单总价,需要考虑会员等级折扣，网站营销策略折扣，酒店营销折扣，合作企业折扣
-	public double Computeprice();
+	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price);
 	
 	//通过商圈从数据库找到酒店列表
 	 public ArrayList<HotelVO> findbycircle(String circle);
