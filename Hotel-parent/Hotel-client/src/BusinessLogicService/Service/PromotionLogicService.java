@@ -3,6 +3,7 @@ package BusinessLogicService.Service;
 import java.util.ArrayList;
 
 import vo.MemberLevelVO;
+import vo.CircleVO;
 import vo.HotelPromotionVO;
 import vo.WebPromotionVO;
 
@@ -23,5 +24,11 @@ public interface PromotionLogicService {
 	MemberLevelVO getMemberLevel(int lv);
 
 	void updateMemberLevel(MemberLevelVO vo);
+
+	ArrayList<CircleVO> getCircle(String city_name);
+
+	CircleVO getCircle(String city_name, String circle);
+
+	void updateCircle(CircleVO vo);
 
 }

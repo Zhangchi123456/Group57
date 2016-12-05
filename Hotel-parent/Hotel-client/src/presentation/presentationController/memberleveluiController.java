@@ -49,13 +49,14 @@ public class memberleveluiController implements Initializable{
 		UiswitchHelper.getApplication().goto_webdiscoutdatenui();
 	}
 	
+	@FXML
 	public void levelChoose(MouseEvent event){
 		
 		int lv = Integer.parseInt(level.getValue().toString());
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		MemberLevelVO vo = promotion.getMemberLevel(lv);
 		credit.setText(String.valueOf(vo.getCredit()));
-		discount.setText(String.valueOf(vo.getDiscount()));
+		discount.setText(String.valueOf(vo.getDiscount()*100));
 		
 	}
 	
@@ -65,7 +66,7 @@ public class memberleveluiController implements Initializable{
 		int lv = Integer.parseInt(level.getValue().toString());
 		int cre = Integer.parseInt(credit.getText());
 		double dis = Double.parseDouble(discount.getText());
-		MemberLevelVO vo = new MemberLevelVO(lv,cre,dis);
+		MemberLevelVO vo = new MemberLevelVO(lv,cre,dis/100);
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		promotion.updateMemberLevel(vo);
 		
