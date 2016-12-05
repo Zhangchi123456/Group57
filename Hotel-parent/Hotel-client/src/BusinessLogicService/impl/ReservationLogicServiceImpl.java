@@ -17,8 +17,10 @@ import org.Hotel.common.dataService.HotelDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice;
-    public ArrayList<String> getallcity(){
-    	return null;
+    
+    
+    public ArrayList<String> getallcity() throws RemoteException{
+    	return hotelservice.cityShowAll();
     }
 	public boolean Isdatereasonable(){
 		return false;
@@ -31,9 +33,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	}
 	
 	
-	public void getOrderInfo(){
-		
-	}
 	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price){
              double finalprice=0.0;
              MemberLevelVO level=new MemberLevelVO(Integer.parseInt(member.getlevel()),member.getcredit(),9.5);
