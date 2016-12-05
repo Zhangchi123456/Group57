@@ -7,7 +7,9 @@ import vo.HotelVO;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     
-
+    public ArrayList<String> getallcity(){
+    	return null;
+    }
 	public boolean Isdatereasonable(){
 		return false;
 		

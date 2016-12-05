@@ -8,9 +8,7 @@ public interface ReservationLogicService {
     
 	
 	//在搜索酒店页面的方法 
-	
-    //判断选择的日期是否合理
-	public boolean Isdatereasonable();
+	public ArrayList<String> getallcity();
 	
 	//获取搜索条件
 	public void getSearchInfo();
@@ -18,7 +16,7 @@ public interface ReservationLogicService {
 	//获取订单信息
 	public void getOrderInfo();
 	
-	//计算订单总价
+	//计算订单总价,需要考虑会员等级折扣，网站营销策略折扣，酒店营销折扣，合作企业折扣
 	public double Computeprice();
 	
 	//通过搜索界面的条件从数据库找到酒店列表

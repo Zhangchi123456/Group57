@@ -2,6 +2,7 @@ package presentation.presentationController;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Controller.ReservationController;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import vo.MemberVO;
 
 public class UsermainuiController implements Initializable{
+	private ObservableList<String> finallist;
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label
@@ -116,6 +118,11 @@ public class UsermainuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ArrayList<String> citylist=new ArrayList<String>();
+		String str1="南京";
+		citylist.add(str1);
+		finallist=FXCollections.observableArrayList(citylist);
+		CityChoicebox.setItems(finallist);
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
 		ReservationController.setMembervo(membervo);
 		InituiHelper.setMemberVO(membervo);
