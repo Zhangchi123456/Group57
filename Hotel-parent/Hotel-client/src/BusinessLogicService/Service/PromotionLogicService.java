@@ -31,4 +31,8 @@ public interface PromotionLogicService {
 
 	void updateCircle(CircleVO vo);
 
+	void deleteWebPromotion(WebPromotionVO vo);
+
+	void deleteHotelPromotion(HotelPromotionVO vo);
+
 }

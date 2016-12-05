@@ -76,4 +76,16 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 		
 	}
 
+	@Override
+	public void deleteWebPromotion(WebPromotionVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteHotelPromotion(HotelPromotionVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
