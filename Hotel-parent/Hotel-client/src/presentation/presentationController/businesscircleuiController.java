@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import presentation.userui.AlertBox;
 import vo.CircleVO;
 import vo.MemberLevelVO;
 
@@ -81,12 +82,24 @@ public class businesscircleuiController implements Initializable{
 		
 		String city_name = city.getValue().toString();
 		String circle = businesscircle.getValue().toString();
-		double dis = Double.parseDouble(discount.getText());
-		CircleVO vo = new CircleVO(dis/100,city_name, circle);
-		PromotionLogicService promotion = new PromotionLogicServiceImpl();
-		promotion.updateCircle(vo);
-		
+		if(discount.getText()!=null){
+			double dis = Double.parseDouble(discount.getText());
+			if(dis>0&&dis<100){
+				CircleVO vo = new CircleVO(dis/100,city_name, circle);
+				PromotionLogicService promotion = new PromotionLogicServiceImpl();
+				promotion.updateCircle(vo);
+				AlertBox alt = new AlertBox();
+				alt.display("更新成功！");
+			}else if(dis<0||dis>100){
+				AlertBox alt = new AlertBox();
+				alt.display("超出输入范围！");
+			}else if(dis==0){
+				AlertBox alt = new AlertBox();
+				alt.display("不可为0！");
+			}
+		}
 	}
+	
 	//返回网站营销人员主界面
 	@FXML
 	public void ReturnClicked(ActionEvent event){

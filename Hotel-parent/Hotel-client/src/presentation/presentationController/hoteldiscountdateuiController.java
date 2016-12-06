@@ -101,31 +101,38 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	public void delete(ActionEvent event){
 		
-		int selectnumber=hoteldiscountdateTable.getSelectionModel().getSelectedIndex();
-    	String start = data.get(selectnumber).getStart();
-		String end = data.get(selectnumber).getEnd();
-		double discount = data.get(selectnumber).getDiscount();
+		if(hoteldiscountdateTable.getSelectionModel()!=null){
+			
+			int selectnumber=hoteldiscountdateTable.getSelectionModel().getSelectedIndex();
+			String start = data.get(selectnumber).getStart();
+			String end = data.get(selectnumber).getEnd();
+			double discount = data.get(selectnumber).getDiscount();
 		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
-		Date start_date = null;
-		Date end_date = null;
+			Date start_date = null;
+			Date end_date = null;
 		
-		try {
-			start_date = sdf.parse(start);
-			end_date = sdf.parse(end);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				start_date = sdf.parse(start);
+				end_date = sdf.parse(end);
+			} catch (ParseException e) {
+			
+				e.printStackTrace();
+			}
+		
+			PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		
+			HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date,end_date);
+		
+			promotion.deleteHotelPromotion(vo);
+		
+			this.showTable(name,hotel_name);
+			
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("请先做出选择！");
 		}
-		
-		PromotionLogicService promotion = new PromotionLogicServiceImpl();
-		
-		HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date,end_date);
-		
-		promotion.deleteHotelPromotion(vo);
-		
-		this.showTable(name,hotel_name);
 
 	}
 	

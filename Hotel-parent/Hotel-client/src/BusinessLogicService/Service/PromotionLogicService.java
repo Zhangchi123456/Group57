@@ -23,7 +23,7 @@ public interface PromotionLogicService {
 
 	MemberLevelVO getMemberLevel(int lv);
 
-	void updateMemberLevel(MemberLevelVO vo);
+	boolean updateMemberLevel(MemberLevelVO vo);
 
 	ArrayList<CircleVO> getCircle(String city_name);
 

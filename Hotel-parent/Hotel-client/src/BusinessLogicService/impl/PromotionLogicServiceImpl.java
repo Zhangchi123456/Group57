@@ -53,7 +53,8 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 	}
 
 	@Override
-	public void updateMemberLevel(MemberLevelVO vo) {
+	public boolean updateMemberLevel(MemberLevelVO vo) {
+		return false;
 		// TODO Auto-generated method stub
 		
 	}
