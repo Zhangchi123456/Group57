@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.ReservationLogicService;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -24,7 +25,7 @@ import presentation.presentationController.UsercreditrecorduiController.CreditRe
 import vo.HotelVO;
 
 public class HotelListuiController implements Initializable{
-	
+	private ReservationLogicService reservationService;
 	private ObservableList<SimpleHotel> finallist;
 	private ObservableList<SimpleHotel> reservationedlist;
 	@FXML

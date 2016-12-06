@@ -15,18 +15,27 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	Database db;
 	public Map<String, HotelPromotionPO> getHotelPromotionData() {
 		db=new Database();
-		String query="SELECT * FROM web_staff";
-		Map<String, WebStaffPO> map= new HashMap<String, WebStaffPO>();
+		String query="SELECT * FROM hotel_strategy";
+		Map<String, HotelPromotionPO> map= new HashMap<String, HotelPromotionPO>();
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
-				int id=rs.getInt("id");
+				String hotelname=rs.getString("hotel_name");
 				String name=rs.getString("name");
 				String password=rs.getString("password");
+				//discount
+				double birthdaydiscount=rs.getDouble("birthday_discount");
+				double multiorderdiscount=rs.getDouble("multiorder_discount");
+				double enterpricediscount=rs.getDouble("enterprise_discount");
+				double datediscount=rs.getDouble("date_discount");
+				//date
+				Date startdate=rs.getDate("start_date");
+				Date enddate=rs.getDate("end_date");
 			   
-				HotelPromotionPO po=new HotelPromotionPO(type, hotelid,birthdaydiscount,multiorderdiscount,
+				HotelPromotionPO po=new HotelPromotionPO(name, hotelname,birthdaydiscount,
+						multiorderdiscount,
 						enterpricediscount,datediscount,startdate,enddate);
-//				map.put(id, po);
+				map.put(name, po);
 			}
 			return map;
 		}catch(Exception e){
