@@ -101,11 +101,24 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			HotelPO hotelpo = entry.getValue();
 		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getName()||star==hotelpo.getStar()||grade==hotelpo.getGrade()){
 			hotellist.add(hotelpo);
-			return hotellist;
+		
 		}
 		}
-		return null;		
+		return hotellist;		
 	}//显示所有酒店信息
+	
+	public ArrayList<HotelPO> FindhotelByCircle(String circle)throws RemoteException{	
+		ArrayList<HotelPO> hotellist=new ArrayList<HotelPO>();
+		Iterator<Entry<String, HotelPO>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, HotelPO> entry = iterator.next();
+			HotelPO hotelpo = entry.getValue();
+		if(circle == hotelpo.getCircle()){
+			hotellist.add(hotelpo);
+		}
+		}
+		return hotellist;		
+	}//显示商圈内所有酒店信息
 	
 	public ArrayList<RoomPO> roomShowAll(String hotel_id, int room_id, String room_type)throws RemoteException{
 		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
@@ -192,6 +205,21 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			
 		}
 		return po;
+	}
+	
+	public ArrayList<String> cityShowAll()throws RemoteException{
+		ArrayList<String> citylist = new ArrayList<String>();
+		CirclePO po = new CirclePO();
+		Iterator<Map.Entry<String,CirclePO>> iterator = map_circle.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CirclePO> entry = iterator.next();
+			po = entry.getValue();
+			if(!citylist.contains(po.getCity())){
+				citylist.add(po.getCity());
+			}
+		}
+		return citylist;
+		
 	}
 
 }

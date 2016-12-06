@@ -4,6 +4,7 @@ package Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.MemberVO;
 import vo.WebPromotionVO;
@@ -13,6 +14,7 @@ public class ReservationController {
 	private final static String membervokey = "vo";	
     private final static String webpromotionkey="webpromotion";
     private final static String currenthotelkey="Hotelvo";
+    private final static String currenthotelprokey="Hotelpro";
        private ReservationController(){
     	   
        }
@@ -35,4 +37,11 @@ public class ReservationController {
          public static HotelVO getCurrentHotelvo(){
 	   return (HotelVO)reservationmap.get(currenthotelkey);
 }
+         
+         public static void setHotelpromotionvo(HotelPromotionVO Hotelpro){
+      	   reservationmap.put(currenthotelprokey, Hotelpro);
+         }
+         public static HotelPromotionVO getHotelPromotionvo(){
+      	   return (HotelPromotionVO)reservationmap.get(currenthotelprokey);
+         }
 }

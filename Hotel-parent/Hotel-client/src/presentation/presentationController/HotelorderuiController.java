@@ -33,10 +33,10 @@ public class HotelorderuiController implements Initializable{
 	private Button ok,back;
 	
 	@FXML
-	private TableView table;
+	private TableView<SimpleHotelOrder> table;
 	
 	@FXML
-	private TableColumn OrderNum,OrderInfo,State;
+	private TableColumn<SimpleHotelOrder, String> OrderNum,OrderInfo,State;
 	
 	@FXML
 	private Label OrderList;
@@ -112,42 +112,43 @@ public class HotelorderuiController implements Initializable{
 	}
 	}
 	
-	public void  HotelOrderlist(ArrayList<OrderVO> orderlist){
-    	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
-    	for(int i=0;i<orderlist.size();i++){
-    	temp.add(new SimpleRoom(String.valueOf(orderlist.get(i).getId()), 
-    			orderlist.get(i).getType(), 
-    			orderlist.get(i).getState(), orderlist.get(i).
-    			getLasttime()));
+	public void  HotelOrderlist(ArrayList<OrderVO> list){
+    	ObservableList<SimpleHotelOrder> temp =FXCollections.observableArrayList();
+    	for(int i=0;i<list.size();i++){
+    	temp.add(new SimpleHotelOrder(String.valueOf(list.get(i).getId()), 
+    			String.valueOf(list.get(i).getPeoplenum()), 
+    			list.get(i).getState()
+    			));
     	}
     	  OrderNum.setCellValueFactory(
 		            new PropertyValueFactory<>("ordernum"));		 
-		  OrderNum.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  OrderNum.setCellFactory(TextFieldTableCell.<SimpleHotelOrder>forTableColumn());
 		  OrderNum.setOnEditCommit(
-		            (CellEditEvent<SimpleRoom, String> t) -> {
-		                ((SimpleRoom) t.getTableView().getItems().get(
+		            (CellEditEvent<SimpleHotelOrder, String> t) -> {
+		                ((SimpleHotelOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setRoomnum(t.getNewValue());
+		                        ).setOrdernum(t.getNewValue());
 		        });
 		  OrderInfo.setCellValueFactory(
 		            new PropertyValueFactory<>("orderinfo"));
 		 
-		  OrderInfo.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
-		  orderInfo.setOnEditCommit(
-		            (CellEditEvent<SimpleRoom, String> t) -> {
-		                ((SimpleRoom) t.getTableView().getItems().get(
+		  OrderInfo.setCellFactory(TextFieldTableCell.<SimpleHotelOrder>forTableColumn());
+		  OrderInfo.setOnEditCommit(
+		            (CellEditEvent<SimpleHotelOrder, String> t) -> {
+		                ((SimpleHotelOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setRoominfo(t.getNewValue());
+		                        ).setOrderinfo(t.getNewValue());
 		        });
 		  State.setCellValueFactory(
 		            new PropertyValueFactory<>("state"));
 		 
-		  State.setCellFactory(TextFieldTableCell.<SimpleRoom>forTableColumn());
+		  State.setCellFactory(TextFieldTableCell.<SimpleHotelOrder>forTableColumn());
 		  State.setOnEditCommit(
-		            (CellEditEvent<SimpleRoom, String> t) -> {
-		                ((SimpleRoom) t.getTableView().getItems().get(
+		            (CellEditEvent<SimpleHotelOrder, String> t) -> {
+		                ((SimpleHotelOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
 		                        ).setState(t.getNewValue());
 		        });
-	
+		  table.setItems(temp);
+	}	
 }

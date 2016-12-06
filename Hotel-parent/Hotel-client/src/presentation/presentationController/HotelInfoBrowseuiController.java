@@ -19,8 +19,7 @@ public class HotelInfoBrowseuiController implements Initializable{
 	@FXML
 	private Button formOrder,Back,myOrder;	//跳转的按钮
 	@FXML
-	private Label hotelName,Province,City,Block,Star,introduction;//酒店名称，酒店所在省份，酒店所在城市，酒店所在商圈，酒店星级，酒店基础设施
-    //界面的跳转
+	private Label hotelName,Star,introduction,address,SingleLabel,StandardLabel,FamilyLabel,SuiteLabel,benefit;
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelListui();

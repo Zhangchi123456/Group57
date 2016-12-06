@@ -1,5 +1,7 @@
 package vo;
 
+import org.Hotel.common.po.CirclePO;
+
 public class CircleVO {
 	
 	private double discount;
@@ -13,6 +15,24 @@ public class CircleVO {
 		this.discount = discount;
 		this.city = city;
 		this.name = name;
+	}
+	
+	public CircleVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setByPO(CirclePO po){
+		this.discount = po.getDiscount();
+		this.city = po.getCity();
+		this.name = po.getName();
+	}
+	
+	public CirclePO toPO(){
+		CirclePO po = new CirclePO();
+		po.setDiscount(discount);
+		po.setCity(city);
+		po.setName(name);
+		return po;
 	}
 
 	public double getDiscount() {

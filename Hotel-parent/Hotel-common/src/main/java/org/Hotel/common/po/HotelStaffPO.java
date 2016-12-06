@@ -13,7 +13,10 @@ public class HotelStaffPO {
 	}
 	//Jerry
 	public HotelStaffPO(String name,String hotelname,String password){
-		
+		this.password = password;
+		this.name = name;
+		this.hotelname = hotelname;
+		id = -1;
 	}
 	public HotelStaffPO(int id, String password) {
 		super();

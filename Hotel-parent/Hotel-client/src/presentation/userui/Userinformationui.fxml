@@ -48,6 +48,16 @@
                   <Label fx:id="MemberlevelLabel" text="Label" />
                </children>
             </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+               <children>
+                  <Label text="享受折扣:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="DiscountLabel" text="Label" />
+               </children>
+            </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="215.0">
                <children>
                   <Label text="用户名:">

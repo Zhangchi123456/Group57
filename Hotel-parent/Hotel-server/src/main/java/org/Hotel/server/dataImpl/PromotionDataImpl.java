@@ -68,7 +68,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean insert(HotelPromotionPO po) throws RemoteException{
 		String hotelpro_id = po.getId();
-		if(map_hotel.get(hotelpro_id) == null){
+		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.put(hotelpro_id, po);
 			hotelproDataHelper.insertHotelPromotionData(po);
 			update(po);

@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.UserDataService;
 import org.Hotel.common.po.HotelStaffPO;
@@ -18,11 +19,11 @@ import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
 	
 
-	private Map<Integer, HotelStaffPO> map_hotels;
+	private Map<String, HotelStaffPO> map_hotels;
 	
-	private Map<Integer, WebStaffPO> map_webs;
+	private Map<String, WebStaffPO> map_webs;
 	
-	private Map<Integer, WebManagerPO> map_webm;
+	private Map<String, WebManagerPO> map_webm;
 	
 	private UserDataHelper hotelsDataHelper,websDataHelper,webmDataHelper;
 	
@@ -58,9 +59,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 
 	public boolean insert(HotelStaffPO po) throws RemoteException{
-		int hotels_id = po.getId();
-		if(map_hotels.get(hotels_id) == null){
-			map_hotels.put(hotels_id, po);
+		String name = po.getName();
+		if(map_hotels.get(name) == null){
+			map_hotels.put(name, po);
 			hotelsDataHelper.insertHotelStaffData(po);
 			return true;
 		}
@@ -68,9 +69,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean insert(WebStaffPO po) throws RemoteException{
-		int webs_id = po.getId();
-		if(map_webs.get(webs_id) == null){
-			map_webs.put(webs_id, po);
+		String name = po.getName();
+		if(map_webs.get(name) == null){
+			map_webs.put(name, po);
 			websDataHelper.insertWebStaffData(po);
 			return true;
 		}
@@ -78,9 +79,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean insert(WebManagerPO po) throws RemoteException{
-		int webm_id = po.getId();
-		if(map_webm.get(webm_id) == null){
-			map_webm.put(webm_id, po);
+		String name = po.getName();
+		if(map_webm.get(name) == null){
+			map_webm.put(name, po);
 			webmDataHelper.insertWebManagerData(po);
 			return true;
 		}
@@ -88,9 +89,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean delete(HotelStaffPO po) throws RemoteException{
-			int hotels_id = po.getId();
-			if(map_hotels.get(hotels_id) != null){
-				map_hotels.remove(hotels_id, po);
+			String name = po.getName();
+			if(map_hotels.get(name) != null){
+				map_hotels.remove(name, po);
 				hotelsDataHelper.deleteHotelStaffData(po);
 				return true;
 			}
@@ -98,9 +99,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		}
 	
 	public boolean delete(WebStaffPO po) throws RemoteException{
-		int webs_id = po.getId();
-		if(map_webs.get(webs_id) != null){
-			map_webs.remove(webs_id, po);
+		String name = po.getName();
+		if(map_webs.get(name) != null){
+			map_webs.remove(name, po);
 			websDataHelper.deleteWebStaffData(po);
 			return true;
 		}
@@ -108,9 +109,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean delete(WebManagerPO po) throws RemoteException{
-		int webm_id = po.getId();
-		if(map_webm.get(webm_id) != null){
-			map_webm.remove(webm_id, po);
+		String name = po.getName();
+		if(map_webm.get(name) != null){
+			map_webm.remove(name, po);
 			webmDataHelper.deleteWebManagerData(po);
 			return true;
 		}
@@ -118,9 +119,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean update(HotelStaffPO po) throws RemoteException{
-		int hotels_id = po.getId();
-		if(map_hotels.get(hotels_id) != null){
-			map_hotels.put(hotels_id, po);
+		String name = po.getName();
+		if(map_hotels.get(name) != null){
+			map_hotels.put(name, po);
 			hotelsDataHelper.updateHotelStaffData(po);
 			return true;
 		}
@@ -128,9 +129,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean update(WebStaffPO po) throws RemoteException{
-		int webs_id = po.getId();
-		if(map_webs.get(webs_id) != null){
-			map_webs.put(webs_id, po);
+		String name = po.getName();
+		if(map_webs.get(name) != null){
+			map_webs.put(name, po);
 			websDataHelper.updateWebStaffData(po);
 			return true;
 		}
@@ -138,46 +139,46 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public boolean update(WebManagerPO po) throws RemoteException{
-		int webm_id = po.getId();
-		if(map_webm.get(webm_id) != null){
-			map_webm.put(webm_id, po);
+		String name = po.getName();
+		if(map_webm.get(name) != null){
+			map_webm.put(name, po);
 			webmDataHelper.updateWebManagerData(po);
 			return true;
 		}
 		return false;
 	}
 	
-	public ArrayList<HotelStaffPO> findByHotelStaff(int id) throws RemoteException{
+	public ArrayList<HotelStaffPO> findByHotelStaff(String name) throws RemoteException{
 		ArrayList<HotelStaffPO> hotelslist = new ArrayList<HotelStaffPO>();
-		Iterator<Map.Entry<Integer,HotelStaffPO>> iterator = map_hotels.entrySet().iterator();
+		Iterator<Entry<String, HotelStaffPO>> iterator = map_hotels.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelStaffPO> entry = iterator.next();
+			Entry<String, HotelStaffPO> entry = iterator.next();
 			HotelStaffPO hotelspo = entry.getValue();
-			if(id==hotelspo.getId())
+			if(name == hotelspo.getName())
 			hotelslist.add(hotelspo);
 		}
 		return hotelslist;
 	}
 	
-	public ArrayList<WebStaffPO> findByWebStaff(int id) throws RemoteException{
+	public ArrayList<WebStaffPO> findByWebStaff(String name) throws RemoteException{
 		ArrayList<WebStaffPO> webslist = new ArrayList<WebStaffPO>();
-		Iterator<Map.Entry<Integer,WebStaffPO>> iterator = map_webs.entrySet().iterator();
+		Iterator<Entry<String, WebStaffPO>> iterator = map_webs.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, WebStaffPO> entry = iterator.next();
+			Entry<String, WebStaffPO> entry = iterator.next();
 			WebStaffPO webspo = entry.getValue();
-			if(id==webspo.getId())
+			if(name == webspo.getName())
 			webslist.add(webspo);
 		}
 		return webslist;
 	}
 	
-	public ArrayList<WebManagerPO> findByWebManager(int id) throws RemoteException{
+	public ArrayList<WebManagerPO> findByWebManager(String name) throws RemoteException{
 		ArrayList<WebManagerPO> webmlist = new ArrayList<WebManagerPO>();
-		Iterator<Map.Entry<Integer,WebManagerPO>> iterator = map_webm.entrySet().iterator();
+		Iterator<Entry<String, WebManagerPO>> iterator = map_webm.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, WebManagerPO> entry = iterator.next();
+			Entry<String, WebManagerPO> entry = iterator.next();
 			WebManagerPO webmpo = entry.getValue();
-			if(id==webmpo.getId())
+			if(name == webmpo.getName())
 			webmlist.add(webmpo);
 		}
 		return webmlist;
@@ -185,9 +186,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	
 	public ArrayList<HotelStaffPO> showAllHotelStaff() throws RemoteException{
 		ArrayList<HotelStaffPO> hotelslist = new ArrayList<HotelStaffPO>();
-		Iterator<Map.Entry<Integer,HotelStaffPO>> iterator = map_hotels.entrySet().iterator();
+		Iterator<Entry<String, HotelStaffPO>> iterator = map_hotels.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, HotelStaffPO> entry = iterator.next();
+			Entry<String, HotelStaffPO> entry = iterator.next();
 			HotelStaffPO hotelspo = entry.getValue();
 			hotelslist.add(hotelspo);
 		}
@@ -196,9 +197,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	
 	public ArrayList<WebStaffPO> showAllWebStaff() throws RemoteException{
 		ArrayList<WebStaffPO> webslist = new ArrayList<WebStaffPO>();
-		Iterator<Map.Entry<Integer,WebStaffPO>> iterator = map_webs.entrySet().iterator();
+		Iterator<Entry<String, WebStaffPO>> iterator = map_webs.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, WebStaffPO> entry = iterator.next();
+			Entry<String, WebStaffPO> entry = iterator.next();
 			WebStaffPO webspo = entry.getValue();
 			webslist.add(webspo);
 		}
@@ -207,9 +208,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	
 	public ArrayList<WebManagerPO> showAllWebManager() throws RemoteException{
 		ArrayList<WebManagerPO> webmlist = new ArrayList<WebManagerPO>();
-		Iterator<Map.Entry<Integer,WebManagerPO>> iterator = map_webm.entrySet().iterator();
+		Iterator<Entry<String, WebManagerPO>> iterator = map_webm.entrySet().iterator();
 		while(iterator.hasNext()){
-			Map.Entry<Integer, WebManagerPO> entry = iterator.next();
+			Entry<String, WebManagerPO> entry = iterator.next();
 			WebManagerPO webmpo = entry.getValue();
 			webmlist.add(webmpo);
 		}

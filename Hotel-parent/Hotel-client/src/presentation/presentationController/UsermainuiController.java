@@ -2,14 +2,19 @@ package presentation.presentationController;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.sun.javafx.scene.control.skin.CheckBoxSkin;
+
+import BusinessLogicService.Service.ReservationLogicService;
 import Controller.ReservationController;
 import Helper.InituiHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -19,6 +24,9 @@ import javafx.scene.control.Label;
 import vo.MemberVO;
 
 public class UsermainuiController implements Initializable{
+	private ObservableList<String> citylist;
+	private ObservableList<String> circlelist;
+	private ReservationLogicService reservationService;
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label
@@ -116,6 +124,17 @@ public class UsermainuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ArrayList<String> Citylist=new ArrayList<String>();
+		String str1="南京";
+		Citylist.add(str1);
+		citylist=FXCollections.observableArrayList(Citylist);
+		CityChoicebox.setItems(citylist);
+	     CityChoicebox.getSelectionModel()
+	     .selectedItemProperty()
+	     .addListener((ov,oldv,newv)->{
+	    	 BusinessChoicebox.setItems(citylist);
+	     });
+	    		
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
 		ReservationController.setMembervo(membervo);
 		InituiHelper.setMemberVO(membervo);
