@@ -7,7 +7,7 @@ import java.sql.*;
 
 import org.Hotel.common.po.HotelPromotionPO;
 import org.Hotel.common.po.HotelStaffPO;
-import org.Hotel.common.po.WebManagerPO;
+import org.Hotel.common.po.*;
 import org.Hotel.common.po.WebStaffPO;
 import org.Hotel.server.config.Database;
 import org.Hotel.server.datahelp.UserDataHelper;
@@ -39,7 +39,6 @@ public class UserDataMysqlHelper implements UserDataHelper {
 
 	public void updateWebStaffData(WebStaffPO po) {
 		db=new Database();
-		
 		
 		int id=po.getId();
 		String name=po.getName();
@@ -114,9 +113,9 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		String name=po.getName();
 		String password=po.getPassword();
 		
-		String query="UPDATE web_staff SET name="+"'"+name+"',"
+		String query="UPDATE hotel_staff SET name="+"'"+name+"',"
 				+ "password="+"'"+password+"'"
-				+ " WHERE id="+"'"+String.valueOf(id)+"'";
+				+ " WHERE id="+"'"+id+"'";
 				
 		try{
 			db.update(query);
@@ -135,7 +134,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		String password=po.getPassword();
 		String hotelname=po.getHotelName();
 		
-		String query="INSERT INTO web_staff(name,password,hotel_name) VALUE("+"'"+name+"',"
+		String query="INSERT INTO hotel_staff(name,password,hotel_name) VALUE("+"'"+name+"',"
 				+"'"+password+"','"+hotelname+"')";
 		try{
 			db.update(query);

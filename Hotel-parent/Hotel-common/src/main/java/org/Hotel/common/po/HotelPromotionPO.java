@@ -26,7 +26,9 @@ public class HotelPromotionPO {
 		super();
 	}
 	
-	public HotelPromotionPO(String type, String hotelid,double birthdaydiscount,double multiorderdiscount, double enterpricediscount,double datediscount,Date startdate,Date enddate) {
+	public HotelPromotionPO(String type, String hotelid,
+			double birthdaydiscount,double multiorderdiscount, 
+			double enterpricediscount,double datediscount,Date startdate,Date enddate) {
 		super();
 		
 		this.type = type;

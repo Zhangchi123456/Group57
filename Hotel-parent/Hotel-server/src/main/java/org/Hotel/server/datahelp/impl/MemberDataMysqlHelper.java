@@ -116,7 +116,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				+ "'"+name+"',"+
 				"'"+password+"',"+
 				"'"+phoneNums+"',"+
-				"'"+String.valueOf(credit)+"',"+
+				"'"+credit+"',"+
 				"'"+String.valueOf(level)+"',"+
 				"'"+String.valueOf(isEnterpriseMember)+"',"+
 				"'"+String.valueOf(birthday)+"'"+")";
