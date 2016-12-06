@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +33,7 @@ public class HotelupdateuiController implements Initializable{
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
+		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
