@@ -2,6 +2,8 @@ package vo;
 
 import java.util.Date;
 
+import org.Hotel.common.po.HotelPromotionPO;
+
 public class HotelPromotionVO {
 	
 	private String hotel_name;
@@ -25,7 +27,31 @@ public class HotelPromotionVO {
 		this.end_date = end_date;
 	}
 	
-	public String getHotelID(){
+	public void setByPO(HotelPromotionPO po){
+		this.hotel_name = po.getHotelid();
+		this.name = po.getType();
+		this.birthday_discount = po.getBirthdaydiscount();
+		this.enterprice_discount = po.getEnterpricediscount();
+		this.multiorder_discount = po.getMultiorderdiscount();
+		this.date_discount = po.getDatediscount();
+		this.start_date = po.getStartdate();
+		this.end_date = po.getEnddate();
+	}
+	
+	public HotelPromotionPO toPO(){
+		HotelPromotionPO po = new HotelPromotionPO();
+		po.setHotelid(hotel_name);
+		po.setType(name);
+		po.setBirthdaydiscount(birthday_discount);
+		po.setEnterpricediscount(enterprice_discount);
+		po.setMultiorderdiscount(multiorder_discount);
+		po.setDatediscount(date_discount);
+		po.setStartdate(start_date);
+		po.setEnddate(end_date);
+		return po;
+	}
+	
+	public String getHotelName(){
 		return hotel_name;
 	}
 	

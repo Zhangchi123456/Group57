@@ -22,7 +22,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.presentationController.HotelListuiController.SimpleHotel;
 import presentation.presentationController.hoteldiscountdateuiController.DateInfo;
 import presentation.userui.AlertBox;
 import vo.HotelPromotionVO;
@@ -40,16 +43,16 @@ public class webdiscountdateuiController implements Initializable{
 	private TextField webdiscountdatediscount;
 	
 	@FXML
-	private TableView webdiscountdateTable;
+	private TableView<DateInfo> webdiscountdateTable;
 	
 	@FXML
-	private TableColumn webdiscountdateTable_start;
+	private TableColumn<DateInfo,String> webdiscountdateTable_start;
 	
 	@FXML
-	private TableColumn webdiscountdateTable_end;
+	private TableColumn<DateInfo,String> webdiscountdateTable_end;
 	
 	@FXML
-	private TableColumn webdiscountdateTable_discount;
+	private TableColumn<DateInfo,String> webdiscountdateTable_discount;
 	
 	@FXML
 	private Button delete;
@@ -65,6 +68,8 @@ public class webdiscountdateuiController implements Initializable{
 	
 	@FXML
 	private Button back;
+	
+	final static ObservableList<DateInfo> data = FXCollections.observableArrayList();
 	
 	//跳到会员等级折扣
 	@FXML
@@ -123,14 +128,38 @@ public class webdiscountdateuiController implements Initializable{
 			
 		}
 	}
+	
 	//删除策略按钮
 	@FXML
 	public void DeleteClicked(ActionEvent event){
 		
+		int selectnumber=webdiscountdateTable.getSelectionModel().getSelectedIndex();
+    	String start = data.get(selectnumber).getStart();
+		String end = data.get(selectnumber).getEnd();
+		double discount = data.get(selectnumber).getDiscount();
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date start_date = null;
+		Date end_date = null;
+		
+		try {
+			start_date = sdf.parse(start);
+			end_date = sdf.parse(end);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+		
+		WebPromotionVO vo = new WebPromotionVO(discount/100,start_date,end_date);
+		
+		promotion.deleteWebPromotion(vo);
+		
+		this.showTable();
 	}
 
-	
-	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -144,8 +173,6 @@ public class webdiscountdateuiController implements Initializable{
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<WebPromotionVO> proList= promotion.getWebPromotionList();
 		
-		final ObservableList<DateInfo> data = FXCollections.observableArrayList();
-		
 		for(int i=0;i<proList.size();i++){
 			
 			WebPromotionVO vo = proList.get(i);
@@ -153,14 +180,37 @@ public class webdiscountdateuiController implements Initializable{
 			String end = vo.getEndDate().toString();
 			double discount = vo.getDateDiscount();;
 			
-			DateInfo info = new DateInfo(start,end,discount);
+			DateInfo info = new DateInfo(start,end,discount*100);
 			
 			data.add(info);
         }
 		
 		webdiscountdateTable_start.setCellValueFactory( new PropertyValueFactory<>("start") );
+		webdiscountdateTable_start.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
+		webdiscountdateTable_start.setOnEditCommit(
+	            (CellEditEvent<DateInfo, String> t) -> {
+	                ((DateInfo) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setStart(((t.getNewValue())));
+	        });
+		
 		webdiscountdateTable_end.setCellValueFactory( new PropertyValueFactory<>("end") );
+		webdiscountdateTable_end.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
+		webdiscountdateTable_end.setOnEditCommit(
+	            (CellEditEvent<DateInfo, String> t) -> {
+	                ((DateInfo) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setStart(((t.getNewValue())));
+	        });
+		
 		webdiscountdateTable_discount.setCellValueFactory( new PropertyValueFactory<>("discount") );
+		webdiscountdateTable_discount.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
+		webdiscountdateTable_discount.setOnEditCommit(
+	            (CellEditEvent<DateInfo, String> t) -> {
+	                ((DateInfo) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setStart(((t.getNewValue())));
+	        });
 		
 		webdiscountdateTable.setItems(data);
 		

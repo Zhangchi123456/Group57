@@ -12,7 +12,7 @@ public interface ReservationLogicService {
     
 	
 	//在搜索酒店页面的方法 
-	public ArrayList<String> getallcity();
+	public ArrayList<String> getallcity() throws RemoteException ;
 	
 	//获取搜索条件
 	public void getSearchInfo();

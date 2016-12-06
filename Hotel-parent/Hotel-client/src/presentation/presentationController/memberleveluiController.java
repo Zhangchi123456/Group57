@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import presentation.userui.AlertBox;
 import vo.MemberLevelVO;
 
 public class memberleveluiController implements Initializable{
@@ -49,13 +50,14 @@ public class memberleveluiController implements Initializable{
 		UiswitchHelper.getApplication().goto_webdiscoutdatenui();
 	}
 	
+	@FXML
 	public void levelChoose(MouseEvent event){
 		
 		int lv = Integer.parseInt(level.getValue().toString());
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		MemberLevelVO vo = promotion.getMemberLevel(lv);
 		credit.setText(String.valueOf(vo.getCredit()));
-		discount.setText(String.valueOf(vo.getDiscount()));
+		discount.setText(String.valueOf(vo.getDiscount()*100));
 		
 	}
 	
@@ -64,10 +66,27 @@ public class memberleveluiController implements Initializable{
 		
 		int lv = Integer.parseInt(level.getValue().toString());
 		int cre = Integer.parseInt(credit.getText());
-		double dis = Double.parseDouble(discount.getText());
-		MemberLevelVO vo = new MemberLevelVO(lv,cre,dis);
-		PromotionLogicService promotion = new PromotionLogicServiceImpl();
-		promotion.updateMemberLevel(vo);
+		if(discount.getText()!=null){
+			double dis = Double.parseDouble(discount.getText());
+			if(dis>0&&dis<100){
+				MemberLevelVO vo = new MemberLevelVO(lv,cre,dis/100);
+				PromotionLogicService promotion = new PromotionLogicServiceImpl();
+				boolean suitable = promotion.updateMemberLevel(vo);
+				if(suitable==false){
+					AlertBox alt = new AlertBox();
+					alt.display("信用超出输入范围！");
+				}else{
+					AlertBox alt = new AlertBox();
+					alt.display("更新成功！");
+				}
+			}else if(dis<0||dis>100){
+				AlertBox alt = new AlertBox();
+				alt.display("折扣超出输入范围！");
+			}else if(dis==0){
+				AlertBox alt = new AlertBox();
+				alt.display("不可为0！");
+			}
+		}
 		
 	}
 	//返回网站营销人员主界面

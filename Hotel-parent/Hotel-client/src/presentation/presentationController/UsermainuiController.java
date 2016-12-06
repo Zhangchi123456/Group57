@@ -11,6 +11,7 @@ import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,7 +21,8 @@ import javafx.scene.control.Label;
 import vo.MemberVO;
 
 public class UsermainuiController implements Initializable{
-	private ObservableList<String> finallist;
+	private ObservableList<String> citylist;
+	private ObservableList<String> circlelist;
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label
@@ -118,11 +120,17 @@ public class UsermainuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ArrayList<String> citylist=new ArrayList<String>();
+		ArrayList<String> Citylist=new ArrayList<String>();
 		String str1="南京";
-		citylist.add(str1);
-		finallist=FXCollections.observableArrayList(citylist);
-		CityChoicebox.setItems(finallist);
+		Citylist.add(str1);
+		citylist=FXCollections.observableArrayList(Citylist);
+		CityChoicebox.setItems(citylist);
+	     CityChoicebox.getSelectionModel()
+	     .selectedItemProperty()
+	     .addListener((ov,oldv,newv)->{
+	    	 BusinessChoicebox.setItems(citylist);
+	     });
+	    		
 		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
 		ReservationController.setMembervo(membervo);
 		InituiHelper.setMemberVO(membervo);

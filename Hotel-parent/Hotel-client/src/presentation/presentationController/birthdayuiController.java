@@ -73,6 +73,9 @@ public class birthdayuiController implements Initializable{
 			
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.updateHotelPromotion(vo);
+				
+				AlertBox alt = new AlertBox();
+				alt.display("更新成功！");
 			}
 		}
 		
