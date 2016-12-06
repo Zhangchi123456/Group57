@@ -28,7 +28,7 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <CheckBox fx:id="ReservationCheckbox" mnemonicParsing="false" onAction="#CheckhotelClicked" text="曾经预定">
+                  <CheckBox fx:id="ReservationCheckbox" mnemonicParsing="false" onAction="#ReservationClicked" text="曾经预定">
                      <font>
                         <Font size="20.0" />
                      </font>

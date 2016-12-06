@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.sun.javafx.scene.control.skin.CheckBoxSkin;
+
+import BusinessLogicService.Service.ReservationLogicService;
 import Controller.ReservationController;
 import Helper.InituiHelper;
 import Helper.UiswitchHelper;
@@ -23,6 +26,7 @@ import vo.MemberVO;
 public class UsermainuiController implements Initializable{
 	private ObservableList<String> citylist;
 	private ObservableList<String> circlelist;
+	private ReservationLogicService reservationService;
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label

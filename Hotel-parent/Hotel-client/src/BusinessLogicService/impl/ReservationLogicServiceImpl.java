@@ -1,7 +1,11 @@
 package BusinessLogicService.impl;
 
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.Hotel.common.po.HotelPO;
 
@@ -33,10 +37,29 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	}
 	
 	
-	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price){
+	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
+             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
+            String strin=checkindate.toString();
+            String strout=checkoutdate.toString();
+            Date Datein=sdf.parse(strin);
+            Date Dateout=sdf.parse(strout);
              MemberLevelVO level=new MemberLevelVO(Integer.parseInt(member.getlevel()),member.getcredit(),9.5);
              finalprice=num*price*level.getDiscount();
+             if(member.getbirthday().isBefore(checkoutdate)||member.getbirthday().isEqual(checkindate)){
+            	 finalprice=finalprice*hotelpro.getBirthdayDiscount();
+             }
+             if(Datein.after(hotelpro.getStartDate())||Dateout.before(hotelpro.getEndDate())){
+            	 finalprice=finalprice*hotelpro.getDateDiscount();
+             }
+             if(num>=3){
+            	 finalprice=finalprice*hotelpro.getMultiorderDiscount();
+             }
+             if(Datein.after((Date) webpro.getStartDate())||Dateout.before((Date) webpro.getEndDate())){
+            	 finalprice=finalprice*webpro.getDateDiscount();
+             }
+             
+             
             		 
 			return finalprice;
              
@@ -54,16 +77,28 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return list;
 	 }
 	 
-	 public ArrayList<HotelVO> filtbysearch(ArrayList<HotelVO> hotellist,String roomtype,String roomnum,String hotelstar,String hotelgrade,String hotelprice){
+	 public ArrayList<HotelVO> filtbysearch(ArrayList<HotelVO> hotellist,String roomtype,String roomnum,String hotelstar,String hotelgrade,String hotelprice,String Hotelname){
 		 int star=-1;
 		 double grade=-1;
 		 double lowprice=-1; 
 		 double highprice=20000;
+		 int Roomnum=0;
+		 
 		 switch(roomtype){
+		 case"单人房":
+			 break;
 		 
 		 }
 		switch(roomnum){
-			
+		case"1间":
+			Roomnum=1;
+			break;
+		case"2间":
+			Roomnum=2;
+			break;
+		case"3间及以上":
+			Roomnum=3;
+			break;
 		}
 		switch(hotelstar){
 		case"5星":
@@ -100,7 +135,8 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 ArrayList<HotelVO> filtedlist=new ArrayList<HotelVO>();
 		 for(int i=0;i<hotellist.size();i++){
 			HotelVO vo=hotellist.get(i);
-			if(vo.getGrade()>=grade&&vo.getSingleRoomPrice()>=lowprice&&vo.getSingleRoomPrice()<=highprice&&vo.getStar()>=star){
+			
+			if(vo.getName().contains(Hotelname)&&vo.getGrade()>=grade&&vo.getSingleRoomPrice()>=lowprice&&vo.getSingleRoomPrice()<=highprice&&vo.getStar()>=star){
 				filtedlist.add(vo);
 			}
 		 }

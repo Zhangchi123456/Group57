@@ -26,7 +26,7 @@ import vo.HotelVO;
 public class HotelListuiController implements Initializable{
 	
 	private ObservableList<SimpleHotel> finallist;
-	
+	private ObservableList<SimpleHotel> reservationedlist;
 	@FXML
 	private CheckBox ReservationCheckbox;//是否预定过该酒店
 	@FXML
@@ -43,7 +43,14 @@ public class HotelListuiController implements Initializable{
         UiswitchHelper.getApplication().goto_Usermainui();
     }
   @FXML
-  private void CheckhotelClicked(ActionEvent event){
+  private void ReservationClicked(ActionEvent event){
+	  
+	  if(ReservationCheckbox.isSelected()){
+		  Hoteltable.setItems(reservationedlist);
+	  }
+	  else{
+		  Hoteltable.setItems((finallist));
+	  }
       
   }
     @FXML
