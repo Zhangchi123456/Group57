@@ -3,6 +3,8 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.ReservationLogicService;
+import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +16,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import vo.HotelPromotionVO;
+import vo.HotelVO;
 
 public class HotelInfoBrowseuiController implements Initializable{
+	private HotelVO hotelvo;
+	private HotelPromotionVO hotelpromotion;
+	private ReservationLogicService reservationService;
 	@FXML
 	private Button formOrder,Back,myOrder;	//跳转的按钮
 	@FXML
@@ -35,8 +42,18 @@ public class HotelInfoBrowseuiController implements Initializable{
 	 //初始化方法
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+	/*  hotelvo=ReservationController.getCurrentHotelvo();
+		hotelpromotion=ReservationController.getHotelPromotionvo();
+		hotelName.setText(hotelvo.getName());
+		Star.setText(String.valueOf(hotelvo.getStar()));
+		address.setText(hotelvo.getAddress());
+		SingleLabel.setText(String.valueOf(hotelvo.getSingleRoomPrice()));
+		StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
+	    FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
+	    SuiteLabel.setText(String.valueOf(hotelvo.getSuiteRoomPrice()));
+	    benefit.setText("日期优惠："+String.valueOf(hotelpromotion.getStartDate())+"-"+String.valueOf(hotelpromotion.getEndDate())+" 折扣值："+String.valueOf(hotelpromotion.getDateDiscount())
+	    		+"3间以上优惠： "+String.valueOf(hotelpromotion.getMultiorderDiscount()));
+		*/
 	}
 
 }

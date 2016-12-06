@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import Controller.MemberActController;
+import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +15,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.MemberVO;
 
 public class UserinformationuiController implements Initializable{
+	 private MemberVO membervo;
 	 private String membername,phonenumber;
 	 private LocalDate birthday;
      @FXML
@@ -57,8 +60,14 @@ public class UserinformationuiController implements Initializable{
      
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		
+		/*membervo=ReservationController.getMembervo();
+		MembercharacterLabel.setText(membervo.getproperty());
+		MemberlevelLabel.setText(membervo.getlevel());
+		MembercreditvalueLabel.setText(String.valueOf(membervo.getcredit()));
+		MembernameText.setText(membervo.getname());
+		PhonenumberText.setText(membervo.getphonenumber());
+		BirthdayDatepicker.setValue(membervo.getbirthday());
+		*/
 	}
 
 }
