@@ -2,6 +2,8 @@ package vo;
 
 import java.util.Date;
 
+import org.Hotel.common.po.WebPromotionPO;
+
 public class WebPromotionVO {
 	
 	private double discount;
@@ -14,6 +16,20 @@ public class WebPromotionVO {
 		this.end_date = end_date;
 	}
 	
+    public void setByPO(WebPromotionPO po){
+    	this.discount = po.getDatediscount();
+    	this.start_date = po.getStartdate();
+    	this.end_date = po.getEnddate();
+    }
+    
+    public WebPromotionPO toPO(){
+    	WebPromotionPO po = new WebPromotionPO();
+    	po.setDatediscount(discount);
+    	po.setStartdate(start_date);
+    	po.setEnddate(end_date);
+    	return po;
+    }
+    
 	public Object getStartDate() {
 		return start_date;
 	}

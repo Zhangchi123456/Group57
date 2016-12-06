@@ -2,6 +2,8 @@ package BusinessLogicService.impl;
 
 import java.util.ArrayList;
 
+import org.Hotel.common.dataService.PromotionDataService;
+
 import BusinessLogicService.Service.PromotionLogicService;
 import vo.CircleVO;
 import vo.HotelPromotionVO;
@@ -9,10 +11,16 @@ import vo.MemberLevelVO;
 import vo.WebPromotionVO;
 
 public class PromotionLogicServiceImpl implements PromotionLogicService{
+	
+	PromotionDataService promtiondata = null;
+	
+	public PromotionLogicServiceImpl(){
+		this.promtiondata = (PromotionDataService)RMIHelper.find("PromotionDataService");
+	}
 
 	@Override
 	public void updateHotelPromotion(HotelPromotionVO vo) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
