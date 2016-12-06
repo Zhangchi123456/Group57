@@ -27,6 +27,10 @@ public class HotelPromotionVO {
 		this.end_date = end_date;
 	}
 	
+	public HotelPromotionVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setByPO(HotelPromotionPO po){
 		this.hotel_name = po.getHotelid();
 		this.name = po.getType();

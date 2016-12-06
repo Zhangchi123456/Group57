@@ -17,6 +17,10 @@ public class CircleVO {
 		this.name = name;
 	}
 	
+	public CircleVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setByPO(CirclePO po){
 		this.discount = po.getDiscount();
 		this.city = po.getCity();

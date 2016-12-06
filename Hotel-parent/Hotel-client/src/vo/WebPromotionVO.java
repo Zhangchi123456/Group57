@@ -16,7 +16,11 @@ public class WebPromotionVO {
 		this.end_date = end_date;
 	}
 	
-    public void setByPO(WebPromotionPO po){
+    public WebPromotionVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setByPO(WebPromotionPO po){
     	this.discount = po.getDatediscount();
     	this.start_date = po.getStartdate();
     	this.end_date = po.getEnddate();

@@ -17,6 +17,10 @@ private int level;
 		this.discount = discount;
 	}
 
+	public MemberLevelVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void setByPO(MemberLevelPO po){
 		this.level = po.getLevel();
 		this.credit = po.getCredit();
