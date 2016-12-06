@@ -25,9 +25,6 @@ public class RemoteHelper {
 	
 	private static final int PORT=XMLReader.loadipconfig("src/main/resources/config.xml").getPORT();
 	
-	/**
-	 * 服务器ip地址
-	 */
 	private static final String IP=XMLReader.loadipconfig("src/main/resources/config.xml").getIP();
 
 	
@@ -72,6 +69,6 @@ public class RemoteHelper {
 		}
 
 		
-}
+	}
 
 }
