@@ -1,5 +1,7 @@
 package vo;
 
+import org.Hotel.common.po.RoomPO;
+
 public class RoomVO {
 
 	private String hotelid;
@@ -9,7 +11,7 @@ public class RoomVO {
 	private int roomid;
 	
 	public RoomVO() {
-		super();
+		
 	}
 	
 	public RoomVO(String roomtype, int roomid, String hotelid) {
@@ -50,6 +52,23 @@ public class RoomVO {
 	public void setHotelid(String hotelid) {
 		
 		this.hotelid = hotelid;
+	}
+
+	public void setRoomPO(RoomPO roompo) {
+		this.hotelid = roompo.getHotelid();
+		this.roomid = roompo.getId();
+		this.roomtype = roompo.getRoomtype();
+		
+	}
+	
+	public RoomPO ToRoomPO(){
+		RoomPO po = new RoomPO();
+		
+		po.setHotelid(hotelid);
+		po.setId(roomid);
+		po.setRoomtype(roomtype);
+		
+		return po;
 	}
 
 }
