@@ -25,7 +25,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		roomvo.setRoomPO(list.get(i));
 		roomlist.add(i, roomvo);
 		}
-		return null;
+		return roomlist;
 		
 	}
 }
