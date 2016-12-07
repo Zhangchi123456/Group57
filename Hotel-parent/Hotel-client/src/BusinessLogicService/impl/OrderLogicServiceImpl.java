@@ -3,7 +3,10 @@ package BusinessLogicService.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
+import org.Hotel.common.dataService.PromotionDataService;
 import org.Hotel.common.po.OrderPO;
 
 import BusinessLogicService.Service.OrderLogicService;
@@ -11,8 +14,11 @@ import Controller.MemberActController;
 import vo.OrderVO;
 
 public class OrderLogicServiceImpl implements OrderLogicService {
-     OrderDataService ser ;
-     
+     OrderDataService ser=null ;
+     public OrderLogicServiceImpl(){
+ 		this.ser = (OrderDataService)RMIHelper.find("OrderDataService");
+ 		
+ 	}
      
      //评价信息的更新
 	@Override

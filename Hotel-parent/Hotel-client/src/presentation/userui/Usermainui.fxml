@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsermainuiController">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: Azure;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsermainuiController">
    <top>
       <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,8 +27,8 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Label text="                                        " />
-            <Button mnemonicParsing="false" onAction="#ReturnButtonClicked" text="登出">
+            <Label prefHeight="19.0" prefWidth="530.0" text="                                        " />
+            <Button mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="48.0" prefWidth="96.0" text="登出">
                <font>
                   <Font size="20.0" />
                </font>
@@ -37,24 +37,24 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="400.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="553.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#MemberinformationButtonClicked" prefHeight="50.0" prefWidth="200.0" text="个人信息">
+            <Button mnemonicParsing="false" onAction="#MemberinformationButtonClicked" prefHeight="64.0" prefWidth="200.0" text="个人信息">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#CreditrecordButtonClicked" prefHeight="50.0" prefWidth="200.0" text="信用记录">
+            <Button mnemonicParsing="false" onAction="#CreditrecordButtonClicked" prefHeight="64.0" prefWidth="130.0" text="信用记录">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#MyorderButtonClicked" prefHeight="50.0" prefWidth="200.0" text="我的订单">
+            <Button mnemonicParsing="false" onAction="#MyorderButtonClicked" prefHeight="64.0" prefWidth="200.0" text="我的订单">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#RhotelClicked" prefHeight="50.0" prefWidth="200.0" text="曾定酒店">
+            <Button mnemonicParsing="false" onAction="#RhotelClicked" prefHeight="64.0" prefWidth="200.0" text="曾定酒店">
                <font>
                   <Font size="20.0" />
                </font>
@@ -66,7 +66,7 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="473.0" prefWidth="597.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
@@ -77,23 +77,39 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0" spacing="15.0">
+            <HBox prefHeight="70.0" prefWidth="730.0" spacing="15.0">
                <children>
                   <Label />
-                  <Label text="城市:" />
-                  <ChoiceBox fx:id="CityChoicebox" prefWidth="80.0" />
-                  <Label text="商圈:" />
-                  <ChoiceBox fx:id="BusinessChoicebox" prefWidth="80.0" />
+                  <Label prefHeight="38.0" prefWidth="76.0" text="城市  :">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="CityChoicebox" prefHeight="36.0" prefWidth="110.0" />
+                  <Label prefHeight="19.0" prefWidth="117.0" />
+                  <Label prefHeight="37.0" prefWidth="76.0" text="商圈  :">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="BusinessChoicebox" prefHeight="36.0" prefWidth="110.0" />
                </children>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+            <HBox prefHeight="70.0" prefWidth="730.0" spacing="5.0">
                <children>
-                  <Label text="其他条件(选填):" />
-                  <Label text="酒店名:" />
-                  <TextField fx:id="HotelnameText" maxWidth="80.0" />
-                  <Label text="房间类型:" />
+                  <Label prefHeight="39.0" prefWidth="128.0" text="其他条件(选填):">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Label prefHeight="40.0" prefWidth="73.0" text="酒店名:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <TextField fx:id="HotelnameText" maxWidth="117.0" prefHeight="33.0" prefWidth="117.0" />
+                  <Label prefHeight="35.0" prefWidth="91.0" text="房间类型:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   
-                  <ChoiceBox fx:id="RoomTypeChoicebox" prefWidth="80.0">
+                  <ChoiceBox fx:id="RoomTypeChoicebox" prefHeight="32.0" prefWidth="90.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="单人房" />
@@ -104,8 +120,11 @@
                   </items>
                   </ChoiceBox>
                   
-                  <Label text="房间数量:" />
-                  <ChoiceBox fx:id="RoomnumChoicebox" prefWidth="90.0">
+                  <Label prefHeight="32.0" prefWidth="92.0" text="房间数量:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="RoomnumChoicebox" prefHeight="29.0" prefWidth="102.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="1间" />
@@ -120,10 +139,13 @@
                   <Insets left="5.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="50.0" prefWidth="200.0" spacing="5.0">
+            <HBox prefHeight="70.0" prefWidth="730.0" spacing="5.0">
                <children>
-                  <Label text="酒店星级:" />
-                  <ChoiceBox fx:id="HotelstarChoicebox" prefWidth="98.0">
+                  <Label prefHeight="39.0" prefWidth="86.0" text="酒店星级:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="HotelstarChoicebox" prefHeight="35.0" prefWidth="105.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="5星" />
@@ -136,8 +158,11 @@
                   
                   
                   
-                  <Label text="酒店评分:" />
-                  <ChoiceBox fx:id="HotelgradeChoicebox" prefWidth="98.0">
+                  <Label prefHeight="35.0" prefWidth="89.0" text="酒店评分:">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <ChoiceBox fx:id="HotelgradeChoicebox" prefHeight="36.0" prefWidth="114.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="5分" />
@@ -147,9 +172,12 @@
                   </FXCollections>
                   </items>
                   </ChoiceBox>
-                  <Label text=" 价格:   " />
+                  <Label prefHeight="35.0" prefWidth="82.0" text=" 价格:   ">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                   
-                  <ChoiceBox fx:id="HotelpriceChoicebox" prefWidth="100.0">
+                  <ChoiceBox fx:id="HotelpriceChoicebox" prefHeight="36.0" prefWidth="115.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="300元以下" />
@@ -164,20 +192,26 @@
                   <Insets left="50.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="70.0" prefWidth="200.0">
+            <HBox prefHeight="79.0" prefWidth="730.0">
                <children>
-                  <Label text="入住日期:  " />
-                  <DatePicker fx:id="CheckindateDatepicked" prefWidth="120.0" />
-                  <Label text="       离开日期:  " />
-                  <DatePicker fx:id="CheckoutdateDatepicked" prefWidth="120.0" />
+                  <Label prefHeight="36.0" prefWidth="100.0" text="入住日期:  ">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <DatePicker fx:id="CheckindateDatepicked" prefHeight="37.0" prefWidth="175.0" />
+                  <Label prefHeight="35.0" prefWidth="130.0" text="       离开日期:  ">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <DatePicker fx:id="CheckoutdateDatepicked" prefHeight="37.0" prefWidth="170.0" />
                </children>
                <padding>
                   <Insets left="50.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="94.0" prefWidth="730.0">
                <children>
-                  <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonClicked" text="开始搜索">
+                  <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonClicked" prefHeight="53.0" prefWidth="120.0" text="开始搜索">
                      <font>
                         <Font size="20.0" />
                      </font>

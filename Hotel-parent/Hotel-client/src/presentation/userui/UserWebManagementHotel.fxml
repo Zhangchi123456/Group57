@@ -79,7 +79,7 @@
          <top>
             <HBox spacing="120.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="用户名">
+                  <Label fx:id="UserName" prefHeight="47.0" prefWidth="195.0" text="XXX">
                      <HBox.margin>
                         <Insets left="30.0" top="40.0" />
                      </HBox.margin>
@@ -87,8 +87,15 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font size="17.0" />
+                        <Font size="22.0" />
                      </font>
+                     <graphic>
+                        <Label prefHeight="27.0" prefWidth="78.0" text="用户名:">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                     </graphic>
                   </Label>
                   <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="46.0" prefWidth="94.0" text="登出">
                      <HBox.margin>

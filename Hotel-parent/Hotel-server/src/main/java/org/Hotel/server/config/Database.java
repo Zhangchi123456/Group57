@@ -8,6 +8,8 @@ import java.sql.*;
  */
 public class Database {
 	
+	private static Database db=null;
+	
 	private Connection conn=null;
 	private Statement stat=null;
 	
@@ -16,13 +18,20 @@ public class Database {
 	private String JDBC_DRIVER;
 	private String DB_URL;
 	
-	public Database(){
+	private Database(){
 		USER=DatabaseConfig.getUser();
 		PASSWORD=DatabaseConfig.getPassword();
 		JDBC_DRIVER=DatabaseConfig.getJDBC_DRIVER();
 		DB_URL=DatabaseConfig.getDB_URL();
 		
 		connect();
+	}
+	
+	public static Database getInstance(){
+		if(db==null){
+			return new Database();
+		}
+		else return db;
 	}
 	
 	public void connect(){
@@ -33,11 +42,13 @@ public class Database {
 		conn = DriverManager.getConnection(DB_URL,USER,PASSWORD);
 		stat=conn.createStatement();
 		
+		
 		}catch(SQLException e){
 			e.printStackTrace();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 	}
 	
 	//close statement and connection
@@ -74,9 +85,35 @@ public class Database {
 		}
 	}
 	
-	
-	
+	public static void main(String[] args){
+		Database db=Database.getInstance();
+		String query="SELECT * FROM hotel";
+		ResultSet rs=db.select(query);
+		String s="";
+		int i=1;
+		try{	
+			while(rs.next()){
+				s+="name:"+rs.getString("name")+i+"\n";
+				i++;
+			}
+			System.out.println(s);}
+			catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				try{
+					rs.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+			}
+			db.close();
+			String src=null;
+			System.out.println(src);
+		}
+		
+		
+}
+
 	
 	
 
-}

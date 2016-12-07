@@ -14,7 +14,7 @@ import org.Hotel.server.datahelp.PromotionDataHelper;
 public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	Database db;
 	public Map<String, HotelPromotionPO> getHotelPromotionData() {
-		db=new Database();
+		db=Database.getInstance();
 		String query="SELECT * FROM hotel_strategy";
 		Map<String, HotelPromotionPO> map= new HashMap<String, HotelPromotionPO>();
 		try{
@@ -22,7 +22,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			while(rs.next()){
 				String hotelname=rs.getString("hotel_name");
 				String name=rs.getString("name");
-				String password=rs.getString("password");
+//				String password=rs.getString("password");
 				//discount
 				double birthdaydiscount=rs.getDouble("birthday_discount");
 				double multiorderdiscount=rs.getDouble("multiorder_discount");
@@ -49,7 +49,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	 * update a record of hotel promotion
 	 */
 	public void updateHotelPromotionData(HotelPromotionPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		int id=0;
 //		int id=po.getID();
@@ -79,7 +79,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}
 	
 	public void insertHotelPromotionData(HotelPromotionPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		//hotel promotion info
 		String type=po.getType();
 		String hotelid=po.getHotelid();
@@ -109,7 +109,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}//end insert hotel promotion
 	
 	public void deleteHotelPromotionData(HotelPromotionPO po) {
-//		db=new Database();
+//		db=Database.getInstance();
 //		int id=po.getId();
 //		String query="DELETE hotel_strategy WHERE id='"+id+"'";
 //		try{
@@ -123,7 +123,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}
 	
 	public Map<Date, WebPromotionPO> getWebPromotionData() {
-		db=new Database();
+		db=Database.getInstance();
 		String query="SELECT * FROM web_strategy";
 		Map<Date, WebPromotionPO> map= new HashMap<Date, WebPromotionPO>();
 		try{
@@ -147,7 +147,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}
 
 	public void updateWebPromotionData(WebPromotionPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		double datediscount=po.getDatediscount();
 		Date startdate=po.getStartdate();
@@ -169,7 +169,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}
 
 	public void deleteWebPromotionData(WebPromotionPO po) {
-//		db=new Database();
+//		db=Database.getInstance();
 //		Date startdate=po.getStartdate();
 //		String query="DELETE hotel_strategy WHERE start_date='"+startdate+"'";
 //		try{
@@ -183,7 +183,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}
 
 	public void insertWebPromotionData(WebPromotionPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		//hotel promotion info
 		double datediscount=po.getDatediscount();
 		Date startdate=po.getStartdate();
