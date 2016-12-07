@@ -60,11 +60,14 @@ public class UserinformationuiController implements Initializable{
      
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		/*membervo=ReservationController.getMembervo();
-		MembercharacterLabel.setText(membervo.getproperty());
+		
+		membervo=ReservationController.getMembervo();
+		MembernameText.setText(membervo.getname());
+		
+		/*MembercharacterLabel.setText(membervo.getproperty());
 		MemberlevelLabel.setText(membervo.getlevel());
 		MembercreditvalueLabel.setText(String.valueOf(membervo.getcredit()));
-		MembernameText.setText(membervo.getname());
+		
 		PhonenumberText.setText(membervo.getphonenumber());
 		BirthdayDatepicker.setValue(membervo.getbirthday());
 		*/

@@ -14,6 +14,7 @@ import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.MemberLevelVO;
 import vo.MemberVO;
+import vo.OrderVO;
 import vo.WebPromotionVO;
 import BusinessLogicService.Service.ReservationLogicService;
 
@@ -141,6 +142,12 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			}
 		 }
 		 return filtedlist;
+	 }
+	 
+	 public ArrayList<HotelVO> filtbydate(ArrayList<HotelVO> hotelList,ArrayList<OrderVO> orderlist){
+		 ArrayList<HotelVO> hotellist=new ArrayList<HotelVO>();
+		 
+		 return null;
 	 }
 	 
 	 public HotelVO findbyname(String name) throws RemoteException {
