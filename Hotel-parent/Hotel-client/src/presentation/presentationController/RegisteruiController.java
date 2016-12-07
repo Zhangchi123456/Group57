@@ -1,6 +1,8 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -21,7 +23,7 @@ import presentation.userui.AlertBox;
 import vo.MemberVO;
 
 public class RegisteruiController implements Initializable {
-	
+	 private RegisterHelper helper=new RegisterHelper();
 	 private String name,password,confirmpassword,phonenumber;
 	 
 	 LocalDate birthday;
@@ -82,7 +84,15 @@ public class RegisteruiController implements Initializable {
     		 birthday=BirthdayDatepicker.getValue();
     		 
     		 membervo.setbyString("Personalmember", name, password, birthday);
-    		 RegisterHelper.setmembervo(membervo);
+    		 try {
+				helper.insertMember(membervo);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	 }else if(Company.isSelected()){
     		 name=NameText.getText();
     		 password=PasswordText.getText();
@@ -90,7 +100,15 @@ public class RegisteruiController implements Initializable {
     		 phonenumber=PhonenumberText.getText();
     		 birthday=null;
     		 membervo.setbyString("Compaanymember", name, password, birthday);
-    		 RegisterHelper.setmembervo(membervo);
+    		 try {
+				helper.insertMember(membervo);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	 }
      }
      
