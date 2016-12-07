@@ -1,7 +1,11 @@
 package vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+
+import org.Hotel.common.po.MemberPO;
 
 public class MemberVO {
     private int memberid;
@@ -41,6 +45,20 @@ public class MemberVO {
     	this.memberbirthday=Date;
     	this.membername=name;
     	this.phonenumber=phonenumber;
+    }
+    
+    public MemberPO topo() throws ParseException{
+    	MemberPO po=new MemberPO();
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    	Date Birthday=formatter.parse(memberbirthday.toString());
+    	po.setBirthday(Birthday);
+    	po.setPassword(password);
+    	po.setCredit(membercreditvalue);
+    	po.setId(memberid);
+    	po.setLevel(Integer.parseInt(memberlevel));
+    	po.setName(membername);
+    	po.setConnection(phonenumber);
+    	return po;
     }
     public int getid(){
    	 return this.memberid;
