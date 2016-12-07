@@ -37,7 +37,9 @@ public class OrderlistuiController implements Initializable{
    @FXML
    private ChoiceBox OrderStationChoiceBox;
    
-   
+   public ObservableList<SimpleOrder> temp;
+   public  static String Orderid;
+   public static String Hotelname;
   
    String UserName ="";// MemberActController.getmemberVo().getname();
    OrderLogicService am = new OrderLogicServiceImpl();
@@ -52,6 +54,13 @@ public class OrderlistuiController implements Initializable{
    
    @FXML 
    private void EvaluateClicked(ActionEvent event){
+	   
+	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
+	  
+	    Orderid=  temp.get(selectnumber).getOrder();
+	    Hotelname  = temp.get(selectnumber).getHotel();
+	    
+	
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
    }
    @FXML 
@@ -91,7 +100,7 @@ public class OrderlistuiController implements Initializable{
 	
 //orderlist在表中显示的方法	
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
-    	ObservableList<SimpleOrder> temp =FXCollections.observableArrayList();
+    	 temp =FXCollections.observableArrayList();
     	for(int i=0;i<orderlist.size();i++){
     	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getStarttime().toString()+"——"
    		+orderlist.get(i).getLeavetime().toString(),orderlist.get(i).getPrice(),
@@ -99,7 +108,7 @@ public class OrderlistuiController implements Initializable{
    		orderlist.get(i).getComment(),orderlist.get(i).getState()));
     	}
 	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
-	//			  new SimpleOrder("aweqwqwe","bqweqqwess","c","d","f","g","q"),
+	//			  new SimpleOrder("123456","zhangchi","无","如家酒店","2016/6/16","2016/6/18","未执行"，"12.0","2016/6/16","2016/6/18",2,false,0,1,1,0),
 		//		  new SimpleOrder("a","b","c","d","f","g","q"),
 			//	  new SimpleOrder("a","b","c","d","f","g","q")
 		//		  );

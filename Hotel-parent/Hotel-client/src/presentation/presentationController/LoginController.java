@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -31,7 +32,7 @@ public class LoginController implements Initializable{
 	@FXML
 	private TextField UserId;
 	@FXML
-	private TextField PassWord;
+	private PasswordField PassWord;
 	@FXML
 	private void RegisterClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Registerui();

@@ -1,9 +1,4 @@
-
-
-
-
 package presentation.presentationController;
-
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,8 +68,12 @@ public class OrderEvaluateController  implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		OrderId.setText(String.valueOf(MemberActController.getOrdervo().getId()));
-        HotelName.setText(String.valueOf(MemberActController.getOrdervo().getHotelid()));	       
+	//	OrderId.setText(String.valueOf(MemberActController.getOrdervo().getId()));
+      //  HotelName.setText(String.valueOf(MemberActController.getOrdervo().getHotelid()));	  
+		OrderlistuiController a = new OrderlistuiController();
+		
+		OrderId.setText(a.Orderid);
+		HotelName.setText(a.Hotelname);
 	}
 
 }
