@@ -1,9 +1,12 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.MemberLogicService;
 import Controller.MemberActController;
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
@@ -21,6 +24,7 @@ public class UserinformationuiController implements Initializable{
 	 private MemberVO membervo;
 	 private String membername,phonenumber;
 	 private LocalDate birthday;
+	 private MemberLogicService memberService;
      @FXML
      private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel,DiscountLabel;
      //             会员性质              会员等级          会员信用值               会员折扣
@@ -33,7 +37,7 @@ public class UserinformationuiController implements Initializable{
     
      
      @FXML
-     private void SaveButtonClicked(ActionEvent event){
+     private void SaveButtonClicked(ActionEvent event) throws ParseException{
     	 if(!Allisfilled()){
     		 AlertBox alt = new AlertBox();
 				alt.display("请务必将用户名和联系方式填写完全");
@@ -41,7 +45,21 @@ public class UserinformationuiController implements Initializable{
     		 membername=MembernameText.getText().toString();
     		 phonenumber=PhonenumberText.getText().toString();
     		 birthday=BirthdayDatepicker.getValue();
+    		
     		 MemberActController.getmemberVo().updateInfo(membername, birthday, phonenumber);
+    		 try {
+				if(memberService.updateMemberinfo(membervo)){
+					 AlertBox alt = new AlertBox();
+						alt.display("保存成功");
+				 }else{
+					 AlertBox alt = new AlertBox();
+						alt.display("保存失败，请重试");
+				 }
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		 
     	 }
      }
@@ -71,6 +89,9 @@ public class UserinformationuiController implements Initializable{
 		PhonenumberText.setText(membervo.getphonenumber());
 		BirthdayDatepicker.setValue(membervo.getbirthday());
 		*/
+		if(membervo.getproperty().equals("企业会员")){
+			DiscountLabel.setText("");
+		}
 	}
 
 }
