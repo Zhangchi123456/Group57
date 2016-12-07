@@ -26,6 +26,7 @@ import Helper.UiswitchHelper;
 public class Main extends Application {
 	 private Stage mainStage;
 		public static void main(String args[]){
+			
 			launch(args);
 		}
 		@Override
