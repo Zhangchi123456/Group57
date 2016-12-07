@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.sql.*;
 
-import org.Hotel.common.po.HotelPromotionPO;
-import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.*;
-import org.Hotel.common.po.WebStaffPO;
 import org.Hotel.server.config.Database;
 import org.Hotel.server.datahelp.UserDataHelper;
 
