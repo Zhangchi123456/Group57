@@ -30,6 +30,7 @@ public class MemberActController {
        }
        
      
+	@SuppressWarnings("unchecked")
 	public static  ArrayList<CreditRecordVO> getCreditRecordVOList(){
     	   return (ArrayList<CreditRecordVO>)memberactmap.get(creditrecordkey);
        }
@@ -40,6 +41,7 @@ public class MemberActController {
       }
       
     
+	@SuppressWarnings("unchecked")
 	public static  ArrayList<HotelVO> getHotelVOList(){
    	   return (ArrayList<HotelVO>)memberactmap.get(hotelListkey);
       }
