@@ -85,7 +85,7 @@ public class HotelVO {
 		
 	}
 	
-	public HotelPO Tohotelpo(){
+	public HotelPO Tohotelpo(HotelVO vo){
 		HotelPO po=new HotelPO();
 		po.setAdsress(address);
 		po.setCircle(circle);

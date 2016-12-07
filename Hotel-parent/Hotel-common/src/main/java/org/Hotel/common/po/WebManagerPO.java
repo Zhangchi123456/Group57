@@ -41,8 +41,17 @@ public class WebManagerPO {
 		
 		this.password = password;
 	}
+	/**
+	 * @return the name
+	 */
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
