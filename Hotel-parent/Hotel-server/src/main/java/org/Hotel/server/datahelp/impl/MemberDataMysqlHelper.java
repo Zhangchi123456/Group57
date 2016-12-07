@@ -38,7 +38,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	 * return all member data from member table
 	 */
 	public Map<Integer, MemberPO> getMemberData() {
-		db=new Database();
+		db=Database.getInstance();;
 		Map<Integer,MemberPO> map=new HashMap<Integer,MemberPO>();
 		String query="SELECT * FROM member";
 		try{
@@ -70,7 +70,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	 * update member data:password,credit,birthday,level,phone_num,name
 	 */	
 	public void updateMemberData(MemberPO memberpo) {
-		db=new Database();
+		db=Database.getInstance();;
 		int id=memberpo.getId();
 		int credit=memberpo.getCredit();
 		int level=memberpo.getLevel();
@@ -100,7 +100,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public void insertMemberData(MemberPO memberpo) {
-		db=new Database();
+		db=Database.getInstance();;
 		
 		int credit=memberpo.getCredit();
 		int level=memberpo.getLevel();
@@ -136,7 +136,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public Map<Integer, MemberLevelPO> getMemberLevelData() {
-		db=new Database();
+		db=Database.getInstance();;
 		String query="SELECT * FROM member_level";
 		Map<Integer,MemberLevelPO> map=new HashMap<Integer,MemberLevelPO>();
 		try{
@@ -160,7 +160,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public void updateMemberLevelData(MemberLevelPO memberlevelpo) {
-		db=new Database();
+		db=Database.getInstance();;
 		double discount=memberlevelpo.getDiscount();
 		int level=memberlevelpo.getLevel();
 		int credit=memberlevelpo.getCredit();
@@ -189,7 +189,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	 */
 	public Map<Integer, CreditPO> getCreditData() {
 		
-		db=new Database();
+		db=Database.getInstance();;
 		Map<Integer,CreditPO> map=new HashMap<Integer,CreditPO>();
 		String query="SELECT * FROM credit_record";
 		try{
@@ -243,7 +243,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	}
 
 	public void insertCreditData(CreditPO creditpo) {
-		db=new Database();
+		db=Database.getInstance();;
 		//credit record info
 		int id=creditpo.getId();
 		int orderID=creditpo.getOrderid();

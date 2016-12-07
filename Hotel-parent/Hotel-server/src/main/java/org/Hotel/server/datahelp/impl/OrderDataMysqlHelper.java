@@ -12,21 +12,23 @@ import org.Hotel.server.datahelp.OrderDataHelper;
 public class OrderDataMysqlHelper implements OrderDataHelper {
 	Database db;
 	public Map<Integer, OrderPO> getOrderData() {
-		db=new Database();
+		db=Database.getInstance();
 		Map<Integer, OrderPO> map=new HashMap<Integer, OrderPO>();
 		
-		String query="SELECT order.id,order.hotel_name,order.statr_time"
-				+ ",order.end_time,order.last_time,order.remove_time,order.people_num,order.have_kids,"
-				+ "order.single_room,order.standard_room,order.family_room,order.suite_room,"
-				+ "order.status,order.price,order.comment,order.score,member.name AS member_name"
-				+ " FROM order,member WHERE order.member_id=member.id";
+//		String query="SELECT order.id,order.hotel_name,order.statr_time"
+//				+ ",order.end_time,order.last_time,order.remove_time,order.people_num,order.have_kids,"
+//				+ "order.single_room,order.standard_room,order.family_room,order.suite_room,"
+//				+ "order.status,order.price,order.comment,order.score,member.name AS member_name"
+//				+ " FROM order,member WHERE order.member_id=member.id";
+		String query="SELECT * FROM order";
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
 				//info
 				int id=rs.getInt("id");
 				String hotelname=rs.getString("hotel_name");
-				String membername=rs.getString("member_name");
+				int memberid=rs.getInt("member_id");
+				String membername=null;
 				String state=rs.getString("status");
 				double price=rs.getDouble("price");
 				int peoplenum=rs.getInt("people_num");
@@ -64,7 +66,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 	
 
 	public void updateOrderData(OrderPO orderpo) {
-		db=new Database();
+		db=Database.getInstance();
 		//order info
 		int id=orderpo.getId();
 		String state=orderpo.getState();
@@ -89,7 +91,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 	}
 
 	public void insertOrderData(OrderPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		//info
 		int id=po.getId();
 		String hotelname=po.getHotelid();

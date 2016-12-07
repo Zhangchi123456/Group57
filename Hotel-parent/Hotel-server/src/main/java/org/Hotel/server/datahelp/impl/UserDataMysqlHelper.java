@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.sql.*;
 
+import org.Hotel.common.po.WebManagerPO;
 import org.Hotel.common.po.*;
 import org.Hotel.server.config.Database;
 import org.Hotel.server.datahelp.UserDataHelper;
@@ -12,7 +13,7 @@ import org.Hotel.server.datahelp.UserDataHelper;
 public class UserDataMysqlHelper implements UserDataHelper {
 	Database db;
 	public Map<String, WebStaffPO> getWebStaffData() {
-		db=new Database();
+		db=Database.getInstance();
 		String query="SELECT * FROM web_staff";
 		Map<String, WebStaffPO> map= new HashMap<String, WebStaffPO>();
 		try{
@@ -35,7 +36,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	}
 
 	public void updateWebStaffData(WebStaffPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		int id=po.getId();
 		String name=po.getName();
@@ -60,7 +61,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	}
 
 	public void insertWebStaffData(WebStaffPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		String name=po.getName();
 		String password=po.getPassword();
@@ -80,7 +81,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	 * return all hotel staff data
 	 */
 	public Map<String, HotelStaffPO> getHotelStaffData() {
-		db=new Database();
+		db=Database.getInstance();
 		String query="SELECT * FROM hotel_staff";
 		Map<String, HotelStaffPO> map= new HashMap<String, HotelStaffPO>();
 		try{
@@ -104,7 +105,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	}
 
 	public void updateHotelStaffData(HotelStaffPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		int id=po.getId();
 		String name=po.getName();
@@ -125,7 +126,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	}
 
 	public void insertHotelStaffData(HotelStaffPO po) {
-		db=new Database();
+		db=Database.getInstance();
 		
 		String name=po.getName();
 		String password=po.getPassword();
@@ -146,9 +147,9 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	public Map<String, WebManagerPO> getWebManagerData() {
-		db=new Database();
+		db=Database.getInstance();
 		String query="SELECT * FROM web_manager";
 		Map<String, WebManagerPO> map= new HashMap<String, WebManagerPO>();
 		try{

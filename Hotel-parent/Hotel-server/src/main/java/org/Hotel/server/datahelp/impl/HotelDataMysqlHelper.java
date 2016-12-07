@@ -20,21 +20,18 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		Map<String, HotelPO> map=new HashMap<String,HotelPO>();
 		String query="SELECT * FROM hotel";
 		try{
-			db=new Database();
+			db=Database.getInstance();
 			ResultSet hotelrs=db.select(query);
 			
 			while(hotelrs.next()){
 				//hotel info
 				int id=hotelrs.getInt("id");
 				String name=hotelrs.getString("name");
-				//get circle from circle table from mysql
-				int circle_id=hotelrs.getInt("circle");
-				String circle=getCircle(db,circle_id);
-				
+				String circle=hotelrs.getString("circle_name");
+				double grade=hotelrs.getDouble("score");
 				int star=hotelrs.getInt("star");
-				double grade=hotelrs.getInt("score");
 				String introduction=hotelrs.getString("introduction");
-				String facility=hotelrs.getString("facility");
+//				String facility=hotelrs.getString("facility");  facility attribute was emerged with introduction
 				String city=hotelrs.getString("city");
 				String address=hotelrs.getString("address");
 				//room
@@ -75,28 +72,29 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end getHotelData
 
-	private String getCircle(Database db, int circle_id) {
-		String query="SELECT name FROM circle WHERE id="+String.valueOf(circle_id);
-		ResultSet rs;
-		String res=null;
-		try{
-			rs=db.select(query);
-			if(rs.next()){
-				res=rs.getString("name");
-				return res;
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return res;
-	}
+	//add circle_name to table hotel
+//	private String getCircle(Database db, int circle_id) {
+//		String query="SELECT name FROM circle WHERE id="+String.valueOf(circle_id);
+//		ResultSet rs;
+//		String res=null;
+//		try{
+//			rs=db.select(query);
+//			if(rs.next()){
+//				res=rs.getString("name");
+//				return res;
+//			}
+//			
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return res;
+//	}
 
 	/*
 	 * updata a hotel record 
 	 */
 	public void updateHotelData(HotelPO hotelpo){
-		db=new Database();
+		db=Database.getInstance();
 		//get attributes
 		String name=hotelpo.getName();
 		int star=hotelpo.getStar();
@@ -119,7 +117,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				+" WHERE name="+"'"+name+"'";
 		
 		try{
-			db=new Database();
+			db=Database.getInstance();
 			db.update(query);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -132,7 +130,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	 * insert a hotel record 
 	 */
 	public void insertHotelData(HotelPO hotelpo){
-		db=new Database();
+		db=Database.getInstance();
 		//hotelinfo
 		String name=hotelpo.getName();
 		int star=hotelpo.getStar();
@@ -142,7 +140,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		String introduction=hotelpo.getIntroduction();
 		//get circle id from mysql
 		String circle=hotelpo.getCircle();
-		int circleID=getCircleID(db,circle);
 		//Room
 		//room nums
 		int singleRoom=hotelpo.getSingleRoom();
@@ -170,7 +167,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 					"'"+String.valueOf(score)+"',"+
 					"'"+city+"',"+
 					"'"+address+"',"+
-					"'"+String.valueOf(circleID)+"',"+
+					"'"+circle+"',"+
 					"'"+String.valueOf(singleRoom)+"',"+
 					"'"+String.valueOf(lsingleRoom)+"',"+
 					"'"+String.valueOf(psingleRoom)+"',"+
@@ -192,30 +189,32 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 			db.close();
 		}
 	}//end insert
+	
 	//get circle id from my sql by circle name
-	private int getCircleID(Database db,String name){
-		String query="SELECT id FROM circle WHERE name="+"'"+name+"'";
-		ResultSet rs;
-		int res;
-		try{
-			rs=db.select(query);
-			if(rs.next()){
-				res=rs.getInt("id");
-				return res;
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		return -1;
-	}
+//	private int getCircleID(Database db,String name){
+//		db=Database.getInstance();
+//		String query="SELECT id FROM circle WHERE name="+"'"+name+"'";
+//		ResultSet rs;
+//		int res;
+//		try{
+//			rs=db.select(query);
+//			if(rs.next()){
+//				res=rs.getInt("id");
+//				return res;
+//			}
+//			
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		
+//		return -1;
+//	}
 	
 	/*
 	 * delete a hotel record 
 	 */
 	public void deleteHotelData(HotelPO hotelpo){
-		db=new Database();
+		db=Database.getInstance();
 		String name=hotelpo.getName();
 		String query="DELETE FROM hotel WHERE name='"+name+"'";
 		try{
@@ -231,7 +230,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 //		Map<Integer, RoomPO> map=new HashMap<Integer,RoomPO>();
 //		String query="SELECT * FROM room";
 //		//try{
-//			db=new Database();
+//			db=Database.getInstance();
 //			ResultSet roomrs=db.select(query);
 //			
 //			//while(roomrs.next()){
@@ -257,10 +256,10 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	}//end getRoomData
 	
 
-	private String getHotelName(Database db2, int hotelid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	private String getHotelName(Database db2, int hotelid) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	public void updateRoomData(RoomPO roompo) {
 		// TODO Auto-generated method stub
