@@ -148,40 +148,40 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		return false;
 	}
 	
-	public ArrayList<HotelStaffPO> findByHotelStaff(String name) throws RemoteException{
-		ArrayList<HotelStaffPO> hotelslist = new ArrayList<HotelStaffPO>();
+	public HotelStaffPO findByHotelStaff(String name) throws RemoteException{
+		HotelStaffPO po = new HotelStaffPO();
 		Iterator<Entry<String, HotelStaffPO>> iterator = map_hotels.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<String, HotelStaffPO> entry = iterator.next();
-			HotelStaffPO hotelspo = entry.getValue();
-			if(name == hotelspo.getName())
-			hotelslist.add(hotelspo);
+			po = entry.getValue();
+			if(name == po.getName())
+			break;
 		}
-		return hotelslist;
+		return po;
 	}
 	
-	public ArrayList<WebStaffPO> findByWebStaff(String name) throws RemoteException{
-		ArrayList<WebStaffPO> webslist = new ArrayList<WebStaffPO>();
+	public WebStaffPO findByWebStaff(String name) throws RemoteException{
+		WebStaffPO po = new WebStaffPO();
 		Iterator<Entry<String, WebStaffPO>> iterator = map_webs.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<String, WebStaffPO> entry = iterator.next();
-			WebStaffPO webspo = entry.getValue();
-			if(name == webspo.getName())
-			webslist.add(webspo);
+			po = entry.getValue();
+			if(name == po.getName())
+			break;
 		}
-		return webslist;
+		return po;
 	}
 	
-	public ArrayList<WebManagerPO> findByWebManager(String name) throws RemoteException{
-		ArrayList<WebManagerPO> webmlist = new ArrayList<WebManagerPO>();
+	public WebManagerPO findByWebManager(String name) throws RemoteException{
+		WebManagerPO po = new WebManagerPO();
 		Iterator<Entry<String, WebManagerPO>> iterator = map_webm.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<String, WebManagerPO> entry = iterator.next();
-			WebManagerPO webmpo = entry.getValue();
-			if(name == webmpo.getName())
-			webmlist.add(webmpo);
+			po = entry.getValue();
+			if(name == po.getName())
+			break;
 		}
-		return webmlist;
+		return po;
 	}
 	
 	public ArrayList<HotelStaffPO> showAllHotelStaff() throws RemoteException{
