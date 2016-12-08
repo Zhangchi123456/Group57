@@ -56,8 +56,8 @@ public class LoginController implements Initializable{
 		else	{
 			String LogId=UserId.getText().toString();
 			String Logpassword=PassWord.getText().toString();
-			LogVO logvo=new LogVO(LogId,Logpassword);
-			LoginHelper.setLogVO(logvo);
+//			LogVO logvo=new LogVO(LogId,Logpassword);
+//			LoginHelper.setLogVO(logvo);
 			/*===================================================
 			 * author Jerry
 			 */
@@ -66,37 +66,46 @@ public class LoginController implements Initializable{
 			if(!lcs.isFound(LogId, Logpassword)){
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
+				System.out.println(1);
 			}else if(!lcs.haveLogin(LogId, Logpassword)){
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
+				System.out.println(3);
 			}//find user
 			else if(isMember(lcs.findUser(LogId, Logpassword))){
 				UiswitchHelper.getApplication().goto_Usermainui();
 				//post condition
-				lcs.addCurrentUserList(name);
-				lcs.setLocalUser(name);
+				lcs.addCurrentUserList(LogId);
+				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+				LoginHelper.setLogVO(vo);
+				
+				
 			}
 			else if(isHotelStaff(lcs.findUser(LogId, Logpassword))){
 				UiswitchHelper.getApplication().goto_HotelMainui();
 				//post condition
-				lcs.addCurrentUserList(name);
-				lcs.setLocalUser(name);
+				lcs.addCurrentUserList(LogId);
+				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+				LoginHelper.setLogVO(vo);
 			}
 			else if(isWebManager(lcs.findUser(LogId, Logpassword))){
 				UiswitchHelper.getApplication().goto_UserWebManagementui();
 				//post condition
-				lcs.addCurrentUserList(name);
-				lcs.setLocalUser(name);
+				lcs.addCurrentUserList(LogId);
+				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+				LoginHelper.setLogVO(vo);
 			}
 			else if(isWebStaff(lcs.findUser(LogId, Logpassword))){
 				UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 				//post condition
-				lcs.addCurrentUserList(name);
-				lcs.setLocalUser(name);
+				lcs.addCurrentUserList(LogId);
+				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+				LoginHelper.setLogVO(vo);
 			}
 			else {
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
+				System.out.println(4);
 			}
 				
 //			if(UserId.getText().trim().substring(0, 1).equals("1"))
@@ -107,7 +116,7 @@ public class LoginController implements Initializable{
 //			UiswitchHelper.getApplication().goto_UserWebManagementui();
 //		    if(UserId.getText().trim().substring(0, 1).equals("4"))
 //			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-		    LogVO a=new LogVO(UserId.getText(),PassWord.getText());
+//		    LogVO a=new LogVO(UserId.getText(),PassWord.getText());
 		}
 	}
 	    

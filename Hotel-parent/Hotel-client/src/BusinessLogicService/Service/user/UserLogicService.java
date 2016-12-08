@@ -9,4 +9,6 @@ public interface UserLogicService {
 	public boolean isFound(String name,String password);
 	
 	public UserType findUser(String name,String password);
+	
+	public void addCurrentUser(String name);
 }

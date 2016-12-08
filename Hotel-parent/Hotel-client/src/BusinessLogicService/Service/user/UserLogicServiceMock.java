@@ -51,4 +51,10 @@ public class UserLogicServiceMock implements UserLogicService {
 		return null;
 	}
 
+	@Override
+	public void addCurrentUser(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

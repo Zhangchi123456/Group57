@@ -12,5 +12,6 @@ public interface LoginControllerService {
 	public UserType findUser(String name,String password);
 	//in case duplicated log in
 	public void addCurrentUserList(String name);
+	
 
 }

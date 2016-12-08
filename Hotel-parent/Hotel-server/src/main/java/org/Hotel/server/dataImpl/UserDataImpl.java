@@ -43,6 +43,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			dataFactory = new DataFactoryImpl();
 			hotelsDataHelper = dataFactory.getUserDataHelper();
 			map_hotels = hotelsDataHelper.getHotelStaffData();
+			
 		}
 
 		if(map_webs == null){
