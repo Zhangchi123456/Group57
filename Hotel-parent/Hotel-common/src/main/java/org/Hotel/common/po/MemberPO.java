@@ -24,7 +24,8 @@ public class MemberPO {
 		super();
 	}
 	
-	public MemberPO(int id, String password, String connection, Date birthday, String name, int credit, boolean enterprise, int level) {
+	public MemberPO(int id, String password, String connection, 
+			Date birthday, String name, int credit, boolean enterprise, int level) {
 		
 		super();
 		

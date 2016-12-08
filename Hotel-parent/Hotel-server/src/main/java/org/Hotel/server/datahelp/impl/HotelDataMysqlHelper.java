@@ -117,14 +117,13 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				+" WHERE name="+"'"+name+"'";
 		
 		try{
-			db=Database.getInstance();
 			db.update(query);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			db.close();
 		}
-	}
+	}//end update hotel data
 	
 	/*
 	 * insert a hotel record 
@@ -138,7 +137,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		String city=hotelpo.getCity();
 		String address=hotelpo.getAddress();
 		String introduction=hotelpo.getIntroduction();
-		//get circle id from mysql
 		String circle=hotelpo.getCircle();
 		//Room
 		//room nums
@@ -158,7 +156,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		double psuiteRoom=hotelpo.getSuiteRoomPrice();
 		
 		try{
-			String query="INSERT INTO hotel(name,star,score,city,address,introduction,circle_id,"
+			String query="INSERT INTO hotel(name,star,score,city,address,introduction,circle,"
 					+ "single_room,single_room_left,single_room_price,standard_room,standard_room_left,"
 					+ "standard_room_price,family_room,family_room_left,family_room_price,"
 					+ "suite_room,suite_room_left,suite_room_price) VALUE("
@@ -188,7 +186,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		}finally{
 			db.close();
 		}
-	}//end insert
+	}//end insert hotel data
 	
 	//get circle id from my sql by circle name
 //	private int getCircleID(Database db,String name){
@@ -212,18 +210,19 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	
 	/*
 	 * delete a hotel record 
+	 * not such feature in system
 	 */
 	public void deleteHotelData(HotelPO hotelpo){
-		db=Database.getInstance();
-		String name=hotelpo.getName();
-		String query="DELETE FROM hotel WHERE name='"+name+"'";
-		try{
-			db.update(query);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			db.close();
-		}
+//		db=Database.getInstance();
+//		String name=hotelpo.getName();
+//		String query="DELETE FROM hotel WHERE name='"+name+"'";
+//		try{
+//			db.update(query);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
 	}
 	// return all roominfo
 	public Map<Integer, RoomPO> getRoomData() {
@@ -260,7 +259,11 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
-
+	
+	/*
+	 * system have no such feature
+	 */
+			
 	public void updateRoomData(RoomPO roompo) {
 		// TODO Auto-generated method stub
 		
@@ -277,22 +280,88 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	}
 
 	public Map<String, CirclePO> getCircleData() {
+		String query="SELECT * FROM circle";
+		db=Database.getInstance();
+		Map<String,CirclePO> map=new HashMap<String,CirclePO>();
+		try{
+			ResultSet rs=db.select(query);
+			String name=rs.getString("name");
+			double discount=rs.getDouble("discount");
+			String city = rs.getString("city");
+			
+			while(rs.next()){
+				CirclePO po=new CirclePO(discount,  city,  name) ;
+				map.put(name, po);
+			}
+			return map;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}//end get circle data
 
-	public void updateCircleData(CirclePO circlepo) {
+	public void updateCircleData(CirclePO po) {
+		db=Database.getInstance();
+		
+		String name=po.getName();
+		String city=po.getCity();
+		double discount=po.getDiscount();
+		
+		String query="UPDATE circle SET name="+"'"+name+"',"
+				+ "city='"+city+"',"
+				+ "discount='"+discount+"'";
+		
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 		// TODO Auto-generated method stub
+		
+	}//end update circle data
+
+	//system has no such feature
+	public void insertCircleData(CirclePO po) {
+//		db=Database.getInstance();
+//		
+//		String name=po.getName();
+//		String city=po.getCity();
+//		double discount=po.getDiscount();
+//		
+//		String query="INSERT INTO circle(name,city,discount) VALUE("+"'"+name+"',"
+//				+ "'"+city+"',"
+//				+ "'"+discount+"')";
+//		
+//		try{
+//			db.update(query);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
 		
 	}
 
-	public void insertCircleData(CirclePO circlepo) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void deleteCircleData(CirclePO circlepo) {
-		// TODO Auto-generated method stub
+	//system has no such feacher
+	public void deleteCircleData(CirclePO po) {
+//		db=Database.getInstance();
+//		
+//		String name=po.getName();
+//		
+//		String query="DELETE FROM circle WHERE name='"+name+"'";
+//		
+//		try{
+//			db.update(query);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
 		
 	}
 	

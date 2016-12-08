@@ -27,12 +27,11 @@ import org.Hotel.server.datahelp.*;
  * @author Jerry
  *
  */
-/**
- * @author Jerry
- *
- */
+
+
 public class MemberDataMysqlHelper implements MemberDataHelper{
 	Database db;
+	
 	//Member
 	/* 
 	 * return all member data from member table
@@ -70,7 +69,8 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	 * update member data:password,credit,birthday,level,phone_num,name
 	 */	
 	public void updateMemberData(MemberPO memberpo) {
-		db=Database.getInstance();;
+		db=Database.getInstance();
+		//member info
 		int id=memberpo.getId();
 		int credit=memberpo.getCredit();
 		int level=memberpo.getLevel();
@@ -97,8 +97,9 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		
-	}
+	}//end update member info
 
+	
 	public void insertMemberData(MemberPO memberpo) {
 		db=Database.getInstance();;
 		
@@ -129,12 +130,14 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		
-	}
+	}//end insert member data
+	
 	//not such feature in System
 	public void deleteMemberData(MemberPO meberpo) {
 		
 	}
-
+	
+	
 	public Map<Integer, MemberLevelPO> getMemberLevelData() {
 		db=Database.getInstance();;
 		String query="SELECT * FROM member_level";
@@ -157,15 +160,15 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		return null;
-	}
+	}//end return member level data
 
 	public void updateMemberLevelData(MemberLevelPO memberlevelpo) {
 		db=Database.getInstance();;
 		double discount=memberlevelpo.getDiscount();
 		int level=memberlevelpo.getLevel();
 		int credit=memberlevelpo.getCredit();
-		String query="UPDATE member_level SET discount='"+String.valueOf(discount)+"',"
-				+ "credit='"+String.valueOf(credit)+"' WHERE level='"+String.valueOf(level)+"'";
+		String query="UPDATE member_level SET discount='"+discount+"',"
+				+ "credit='"+credit+"' WHERE level='"+level+"'";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -174,7 +177,8 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		
-	}
+	}//end update member level data
+	
 	//System don't have this feature
 	public void insertMemberLevelData(MemberLevelPO memberlvpo) {
 		
@@ -184,6 +188,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		// TODO Auto-generated method stub
 		
 	}
+	
 	/*
 	 * return member credit record
 	 */
@@ -195,16 +200,16 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
+				//member info
 				int id=rs.getInt("id");
 				int orderID=rs.getInt("order_id");
 				int credit=rs.getInt("credit");
 				int creditchange=rs.getInt("credit_change");
 				
-				String action=rs.getString("action");
 				Date time=rs.getDate("time");
-				//get member name
-				int memID=rs.getInt("member_id");
-				String name=getMemberName(db,memID);
+				
+				String action=rs.getString("action");
+				String name=rs.getString("member_name");
 				
 				CreditPO po=new CreditPO(name, id, orderID,creditchange, credit, time, action);
 				
@@ -219,21 +224,23 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		return null;
-	}
+	}//end get member credit record
+	
 	//get member name by member id
+	//replace by add member name into table crecdt_record
 	private String getMemberName(Database db2, int memID) {
-		String query="Select name FROM member WHERE id='"+String.valueOf(memID)+"'";
-		try{
-			ResultSet rs=db.select(query);
-			if(rs.next()){
-				String name=rs.getString("name");
-				return name;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			db.close();
-		}
+//		String query="Select name FROM member WHERE id='"+String.valueOf(memID)+"'";
+//		try{
+//			ResultSet rs=db.select(query);
+//			if(rs.next()){
+//				String name=rs.getString("name");
+//				return name;
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
 		return null;
 	}
 	//System have no such feature
@@ -250,20 +257,20 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		int credit=creditpo.getCredit();
 		int creditchange=creditpo.getCreditchange();
 		
-		String action=creditpo.getAction();
 		Date time=creditpo.getTime();
-		//get member id by name
-		String name=creditpo.getName();
-		int memID=getMemberID(db,name);
 		
-		String query="INSERT INTO member(id,member_id,action,credit,credit_change,order_id"
+		String action=creditpo.getAction();
+		String name=creditpo.getName();
+		
+		
+		String query="INSERT INTO member(time,member_name,action,credit,credit_change,order_id"
 				+" VALUE("
-				+ "'"+String.valueOf(id)+"',"+
-				"'"+String.valueOf(memID)+"',"+
+				+ "'"+time+"',"+
+				"'"+name+"',"+
 				"'"+action+"',"+
-				"'"+String.valueOf(credit)+"',"+
-				"'"+String.valueOf(creditchange)+"',"+
-				"'"+String.valueOf(orderID)+"'"+
+				"'"+credit+"',"+
+				"'"+creditchange+"',"+
+				"'"+orderID+"'"+
 				")";
 		
 		try{
@@ -275,19 +282,21 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		}
 		
 	}
+	
+	//diprecated by add member name into credit_record table
 	private int getMemberID(Database db,String name){
-		String query="Select id FROM member WHERE name='"+name+"'";
-		try{
-			ResultSet rs=db.select(query);
-			if(rs.next()){
-				int id=rs.getInt("id");
-				return id;
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			db.close();
-		}
+//		String query="Select id FROM member WHERE name='"+name+"'";
+//		try{
+//			ResultSet rs=db.select(query);
+//			if(rs.next()){
+//				int id=rs.getInt("id");
+//				return id;
+//			}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}finally{
+//			db.close();
+//		}
 		return 0;
 	}
 	//System have no such feature

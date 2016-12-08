@@ -26,13 +26,13 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 			while(rs.next()){
 				//info
 				int id=rs.getInt("id");
-				String hotelname=rs.getString("hotel_name");
-				int memberid=rs.getInt("member_id");
-				String membername=null;
-				String state=rs.getString("status");
-				double price=rs.getDouble("price");
 				int peoplenum=rs.getInt("people_num");
+				double price=rs.getDouble("price");
 				boolean havekids=rs.getBoolean("have_kids");
+				
+				String hotelname=rs.getString("hotel_name");
+				String membername=rs.getString("member_name");
+				String state=rs.getString("status");
 				//date
 				Date starttime=rs.getDate("start_time");
 				Date endtime=rs.getDate("end_time");
@@ -61,28 +61,29 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 			db.close();
 		}
 		return null;
-	}
-
-	
+	}//end get order data
 
 	public void updateOrderData(OrderPO orderpo) {
 		db=Database.getInstance();
 		//order info
 		int id=orderpo.getId();
+		double grade=orderpo.getGrade();
+		
 		String state=orderpo.getState();
+		String comment=orderpo.getComment();
 		//date
 		Date dischargetime=orderpo.getDischargetime();
 		//comment
-		String comment=orderpo.getComment();
-		double grade=orderpo.getGrade();
+		
+		
 		
 		String query="UPDATE order SET status='"+state+"',"
-				+ "remove_time='"+String.valueOf(dischargetime)+"',"
+				+ "remove_time='"+dischargetime+"',"
 				+ "comment='"+comment+"',"
-				+ "score='"+String.valueOf(grade)+"'"
-				+ " WHERE id='"+String.valueOf(id)+"'";
+				+ "score='"+grade+"'"
+				+ " WHERE id='"+id+"'";
 		try{
-			db.select(query);
+			db.update(query);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
@@ -94,13 +95,15 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		db=Database.getInstance();
 		//info
 		int id=po.getId();
-		String hotelname=po.getHotelid();
-		String membername=po.getName();
-		int memberid=getmemberid(db,membername);
-		String state=po.getState();
-		double price=po.getPrice();
 		int peoplenum=po.getPeoplenum();
 		boolean havekids=po.isHavekids();
+		double price=po.getPrice();
+		double grade=po.getGrade();
+		
+		String comment=po.getComment();
+		String hotelname=po.getHotelid();
+		String membername=po.getName();
+		String state=po.getState();
 		//date
 		Date starttime=po.getStarttime();
 		Date endtime=po.getLeavetime();
@@ -111,20 +114,18 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		int standardRoom=po.getStandardRoom();
 		int familyRoom=po.getFamilyRoom();
 		int suiteRoom=po.getSuiteRoom();
-		//comment
-		String comment=po.getComment();
-		double grade=po.getGrade();
 		
-		String query="INSERT INTO member(hotel_name,member_id,start_time,end_time,last_time,"
-				+ "remove_time,people_num,have_kids,single_room,standard_room,family_room"
-				+ ",suite_room,status,comment,score) VALUE("
-				+ "'"+hotelname+"',"+ "'"+String.valueOf(memberid)+"',"+ "'"+String.valueOf(starttime)+"',"+ 
-				"'"+String.valueOf(endtime)+"',"+ "'"+String.valueOf(lasttime)+"',"+
-				"'"+String.valueOf(dischargetime)+"',"+"'"+String.valueOf(peoplenum)
-				+"',"+"'"+String.valueOf(havekids)+"',"+"'"+String.valueOf(singleRoom)+"',"
-				+"'"+String.valueOf(standardRoom)+"',"+"'"+String.valueOf(familyRoom)+"',"
-				+"'"+String.valueOf(suiteRoom)+"',"+"'"+state+"',"
-				+"'"+comment+"',"+"'"+String.valueOf(grade)+"'"
+		String query="INSERT INTO member(hotel_name,member_name,start_time,end_time,last_time,"
+				+"remove_time,people_num,have_kids,single_room,standard_room,family_room"
+				+",suite_room,status,comment,score) VALUE("
+				
+				+"'"+hotelname+"',"+ "'"+membername+"',"+ "'"+starttime+"',"
+				+"'"+endtime+"',"+ "'"+lasttime+"',"
+				+"'"+dischargetime+"',"+"'"+peoplenum+"',"
+				+"'"+havekids+"',"+"'"+singleRoom+"',"
+				+"'"+standardRoom+"',"+"'"+familyRoom+"',"
+				+"'"+suiteRoom+"',"+"'"+state+"',"
+				+"'"+comment+"',"+"'"+grade+"'"
 				+ ")";
 				
 		try{
@@ -135,22 +136,22 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 			db.close();
 		}
 		
-	}
+	}//end insert order data
+	
 	//get member id by member name
+	//add member name to order table so no need to call member id
 	private int getmemberid(Database db, String membername) {
-		String query="SELECT id FROM member WHERE name='"+membername+"'";
-		try{
-			ResultSet rs=db.select(query);
-			if(rs.next()){
-				int id=rs.getInt("id");
-				return id;			}
-		}catch (Exception e){
-			e.printStackTrace();
-		}
+//		String query="SELECT id FROM member WHERE name='"+membername+"'";
+//		try{
+//			ResultSet rs=db.select(query);
+//			if(rs.next()){
+//				int id=rs.getInt("id");
+//				return id;			}
+//		}catch (Exception e){
+//			e.printStackTrace();
+//		}
 		return 0;
 	}
-
-
 
 	//no such feature
 	public void deleteOrderData(OrderPO orderpo) {

@@ -20,13 +20,13 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
+				int id=rs.getInt("id");
 				String hotelname=rs.getString("hotel_name");
 				String name=rs.getString("name");
-//				String password=rs.getString("password");
 				//discount
 				double birthdaydiscount=rs.getDouble("birthday_discount");
 				double multiorderdiscount=rs.getDouble("multiorder_discount");
-				double enterpricediscount=rs.getDouble("enterprise_discount");
+				double enterprisediscount=rs.getDouble("enterprise_discount");
 				double datediscount=rs.getDouble("date_discount");
 				//date
 				Date startdate=rs.getDate("start_date");
@@ -34,7 +34,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			   
 				HotelPromotionPO po=new HotelPromotionPO(name, hotelname,birthdaydiscount,
 						multiorderdiscount,
-						enterpricediscount,datediscount,startdate,enddate);
+						enterprisediscount,datediscount,startdate,enddate);
 				map.put(name, po);
 			}
 			return map;
@@ -44,15 +44,13 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			db.close();
 		}
 		return null;
-	}
+	}//end get hotel strategy data 
 	/*
 	 * update a record of hotel promotion
 	 */
 	public void updateHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
 		
-		int id=0;
-//		int id=po.getID();
 		double birthdaydiscount=po.getBirthdaydiscount();
 		double multiorderdiscount=po.getMultiorderdiscount();
 		double enterpricediscount=po.getEnterpricediscount();
@@ -60,13 +58,13 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		Date startdate=po.getStartdate();
 		Date enddate=po.getEnddate();
 		
-		String query="UPDATE hotel_strategy SET bithday_discount="+"'"+String.valueOf(birthdaydiscount)+"',"
-				+ "multiorder_discount="+"'"+String.valueOf(multiorderdiscount)+"',"
-				+ "enterprice_discount_discount="+"'"+String.valueOf(enterpricediscount)+"',"
-				+ "date_discount="+"'"+String.valueOf(datediscount)+"',"
-				+ "start_date="+"'"+String.valueOf(startdate)+"',"
-				+ "end_date="+"'"+String.valueOf(enddate)+"'"		
-				+ " WHERE id="+"'"+String.valueOf(id)+"'"	;
+		String query="UPDATE hotel_strategy SET bithday_discount="+"'"+birthdaydiscount+"',"
+				+ "multiorder_discount="+"'"+multiorderdiscount+"',"
+				+ "enterprice_discount_discount="+"'"+enterpricediscount+"',"
+				+ "date_discount="+"'"+datediscount+"',"
+				+ "start_date="+"'"+startdate+"',"
+				+ "end_date="+"'"+enddate+"'"		
+				+ " WHERE startdate="+"'"+startdate+"'";
 				
 		try{
 			db.update(query);
@@ -76,7 +74,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			db.close();
 		}
 		
-	}
+	}//end update hotel strategy
 	
 	public void insertHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
@@ -93,12 +91,14 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		String query="INSERT INTO hotel_strategy(hotel_name,birthday_discount,"
 				+ "multiorder_discount,enterprice_discount,date_discount"
 				+ "start_date,end_date,name) VALUE("
-				+ "'"+hotelid+"',"+ "'"+String.valueOf(birthdaydiscount)+"',"+ "'"
-				+String.valueOf(multiorderdiscount)+"',"+ 
-				"'"+String.valueOf(enterpricediscount)+"',"+ "'"+
-				String.valueOf(datediscount)+"',"+
-				"'"+String.valueOf(startdate)+"',"+"'"+String.valueOf(enddate)
-				+"',"+"'"+type+"')";
+				+ "'"+hotelid+"',"
+				+ "'"+birthdaydiscount+"',"
+				+ "'"+multiorderdiscount+"',"
+				+ "'"+enterpricediscount+"',"
+				+ "'"+datediscount+"',"
+				+ "'"+startdate+"',"
+				+ "'"+enddate+ "',"
+				+ "'"+type+"')";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -124,6 +124,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	
 	public Map<Date, WebPromotionPO> getWebPromotionData() {
 		db=Database.getInstance();
+		
 		String query="SELECT * FROM web_strategy";
 		Map<Date, WebPromotionPO> map= new HashMap<Date, WebPromotionPO>();
 		try{
@@ -144,7 +145,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			db.close();
 		}
 		return null;
-	}
+	}//end get web strategy data
 
 	public void updateWebPromotionData(WebPromotionPO po) {
 		db=Database.getInstance();
@@ -153,10 +154,11 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		Date startdate=po.getStartdate();
 		Date enddate=po.getEnddate();
 		
-		String query="UPDATE hotel_strategy SET date_discount="+"'"+String.valueOf(datediscount)+"',"
-				+ "start_date="+"'"+String.valueOf(startdate)+"',"
-				+ "end_date="+"'"+String.valueOf(enddate)+"'"		
-				+ " WHERE start_date="+"'"+String.valueOf(startdate)+"'";
+		String query="UPDATE hotel_strategy SET "
+				+ "date_discount="+"'"+datediscount+"',"
+				+ "start_date="+"'"+startdate+"',"
+				+ "end_date="+"'"+enddate+"'"		
+				+ " WHERE start_date="+"'"+startdate+"'";
 				
 		try{
 			db.update(query);
@@ -165,8 +167,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}finally{
 			db.close();
 		}
-		
-	}
+	}//end update web strategy
 
 	public void deleteWebPromotionData(WebPromotionPO po) {
 //		db=Database.getInstance();

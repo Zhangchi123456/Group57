@@ -12,8 +12,10 @@ import org.Hotel.server.datahelp.UserDataHelper;
 
 public class UserDataMysqlHelper implements UserDataHelper {
 	Database db;
+	
 	public Map<String, WebStaffPO> getWebStaffData() {
 		db=Database.getInstance();
+		
 		String query="SELECT * FROM web_staff";
 		Map<String, WebStaffPO> map= new HashMap<String, WebStaffPO>();
 		try{
@@ -33,7 +35,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 			db.close();
 		}
 		return null;
-	}
+	}//end get web staff data
 
 	public void updateWebStaffData(WebStaffPO po) {
 		db=Database.getInstance();
@@ -44,7 +46,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		
 		String query="UPDATE web_staff SET name="+"'"+name+"',"
 				+ "password="+"'"+password+"'"
-				+ " WHERE id="+"'"+String.valueOf(id)+"'";
+				+ " WHERE name="+"'"+name+"'";
 				
 		try{
 			db.update(query);
@@ -53,7 +55,8 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		}finally{
 			db.close();
 		}
-	}
+	}//end update web staff data
+	
 	//System do not has such feature
 	public void deleteWebStaffData(WebStaffPO webstaffpo) {
 		// TODO Auto-generated method stub
@@ -66,7 +69,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		String name=po.getName();
 		String password=po.getPassword();
 		
-		String query="INSERT INTO web_staff(name,password) VALUE("+"'"+name+"',"
+		String query="INSERT INTO web_staff(password) VALUE("
 				+"'"+password+"')";
 		try{
 			db.update(query);
@@ -75,8 +78,8 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		}finally{
 			db.close();
 		}
-		
-	}
+	}//end insert web staff data 
+	
 	/*
 	 * return all hotel staff data
 	 */
@@ -102,7 +105,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 			db.close();
 		}
 		return null;
-	}
+	}//end get hotel staff po
 
 	public void updateHotelStaffData(HotelStaffPO po) {
 		db=Database.getInstance();
@@ -111,9 +114,9 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		String name=po.getName();
 		String password=po.getPassword();
 		
-		String query="UPDATE hotel_staff SET name="+"'"+name+"',"
+		String query="UPDATE hotel_staff SET "
 				+ "password="+"'"+password+"'"
-				+ " WHERE id="+"'"+id+"'";
+				+ " WHERE name="+"'"+name+"'";
 				
 		try{
 			db.update(query);
@@ -122,8 +125,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		}finally{
 			db.close();
 		}
-		
-	}
+	}//end update hotel staff data
 
 	public void insertHotelStaffData(HotelStaffPO po) {
 		db=Database.getInstance();
@@ -141,7 +143,8 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		}finally{
 			db.close();
 		}
-	}
+	}//end insert hotel staff
+	
 	//System has no such feature
 	public void deleteHotelStaffData(HotelStaffPO hotelstaffpo) {
 		// TODO Auto-generated method stub
@@ -150,8 +153,10 @@ public class UserDataMysqlHelper implements UserDataHelper {
 	
 	public Map<String, WebManagerPO> getWebManagerData() {
 		db=Database.getInstance();
+		
 		String query="SELECT * FROM web_manager";
 		Map<String, WebManagerPO> map= new HashMap<String, WebManagerPO>();
+		
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
