@@ -1,8 +1,9 @@
 package org.Hotel.common.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class WebPromotionPO {
+public class WebPromotionPO implements Serializable{
 	
 	private double datediscount;
 	

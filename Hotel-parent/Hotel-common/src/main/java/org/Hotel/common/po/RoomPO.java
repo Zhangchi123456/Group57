@@ -1,7 +1,8 @@
 package org.Hotel.common.po;
 
+import java.io.Serializable;
 
-public class RoomPO {
+public class RoomPO implements Serializable{
 
 	private String hotelid;
 	

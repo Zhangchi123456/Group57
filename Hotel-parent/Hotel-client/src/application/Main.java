@@ -3,8 +3,14 @@ package application;
 
 
 import java.io.InputStream;
+import java.rmi.RemoteException;
 
 import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.dataService.PromotionDataService;
+import org.Hotel.common.dataService.UserDataService;
+import org.Hotel.common.po.HotelStaffPO;
+
+
 import presentation.presentationController.RMIConnection;
 import BusinessLogicService.impl.RMIHelper;
 import Helper.UiswitchHelper;
@@ -24,6 +30,7 @@ import Helper.UiswitchHelper;
 public class Main extends Application {
 	 private Stage mainStage;
 		public static void main(String args[]){
+			
 			
 			launch(args);
 		}

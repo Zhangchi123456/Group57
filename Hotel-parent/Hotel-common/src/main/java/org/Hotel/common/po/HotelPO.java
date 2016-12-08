@@ -1,6 +1,8 @@
 package org.Hotel.common.po;
 
-public class HotelPO {
+import java.io.Serializable;
+
+public class HotelPO implements Serializable{
 
 	private String name;
 	private String circle;

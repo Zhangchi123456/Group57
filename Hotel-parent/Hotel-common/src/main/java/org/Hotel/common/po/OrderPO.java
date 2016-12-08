@@ -1,8 +1,9 @@
 package org.Hotel.common.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OrderPO {
+public class OrderPO implements Serializable{
 
 	private int id;
 	

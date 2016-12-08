@@ -1,6 +1,8 @@
 package org.Hotel.common.po;
 
-public class CirclePO {
+import java.io.Serializable;
+
+public class CirclePO implements Serializable{
 
 	private double discount;
 	

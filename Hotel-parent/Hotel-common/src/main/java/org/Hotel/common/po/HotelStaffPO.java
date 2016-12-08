@@ -1,6 +1,8 @@
 package org.Hotel.common.po;
 
-public class HotelStaffPO {
+import java.io.Serializable;
+
+public class HotelStaffPO implements Serializable{
 
 	private int id;
 	

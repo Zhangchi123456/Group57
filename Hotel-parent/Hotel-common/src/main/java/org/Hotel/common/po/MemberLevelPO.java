@@ -1,6 +1,8 @@
 package org.Hotel.common.po;
 
-public class MemberLevelPO {
+import java.io.Serializable;
+
+public class MemberLevelPO implements Serializable{
 	
 	private int level;
 	

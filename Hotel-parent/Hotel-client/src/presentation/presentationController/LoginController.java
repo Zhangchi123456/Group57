@@ -8,6 +8,10 @@ import java.net.URL;
 
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.LoginLogicService;
+import BusinessLogicService.Service.user.UserLogicService;
+import BusinessLogicService.impl.LoginLogicServiceImpl;
+import BusinessLogicService.impl.userbl.UserLogicServiceImp;
 import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
@@ -61,63 +65,41 @@ public class LoginController implements Initializable{
 			/*===================================================
 			 * author Jerry
 			 */
-			LoginControllerService lcs=new LoginControllerImp();
+			LoginLogicService lcs=new LoginLogicServiceImpl();
 			//precondition
 			if(!lcs.isFound(LogId, Logpassword)){
+				System.out.println(LogId);
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
 				System.out.println(1);
-			}else if(!lcs.haveLogin(LogId, Logpassword)){
-				AlertBox alt = new AlertBox();
-				alt.display("用户名或者密码错误");
-				System.out.println(3);
+			
 			}//find user
-			else if(isMember(lcs.findUser(LogId, Logpassword))){
-				UiswitchHelper.getApplication().goto_Usermainui();
-				//post condition
-				lcs.addCurrentUserList(LogId);
-				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-				LoginHelper.setLogVO(vo);
-				
-				
-			}
-			else if(isHotelStaff(lcs.findUser(LogId, Logpassword))){
-				UiswitchHelper.getApplication().goto_HotelMainui();
-				//post condition
-				lcs.addCurrentUserList(LogId);
-				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-				LoginHelper.setLogVO(vo);
-			}
-			else if(isWebManager(lcs.findUser(LogId, Logpassword))){
-				UiswitchHelper.getApplication().goto_UserWebManagementui();
-				//post condition
-				lcs.addCurrentUserList(LogId);
-				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-				LoginHelper.setLogVO(vo);
-			}
-			else if(isWebStaff(lcs.findUser(LogId, Logpassword))){
-				UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-				//post condition
-				lcs.addCurrentUserList(LogId);
-				LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-				LoginHelper.setLogVO(vo);
-			}
 			else {
-				AlertBox alt = new AlertBox();
-				alt.display("用户名或者密码错误");
-				System.out.println(4);
-			}
+				UserType usertype =lcs.findUser(LogId, Logpassword);
+				if(UserType.Member.equals(usertype)){
+					UiswitchHelper.getApplication().goto_Usermainui();
+					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+			     	LoginHelper.setLogVO(vo);
+				}
+				else if(UserType.hotelStaff.equals(usertype)){
+					UiswitchHelper.getApplication().goto_HotelMainui();
+					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+			     	LoginHelper.setLogVO(vo);
+				}
+				else if(UserType.webManager.equals(usertype)){
+					UiswitchHelper.getApplication().goto_UserWebManagementui();
+					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+			     	LoginHelper.setLogVO(vo);
+				}
+				else if(UserType.webStaff.equals(usertype)){
+					UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+			     	LoginHelper.setLogVO(vo);
+				}
 				
-//			if(UserId.getText().trim().substring(0, 1).equals("1"))
-//		    UiswitchHelper.getApplication().goto_Usermainui();
-//		    if(UserId.getText().trim().substring(0, 1).equals("2"))
-//			UiswitchHelper.getApplication().goto_HotelMainui();
-//			if(UserId.getText().trim().substring(0, 1).equals("3"))
-//			UiswitchHelper.getApplication().goto_UserWebManagementui();
-//		    if(UserId.getText().trim().substring(0, 1).equals("4"))
-//			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-//		    LogVO a=new LogVO(UserId.getText(),PassWord.getText());
+			}
 		}
+			
 	}
 	    
 	@Override
@@ -126,16 +108,5 @@ public class LoginController implements Initializable{
 		
 	}
 	
-	private boolean isMember(UserType ut){
-		return ut.equals(UserType.Member);
-	}
-	private boolean isHotelStaff(UserType ut){
-		return ut.equals(UserType.hotelStaff);
-	}
-	private boolean isWebStaff(UserType ut){
-		return ut.equals(UserType.webStaff);
-	}
-	private boolean isWebManager(UserType ut){
-		return ut.equals(UserType.webManager);
-	}
+
 }

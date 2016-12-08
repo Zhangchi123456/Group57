@@ -1,8 +1,9 @@
 package org.Hotel.common.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CreditPO {
+public class CreditPO implements Serializable{
 
 	private String name;
 	
