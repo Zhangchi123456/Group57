@@ -1,23 +1,31 @@
 package Helper;
 
-import java.util.HashMap;
-import java.util.Map;
 
+
+import java.rmi.RemoteException;
+import java.text.ParseException;
+
+import org.Hotel.common.dataService.MemberDataService;
+import org.Hotel.common.po.MemberPO;
+
+import BusinessLogicService.impl.RMIHelper;
 import vo.MemberVO;
 import vo.WebPromotionVO;
 
 public class RegisterHelper {
-	private final static Map<String,Object> registermap = new HashMap<>();
-	private final static String Membervokey="Membervo";
+      MemberDataService memberService=(MemberDataService)RMIHelper.find("MemberDataService");
 	
-	private RegisterHelper(){
+	public RegisterHelper(){
 		
 	}
-	  public static void setmembervo(MemberVO Membervo){
-   	   registermap.put(Membervokey,Membervo);
-      }
-      public static MemberVO getMembervo(){
-   	   return (MemberVO)registermap.get(Membervokey);
-      }
+	 
+	public boolean insertMember(MemberVO vo) throws ParseException, RemoteException{
+		MemberPO po=vo.topo();
+		if(memberService.insert(po)){
+		return true;
+	}
+		return false;
 	
+	
+}
 }

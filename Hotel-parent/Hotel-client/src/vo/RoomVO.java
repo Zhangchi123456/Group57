@@ -61,7 +61,7 @@ public class RoomVO {
 		
 	}
 	
-	public RoomPO ToRoomPO(){
+	public RoomPO toRoomPO(RoomVO vo){
 		RoomPO po = new RoomPO();
 		
 		po.setHotelid(hotelid);
