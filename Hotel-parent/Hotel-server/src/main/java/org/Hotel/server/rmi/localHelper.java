@@ -33,7 +33,7 @@ public class localHelper {
 			ConnectionDataService ConnectionDataImpl = new ConnectionDataImpl();
 		
 			MemberDataService MemberDataImpl=new MemberDataImpl();
-			OrderDataService OrderDataImpl=new OrderDataImpl();
+//			OrderDataService OrderDataImpl=new OrderDataImpl();
 			UserDataService UserDataImpl=new UserDataImpl();
 			PromotionDataService PromotionDataImpl=new PromotionDataImpl();
 	
