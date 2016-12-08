@@ -1,6 +1,10 @@
 package presentation.presentationController;
-import java.net.URL;
 
+import main.java.org.Hotel.client.presentation.controller.user.*;
+import main.java.org.Hotel.client.presentation.view.user.*;
+import main.java.org.Hotel.client.util.UserType;
+
+import java.net.URL;
 
 import java.util.ResourceBundle;
 
@@ -54,14 +58,55 @@ public class LoginController implements Initializable{
 			String Logpassword=PassWord.getText().toString();
 			LogVO logvo=new LogVO(LogId,Logpassword);
 			LoginHelper.setLogVO(logvo);
-			if(UserId.getText().trim().substring(0, 1).equals("1"))
-		    UiswitchHelper.getApplication().goto_Usermainui();
-		    if(UserId.getText().trim().substring(0, 1).equals("2"))
-			UiswitchHelper.getApplication().goto_HotelMainui();
-			if(UserId.getText().trim().substring(0, 1).equals("3"))
-			UiswitchHelper.getApplication().goto_UserWebManagementui();
-		    if(UserId.getText().trim().substring(0, 1).equals("4"))
-			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+			/*===================================================
+			 * author Jerry
+			 */
+			LoginControllerService lcs=new LoginControllerImp();
+			//precondition
+			if(!lcs.isFound(LogId, Logpassword)){
+				AlertBox alt = new AlertBox();
+				alt.display("用户名或者密码错误");
+			}else if(!lcs.haveLogin(LogId, Logpassword)){
+				AlertBox alt = new AlertBox();
+				alt.display("用户名或者密码错误");
+			}//find user
+			else if(isMember(lcs.findUser(LogId, Logpassword))){
+				UiswitchHelper.getApplication().goto_Usermainui();
+				//post condition
+				lcs.addCurrentUserList(name);
+				lcs.setLocalUser(name);
+			}
+			else if(isHotelStaff(lcs.findUser(LogId, Logpassword))){
+				UiswitchHelper.getApplication().goto_HotelMainui();
+				//post condition
+				lcs.addCurrentUserList(name);
+				lcs.setLocalUser(name);
+			}
+			else if(isWebManager(lcs.findUser(LogId, Logpassword))){
+				UiswitchHelper.getApplication().goto_UserWebManagementui();
+				//post condition
+				lcs.addCurrentUserList(name);
+				lcs.setLocalUser(name);
+			}
+			else if(isWebStaff(lcs.findUser(LogId, Logpassword))){
+				UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+				//post condition
+				lcs.addCurrentUserList(name);
+				lcs.setLocalUser(name);
+			}
+			else {
+				AlertBox alt = new AlertBox();
+				alt.display("用户名或者密码错误");
+			}
+				
+//			if(UserId.getText().trim().substring(0, 1).equals("1"))
+//		    UiswitchHelper.getApplication().goto_Usermainui();
+//		    if(UserId.getText().trim().substring(0, 1).equals("2"))
+//			UiswitchHelper.getApplication().goto_HotelMainui();
+//			if(UserId.getText().trim().substring(0, 1).equals("3"))
+//			UiswitchHelper.getApplication().goto_UserWebManagementui();
+//		    if(UserId.getText().trim().substring(0, 1).equals("4"))
+//			UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 		    LogVO a=new LogVO(UserId.getText(),PassWord.getText());
 		}
 	}
@@ -70,5 +115,18 @@ public class LoginController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private boolean isMember(UserType ut){
+		return ut.equals(UserType.Member);
+	}
+	private boolean isHotelStaff(UserType ut){
+		return ut.equals(UserType.hotelStaff);
+	}
+	private boolean isWebStaff(UserType ut){
+		return ut.equals(UserType.webStaff);
+	}
+	private boolean isWebManager(UserType ut){
+		return ut.equals(UserType.webManager);
 	}
 }

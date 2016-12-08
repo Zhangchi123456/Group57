@@ -4,8 +4,6 @@ package application;
 
 import java.io.InputStream;
 
-
-
 import org.Hotel.common.dataService.HotelDataService;
 import presentation.presentationController.RMIConnection;
 import BusinessLogicService.impl.RMIHelper;

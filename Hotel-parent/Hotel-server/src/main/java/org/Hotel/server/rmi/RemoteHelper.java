@@ -43,18 +43,18 @@ public class RemoteHelper {
 			
 			//创建实现类
 			ConnectionDataService ConnectionDataImpl = new ConnectionDataImpl();
-//			HotelDataService HotelDataImpl=new HotelDataImpl();
+			HotelDataService HotelDataImpl=new HotelDataImpl();
 			MemberDataService MemberDataImpl=new MemberDataImpl();
-//			OrderDataService OrderDataImpl=new OrderDataImpl();
+			OrderDataService OrderDataImpl=new OrderDataImpl();
 			UserDataService UserDataImpl=new UserDataImpl();
 			PromotionDataService PromotionDataImpl=new PromotionDataImpl();
 	
 			//注册通讯路径，把所有的Impl实现类注册到RMI服务器上
 			Naming.rebind("rmi://"+IP+":"+PORT+"/ConnectionDataService", ConnectionDataImpl);
-//			Naming.rebind("rmi://"+IP+":"+PORT+"/HotelDataService", HotelDataImpl);
+			Naming.rebind("rmi://"+IP+":"+PORT+"/HotelDataService", HotelDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/MemberDataService", MemberDataImpl);
-//			Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
+			Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/PromotionDataService", PromotionDataImpl);
 			
 			System.out.println("Ready");

@@ -11,25 +11,20 @@ import org.Hotel.common.po.RoomPO;
 public interface HotelDataService extends Remote{
 
 	public boolean insert(HotelPO hotelpo)throws RemoteException;
-	
 	public boolean delete(HotelPO hotelpo)throws RemoteException;
-	
 	public boolean update(HotelPO hotelpo)throws RemoteException;
 	
 	public boolean update(CirclePO po)throws RemoteException;
 	
-	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id, int star, double grade)throws RemoteException;
+	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id,
+			int star, double grade)throws RemoteException;
 	
 	public ArrayList<RoomPO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException;
-	
 	public boolean updateRoom(RoomPO roompo)throws RemoteException;
-	
 	public boolean deleteRoom(RoomPO roompo)throws RemoteException;
-	
 	public boolean insertRoom(RoomPO roompo)throws RemoteException;
     
 	public ArrayList<String> cityShowAll()throws RemoteException;
-	
 	public CirclePO circleFind(String city, String circle)throws RemoteException;
 	
 	public HotelPO Findhotelbyname(String hotelname)throws RemoteException;
