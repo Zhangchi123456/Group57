@@ -87,22 +87,17 @@ public class Database {
 	
 	public static void main(String[] args){
 		Database db=Database.getInstance();
-		String query="UPDATE hotel_strategy SET birthday_discount="+"'"+0.7+"',"
-				+ "multiorder_discount="+"'"+1+"',"
-				+ "enterprise_discount="+"'"+1+"',"
-				+ "date_discount="+"'"+1+"'"
-//				+ "start_date="+"'"+startdate+"',"
-//				+ "end_date="+"'"+enddate+"'"		
-				+ " WHERE hotel_name='南行酒店' and name='生日折扣'";
-//		ResultSet rs=db.select(query);
+		String query="SELECT * FROM member";
 		String s="";
 		int i=1;
+		ResultSet rs=db.select(query);
 		try{	
-			db.update(query);
-//			while(rs.next()){
-//				s+="name:"+rs.getString("name")+i+"\n";
-//				i++;
-//			}
+			
+			
+			while(rs.next()){
+				s+=i+"name:"+rs.getString("name")+"\n";
+				i++;
+			}
 			System.out.println(s);
 			}
 			catch(Exception e){
@@ -110,8 +105,7 @@ public class Database {
 			}finally{
 			}
 			db.close();
-			String src=null;
-			System.out.println(src);
+			
 		
 	}
 		
