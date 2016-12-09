@@ -2,6 +2,7 @@ package presentation.presentationController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -49,9 +50,11 @@ public class HotelroomInfouiController implements Initializable{
 	
 	public ObservableList<SimpleHotelOrder> temp;
 		
-	int roomid = HotelmanageController.getRoomVO().getId();
-	HotelStaffLogicService am = new HotelStaffLogicServiceImpl();
-	ArrayList<OrderVO> roomlist = new ArrayList<OrderVO>();
+	String Name = HotelmanageController.getRoomVO().getHotelid();
+	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
+	OrderLogicService oser = new OrderLogicServiceImpl();
+	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
+	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
@@ -60,15 +63,30 @@ public class HotelroomInfouiController implements Initializable{
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
-		roomlist = am.roomShowAll(roomid);
-   	    if(roomlist!=null);
-   	    Roomlist(roomlist);
+		try {
+			roomlist = hser.roomShowAll(Name);
+			for(int i=0;i<roomlist.size();i++){
+				int id = roomlist.get(i).getId();
+				orderlist.add()
+			}
+			if(roomlist!=null&&orderlist!=null)
+			Roomlist(roomlist, orderlist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   	 
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		roomlist = am.findUserOrderListHotel(Name);
-   	    if(roomlist!=null);
-   	    Roomlist(roomlist);
+		try {
+			roomlist = hser.roomShowAll(Name);
+			if(roomlist!=null&&orderlist!=null)
+		   	Roomlist(roomlist, orderlist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
