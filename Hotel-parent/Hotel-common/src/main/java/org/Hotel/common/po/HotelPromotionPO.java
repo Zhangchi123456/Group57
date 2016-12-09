@@ -47,6 +47,8 @@ public class HotelPromotionPO implements Serializable{
 		this.startdate = startdate;
 		
 		this.enddate = enddate;
+		
+		this.hoteltype = hotelid + type;
 	}
 	
 	public String getId(){

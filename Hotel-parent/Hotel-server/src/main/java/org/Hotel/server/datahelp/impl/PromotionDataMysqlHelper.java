@@ -37,7 +37,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				HotelPromotionPO po=new HotelPromotionPO(name, hotelname,birthdaydiscount,
 						multiorderdiscount,
 						enterprisediscount,datediscount,startdate,enddate);
-				map.put(name, po);
+				map.put(hotelname+name, po);
 			}
 			return map;
 		}catch(Exception e){
@@ -223,7 +223,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	public static void main(String[] args){
 		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
 		HotelPromotionPO po=new HotelPromotionPO("生日折扣", "南行酒店",
-				0.01,0, 
+				0.4,0, 
 				0,0,null,null);
 		data.updateHotelPromotionData(po);
 	}
