@@ -10,10 +10,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.OrderVO;
 
 public class CreatorderController implements Initializable{
 	 private String username,usernum,telephone,roomnum,roomtype,havechild,timebegin,timeend;
-	
 	
 	 @FXML
 	 private TextField UserName,UserNum,TelePhone,RoomnumText;//用户名，人数，电话
@@ -35,9 +35,11 @@ public class CreatorderController implements Initializable{
     		AlertBox alt2 = new AlertBox();
 			alt2.display("日期选择错误");
     	}else{
-    	username=UserName.getText();
-    	usernum=UserNum.getText();
-    	telephone=TelePhone.getText();
+    	OrderVO vo = new OrderVO();
+    	
+    	vo.setName(UserName.getText());
+    	vo.setPeoplenum(UserNum.getText());
+    	
     	roomnum=RoomnumText.getText();
     	roomtype=RoomType.getValue().toString();
     	havechild=Child.getValue().toString();

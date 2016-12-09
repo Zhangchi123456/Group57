@@ -11,7 +11,7 @@ public interface OrderLogicService {
     public ArrayList<OrderVO> findUserOrderListStation(String UserName,String OrderStation);//通过用户名和订单状态查找订单   
     public boolean revokeUserOrder(String UserName,String OrderId);//撤销订单并扣除信用值
     public boolean changeOrderStation(String OrderId,String OrderStation);//更改订单状态
-    public ArrayList<OrderVO> findUserOrderListHotel(String UserName,String OrderStation);//通过用户名和酒店查找订单   
-    
-    
+    public ArrayList<OrderVO> findUserOrderListHotelandName(String UserName,String Hotel);//通过用户名和酒店查找订单   
+    public ArrayList<OrderVO> findUserOrderListHotel(String Hotel);//通过酒店名查找订单   
+    public ArrayList<OrderVO> showALl();
 }

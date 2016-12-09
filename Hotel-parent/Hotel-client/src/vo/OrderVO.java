@@ -1,5 +1,6 @@
 package vo;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,9 +42,11 @@ public class OrderVO {
 	
 	private String grade;
 	
-
+    public OrderVO(){
+    	super();
+    }
 	public OrderVO(String id, String name, String child, String hotelid, String intime, String outtime, String state, String price, String lasttime, String dischargetime,String peoplenum, String havekids, String singleRoom, String standardRoom, String familyRoom, String suiteRoom, String comment, String grade) {
-			
+		super();
 		this.id = id;
 		
 		this.name = name;
@@ -125,14 +128,22 @@ public class OrderVO {
 		OrderPO po = new OrderPO();
 		po.setId(Integer.parseInt(id));
 		po.setComment(comment);
-		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
 		
-		Date date ;
+		
+		
 		try {
-			po.setDischargetime( date =  formatter.parse(dischargetime));
-			po.setStarttime( date =  formatter.parse(starttime));
-		    po.setLasttime( date =  formatter.parse(lasttime));
-		    po.setLeavetime(date =  formatter.parse(leavetime));
+			Date date ;
+			SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");
+			SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-mm-dd ");
+			Date date1;
+			date =  formatter.parse(dischargetime);
+			po.setDischargetime( date );
+			date =  formatter1.parse(starttime);
+			po.setStarttime( date );
+			date=  formatter.parse(lasttime);
+		    po.setLasttime( date );
+			date =  formatter1.parse(leavetime);
+		    po.setLeavetime(date);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -150,12 +161,12 @@ public class OrderVO {
 		po.setFamilyRoom(Integer.parseInt(familyRoom));
 
 		po.setPeoplenum(Integer.parseInt(peoplenum));
-		po.setPrice(Integer.parseInt(price));
+		po.setPrice(Double.parseDouble(price));
 		po.setSingleRoom(Integer.parseInt(singleRoom));
 		po.setStandardRoom(Integer.parseInt(standardRoom));
 		po.setState(state);
 		po.setSuiteRoom(Integer.parseInt(suiteRoom));
-		po.setGrade(Integer.parseInt(grade));
+		po.setGrade(Double.parseDouble(grade));
 		return po;
 	}
 	

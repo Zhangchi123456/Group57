@@ -23,7 +23,7 @@ public class memberleveluiController implements Initializable{
 	private Button button_webdiscountdate;
 	
 	@FXML
-	private Button button_businesslevel;
+	private Button button_businesscircle;
 	
 	@FXML
 	private ChoiceBox level;
@@ -51,7 +51,7 @@ public class memberleveluiController implements Initializable{
 	}
 	
 	@FXML
-	public void levelChoose(MouseEvent event){
+	public void ChoiceBoxClicked(ActionEvent event){
 		
 		int lv = Integer.parseInt(level.getValue().toString());
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
