@@ -42,8 +42,8 @@ public class OrderlistuiController implements Initializable{
    public  static String Orderid;
    public static String Hotelname;
   
-   
-   String UserName ="";//LogVO.class.getName();// MemberActController.getmemberVo().getname();
+   LoginController a = new LoginController();
+   String UserName =a.UserName;
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    
@@ -90,7 +90,7 @@ public class OrderlistuiController implements Initializable{
    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println(UserName);
+		
 		OrderStationChoiceBox.setValue("所有订单");
     	 orderlist =am.findUserOrderListAll(UserName);
     	 if(orderlist!=null);
