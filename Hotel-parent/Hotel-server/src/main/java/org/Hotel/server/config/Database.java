@@ -79,7 +79,7 @@ public class Database {
 	//update query	
 	public void update(String query){
 		try{
-			stat.executeQuery(query);
+			stat.executeUpdate(query);
 		}catch(SQLException se){
 			se.printStackTrace();
 		}
@@ -87,30 +87,33 @@ public class Database {
 	
 	public static void main(String[] args){
 		Database db=Database.getInstance();
-		String query="SELECT * FROM hotel";
-		ResultSet rs=db.select(query);
+		String query="UPDATE hotel_strategy SET birthday_discount="+"'"+0.7+"',"
+				+ "multiorder_discount="+"'"+1+"',"
+				+ "enterprise_discount="+"'"+1+"',"
+				+ "date_discount="+"'"+1+"'"
+//				+ "start_date="+"'"+startdate+"',"
+//				+ "end_date="+"'"+enddate+"'"		
+				+ " WHERE hotel_name='南行酒店' and name='生日折扣'";
+//		ResultSet rs=db.select(query);
 		String s="";
 		int i=1;
 		try{	
-			while(rs.next()){
-				s+="name:"+rs.getString("name")+i+"\n";
-				i++;
+			db.update(query);
+//			while(rs.next()){
+//				s+="name:"+rs.getString("name")+i+"\n";
+//				i++;
+//			}
+			System.out.println(s);
 			}
-			System.out.println(s);}
 			catch(Exception e){
 				e.printStackTrace();
 			}finally{
-				try{
-					rs.close();
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
 			}
 			db.close();
 			String src=null;
 			System.out.println(src);
-		}
 		
+	}
 		
 }
 

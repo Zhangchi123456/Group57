@@ -4,6 +4,9 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.MemberLogicService;
@@ -17,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 import presentation.userui.AlertBox;
 import vo.MemberVO;
 
@@ -82,15 +86,19 @@ public class UserinformationuiController implements Initializable{
 		membervo=ReservationController.getMembervo();
 		MembernameText.setText(membervo.getname());
 		
-		/*MembercharacterLabel.setText(membervo.getproperty());
+		MembercharacterLabel.setText(membervo.getproperty());
 		MemberlevelLabel.setText(membervo.getlevel());
 		MembercreditvalueLabel.setText(String.valueOf(membervo.getcredit()));
-		
+		System.out.println(membervo.getcredit());
 		PhonenumberText.setText(membervo.getphonenumber());
-		BirthdayDatepicker.setValue(membervo.getbirthday());
-		*/
+		
+		Date input = membervo.Birthday;
+		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		 LocalDate date=LocalDate.parse(input.toString(), dtf);
+		 
+		BirthdayDatepicker.setValue(date);
 		if(membervo.getproperty().equals("企业会员")){
-			DiscountLabel.setText("");
+			
 		}
 	}
 

@@ -7,4 +7,6 @@ import vo.MemberVO;
 
 public interface MemberLogicService {
         public boolean updateMemberinfo(MemberVO vo) throws ParseException, RemoteException;
+        
+        public MemberVO Findmemberbyname(String name) throws RemoteException;
 }
