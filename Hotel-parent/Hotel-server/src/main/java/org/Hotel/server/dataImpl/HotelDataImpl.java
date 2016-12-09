@@ -214,9 +214,8 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, CirclePO> entry = iterator.next();
 			po = entry.getValue();
-			if(!citylist.contains(po.getCity())){
 				citylist.add(po.getCity());
-			}
+
 		}
 		return citylist;
 		

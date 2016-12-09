@@ -5,6 +5,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.HotelmanageController;
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -40,6 +44,10 @@ public class HotelorderuiController implements Initializable{
 	
 	@FXML
 	private Label OrderList;
+	
+	String Name = HotelmanageController.getHotelVO().getName();
+	OrderLogicService am = new OrderLogicServiceImpl();
+	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
@@ -52,8 +60,9 @@ public class HotelorderuiController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		 orderlist = am.findHotelOrderListAll(Name);
+    	 if(orderlist!=null);
+    	 HotelOrderlist(orderlist);
 	}
 	
 	public static class SimpleHotelOrder {		 		         
