@@ -88,18 +88,21 @@ public class OrderVO {
 		
 		this.name = po.getName();
 		this.hotelid = po.getHotelid();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");   
+		  
 		
-		this.starttime = po.getStarttime().toLocaleString();
+		this.starttime = format.format(po.getStarttime());
 		
-		this.leavetime = po.getLeavetime().toLocaleString();
+		this.leavetime =format.format( po.getLeavetime());
 		
 		this.state = po.getState();
 		
 		this.price = String.valueOf( po.getPrice());
-		
-		this.lasttime = po.getLasttime().toLocaleString();
-		
-		this.dischargetime = po.getDischargetime().toLocaleString();
+		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");
+		if(po.getLasttime()!=null)
+		this.lasttime = formatter.format((po.getLasttime()));
+		if(po.getDischargetime()!=null)
+		this.dischargetime = formatter.format(po.getDischargetime());
 		
 		this.peoplenum = String.valueOf(po.getPeoplenum());
 		
@@ -128,22 +131,33 @@ public class OrderVO {
 		OrderPO po = new OrderPO();
 		po.setId(Integer.parseInt(id));
 		po.setComment(comment);
-		
+		System.out.println(vo.dischargetime);
 		
 		
 		try {
-			Date date ;
-			SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");
-			SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-mm-dd ");
-			Date date1;
-			date =  formatter.parse(dischargetime);
-			po.setDischargetime( date );
-			date =  formatter1.parse(starttime);
-			po.setStarttime( date );
-			date=  formatter.parse(lasttime);
-		    po.setLasttime( date );
-			date =  formatter1.parse(leavetime);
-		    po.setLeavetime(date);
+			SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");		  
+		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");   		    
+		    java.sql.Date sdate = null; //初始化   	      		   		      
+		    java.util.Date udate = sdf.parse(starttime);   
+		    sdate = new java.sql.Date(udate.getTime()); 
+		    po.setStarttime(sdate);
+		    java.sql.Date sdate1 = null;
+		    java.util.Date udate1 = sdf.parse(leavetime);   
+		    sdate1 = new java.sql.Date(udate1.getTime()); 
+		    po.setLeavetime(sdate1);
+		    java.sql.Date sdate2 = null;
+		    if(dischargetime!=null){
+		    java.util.Date udate2 = formatter.parse(dischargetime);   
+		    sdate2 = new java.sql.Date(udate1.getTime());}
+		    po.setDischargetime(sdate2);
+		    java.sql.Date sdate3 = null;
+		    if(lasttime!=null){
+		    java.util.Date udate3 = formatter.parse(lasttime);   
+		    sdate3 = new java.sql.Date(udate1.getTime()); }
+		    
+		    po.setLasttime(sdate3);
+		    
+		    
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

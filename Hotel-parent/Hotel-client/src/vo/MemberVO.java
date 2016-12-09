@@ -60,7 +60,7 @@ public class MemberVO {
     	po.setPassword(password);
     	po.setCredit(membercreditvalue);
     	po.setId(memberid);
-    	po.setLevel(Integer.parseInt(memberlevel));
+    	po.setLevel(1);
     	po.setName(membername);
     	po.setConnection(phonenumber);
     	return po;
