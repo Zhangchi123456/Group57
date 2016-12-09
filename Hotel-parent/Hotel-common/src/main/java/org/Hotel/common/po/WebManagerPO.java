@@ -15,7 +15,8 @@ public class WebManagerPO implements Serializable{
 	}
 	//Jerry 
 	public WebManagerPO(String name,String password){
-		
+		this.name = name;
+		this.password = password;
 	}
 	
 	public WebManagerPO(int id, String password) {

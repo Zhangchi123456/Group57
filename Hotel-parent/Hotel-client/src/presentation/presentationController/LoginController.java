@@ -67,11 +67,11 @@ public class LoginController implements Initializable{
 			 */
 			LoginLogicService lcs=new LoginLogicServiceImpl();
 			//precondition
-			if(!lcs.isFound(LogId, Logpassword)){
-				System.out.println(LogId);
+			if(lcs.findUser(LogId, Logpassword)==null){
+			
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
-				System.out.println(1);
+				
 			
 			}//find user
 			else {

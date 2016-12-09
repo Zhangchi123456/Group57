@@ -16,7 +16,16 @@ public class ServerStart {
 	
 	public static void main(String[] args){
 		
-		
+//		UserDataImpl a;
+//		try {
+//			a = new UserDataImpl();
+//			WebManagerPO po=a.findByWebManager("Administer1");
+//			System.out.println(po.getPassword());
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	
 		RemoteHelper.init();
 		
 	}

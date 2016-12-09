@@ -22,42 +22,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		return false;
 	}
 
-	@Override
-	public boolean isFound(String name, String password) {
-	
-		try{
-			HotelStaffPO hotelstaffpo=userservice.findByHotelStaff(name);
-			WebStaffPO webstaffpo=userservice.findByWebStaff(name);
-			WebManagerPO webmanagerpo=userservice.findByWebManager(name);
-			MemberPO memberpo=memberservice.find(name);
-			System.out.println(memberpo.getName());
-			if(hotelstaffpo!=null){
-				if(hotelstaffpo.getPassword().equals(password))
-					return true;
-			}
-			if(webstaffpo!=null){
-				if(webstaffpo.getPassword().equals(password))
-				return true;
-			}
-			if(webmanagerpo!=null){
-				if(webmanagerpo.getPassword().equals(password))
-				return true;
-			}
-			if(memberpo!=null){
-				if(memberpo.getPassword().equals(password))
-				return true;
-			}
-			hotelstaffpo=null;
-			webstaffpo =null;
-			webmanagerpo=null;
-			memberpo=null;
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		
-		
-		return false;
-	}
 
 	@Override
 	public UserType findUser(String name, String password) {
@@ -66,9 +30,7 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			WebStaffPO webstaffpo=userservice.findByWebStaff(name);
 			WebManagerPO webmanagerpo=userservice.findByWebManager(name);
 			MemberPO memberpo=memberservice.find(name);
-			System.out.println(memberpo.getPassword());
-			System.out.println(hotelstaffpo.getPassword());
-			System.out.println(memberpo.getName()+2);
+			
 			if(hotelstaffpo!=null){
 				if(hotelstaffpo.getPassword().equals(password))
 					
@@ -78,14 +40,15 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 				if(webstaffpo.getPassword().equals(password))
 				return UserType.webStaff;
 			}
-			if(webmanagerpo!=null){
-				if(webmanagerpo.getPassword().equals(password))
-				return UserType.webManager;
-			}
 			if(memberpo!=null){
 				if(memberpo.getPassword().equals(password))
 				return UserType.Member;
 			}
+			if(webmanagerpo!=null){
+				if(webmanagerpo.getPassword().equals(password))
+				return UserType.webManager;
+			}
+			
 			hotelstaffpo=null;
 			webstaffpo =null;
 			webmanagerpo=null;
