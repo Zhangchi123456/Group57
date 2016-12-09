@@ -26,6 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import vo.HotelVO;
 import vo.MemberVO;
 
 public class UsermainuiController implements Initializable{
@@ -42,7 +44,8 @@ public class UsermainuiController implements Initializable{
 	@FXML
 	private DatePicker CheckindateDatepicker,CheckoutdateDatepicker;
     //                 入住日期                离开日期
-	
+	@FXML
+	private TextField HotelnameText;
 	
 	
 	
@@ -67,13 +70,14 @@ public class UsermainuiController implements Initializable{
 	
 	
 	@FXML
-	private void SearchButtonClicked(ActionEvent event){
+	private void SearchButtonClicked(ActionEvent event) throws RemoteException{
 		String roomtype;
     	String roomnum;
     	String hotelstar;
     	String hotelgrade;
     	String hotelprice;
     	String allresult;
+    	String hotelname;
     	String cityname=CityChoicebox.getValue().toString();
 		String Businessname=BusinessChoicebox.getValue().toString();
     	if(RoomtypeChoicebox.getValue()!=null){
@@ -101,7 +105,14 @@ public class UsermainuiController implements Initializable{
     	}else{
     		hotelprice="null";
     	}
-		
+    	if(HotelnameText.getText()!=null){
+    		hotelname=HotelnameText.getText().toString();
+    	}else{
+    		hotelname="null";
+    	}
+		ArrayList<HotelVO> hotellist=reservationService.findbycircle(Businessname);
+		hotellist=reservationService.filtbysearch(hotellist, roomtype, roomnum, hotelstar, hotelgrade, hotelprice, hotelname);
+		ReservationController.setHotelvoList(hotellist);
 		UiswitchHelper.getApplication().goto_HotelListui();
 	}
 

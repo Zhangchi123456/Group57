@@ -2,6 +2,8 @@ package BusinessLogicService.Service;
 
 import java.util.ArrayList;
 
+import org.Hotel.common.po.OrderPO;
+
 import vo.OrderVO;
 
 public interface OrderLogicService {
@@ -14,4 +16,5 @@ public interface OrderLogicService {
     public ArrayList<OrderVO> findUserOrderListHotelandName(String UserName,String Hotel);//通过用户名和酒店查找订单   
     public ArrayList<OrderVO> findUserOrderListHotel(String Hotel);//通过酒店名查找订单   
     public ArrayList<OrderVO> showALl();
+    public OrderVO orderShowAll(int order_id);
 }

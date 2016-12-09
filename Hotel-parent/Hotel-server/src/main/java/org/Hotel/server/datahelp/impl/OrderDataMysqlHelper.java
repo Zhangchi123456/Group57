@@ -2,6 +2,8 @@ package org.Hotel.server.datahelp.impl;
 
 import java.util.Date;
 import java.sql.ResultSet;
+import java.sql.Time;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +38,8 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 				//date
 				Date starttime=rs.getDate("start_time");
 				Date endtime=rs.getDate("end_time");
-				Date lasttime=rs.getDate("last_time");
-				Date dischargetime=rs.getDate("remove_time");
+				Date lasttime=rs.getDate("last_date");
+				Date dischargetime=rs.getDate("remove_date");
 				//room
 				int singleRoom=rs.getInt("single_room");
 				int standardRoom=rs.getInt("standard_room");
@@ -77,8 +79,8 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		
 		
 		
-		String query="UPDATE order SET status='"+state+"',"
-				+ "remove_time='"+dischargetime+"',"
+		String query="UPDATE order1 SET status='"+state+"',"
+				+ "remove_time="+dischargetime+","
 				+ "comment='"+comment+"',"
 				+ "score='"+grade+"'"
 				+ " WHERE id='"+id+"'";
@@ -115,7 +117,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		int familyRoom=po.getFamilyRoom();
 		int suiteRoom=po.getSuiteRoom();
 		
-		String query="INSERT INTO member(hotel_name,member_name,start_time,end_time,last_time,"
+		String query="INSERT INTO order1(hotel_name,member_name,start_time,end_time,last_time,"
 				+"remove_time,people_num,have_kids,single_room,standard_room,family_room"
 				+",suite_room,status,comment,score) VALUE("
 				
@@ -158,5 +160,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }
