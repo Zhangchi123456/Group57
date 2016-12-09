@@ -2,7 +2,11 @@ package vo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.Hotel.common.po.MemberPO;
@@ -15,6 +19,7 @@ public class MemberVO {
     private LocalDate memberbirthday;
     private String memberproperty;
     private String password;
+    public Date Birthday;
     
     //手机号码暂未确定是否用到。
     private String phonenumber; 
@@ -59,6 +64,22 @@ public class MemberVO {
     	po.setName(membername);
     	po.setConnection(phonenumber);
     	return po;
+    }
+    public void setbypo(MemberPO po){
+    	 Birthday=po.getBirthday();
+    	
+    	this.membercreditvalue=po.getCredit();
+    	this.memberid=po.getId();
+    	this.memberlevel=String.valueOf(po.getLevel());
+    	this.membername=po.getName();
+    	this.phonenumber=po.getConnection();
+    	if(po.isEnterprise()){
+    		this.memberproperty="企业会员";
+    	}else{
+    		this.memberproperty="个人会员";
+    	}
+    	
+    	
     }
     public int getid(){
    	 return this.memberid;
