@@ -100,6 +100,15 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return false;
 	}
 	
+//	public static void main(String[] args) throws RemoteException{
+//		PromotionDataImpl  data =PromotionDataImpl.getInstance();
+//		HotelPromotionPO po=new HotelPromotionPO("生日折扣", "南行酒店",
+//				0.7,0, 
+//				0,0,null,null);
+//		data.update(po);
+//		
+//	}
+	
 	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException{
 		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
 		Iterator<Entry<Date, WebPromotionPO>> iterator = map_web.entrySet().iterator();

@@ -305,7 +305,17 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end get circle data
 
-	
+	public static void main(String[] args){
+		CirclePO po = new CirclePO();
+		HotelDataMysqlHelper data=new HotelDataMysqlHelper();
+		Map<String , CirclePO> map=data.getCircleData();
+		Iterator<Map.Entry<String,CirclePO>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CirclePO> entry = iterator.next();
+			po = entry.getValue();
+		System.out.println("circle:"+po.getName()+" city:"+po.getCity());
+		}
+	}
 	
 	public void updateCircleData(CirclePO po) {
 		db=Database.getInstance();

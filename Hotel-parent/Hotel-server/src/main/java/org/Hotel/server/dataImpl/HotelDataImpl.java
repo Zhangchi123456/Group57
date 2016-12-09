@@ -228,5 +228,12 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return citylist;
 		
 	}
-
+	public static void main(String[] args) throws RemoteException{
+		HotelDataImpl data =HotelDataImpl.getInstance();
+		
+		ArrayList<String> city=data.cityShowAll();
+		for(String c:city){
+			System.out.println(c);
+		}
+	}
 }

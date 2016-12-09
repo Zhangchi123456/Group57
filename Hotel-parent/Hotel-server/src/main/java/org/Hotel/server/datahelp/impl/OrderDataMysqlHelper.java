@@ -38,8 +38,8 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 				//date
 				Date starttime=rs.getDate("start_time");
 				Date endtime=rs.getDate("end_time");
-				Date lasttime=rs.getDate("last_date");
-				Date dischargetime=rs.getDate("remove_date");
+				Date lasttime=rs.getDate("last_time");
+				Date dischargetime=rs.getDate("remove_time");
 				//room
 				int singleRoom=rs.getInt("single_room");
 				int standardRoom=rs.getInt("standard_room");
@@ -76,8 +76,6 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		//date
 		Date dischargetime=orderpo.getDischargetime();
 		//comment
-		
-		
 		
 		String query="UPDATE order1 SET status='"+state+"',"
 				+ "remove_time="+dischargetime+","
