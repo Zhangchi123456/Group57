@@ -98,7 +98,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	
 	public MemberPO find(String name) throws RemoteException{
-		MemberPO po = map.get(name);
+		MemberPO po = new MemberPO();
 		Iterator<Entry<Integer, MemberPO>> iterator = map.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<Integer, MemberPO> entry = iterator.next();
@@ -111,7 +111,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 	
 	public MemberLevelPO findLV(int level) throws RemoteException{
-		MemberLevelPO po = map_lv.get(level);
+		MemberLevelPO po = new MemberLevelPO();
 		Iterator<Entry<Integer, MemberLevelPO>> iterator = map_lv.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<Integer, MemberLevelPO> entry = iterator.next();
