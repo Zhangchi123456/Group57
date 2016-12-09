@@ -151,18 +151,19 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 	public ArrayList<CircleVO> getCircle(String city_name) {
 		
 		ArrayList<CircleVO> voList = new ArrayList<CircleVO>();
-		CircleVO vo = new CircleVO();
 		
 		try{
 			ArrayList<CirclePO> poList = hoteldataservice.circleShowAll(city_name);
 			for(int i=0;i<poList.size();i++){
+				CircleVO vo = new CircleVO();
 				vo.setByPO(poList.get(i));
 				voList.add(vo);
 			}
+			return voList;
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return voList;
+		return null;
 	}
 
 	@Override
