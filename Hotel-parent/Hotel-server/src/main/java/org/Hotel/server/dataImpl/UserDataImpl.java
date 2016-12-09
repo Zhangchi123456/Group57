@@ -155,7 +155,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		while(iterator.hasNext()){
 			Entry<String, HotelStaffPO> entry = iterator.next();
 			po = entry.getValue();
-			if(name == po.getName())
+			if(name.equals(po.getName()))
 			break;
 		}
 		return po;
@@ -167,7 +167,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		while(iterator.hasNext()){
 			Entry<String, WebStaffPO> entry = iterator.next();
 			po = entry.getValue();
-			if(name == po.getName())
+			if(name.equals(po.getName()))
 			break;
 		}
 		return po;
@@ -179,7 +179,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		while(iterator.hasNext()){
 			Entry<String, WebManagerPO> entry = iterator.next();
 			po = entry.getValue();
-			if(name == po.getName())
+			if(name.equals(po.getName()))
 			break;
 		}
 		return po;

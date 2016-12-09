@@ -120,7 +120,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		while(iterator.hasNext()){
 			Entry<String, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
-			if(hotel_id==hotelpropo.getHotelid())
+			if(hotel_id.equals(hotelpropo.getHotelid()))
 				hotelprolist.add(hotelpropo);
 		}
 		return hotelprolist;
@@ -133,7 +133,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			Entry<String, HotelPromotionPO> entry = iterator.next();
 			
 		    hotelpropo = entry.getValue();
-			if(type==hotelpropo.getType()&&hotel_id == hotelpropo.getHotelid())
+			if(type.equals(hotelpropo.getType())&&hotel_id.equals(hotelpropo.getHotelid()))
             break;
 		}
 		return hotelpropo;
