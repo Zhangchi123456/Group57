@@ -23,7 +23,15 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		// TODO Auto-generated method stub
 		boolean tem = false;
 	  try {
-		 tem =ser.update(MemberActController.getOrdervo().toOrderPO( MemberActController.getOrdervo()));
+		OrderVO vo =new OrderVO();  
+		OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));
+		System.out.println(po.getStarttime());
+		vo.SetbyOrderPO(po);
+		vo.setComment(EvaluateInfo);
+		vo.setGrade(score);		
+		po=vo.toOrderPO(vo);
+		System.out.println(po.getStarttime());
+		 tem =ser.update(po);
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -135,7 +143,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 //根据酒店名称查找订单
 	@Override
-	public ArrayList<OrderVO> findUserOrderListHotel(String UserName, String HotelName) {
+	public ArrayList<OrderVO> findUserOrderListHotelandName(String UserName, String HotelName) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				ArrayList<OrderPO> a = new ArrayList<OrderPO>();
@@ -157,5 +165,57 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 				
 				return tem;
 
+	}
+
+
+	
+
+
+	@Override
+	public ArrayList<OrderVO> findUserOrderListHotel(String Hotel) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
+		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
+		try {
+			a=ser.orderShowAllByHotel(Hotel);
+		
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO() ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tem;
+	}
+
+	@Override
+	public ArrayList<OrderVO> showALl() {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
+		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
+		try {
+			a=ser.showAll();
+		
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO() ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tem;
 	}
 }

@@ -35,9 +35,6 @@ public class OrderInfoController implements Initializable {
 	OrderId.setText(vo.getId());
 	HotelName.setText(vo.getHotelid());
 	UserNum.setText(String.valueOf(vo.getPeoplenum()));
-	if(vo.isHavekids()){
-		Child.setText("有");
-	}
-
+	Child.setText(vo.isHavekids());
 	}
 }
