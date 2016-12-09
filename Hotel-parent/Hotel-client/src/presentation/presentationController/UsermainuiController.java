@@ -11,8 +11,10 @@ import com.sun.javafx.scene.control.skin.CheckBoxSkin;
 import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.impl.MemberLogicServiceImpl;
+import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.ReservationController;
 import Helper.InituiHelper;
+import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +31,7 @@ import vo.MemberVO;
 public class UsermainuiController implements Initializable{
 	private ObservableList<String> citylist;
 	private ObservableList<String> circlelist;
-	private ReservationLogicService reservationService;
+	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	private MemberLogicService memberservice=new MemberLogicServiceImpl();
 	@FXML
 	private Label membernamelabel;
@@ -66,7 +68,39 @@ public class UsermainuiController implements Initializable{
 	
 	@FXML
 	private void SearchButtonClicked(ActionEvent event){
-		
+		String roomtype;
+    	String roomnum;
+    	String hotelstar;
+    	String hotelgrade;
+    	String hotelprice;
+    	String allresult;
+    	String cityname=CityChoicebox.getValue().toString();
+		String Businessname=BusinessChoicebox.getValue().toString();
+    	if(RoomtypeChoicebox.getValue()!=null){
+    		roomtype=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		roomtype="null";
+    	}
+    	if(RoomnumChoicebox.getValue()!=null){
+    		roomnum=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		roomnum="null";
+    	}
+    	if(HotelstarChoicebox.getValue()!=null){
+    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelstar="null";
+    	}
+    	if(HotelgradeChoicebox.getValue()!=null){
+    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelgrade="null";
+    	}
+    	if(HotelpriceChoicebox.getValue()!=null){
+    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    	}else{
+    		hotelprice="null";
+    	}
 		
 		UiswitchHelper.getApplication().goto_HotelListui();
 	}
@@ -136,15 +170,35 @@ public class UsermainuiController implements Initializable{
 			e.printStackTrace();
 		}
 		ArrayList<String> Citylist=new ArrayList<String>();
-		String str1="南京";
-		Citylist.add(str1);
+		ArrayList<String> PekingList=new ArrayList<String>();
+		ArrayList<String> NanjingList=new ArrayList<String>();
+		PekingList.add("西单商圈");
+		PekingList.add("王府井商圈");
+		PekingList.add("崇文门商圈");
+		PekingList.add("中关村商圈");
+		PekingList.add("三里屯商圈");
+		PekingList.add("肉包子商圈");
+		NanjingList.add("新街口商圈");
+		NanjingList.add("山西路商圈");
+		NanjingList.add("夫子庙商圈");
+		NanjingList.add("珠江路商圈");
+		Citylist.add("南京");
+		Citylist.add("北京");
 		citylist=FXCollections.observableArrayList(Citylist);
-		CityChoicebox.setItems(citylist);
-	     CityChoicebox.getSelectionModel()
-	     .selectedItemProperty()
-	     .addListener((ov,oldv,newv)->{
-	    	 BusinessChoicebox.setItems(citylist);
-	     });
+			
+			CityChoicebox.setItems(citylist);
+		     CityChoicebox.getSelectionModel()
+		     .selectedItemProperty()
+		     .addListener((ov,oldv,newv)->{
+		    	 if(newv=="南京"){
+		    	 BusinessChoicebox.setItems(FXCollections.observableArrayList(NanjingList));
+		    	 }else{
+		    		 BusinessChoicebox.setItems(FXCollections.observableArrayList(PekingList));
+		    	 }
+		     });
+		
+		
+		
 	    		
 		membernamelabel.setText(LoginController.UserName);
 		
