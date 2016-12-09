@@ -20,7 +20,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 //				+ "order.single_room,order.standard_room,order.family_room,order.suite_room,"
 //				+ "order.status,order.price,order.comment,order.score,member.name AS member_name"
 //				+ " FROM order,member WHERE order.member_id=member.id";
-		String query="SELECT * FROM order";
+		String query="SELECT * FROM order1";
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
@@ -36,8 +36,8 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 				//date
 				Date starttime=rs.getDate("start_time");
 				Date endtime=rs.getDate("end_time");
-				Date lasttime=rs.getDate("last_date");
-				Date dischargetime=rs.getDate("remove_date");
+				Date lasttime=rs.getDate("last_time");
+				Date dischargetime=rs.getDate("remove_time");
 				//room
 				int singleRoom=rs.getInt("single_room");
 				int standardRoom=rs.getInt("standard_room");
