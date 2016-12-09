@@ -39,7 +39,7 @@ public class UsermainuiController implements Initializable{
 	private Label membernamelabel;
 	//显示会员名的label
 	@FXML
-	private ChoiceBox CityChoicebox,RoomtypeChoicebox,RoomnumChoicebox,HotelstarChoicebox,HotelgradeChoicebox,HotelpriceChoicebox,BusinessChoicebox;
+	private ChoiceBox CityChoicebox,RoomTypeChoicebox,RoomnumChoicebox,HotelstarChoicebox,HotelgradeChoicebox,HotelpriceChoicebox,BusinessChoicebox;
 	  //对应：             城市选择，     房间类型选择          房间数量选择          酒店星级选择           酒店评分选择       酒店价格选择          商圈选择， 
 	@FXML
 	private DatePicker CheckindateDatepicker,CheckoutdateDatepicker;
@@ -78,30 +78,31 @@ public class UsermainuiController implements Initializable{
     	String hotelprice;
     	String allresult;
     	String hotelname;
-    	String cityname=CityChoicebox.getValue().toString();
+    	String cityname;
 		String Businessname=BusinessChoicebox.getValue().toString();
-    	if(RoomtypeChoicebox.getValue()!=null){
-    		roomtype=RoomtypeChoicebox.getValue().toString();
+		
+    	if(RoomTypeChoicebox.getValue()!=null){
+    		roomtype=RoomTypeChoicebox.getValue().toString();
     	}else{
     		roomtype="null";
     	}
     	if(RoomnumChoicebox.getValue()!=null){
-    		roomnum=RoomtypeChoicebox.getValue().toString();
+    		roomnum=RoomnumChoicebox.getValue().toString();
     	}else{
     		roomnum="null";
     	}
     	if(HotelstarChoicebox.getValue()!=null){
-    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    		hotelstar=HotelstarChoicebox.getValue().toString();
     	}else{
     		hotelstar="null";
     	}
     	if(HotelgradeChoicebox.getValue()!=null){
-    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    		hotelgrade=HotelgradeChoicebox.getValue().toString();
     	}else{
     		hotelgrade="null";
     	}
     	if(HotelpriceChoicebox.getValue()!=null){
-    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    		hotelprice=HotelpriceChoicebox.getValue().toString();
     	}else{
     		hotelprice="null";
     	}
@@ -143,28 +144,28 @@ public class UsermainuiController implements Initializable{
     	String hotelgrade;
     	String hotelprice;
     	String allresult;
-    	if(RoomtypeChoicebox.getValue()!=null){
-    		roomtype=RoomtypeChoicebox.getValue().toString();
+    	if(RoomTypeChoicebox.getValue()!=null){
+    		roomtype=RoomTypeChoicebox.getValue().toString();
     	}else{
     		roomtype="null";
     	}
     	if(RoomnumChoicebox.getValue()!=null){
-    		roomnum=RoomtypeChoicebox.getValue().toString();
+    		roomnum=RoomnumChoicebox.getValue().toString();
     	}else{
     		roomnum="null";
     	}
     	if(HotelstarChoicebox.getValue()!=null){
-    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    		hotelstar=HotelstarChoicebox.getValue().toString();
     	}else{
     		hotelstar="null";
     	}
     	if(HotelgradeChoicebox.getValue()!=null){
-    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    		hotelgrade=HotelgradeChoicebox.getValue().toString();
     	}else{
     		hotelgrade="null";
     	}
     	if(HotelpriceChoicebox.getValue()!=null){
-    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    		hotelprice=HotelpriceChoicebox.getValue().toString();
     	}else{
     		hotelprice="null";
     	}

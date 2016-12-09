@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.impl.ReservationLogicServiceImpl;
+import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -64,20 +65,22 @@ public class HotelListuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		ArrayList<HotelVO> hotellist1=new ArrayList<HotelVO>();
-		HotelVO vo1=new HotelVO();
+		ArrayList<HotelVO> hotellist1=ReservationController.getHotelvolist();
+		/*HotelVO vo1=new HotelVO();
 		vo1.setName("123");vo1.setStar(5);
 		HotelVO vo2=new HotelVO();
 		vo2.setName("456");vo2.setStar(3);
 		hotellist1.add(vo1);
-		hotellist1.add(vo2);
+		hotellist1.add(vo2);*/
 		ArrayList<SimpleHotel> hotellist2=new ArrayList<SimpleHotel>();
 		for(int i=0;i<hotellist1.size();i++){
-			hotellist2.add(new SimpleHotel(hotellist1.get(i).getName(),String.valueOf(hotellist1.get(i).getStar())
-					,String.valueOf(hotellist1.get(i).getGrade()),String.valueOf(hotellist1.get(i).getSingleRoomPrice()),"否"));
+			HotelVO vo=hotellist1.get(i);
+			hotellist2.add(new SimpleHotel(vo.getName(),vo.getStar(),vo.getGrade(),vo.getSingleRoomPrice(),"否"));
+		
 		}
 		
 		finallist =FXCollections.observableArrayList(hotellist2);
+		System.out.println(hotellist2.get(0).getGrade());
 		
 		HotelName.setCellValueFactory(
 	            new PropertyValueFactory<>("hotel"));
@@ -91,26 +94,26 @@ public class HotelListuiController implements Initializable{
 	        });
 		
 		HotelStar.setCellValueFactory(
-	            new PropertyValueFactory<>("hotelstar"));
+	            new PropertyValueFactory<>("star"));
 	 
 		HotelStar.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
 		HotelStar.setOnEditCommit(
 	            (CellEditEvent<SimpleHotel, String> t) -> {
 	                ((SimpleHotel) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
-	                        ).setHotelstar(((t.getNewValue())));
+	                        ).setStar(((t.getNewValue())));
 	        });
 		
 		
-		HotelScore.setCellValueFactory(
-		            new PropertyValueFactory<>("hotelgrade"));
+		    HotelScore.setCellValueFactory(
+		            new PropertyValueFactory<>("grade"));
 	   	 
 			HotelScore.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
 			HotelScore.setOnEditCommit(
 		            (CellEditEvent<SimpleHotel, String> t) -> {
 		                ((SimpleHotel) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setHotelgrade(((t.getNewValue())));
+		                        ).setGrade(((t.getNewValue())));
 		        });
 			
 			HotelPrice.setCellValueFactory(
@@ -121,7 +124,7 @@ public class HotelListuiController implements Initializable{
 		            (CellEditEvent<SimpleHotel, String> t) -> {
 		                ((SimpleHotel) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setHotelprice((((t.getNewValue()))));
+		                        ).setHotelprice(((t.getNewValue())));
 		        });
 
 			Reservation.setCellValueFactory(
@@ -135,67 +138,63 @@ public class HotelListuiController implements Initializable{
 		                        ).setIfReservation((((t.getNewValue()))));
 		        });
 		  Hoteltable.setItems(finallist);
-		System.out.println(1);
+		
 	}
 	
 	public static class SimpleHotel {
 		 
         
-        private final SimpleStringProperty hotelstar;
-        private final SimpleStringProperty hotelgrade;
+       
+      
         private final SimpleStringProperty hotelprice;
         private final SimpleStringProperty Ifreservationed;
         private final SimpleStringProperty hotel;
- 
-        private SimpleHotel(String Hotel,String Orderid,String Time,String Creditchange,String Creditlast){
+        private final SimpleStringProperty star;
+        private final SimpleStringProperty grade;
+        
+        private SimpleHotel(String Hotel,int star,double grade,double price,String Creditlast){
         	  this.hotel = new SimpleStringProperty(Hotel);
-        	  this.hotelstar = new SimpleStringProperty(String.valueOf(Orderid));
-        	  this.hotelgrade = new SimpleStringProperty(Time);    	  
-        	  this.hotelprice = new SimpleStringProperty(String.valueOf(Creditchange));
+        	 	  
+        	  this.hotelprice = new SimpleStringProperty(String.valueOf(price));
         	  this.Ifreservationed = new SimpleStringProperty(Creditlast);
-        	
+        	  this.star=new SimpleStringProperty(String.valueOf(star));
+        	  this.grade=new SimpleStringProperty(String.valueOf(grade));
         }  
  
        public void setHotel(String name){
     	   hotel.set(name);
        }
 
-		public void setHotelstar(String Creditchange) {
-			
-			hotelstar.set(Creditchange);
-		}
-
-		
-		public void setHotelgrade(String Creditlast) {
-			
-			hotelgrade.set(Creditlast);
-		}
-
 		public void setHotelprice(String hotelname) {
 			
 			hotelprice.set(hotelname);
+		}
+		public void setGrade(String grades){
+			grade.set(grades);
 		}
 
 		public void setIfReservation(String f) {
 			
 			Ifreservationed.set(f);
 		}
-
+       public void setStar(String rats){
+    	   star.set(rats);
+       }
 
 
 		public String getHotel(){
 			return hotel.get();
 		}
- 
+     
+		public String getStar(){
+			return star.get();
+		}
      
 
-		public String getHotelstar() {
-			return hotelstar.get();
-		}
-
-		public String getHotlgrade() {
-			return hotelgrade.get();
-		}
+		
+       public String getGrade(){
+    	   return grade.get();
+       }
 
 		public String getHotelprice() {
 			return hotelprice.get();

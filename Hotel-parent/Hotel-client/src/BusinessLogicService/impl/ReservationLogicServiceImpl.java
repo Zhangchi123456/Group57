@@ -116,14 +116,14 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			star=3;
 		}
 		switch(hotelgrade){
-		case"5分":
+		case"10分":
+			grade=10;
+			break;
+		case"8分及以上":
+			grade=8;
+			break;
+		case"5分及以上":
 			grade=5;
-			break;
-		case"4分及以上":
-			grade=4;
-			break;
-		case"3分及以上":
-			grade=3;
 		
 		}
 		
