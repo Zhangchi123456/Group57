@@ -61,7 +61,7 @@ public class HotelmainuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		HotelStaffLogicServiceImpl ser = new HotelStaffLogicServiceImpl();
+		HotelStaffLogicService ser = new HotelStaffLogicServiceImpl();
 		
 		LogVO logvo = LoginHelper.getLogVO();
 		String name = logvo.getUsername();

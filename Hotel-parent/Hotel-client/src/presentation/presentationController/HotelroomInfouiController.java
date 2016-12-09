@@ -4,6 +4,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import BusinessLogicService.Service.HotelStaffLogicService;
+import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.HotelmanageController;
+import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.presentationController.HotelorderuiController.SimpleHotelOrder;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -38,19 +46,29 @@ public class HotelroomInfouiController implements Initializable{
 	
 	@FXML
 	private Label roomList;
+	
+	public ObservableList<SimpleHotelOrder> temp;
+		
+	int roomid = HotelmanageController.getRoomVO().getId();
+	HotelStaffLogicService am = new HotelStaffLogicServiceImpl();
+	ArrayList<OrderVO> roomlist = new ArrayList<OrderVO>();
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
+		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
-		
+		roomlist = am.roomShowAll(roomid);
+   	    if(roomlist!=null);
+   	    Roomlist(roomlist);
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		roomlist = am.findUserOrderListHotel(Name);
+   	    if(roomlist!=null);
+   	    Roomlist(roomlist);
 		
 	}
 	

@@ -28,6 +28,8 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	
 	private HotelDataHelper roomDataHelper;
 	
+	private HotelDataHelper circleDataHelper;
+	
 	private DataFactory dataFactory;
 	
 	private static HotelDataImpl hotelDataImpl;
@@ -49,6 +51,11 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			dataFactory = new DataFactoryImpl();
 			roomDataHelper = dataFactory.getHotelDataHelper();
 			map_room = roomDataHelper.getRoomData();
+		}
+		if(map_circle == null){
+			dataFactory = new DataFactoryImpl();
+			circleDataHelper = dataFactory.getHotelDataHelper();
+			map_circle = hotelDataHelper.getCircleData();
 		}
 	}
 	
@@ -87,7 +94,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		String name = po.getName();
 		if(map_circle.get(name) != null){
 			map_circle.put(name, po);
-			hotelDataHelper.updateCircleData(po);
+			circleDataHelper.updateCircleData(po);
 			return true;
 		}
 		return false;	
@@ -120,13 +127,13 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return hotellist;		
 	}//显示商圈内所有酒店信息
 	
-	public ArrayList<RoomPO> roomShowAll(String hotel_id, int room_id, String room_type)throws RemoteException{
+	public ArrayList<RoomPO> roomShowAll(String hotel_id)throws RemoteException{
 		ArrayList<RoomPO> roomlist=new ArrayList<RoomPO>();
 		Iterator<Map.Entry<Integer,RoomPO>> iterator = map_room.entrySet().iterator();
 		while(iterator.hasNext()){
 			Map.Entry<Integer, RoomPO> entry = iterator.next();
 			RoomPO roompo = entry.getValue();
-		if(hotel_id.equals(roompo.getHotelid())||room_id == roompo.getId()||room_type.equals(roompo.getRoomtype())){
+		if(hotel_id.equals(roompo.getHotelid())){
 			roomlist.add(roompo);
 			
 		}
@@ -138,7 +145,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) != null){
 			map_room.put(room_id, roompo);
-			hotelDataHelper.updateRoomData(roompo);
+			roomDataHelper.updateRoomData(roompo);
 			return true;
 		}
 		return false;
@@ -149,7 +156,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) != null){
 			map_room.remove(room_id, roompo);
-			hotelDataHelper.deleteRoomData(roompo);
+			roomDataHelper.deleteRoomData(roompo);
 			return true;
 		}
 		return false;
@@ -159,7 +166,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) == null){
 			map_room.put(room_id, roompo);
-			hotelDataHelper.insertRoomData(roompo);
+			roomDataHelper.insertRoomData(roompo);
 			return true;
 		}
         return false;

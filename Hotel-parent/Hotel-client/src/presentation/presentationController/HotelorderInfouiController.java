@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.impl.OrderLogicServiceImpl;
 import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
@@ -33,9 +34,11 @@ public class HotelorderInfouiController implements Initializable{
 	@FXML
 	private ChoiceBox Statetx;//更改订单状态
      
+	OrderLogicServiceImpl ser = new OrderLogicServiceImpl();
 
-	String orderid = HotelorderuiController.Orderid;
-	OrderVO ordervo = orderShowAll(orderid);
+	String order_id = HotelorderuiController.Orderid;
+	int orderid = Integer.parseInt(order_id);
+	OrderVO ordervo = ser.orderShowAll(orderid);
 	
 	@SuppressWarnings("unchecked")
 	@FXML

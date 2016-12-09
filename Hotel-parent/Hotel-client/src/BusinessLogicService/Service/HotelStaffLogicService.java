@@ -12,7 +12,7 @@ public interface HotelStaffLogicService {
 	public HotelVO findHotel(String name)throws RemoteException;
 	
 	//显示所有客房
-	public ArrayList<RoomVO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException;
+	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException;
 	
 	//房间信息更新
 	public boolean changeRoomInfo(String hotelid, String roomid, String type) throws RemoteException;

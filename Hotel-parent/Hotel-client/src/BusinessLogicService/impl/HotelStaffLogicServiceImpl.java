@@ -39,7 +39,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	//显示所有客房
-	public ArrayList<RoomVO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException {
+	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
