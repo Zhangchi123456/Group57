@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.dataService.OrderDataService;
+import org.Hotel.common.dataService.UserDataService;
+import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
 
 import BusinessLogicService.Service.HotelStaffLogicService;
@@ -20,6 +22,21 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 
 	HotelDataService hds;
 	OrderDataService ods;
+	UserDataService uds;
+	
+	//根据工作人员显示所在酒店
+	public HotelVO findHotel(String name)throws RemoteException {
+		
+		uds = (UserDataService) RMIHelper.find("UserDataService");
+		HotelVO hotelvo = new HotelVO();
+		
+		HotelStaffPO po = uds.findByHotelStaff(name);
+		String hotelname = po.getHotelName();
+		
+		hotelvo.setName(hotelname);
+		
+		return hotelvo;
+	}
 	
 	//显示所有客房
 	public ArrayList<RoomVO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException {

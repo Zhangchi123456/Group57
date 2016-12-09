@@ -7,7 +7,10 @@ import vo.HotelVO;
 import vo.RoomVO;
 
 public interface HotelStaffLogicService {
-
+	
+	//根据工作人员显示所在酒店
+	public HotelVO findHotel(String name)throws RemoteException;
+	
 	//显示所有客房
 	public ArrayList<RoomVO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException;
 	
