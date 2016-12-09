@@ -40,7 +40,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="button_businesscirclr" mnemonicParsing="false" onAction="#BusinessClicked" prefHeight="50.0" prefWidth="200.0" text="商圈专属折扣">
+            <Button fx:id="button_businesscircle" mnemonicParsing="false" onAction="#BusinessClicked" prefHeight="50.0" prefWidth="200.0" text="商圈专属折扣">
                <font>
                   <Font size="20.0" />
                </font>
@@ -59,7 +59,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="level" onMouseClicked="#levelChoose" prefHeight="23.0" prefWidth="100.0" />
+                  <ChoiceBox fx:id="level" onAction="#ChoiceBoxClicked" prefHeight="23.0" prefWidth="100.0" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">

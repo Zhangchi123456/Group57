@@ -89,10 +89,9 @@ public class birthdayuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
-		HotelPromotionVO vo;
 		String hotel_name = HotelmanageController.getHotelVO().getName();
 		String name = "生日折扣";
-		vo = promotion.getHotelPromotion(hotel_name,name);
+		HotelPromotionVO vo = promotion.getHotelPromotion(hotel_name,name);
 		double discount = vo.getBirthdayDiscount()*100;
 		birthdaydiscount.setText(String.valueOf(discount));
 	}
