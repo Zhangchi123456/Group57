@@ -26,7 +26,7 @@ public class ServerStart {
 //			e.printStackTrace();
 //		}
 //	
-		localHelper.init();
+		RemoteHelper.init();
 		
 	}
 
