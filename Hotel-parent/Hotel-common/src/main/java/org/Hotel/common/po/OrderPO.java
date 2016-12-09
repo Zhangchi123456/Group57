@@ -278,5 +278,6 @@ public class OrderPO implements Serializable{
     	
     	this.price = price;
     }
+
     
 }

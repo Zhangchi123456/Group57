@@ -77,29 +77,34 @@ public class LoginController implements Initializable{
 			else {
 				UserType usertype =lcs.findUser(LogId, Logpassword);
 				if(UserType.Member.equals(usertype)){
-					UiswitchHelper.getApplication().goto_Usermainui();
-					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-					UserName=UserId.getText();
+	              LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+					
 			     	LoginHelper.setLogVO(vo);
+					UserName=UserId.getText();
+					UiswitchHelper.getApplication().goto_Usermainui();
+				
 				}
 				else if(UserType.hotelStaff.equals(usertype)){
-					UiswitchHelper.getApplication().goto_HotelMainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
 			     	UserName=UserId.getText();
 			     	
+					UiswitchHelper.getApplication().goto_HotelMainui();
+					
 				}
 				else if(UserType.webManager.equals(usertype)){
-					UiswitchHelper.getApplication().goto_UserWebManagementui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
 			     	UserName=UserId.getText();
+					UiswitchHelper.getApplication().goto_UserWebManagementui();
+					
 				}
 				else if(UserType.webStaff.equals(usertype)){
-					UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
 			     	UserName=UserId.getText();
+					UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+					
 				}
 				
 			}

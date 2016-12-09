@@ -68,10 +68,9 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean insert(HotelPromotionPO po) throws RemoteException{
 		String hotelpro_id = po.getId();
-		if(map_hotel.get(hotelpro_id) != null){
+		if(map_hotel.get(hotelpro_id) == null){
 			map_hotel.put(hotelpro_id, po);
 			hotelproDataHelper.insertHotelPromotionData(po);
-			update(po);
 			return true;
 		}
 		return false;
@@ -84,7 +83,6 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.remove(hotelpro_id, po);
 			hotelproDataHelper.deleteHotelPromotionData(po);
-			update(po);
 			return true;
 		}
 		return false;
@@ -97,7 +95,6 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		if(map_hotel.get(hotelpro_id) != null){
 			map_hotel.put(hotelpro_id, po);
 			hotelproDataHelper.updateHotelPromotionData(po);
-			update(po);
 			return true;
 		}
 		return false;
@@ -120,7 +117,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		while(iterator.hasNext()){
 			Entry<String, HotelPromotionPO> entry = iterator.next();
 			HotelPromotionPO hotelpropo = entry.getValue();
-			if(hotel_id==hotelpropo.getHotelid())
+			if(hotel_id.equals(hotelpropo.getHotelid()))
 				hotelprolist.add(hotelpropo);
 		}
 		return hotelprolist;
@@ -133,7 +130,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			Entry<String, HotelPromotionPO> entry = iterator.next();
 			
 		    hotelpropo = entry.getValue();
-			if(type==hotelpropo.getType()&&hotel_id == hotelpropo.getHotelid())
+			if(type.equals(hotelpropo.getType())&&hotel_id.equals(hotelpropo.getHotelid()))
             break;
 		}
 		return hotelpropo;

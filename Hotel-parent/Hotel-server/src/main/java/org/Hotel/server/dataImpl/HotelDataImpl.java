@@ -99,7 +99,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, HotelPO> entry = iterator.next();
 			HotelPO hotelpo = entry.getValue();
-		if(circle == hotelpo.getCircle()||hotel_id==hotelpo.getName()||star==hotelpo.getStar()||grade==hotelpo.getGrade()){
+		if(circle.equals(hotelpo.getCircle())||hotel_id.equals(hotelpo.getName())||star == hotelpo.getStar()||grade == hotelpo.getGrade()){
 			hotellist.add(hotelpo);
 		
 		}
@@ -113,7 +113,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, HotelPO> entry = iterator.next();
 			HotelPO hotelpo = entry.getValue();
-		if(circle == hotelpo.getCircle()){
+		if(circle.equals(hotelpo.getCircle())){
 			hotellist.add(hotelpo);
 		}
 		}
@@ -126,7 +126,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Map.Entry<Integer, RoomPO> entry = iterator.next();
 			RoomPO roompo = entry.getValue();
-		if(hotel_id==roompo.getHotelid()||room_id==roompo.getId()||room_type==roompo.getRoomtype()){
+		if(hotel_id.equals(roompo.getHotelid())||room_id == roompo.getId()||room_type.equals(roompo.getRoomtype())){
 			roomlist.add(roompo);
 			return roomlist;
 		}
@@ -172,7 +172,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, CirclePO> entry = iterator.next();
 			CirclePO po = entry.getValue();
-		if(city==po.getCity()){
+		if(city.equals(po.getCity())){
 			list.add(po);
 			return list;
 		}
@@ -186,7 +186,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, CirclePO> entry = iterator.next();
 			po = entry.getValue();
-		if(city==po.getCity()&&circle==po.getName())
+		if(city.equals(po.getCity())&&circle.equals(po.getName()))
         break;
 		}
 			return po;
@@ -199,7 +199,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String,HotelPO> entry=iterator.next();
 			po=entry.getValue();
-			if(hotelname==po.getName()){
+			if(hotelname.equals(po.getName())){
 				break;
 			}
 			

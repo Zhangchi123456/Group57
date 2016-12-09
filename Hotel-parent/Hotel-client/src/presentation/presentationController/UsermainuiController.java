@@ -124,6 +124,7 @@ public class UsermainuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println(LoginController.UserName);
 		ArrayList<String> Citylist=new ArrayList<String>();
 		String str1="南京";
 		Citylist.add(str1);

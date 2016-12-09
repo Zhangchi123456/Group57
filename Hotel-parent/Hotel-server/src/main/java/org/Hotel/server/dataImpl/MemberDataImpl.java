@@ -103,12 +103,13 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		while(iterator.hasNext()){
 			Entry<Integer, MemberPO> entry = iterator.next();
 			po = entry.getValue();
-		if(name==po.getName())
+		if(name.equals(po.getName()))
         break;
 		}
 			return po;
 	
 	}
+	
 	
 	public MemberLevelPO findLV(int level) throws RemoteException{
 		MemberLevelPO po = new MemberLevelPO();
@@ -116,7 +117,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		while(iterator.hasNext()){
 			Entry<Integer, MemberLevelPO> entry = iterator.next();
 			po = entry.getValue();
-		if(level==po.getLevel())
+		if(level == po.getLevel())
         break;
 		}
 			return po;
