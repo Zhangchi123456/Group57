@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import vo.LogVO;
 import vo.MemberVO ;
 import vo.OrderVO;
 import Helper.UiswitchHelper;
@@ -41,7 +42,8 @@ public class OrderlistuiController implements Initializable{
    public  static String Orderid;
    public static String Hotelname;
   
-   String UserName ="";// MemberActController.getmemberVo().getname();
+   
+   String UserName ="";//LogVO.class.getName();// MemberActController.getmemberVo().getname();
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    
@@ -88,7 +90,7 @@ public class OrderlistuiController implements Initializable{
    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		System.out.println(UserName);
 		OrderStationChoiceBox.setValue("所有订单");
     	 orderlist =am.findUserOrderListAll(UserName);
     	 if(orderlist!=null);

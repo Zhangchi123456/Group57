@@ -79,6 +79,7 @@ public class LoginController implements Initializable{
 				if(UserType.Member.equals(usertype)){
 					UiswitchHelper.getApplication().goto_Usermainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
+					
 			     	LoginHelper.setLogVO(vo);
 				}
 				else if(UserType.hotelStaff.equals(usertype)){

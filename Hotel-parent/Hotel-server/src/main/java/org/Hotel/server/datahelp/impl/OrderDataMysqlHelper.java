@@ -20,7 +20,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 //				+ "order.single_room,order.standard_room,order.family_room,order.suite_room,"
 //				+ "order.status,order.price,order.comment,order.score,member.name AS member_name"
 //				+ " FROM order,member WHERE order.member_id=member.id";
-		String query="SELECT * FROM order";
+		String query="SELECT * FROM order1";
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
