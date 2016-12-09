@@ -2,8 +2,6 @@ package org.Hotel.server.datahelp.impl;
 
 import java.util.Date;
 import java.sql.ResultSet;
-import java.sql.Time;
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,7 +74,6 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		//date
 		Date dischargetime=orderpo.getDischargetime();
 		//comment
-		
 		String query="UPDATE order1 SET status='"+state+"',"
 				+ "remove_time="+dischargetime+","
 				+ "comment='"+comment+"',"
@@ -115,7 +112,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		int familyRoom=po.getFamilyRoom();
 		int suiteRoom=po.getSuiteRoom();
 		
-		String query="INSERT INTO order1(hotel_name,member_name,start_time,end_time,last_time,"
+		String query="INSERT INTO member(hotel_name,member_name,start_time,end_time,last_time,"
 				+"remove_time,people_num,have_kids,single_room,standard_room,family_room"
 				+",suite_room,status,comment,score) VALUE("
 				
@@ -158,7 +155,5 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 
 }

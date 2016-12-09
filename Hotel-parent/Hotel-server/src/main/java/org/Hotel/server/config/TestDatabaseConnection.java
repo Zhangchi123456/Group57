@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.OrderPO;
 import org.Hotel.common.po.WebManagerPO;
+import org.Hotel.server.dataImpl.HotelDataImpl;
 import org.Hotel.server.dataImpl.OrderDataImpl;
 
 import junit.framework.TestCase;
@@ -51,6 +53,7 @@ public class TestDatabaseConnection  {
 			getOrderData();
 			getHotelData();
 			test();
+			getCircleData() ;
 		}
 //	public static Map<String, WebManagerPO> getWebManagerData() {
 //		Database db=Database.getInstance();
@@ -188,13 +191,38 @@ public class TestDatabaseConnection  {
 
    public static void test(){
 	   try {
-		OrderDataImpl a = new OrderDataImpl();
-	ArrayList<OrderPO> po =	a.orderShowAllByName("bbb");
-	System.out.println(po.size());
+		HotelDataImpl a = new HotelDataImpl();
+	HotelPO po =a.Findhotelbyname("南行酒店");
+			System.out.println(po.getGrade());
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	   
    }
+	public static Map<String, CirclePO> getCircleData() {
+		String query="SELECT * FROM circle";
+		db=Database.getInstance();
+		Map<String,CirclePO> map=new HashMap<String,CirclePO>();
+		try{
+			ResultSet rs=db.select(query);
+			String name=rs.getString("name");
+			double discount=rs.getDouble("discount");
+			String city = rs.getString("city");
+		System.out.println(1);
+			while(rs.next()){
+				CirclePO po=new CirclePO(discount,  city,  name) ;
+				map.put(name, po);
+				
+			}
+			return map;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}//end get circle data
+
 }

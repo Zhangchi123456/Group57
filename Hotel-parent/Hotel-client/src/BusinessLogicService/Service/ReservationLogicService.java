@@ -30,6 +30,7 @@ public interface ReservationLogicService {
 	//通过酒店名找到酒店
 	 public HotelVO findbyname(String name) throws RemoteException ;
 	 
-	
+	//判断酒店是否预订过
+	 public String Ifreservationed(String name,HotelVO vo);
 	
 }

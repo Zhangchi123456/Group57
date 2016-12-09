@@ -11,7 +11,7 @@ public class CirclePO implements Serializable{
 	private String name;
 	
 	public CirclePO() {
-		
+		super();
 	}
 	
 	public CirclePO(double discount, String city, String name) {

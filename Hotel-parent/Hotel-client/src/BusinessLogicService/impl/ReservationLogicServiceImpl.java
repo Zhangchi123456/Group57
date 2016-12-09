@@ -16,6 +16,7 @@ import vo.MemberLevelVO;
 import vo.MemberVO;
 import vo.OrderVO;
 import vo.WebPromotionVO;
+import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 
@@ -24,7 +25,7 @@ import org.Hotel.common.dataService.HotelDataService;
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
     PromotionLogicService promotionService=new PromotionLogicServiceImpl();
-    
+    OrderLogicService orderService=new OrderLogicServiceImpl();
     public ArrayList<String> getallcity() throws RemoteException{
     	return hotelservice.cityShowAll();
     }
@@ -67,6 +68,17 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		
 	}
 	
+	 public String Ifreservationed(String name,HotelVO vo){
+		 ArrayList<OrderVO> orderlist=orderService.findUserOrderListAll(name);
+		 String hotelname=vo.getName();
+		 for(int i=0;i<orderlist.size();i++){
+			 if(orderlist.get(i).getHotelid().equals(hotelname)){
+				 return "是";
+			 }
+			 
+		 }
+		 return "否";
+	 }
 	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
 		 ArrayList<HotelPO> hotellist = hotelservice.FindhotelByCircle(circle);
 		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();

@@ -25,12 +25,13 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	  try {
 		OrderVO vo =new OrderVO();  
 		OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));
-		System.out.println(po.getStarttime());
+		System.out.println(po.getDischargetime());
 		vo.SetbyOrderPO(po);
 		vo.setComment(EvaluateInfo);
-		vo.setGrade(score);		
+		vo.setGrade(score);	
+		System.out.println(vo.getDischargetime());
 		po=vo.toOrderPO(vo);
-		System.out.println(po.getStarttime());
+		System.out.println(po.getDischargetime());
 		 tem =ser.update(po);
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
