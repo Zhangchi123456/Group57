@@ -146,10 +146,6 @@ public class MyHotelOrderuiController implements Initializable{
 				public String getOrderstation() {
 					return orderstation.get();
 				}
-
-			
-		 
-		    
-		  
+  
 	}
 }
