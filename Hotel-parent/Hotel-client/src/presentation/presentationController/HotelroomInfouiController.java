@@ -2,8 +2,16 @@ package presentation.presentationController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import BusinessLogicService.Service.HotelStaffLogicService;
+import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.HotelmanageController;
+import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.presentationController.HotelorderuiController.SimpleHotelOrder;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -38,19 +47,46 @@ public class HotelroomInfouiController implements Initializable{
 	
 	@FXML
 	private Label roomList;
+	
+	public ObservableList<SimpleHotelOrder> temp;
+		
+	String Name = HotelmanageController.getRoomVO().getHotelid();
+	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
+	OrderLogicService oser = new OrderLogicServiceImpl();
+	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
+	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
-		Parent root = FXMLLoader.load(getClass().getResource("mainui.fxml"));
+		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
-		
+		try {
+			roomlist = hser.roomShowAll(Name);
+			for(int i=0;i<roomlist.size();i++){
+				int id = roomlist.get(i).getId();
+				orderlist.add()
+			}
+			if(roomlist!=null&&orderlist!=null)
+			Roomlist(roomlist, orderlist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   	 
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		try {
+			roomlist = hser.roomShowAll(Name);
+			if(roomlist!=null&&orderlist!=null)
+		   	Roomlist(roomlist, orderlist);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

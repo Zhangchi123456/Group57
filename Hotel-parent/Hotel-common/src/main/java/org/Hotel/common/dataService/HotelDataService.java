@@ -19,7 +19,7 @@ public interface HotelDataService extends Remote{
 	public ArrayList<HotelPO> hotelShowAll(String circle, String hotel_id,
 			int star, double grade)throws RemoteException;
 	
-	public ArrayList<RoomPO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException;
+	public ArrayList<RoomPO> roomShowAll(String hotelid)throws RemoteException;
 	public boolean updateRoom(RoomPO roompo)throws RemoteException;
 	public boolean deleteRoom(RoomPO roompo)throws RemoteException;
 	public boolean insertRoom(RoomPO roompo)throws RemoteException;

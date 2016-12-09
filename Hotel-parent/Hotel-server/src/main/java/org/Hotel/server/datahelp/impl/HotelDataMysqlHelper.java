@@ -2,7 +2,9 @@ package org.Hotel.server.datahelp.impl;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPO;
@@ -280,16 +282,16 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	}
 
 	public Map<String, CirclePO> getCircleData() {
+		
 		String query="SELECT * FROM circle";
 		db=Database.getInstance();
 		Map<String,CirclePO> map=new HashMap<String,CirclePO>();
+		ResultSet rs=db.select(query);
 		try{
-			ResultSet rs=db.select(query);
-			String name=rs.getString("name");
-			double discount=rs.getDouble("discount");
-			String city = rs.getString("city");
-			
 			while(rs.next()){
+				String name=rs.getString("name");
+				double discount=rs.getDouble("discount");
+				String city = rs.getString("city");
 				CirclePO po=new CirclePO(discount,  city,  name) ;
 				map.put(name, po);
 			}
@@ -303,6 +305,18 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end get circle data
 
+	public static void main(String[] args){
+		CirclePO po = new CirclePO();
+		HotelDataMysqlHelper data=new HotelDataMysqlHelper();
+		Map<String , CirclePO> map=data.getCircleData();
+		Iterator<Map.Entry<String,CirclePO>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CirclePO> entry = iterator.next();
+			po = entry.getValue();
+		System.out.println("circle:"+po.getName()+" city:"+po.getCity());
+		}
+	}
+	
 	public void updateCircleData(CirclePO po) {
 		db=Database.getInstance();
 		

@@ -68,7 +68,7 @@ public class HotelorderuiController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		 orderlist = am.findHotelOrderListAll(Name);
+		 orderlist = am.findUserOrderListHotel(Name);
     	 if(orderlist!=null);
     	 HotelOrderlist(orderlist);
 	}

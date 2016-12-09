@@ -26,6 +26,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import vo.HotelVO;
 import vo.MemberVO;
 
 public class UsermainuiController implements Initializable{
@@ -37,12 +39,13 @@ public class UsermainuiController implements Initializable{
 	private Label membernamelabel;
 	//显示会员名的label
 	@FXML
-	private ChoiceBox CityChoicebox,RoomtypeChoicebox,RoomnumChoicebox,HotelstarChoicebox,HotelgradeChoicebox,HotelpriceChoicebox,BusinessChoicebox;
+	private ChoiceBox CityChoicebox,RoomTypeChoicebox,RoomnumChoicebox,HotelstarChoicebox,HotelgradeChoicebox,HotelpriceChoicebox,BusinessChoicebox;
 	  //对应：             城市选择，     房间类型选择          房间数量选择          酒店星级选择           酒店评分选择       酒店价格选择          商圈选择， 
 	@FXML
 	private DatePicker CheckindateDatepicker,CheckoutdateDatepicker;
     //                 入住日期                离开日期
-	
+	@FXML
+	private TextField HotelnameText;
 	
 	
 	
@@ -67,41 +70,50 @@ public class UsermainuiController implements Initializable{
 	
 	
 	@FXML
-	private void SearchButtonClicked(ActionEvent event){
+	private void SearchButtonClicked(ActionEvent event) throws RemoteException{
 		String roomtype;
     	String roomnum;
     	String hotelstar;
     	String hotelgrade;
     	String hotelprice;
     	String allresult;
-    	String cityname=CityChoicebox.getValue().toString();
+    	String hotelname;
+    	String cityname;
 		String Businessname=BusinessChoicebox.getValue().toString();
-    	if(RoomtypeChoicebox.getValue()!=null){
-    		roomtype=RoomtypeChoicebox.getValue().toString();
+		
+    	if(RoomTypeChoicebox.getValue()!=null){
+    		roomtype=RoomTypeChoicebox.getValue().toString();
     	}else{
     		roomtype="null";
     	}
     	if(RoomnumChoicebox.getValue()!=null){
-    		roomnum=RoomtypeChoicebox.getValue().toString();
+    		roomnum=RoomnumChoicebox.getValue().toString();
     	}else{
     		roomnum="null";
     	}
     	if(HotelstarChoicebox.getValue()!=null){
-    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    		hotelstar=HotelstarChoicebox.getValue().toString();
     	}else{
     		hotelstar="null";
     	}
     	if(HotelgradeChoicebox.getValue()!=null){
-    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    		hotelgrade=HotelgradeChoicebox.getValue().toString();
     	}else{
     		hotelgrade="null";
     	}
     	if(HotelpriceChoicebox.getValue()!=null){
-    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    		hotelprice=HotelpriceChoicebox.getValue().toString();
     	}else{
     		hotelprice="null";
     	}
-		
+    	if(HotelnameText.getText()!=null){
+    		hotelname=HotelnameText.getText().toString();
+    	}else{
+    		hotelname="null";
+    	}
+		ArrayList<HotelVO> hotellist=reservationService.findbycircle(Businessname);
+		hotellist=reservationService.filtbysearch(hotellist, roomtype, roomnum, hotelstar, hotelgrade, hotelprice, hotelname);
+		ReservationController.setHotelvoList(hotellist);
 		UiswitchHelper.getApplication().goto_HotelListui();
 	}
 
@@ -132,28 +144,28 @@ public class UsermainuiController implements Initializable{
     	String hotelgrade;
     	String hotelprice;
     	String allresult;
-    	if(RoomtypeChoicebox.getValue()!=null){
-    		roomtype=RoomtypeChoicebox.getValue().toString();
+    	if(RoomTypeChoicebox.getValue()!=null){
+    		roomtype=RoomTypeChoicebox.getValue().toString();
     	}else{
     		roomtype="null";
     	}
     	if(RoomnumChoicebox.getValue()!=null){
-    		roomnum=RoomtypeChoicebox.getValue().toString();
+    		roomnum=RoomnumChoicebox.getValue().toString();
     	}else{
     		roomnum="null";
     	}
     	if(HotelstarChoicebox.getValue()!=null){
-    		hotelstar=RoomtypeChoicebox.getValue().toString();
+    		hotelstar=HotelstarChoicebox.getValue().toString();
     	}else{
     		hotelstar="null";
     	}
     	if(HotelgradeChoicebox.getValue()!=null){
-    		hotelgrade=RoomtypeChoicebox.getValue().toString();
+    		hotelgrade=HotelgradeChoicebox.getValue().toString();
     	}else{
     		hotelgrade="null";
     	}
     	if(HotelpriceChoicebox.getValue()!=null){
-    		hotelprice=RoomtypeChoicebox.getValue().toString();
+    		hotelprice=HotelpriceChoicebox.getValue().toString();
     	}else{
     		hotelprice="null";
     	}
