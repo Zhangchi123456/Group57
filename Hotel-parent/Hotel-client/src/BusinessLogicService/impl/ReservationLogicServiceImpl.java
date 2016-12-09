@@ -86,6 +86,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 int Roomnum=0;
 		 
 		 
+		 if(Hotelname=="null"){
+			 Hotelname="";
+		 }
 		 switch(roomtype){
 		 case"单人房":
 			 break;

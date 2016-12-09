@@ -2,6 +2,8 @@ package presentation.presentationController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,11 +42,37 @@ public class CreatorderController implements Initializable{
     	vo.setName(UserName.getText());
     	vo.setPeoplenum(UserNum.getText());
     	
-    	roomnum=RoomnumText.getText();
+    	
     	roomtype=RoomType.getValue().toString();
-    	havechild=Child.getValue().toString();
-    	timebegin=TimeBegin.getValue().toString();
-    	timeend=TimeEnd.getValue().toString();
+    	if("单人房".equals(roomtype)){
+    		vo.setSingleRoom(roomnum);
+    		vo.setFamilyRoom("0");
+    		vo.setStandardRoom("0");
+    		vo.setSuiteRoom("0");
+    	}
+    	if("标准间".equals(roomtype)){
+    		vo.setSingleRoom("0");
+    		vo.setFamilyRoom("0");
+    		vo.setStandardRoom(roomnum);
+    		vo.setSuiteRoom("0");
+    	}
+    	if("家庭房".equals(roomtype)){
+    		vo.setSingleRoom("0");
+    		vo.setFamilyRoom(roomnum);
+    		vo.setStandardRoom("0");
+    		vo.setSuiteRoom("0");
+    	}
+    	if("套间".equals(roomtype)){
+    		vo.setSingleRoom("0");
+    		vo.setFamilyRoom("0");
+    		vo.setStandardRoom("0");
+    		vo.setSuiteRoom(roomnum);
+    	}
+    	
+    	vo.setHavekids(Child.getValue().toString());
+    	vo.setStarttime(TimeBegin.getValue().toString());
+    	vo.setLasttime(TimeEnd.getValue().toString());
+    	
          UiswitchHelper.getApplication().goto_confirmUi();
     	}
     }
