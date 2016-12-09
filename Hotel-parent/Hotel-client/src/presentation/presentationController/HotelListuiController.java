@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ import presentation.presentationController.UsercreditrecorduiController.CreditRe
 import vo.HotelVO;
 
 public class HotelListuiController implements Initializable{
-	private ReservationLogicService reservationService;
+	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	private ObservableList<SimpleHotel> finallist;
 	private ObservableList<SimpleHotel> reservationedlist;
 	@FXML
@@ -62,6 +63,7 @@ public class HotelListuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		ArrayList<HotelVO> hotellist1=new ArrayList<HotelVO>();
 		HotelVO vo1=new HotelVO();
 		vo1.setName("123");vo1.setStar(5);

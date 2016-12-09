@@ -15,6 +15,7 @@ public interface OrderDataService extends Remote{
 	public boolean update(OrderPO orderpO)throws RemoteException;
 	
 	public ArrayList<OrderPO> showAll()throws RemoteException;
+	public OrderPO orderShowAll(int order_id)throws RemoteException;
 	
 	public ArrayList<OrderPO> orderShowAllByName(String name)throws RemoteException;
 	

@@ -55,7 +55,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String roomid, String type) throws RemoteException {
+	public boolean changeRoomInfo(String hotelid, String roomid, String type) throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		

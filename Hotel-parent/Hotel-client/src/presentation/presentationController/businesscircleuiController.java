@@ -53,7 +53,7 @@ public class businesscircleuiController implements Initializable{
 	}
 	
 	@FXML
-	public void cityChoose(MouseEvent event){
+	public void CityChoiceBoxClicked(ActionEvent event){
 		
 		String city_name = city.getValue().toString();
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -67,7 +67,7 @@ public class businesscircleuiController implements Initializable{
 	}
 	
 	@FXML
-	public void circlrChoose(MouseEvent event){
+	public void CircleChoiceBoxClicked(ActionEvent event){
 		
 		String city_name = city.getValue().toString();
 		String circle = businesscircle.getValue().toString();
