@@ -128,10 +128,10 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			RoomPO roompo = entry.getValue();
 		if(hotel_id.equals(roompo.getHotelid())||room_id == roompo.getId()||room_type.equals(roompo.getRoomtype())){
 			roomlist.add(roompo);
-			return roomlist;
+			
 		}
 		}
-		return null;
+		return roomlist;
 	}//显示所有客房信息
 	
 	public boolean updateRoom(RoomPO roompo)throws RemoteException{
