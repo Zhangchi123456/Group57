@@ -14,11 +14,8 @@ import Controller.MemberActController;
 import vo.OrderVO;
 
 public class OrderLogicServiceImpl implements OrderLogicService {
-     OrderDataService ser=null ;
-     public OrderLogicServiceImpl(){
- 		this.ser = (OrderDataService)RMIHelper.find("OrderDataService");
- 		
- 	}
+     OrderDataService ser= (OrderDataService)RMIHelper.find("OrderDataService");
+   
      
      //评价信息的更新
 	@Override
@@ -93,6 +90,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
 		try {
 			a=ser.orderShowAllByName(UserName);
+			System.out.println(a.size());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

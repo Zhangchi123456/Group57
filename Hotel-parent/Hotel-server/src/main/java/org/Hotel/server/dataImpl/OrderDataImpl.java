@@ -105,9 +105,10 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				OrderPO orderpo = entry.getValue();
-				if(name == orderpo.getName())
+				if(name .equals(orderpo.getName()))
 				orderlist.add(orderpo);
 			}
+			System.out.println(orderlist.size());
 			return orderlist;
 			
 		}
@@ -118,7 +119,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				OrderPO orderpo = entry.getValue();
-				if(hotel_id == orderpo.getHotelid())
+				if(hotel_id.equals( orderpo.getHotelid()))
 				orderlist.add(orderpo);
 			}
 			return orderlist;
@@ -131,7 +132,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				OrderPO orderpo = entry.getValue();
-				if(name == orderpo.getName()&&state == orderpo.getState())
+				if(name.equals(orderpo.getName())&&state.equals(orderpo.getState()))
 				orderlist.add(orderpo);
 			}
 			return orderlist;

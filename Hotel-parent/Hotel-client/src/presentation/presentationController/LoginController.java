@@ -36,7 +36,7 @@ import vo.LogVO;
 
 
 public class LoginController implements Initializable{
-    
+    public static String UserName;
 	@FXML
 	private TextField UserId;
 	@FXML
@@ -79,23 +79,27 @@ public class LoginController implements Initializable{
 				if(UserType.Member.equals(usertype)){
 					UiswitchHelper.getApplication().goto_Usermainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
-					
+					UserName=UserId.getText();
 			     	LoginHelper.setLogVO(vo);
 				}
 				else if(UserType.hotelStaff.equals(usertype)){
 					UiswitchHelper.getApplication().goto_HotelMainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
+			     	UserName=UserId.getText();
+			     	
 				}
 				else if(UserType.webManager.equals(usertype)){
 					UiswitchHelper.getApplication().goto_UserWebManagementui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
+			     	UserName=UserId.getText();
 				}
 				else if(UserType.webStaff.equals(usertype)){
 					UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
 			     	LoginHelper.setLogVO(vo);
+			     	UserName=UserId.getText();
 				}
 				
 			}
