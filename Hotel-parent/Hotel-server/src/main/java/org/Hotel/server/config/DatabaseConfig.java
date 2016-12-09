@@ -8,7 +8,7 @@ public abstract class DatabaseConfig {
 	
 
 	private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private static String DB_URL = "jdbc:mysql://localhost/orhsdata?autoReconnect=true&useSSL=false";
+	private static String DB_URL = "jdbc:mysql://localhost/ohrsdata?autoReconnect=true&useSSL=false";
 	private static String USER="root";
 	private static String PASSWORD="5386317439";
 	

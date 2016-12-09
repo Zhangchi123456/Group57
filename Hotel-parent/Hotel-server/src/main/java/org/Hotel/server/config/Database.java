@@ -88,11 +88,12 @@ public class Database {
 	public static void main(String[] args){
 		Database db=Database.getInstance();
 		String query="SELECT * FROM member";
-		ResultSet rs=db.select(query);
 		String s="";
 		int i=1;
+		ResultSet rs=db.select(query);
 		try{	
-			db.update(query);
+			
+			
 			while(rs.next()){
 				s+=i+"name:"+rs.getString("name")+"\n";
 				i++;
@@ -104,8 +105,7 @@ public class Database {
 			}finally{
 			}
 			db.close();
-			String src=null;
-			System.out.println(src);
+			
 		
 	}
 		
