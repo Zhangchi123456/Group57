@@ -65,9 +65,10 @@ public class HotelroomInfouiController implements Initializable{
 	private void okButtonClicked(ActionEvent event){
 		try {
 			roomlist = hser.roomShowAll(Name);
+			
 			for(int i=0;i<roomlist.size();i++){
 				int id = roomlist.get(i).getId();
-				orderlist.add()
+				orderlist.add(hser.findOrderByRoom(id));
 			}
 			if(roomlist!=null&&orderlist!=null)
 			Roomlist(roomlist, orderlist);
@@ -81,6 +82,11 @@ public class HotelroomInfouiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			roomlist = hser.roomShowAll(Name);
+				
+			for(int i=0;i<roomlist.size();i++){
+				int id = roomlist.get(i).getId();
+				orderlist.add(hser.findOrderByRoom(id));
+			}
 			if(roomlist!=null&&orderlist!=null)
 		   	Roomlist(roomlist, orderlist);
 		} catch (RemoteException e) {

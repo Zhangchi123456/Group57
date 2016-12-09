@@ -43,7 +43,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
-		ArrayList<RoomPO> list = hds.roomShowAll(hotelid, room_id, room_type);
+		ArrayList<RoomPO> list = hds.roomShowAll(hotelid);
 		for(int i=0;i<list.size();i++){
 		RoomVO roomvo = new RoomVO();
 		
@@ -136,6 +136,12 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		return info;
 		
+	}
+	
+	//根据房间号查找订单
+	public OrderVO findOrderByRoom(int roomid)throws RemoteException {
+		
+		return null;
 	}
 	
 }

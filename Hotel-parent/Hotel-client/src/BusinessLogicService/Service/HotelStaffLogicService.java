@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import vo.HotelVO;
+import vo.OrderVO;
 import vo.RoomVO;
 
 public interface HotelStaffLogicService {
@@ -28,4 +29,7 @@ public interface HotelStaffLogicService {
 	
 	//退房信息更新
 	public boolean changeCheckOutInfo(int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom)throws RemoteException;
+	
+	//根据房间号查找订单
+	public OrderVO findOrderByRoom(int roomid)throws RemoteException;
 }
