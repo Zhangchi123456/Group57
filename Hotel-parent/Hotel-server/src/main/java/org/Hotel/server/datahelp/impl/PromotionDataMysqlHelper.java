@@ -122,18 +122,20 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	}//end insert hotel promotion
 	
 	public void deleteHotelPromotionData(HotelPromotionPO po) {
-//		db=Database.getInstance();
-//		int id=po.getId();
-//		String query="DELETE hotel_strategy WHERE id='"+id+"'";
-//		try{
-//			db.update(query);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
-//		
-	}
+		db=Database.getInstance();
+		String hotelname=po.getHotelid();
+		Date startdate=po.getStartdate();
+		String query="DELETE hotel_strategy WHERE hotel_name='"+hotelname+"' and "
+				+ "start_name="+startdate;
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
+		
+	}//end delete hotel promotion
 	
 	public Map<Date, WebPromotionPO> getWebPromotionData() {
 		db=Database.getInstance();
