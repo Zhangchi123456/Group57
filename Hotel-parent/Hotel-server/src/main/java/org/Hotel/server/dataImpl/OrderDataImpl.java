@@ -90,19 +90,16 @@ OrderDataService,Serializable{
 	    }
 		
 		public OrderPO orderShowAll(int order_id)throws RemoteException{
-			OrderPO orderlist = new OrderPO();
+			OrderPO orderpo = new OrderPO();
 			Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
-				OrderPO orderpo = entry.getValue();
+				orderpo = entry.getValue();
 				if(order_id == orderpo.getId())
-
-				orderlist=orderpo;
-
 				break;
 
 			}
-			return orderlist;
+			return orderpo;
 			
 		}
 		
