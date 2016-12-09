@@ -1,3 +1,4 @@
+
 package org.Hotel.server.dataImpl;
 
 import java.io.Serializable;
@@ -15,7 +16,9 @@ import org.Hotel.server.datahelp.MemberDataHelper;
 import org.Hotel.server.datahelp.OrderDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
-public class OrderDataImpl extends UnicastRemoteObject implements OrderDataService,Serializable{
+public class OrderDataImpl extends UnicastRemoteObject implements 
+
+OrderDataService,Serializable{
 
 
 	private Map<Integer, OrderPO> map;
@@ -86,16 +89,17 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 	    	
 	    }
 		
-		public ArrayList<OrderPO> orderShowAll(int order_id)throws RemoteException{
-			ArrayList<OrderPO> orderlist = new ArrayList<OrderPO>();
+		public OrderPO orderShowAll(int order_id)throws RemoteException{
+			OrderPO orderpo = new OrderPO();
 			Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
-				OrderPO orderpo = entry.getValue();
+				orderpo = entry.getValue();
 				if(order_id == orderpo.getId())
-				orderlist.add(orderpo);
+				break;
+
 			}
-			return orderlist;
+			return orderpo;
 			
 		}
 		
@@ -108,8 +112,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 				if(name .equals(orderpo.getName()))
 				orderlist.add(orderpo);
 			}
-			System.out.println(orderlist.size());
-			return orderlist;
+	     	return orderlist;
 			
 		}
 		
@@ -145,7 +148,7 @@ public class OrderDataImpl extends UnicastRemoteObject implements OrderDataServi
 			while(iterator.hasNext()){
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				OrderPO orderpo = entry.getValue();
-				if(hotel_id == orderpo.getHotelid()&&name == orderpo.getName()) 
+				if(hotel_id.equals(orderpo.getHotelid())&&name.equals( orderpo.getName()) )
 				orderlist.add(orderpo);
 			}
 			return orderlist;

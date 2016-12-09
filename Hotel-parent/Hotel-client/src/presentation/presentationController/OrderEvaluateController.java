@@ -34,7 +34,7 @@ public class OrderEvaluateController  implements Initializable {
 	    private Button Return;
 	    
 	    
-		OrderLogicService a = new OrderLogicServiceImpl();
+		OrderLogicService ser = new OrderLogicServiceImpl();
 	    
 	    
 	 //界面跳转
@@ -50,8 +50,8 @@ public class OrderEvaluateController  implements Initializable {
 				alt.display("信息填写不完整");
 		}
 		  else{ 
-	     MemberActController.getOrdervo().setComment(EvaluateInfo.getText().toString());
-		 boolean tem= a.evaluate(MemberActController.getOrdervo().getId(), Score.getText().toString(), EvaluateInfo.getText().toString());
+	 
+		 boolean tem= ser.evaluate(OrderId.getText().toString(), Score.getText().toString(), EvaluateInfo.getText().toString());
 		
 		
 				UiswitchHelper.getApplication().goto_Usermainui();

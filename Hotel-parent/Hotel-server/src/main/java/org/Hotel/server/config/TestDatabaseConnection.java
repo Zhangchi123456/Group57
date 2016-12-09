@@ -1,7 +1,9 @@
 package org.Hotel.server.config;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.OrderPO;
 import org.Hotel.common.po.WebManagerPO;
+import org.Hotel.server.dataImpl.OrderDataImpl;
 
 import junit.framework.TestCase;
 
@@ -47,6 +50,7 @@ public class TestDatabaseConnection  {
 //			getWebManagerData();
 			getOrderData();
 			getHotelData();
+			test();
 		}
 //	public static Map<String, WebManagerPO> getWebManagerData() {
 //		Database db=Database.getInstance();
@@ -182,5 +186,15 @@ public class TestDatabaseConnection  {
 		return null;
 	}//end getHotelData
 
-
+   public static void test(){
+	   try {
+		OrderDataImpl a = new OrderDataImpl();
+	ArrayList<OrderPO> po =	a.orderShowAllByName("bbb");
+	System.out.println(po.size());
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	   
+   }
 }

@@ -1,46 +1,48 @@
 package vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.Hotel.common.po.OrderPO;
 
 public class OrderVO {
-    private String id;
+	private String id;
 	
 	private String name;
-		
+	
 	private String hotelid;
 	
-	private Date starttime;
+	private String starttime;
 	
 	private String state;
 	
-	private Date leavetime;
-	
-	private Date lasttime;
+	private String leavetime;
 	
 	private String price;
 	
-	private Date dischargetime;
+	private String dischargetime;
 	
-	private int peoplenum;
+	private String lasttime;
 	
-	private boolean havekids;
+	private String peoplenum;
 	
-	private int singleRoom;
+	private String  havekids;
 	
-	private int standardRoom;
+	private String singleRoom;
 	
-	private int familyRoom;
+	private String standardRoom;
 	
-	private int suiteRoom;
+	private String familyRoom;
+	
+	private String suiteRoom;
 	
 	private String comment;
 	
-	private double grade;
+	private String grade;
 	
 
-	public OrderVO(String id, String name, String child, String hotelid, Date intime, Date outtime, String state, String price, Date lasttime, Date dischargetime,int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment, double grade) {
+	public OrderVO(String id, String name, String child, String hotelid, String intime, String outtime, String state, String price, String lasttime, String dischargetime,String peoplenum, String havekids, String singleRoom, String standardRoom, String familyRoom, String suiteRoom, String comment, String grade) {
 			
 		this.id = id;
 		
@@ -79,38 +81,43 @@ public class OrderVO {
 	
 	//po转vo
 	public void SetbyOrderPO(OrderPO po){
-           this.id = String.valueOf(po.getId());
+        this.id = String.valueOf(po.getId());
 		
 		this.name = po.getName();
 		this.hotelid = po.getHotelid();
 		
-		this.starttime = po.getStarttime();
+		this.starttime = po.getStarttime().toLocaleString();
 		
-		this.leavetime = po.getLeavetime();
+		this.leavetime = po.getLeavetime().toLocaleString();
 		
 		this.state = po.getState();
 		
 		this.price = String.valueOf( po.getPrice());
 		
-		this.lasttime = po.getLasttime();
+		this.lasttime = po.getLasttime().toLocaleString();
 		
-		this.dischargetime = po.getDischargetime();
+		this.dischargetime = po.getDischargetime().toLocaleString();
 		
-		this.peoplenum = po.getPeoplenum();
+		this.peoplenum = String.valueOf(po.getPeoplenum());
 		
-		this.havekids = po.isHavekids();
+		if(po.isHavekids()==false){
+			this.havekids="无";
+		}
+		else{
+			this.havekids="有";
+		}
 		
-		this.singleRoom = po.getSingleRoom();
+		this.singleRoom =String.valueOf( po.getSingleRoom());
 		
-		this.standardRoom = po.getStandardRoom();
+		this.standardRoom = String.valueOf(po.getStandardRoom());
 		
-		this.familyRoom = po.getFamilyRoom();
+		this.familyRoom =String.valueOf( po.getFamilyRoom());
 		
-		this.suiteRoom = po.getSuiteRoom();
+		this.suiteRoom =String.valueOf( po.getSuiteRoom());
 		
-		this.comment = po.getComment();
+		this.comment = String.valueOf(po.getComment());
 		
-		this.grade = po.getGrade();
+		this.grade = String.valueOf(po.getGrade());
 	}
 	
 	//vo转po
@@ -118,21 +125,37 @@ public class OrderVO {
 		OrderPO po = new OrderPO();
 		po.setId(Integer.parseInt(id));
 		po.setComment(comment);
-		po.setDischargetime(dischargetime);
-		po.setFamilyRoom(familyRoom);
-		po.setHavekids(havekids);
-		po.setHotelid(hotelid);
-		po.setStarttime(starttime);
-		po.setLasttime(lasttime);
+		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd ");
+		
+		Date date ;
+		try {
+			po.setDischargetime( date =  formatter.parse(dischargetime));
+			po.setStarttime( date =  formatter.parse(starttime));
+		    po.setLasttime( date =  formatter.parse(lasttime));
+		    po.setLeavetime(date =  formatter.parse(leavetime));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(havekids.equals("有")){
+		po.setHavekids(true);
+		}
+		else{
+			po.setHavekids(false);
+		}
+		po.setHotelid(hotelid);	
 		po.setName(name);
-		po.setLeavetime(leavetime);
-		po.setPeoplenum(peoplenum);
+		
+		po.setFamilyRoom(Integer.parseInt(familyRoom));
+
+		po.setPeoplenum(Integer.parseInt(peoplenum));
 		po.setPrice(Integer.parseInt(price));
-		po.setSingleRoom(singleRoom);
-		po.setStandardRoom(standardRoom);
+		po.setSingleRoom(Integer.parseInt(singleRoom));
+		po.setStandardRoom(Integer.parseInt(standardRoom));
 		po.setState(state);
-		po.setSuiteRoom(suiteRoom);
-		po.setGrade(grade);
+		po.setSuiteRoom(Integer.parseInt(suiteRoom));
+		po.setGrade(Integer.parseInt(grade));
 		return po;
 	}
 	
@@ -159,73 +182,73 @@ public class OrderVO {
 	/**
 	 * @return the peoplenum
 	 */
-	public int getPeoplenum() {
+	public String getPeoplenum() {
 		return peoplenum;
 	}
 	/**
 	 * @param peoplenum the peoplenum to set
 	 */
-	public void setPeoplenum(int peoplenum) {
+	public void setPeoplenum(String peoplenum) {
 		this.peoplenum = peoplenum;
 	}
 	/**
 	 * @return the havekids
 	 */
-	public boolean isHavekids() {
+	public String isHavekids() {
 		return havekids;
 	}
 	/**
 	 * @param havekids the havekids to set
 	 */
-	public void setHavekids(boolean havekids) {
+	public void setHavekids(String havekids) {
 		this.havekids = havekids;
 	}
 	/**
 	 * @return the singleRoom
 	 */
-	public int getSingleRoom() {
+	public String getSingleRoom() {
 		return singleRoom;
 	}
 	/**
 	 * @param singleRoom the singleRoom to set
 	 */
-	public void setSingleRoom(int singleRoom) {
+	public void setSingleRoom(String singleRoom) {
 		this.singleRoom = singleRoom;
 	}
 	/**
 	 * @return the standardRoom
 	 */
-	public int getStandardRoom() {
+	public String getStandardRoom() {
 		return standardRoom;
 	}
 	/**
 	 * @param standardRoom the standardRoom to set
 	 */
-	public void setStandardRoom(int standardRoom) {
+	public void setStandardRoom(String standardRoom) {
 		this.standardRoom = standardRoom;
 	}
 	/**
 	 * @return the familyRoom
 	 */
-	public int getFamilyRoom() {
+	public String getFamilyRoom() {
 		return familyRoom;
 	}
 	/**
 	 * @param familyRoom the familyRoom to set
 	 */
-	public void setFamilyRoom(int familyRoom) {
+	public void setFamilyRoom(String familyRoom) {
 		this.familyRoom = familyRoom;
 	}
 	/**
 	 * @return the suiteRoom
 	 */
-	public int getSuiteRoom() {
+	public String getSuiteRoom() {
 		return suiteRoom;
 	}
 	/**
 	 * @param suiteRoom the suiteRoom to set
 	 */
-	public void setSuiteRoom(int suiteRoom) {
+	public void setSuiteRoom(String suiteRoom) {
 		this.suiteRoom = suiteRoom;
 	}
 	/**
@@ -265,70 +288,70 @@ public class OrderVO {
     /**
 	 * @return the starttime
 	 */
-	public Date getStarttime() {
+	public String getStarttime() {
 		return starttime;
 	}
 
 	/**
 	 * @param starttime the starttime to set
 	 */
-	public void setStarttime(Date starttime) {
+	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 
 	/**
 	 * @return the leavetime
 	 */
-	public Date getLeavetime() {
+	public String getLeavetime() {
 		return leavetime;
 	}
 
 	/**
 	 * @param leavetime the leavetime to set
 	 */
-	public void setLeavetime(Date leavetime) {
+	public void setLeavetime(String leavetime) {
 		this.leavetime = leavetime;
 	}
 
 	/**
 	 * @return the lasttime
 	 */
-	public Date getLasttime() {
+	public String getLasttime() {
 		return lasttime;
 	}
 
 	/**
 	 * @param lasttime the lasttime to set
 	 */
-	public void setLasttime(Date lasttime) {
+	public void setLasttime(String lasttime) {
 		this.lasttime = lasttime;
 	}
 
 	/**
 	 * @return the dischargetime
 	 */
-	public Date getDischargetime() {
+	public String getDischargetime() {
 		return dischargetime;
 	}
 
 	/**
 	 * @param dischargetime the dischargetime to set
 	 */
-	public void setDischargetime(Date dischargetime) {
+	public void setDischargetime(String dischargetime) {
 		this.dischargetime = dischargetime;
 	}
 
 	/**
 	 * @return the grade
 	 */
-	public double getGrade() {
+	public String getGrade() {
 		return grade;
 	}
 
 	/**
 	 * @param grade the grade to set
 	 */
-	public void setGrade(double grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 

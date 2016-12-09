@@ -85,7 +85,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="BithidayDatepicker" />
+                  <DatePicker fx:id="BirthdayDatepicker" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="218.0">

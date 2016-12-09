@@ -90,16 +90,20 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
 		try {
 			a=ser.orderShowAllByName(UserName);
-			System.out.println(a.size());
+		
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO(UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName) ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i=0;i<a.size();i++){
-			OrderVO temp = null;
-			temp.SetbyOrderPO(a.get(i));
-			tem.add(temp);
-		}
+
 		return tem;
 	}
 
@@ -112,15 +116,19 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
 		try {
 			a=ser.orderShowAllByName(UserName, OrderStation);
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO(UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName) ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i=0;i<a.size();i++){
-			OrderVO temp = null;
-			temp.SetbyOrderPO(a.get(i));
-			tem.add(temp);
-		}
+	
 		return tem;
 
 }
@@ -134,15 +142,19 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 				ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
 				try {
 					a=ser.orderShowAllByHotel(HotelName,UserName);
+					for(int i=0;i<a.size();i++){
+						OrderVO temp=new OrderVO(UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName) ;
+				//		System.out.println(a.get(i).getName());
+						temp.SetbyOrderPO(a.get(i));
+						
+						tem.add(temp);
+				//		System.out.println(tem.get(i).getName());
+					}
 				} catch (RemoteException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				for(int i=0;i<a.size();i++){
-					OrderVO temp = null;
-					temp.SetbyOrderPO(a.get(i));
-					tem.add(temp);
-				}
+				
 				return tem;
 
 	}

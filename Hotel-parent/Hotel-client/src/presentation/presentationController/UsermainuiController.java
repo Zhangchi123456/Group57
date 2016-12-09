@@ -1,13 +1,16 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.sun.javafx.scene.control.skin.CheckBoxSkin;
 
+import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
 import Controller.ReservationController;
 import Helper.InituiHelper;
 import Helper.UiswitchHelper;
@@ -27,6 +30,7 @@ public class UsermainuiController implements Initializable{
 	private ObservableList<String> citylist;
 	private ObservableList<String> circlelist;
 	private ReservationLogicService reservationService;
+	private MemberLogicService memberservice=new MemberLogicServiceImpl();
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label
@@ -124,7 +128,13 @@ public class UsermainuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println(LoginController.UserName);
+		try {
+			MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
+			ReservationController.setMembervo(member);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ArrayList<String> Citylist=new ArrayList<String>();
 		String str1="南京";
 		Citylist.add(str1);
@@ -136,10 +146,7 @@ public class UsermainuiController implements Initializable{
 	    	 BusinessChoicebox.setItems(citylist);
 	     });
 	    		
-		MemberVO membervo=new MemberVO(1,100,"Trump","金会员","个人会员");
-		ReservationController.setMembervo(membervo);
-		InituiHelper.setMemberVO(membervo);
-		membernamelabel.setText(InituiHelper.getMembername());
+		membernamelabel.setText(LoginController.UserName);
 		
 	}
 

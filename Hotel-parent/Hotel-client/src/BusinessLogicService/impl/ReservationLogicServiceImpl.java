@@ -158,15 +158,15 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
          Date Dateout=sdf.parse(strout);
 		 for(int i=0;i<orderlist.size();i++){
 			 OrderVO vo=orderlist.get(i);
-			 Date startdate=vo.getStarttime();
-			 Date enddate=vo.getLeavetime();
+			Date startdate=sdf.parse(vo.getStarttime());
+			 Date enddate=sdf.parse(vo.getLeavetime());
 			if(startdate.before(Datein)||startdate.equals(Datein)||enddate.after(Dateout)||enddate.equals(Dateout)){
 				
 				
-				leftsingle=leftsingle-vo.getSingleRoom();
-				leftstandard=leftstandard-vo.getStandardRoom();
-				leftfamily=leftfamily-vo.getFamilyRoom();
-				leftsuite=leftsuite-vo.getSuiteRoom();
+				leftsingle=leftsingle-Integer.parseInt(vo.getSingleRoom());
+				leftstandard=leftstandard-Integer.parseInt(vo.getStandardRoom());
+				leftfamily=leftfamily-Integer.parseInt(vo.getFamilyRoom());
+				leftsuite=leftsuite-Integer.parseInt(vo.getSuiteRoom());
 				
 			}
 			switch(roomtype){

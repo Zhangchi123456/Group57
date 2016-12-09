@@ -104,9 +104,9 @@ public class OrderlistuiController implements Initializable{
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
     	 temp =FXCollections.observableArrayList();
     	for(int i=0;i<orderlist.size();i++){
-    	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getStarttime().toString()+"——"
-   		+orderlist.get(i).getLeavetime().toString(),orderlist.get(i).getPrice(),
-   		String.valueOf(orderlist.get(i).getSingleRoom()+orderlist.get(i).getFamilyRoom()+orderlist.get(i).getStandardRoom()+orderlist.get(i).getSuiteRoom()),
+    	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getStarttime()+"——"
+   		+orderlist.get(i).getLeavetime(),orderlist.get(i).getPrice(),
+   		String.valueOf(Integer.parseInt(orderlist.get(i).getSingleRoom())+Integer.parseInt(orderlist.get(i).getFamilyRoom())+Integer.parseInt(orderlist.get(i).getStandardRoom())+Integer.parseInt(orderlist.get(i).getSuiteRoom())),
    		orderlist.get(i).getComment(),orderlist.get(i).getState()));
     	}
 	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(

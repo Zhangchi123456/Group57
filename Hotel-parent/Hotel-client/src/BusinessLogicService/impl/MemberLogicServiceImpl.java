@@ -19,4 +19,11 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		 }
 		 return false;
 	 }
+	 public MemberVO Findmemberbyname(String name) throws RemoteException{
+		 memberService=(MemberDataService)RMIHelper.find("MemberDataService");
+		 MemberPO po=memberService.find(name);
+		 MemberVO vo=new MemberVO(0, 0, name, name, name);
+		 vo.setbypo(po);
+		 return vo;
+	 }
 }
