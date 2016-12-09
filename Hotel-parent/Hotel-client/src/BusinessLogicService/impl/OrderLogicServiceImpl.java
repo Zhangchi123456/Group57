@@ -218,4 +218,29 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 		return tem;
 	}
+
+
+	@Override
+	public OrderVO orderShowAll(int order_id) {
+		// TODO Auto-generated method stub
+		OrderPO a = new OrderPO();
+		OrderVO tem = new OrderVO();
+		try {
+			a=ser.orderShowAll(order_id);
+		
+			
+				OrderVO temp=new OrderVO() ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a);
+				
+				
+		//		System.out.println(tem.get(i).getName());
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tem;
+	}
 }

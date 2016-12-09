@@ -40,11 +40,11 @@ public class CreatorderController implements Initializable{
     	vo.setName(UserName.getText());
     	vo.setPeoplenum(UserNum.getText());
     	
-    	roomnum=RoomnumText.getText();
+    	
     	roomtype=RoomType.getValue().toString();
-    	havechild=Child.getValue().toString();
-    	timebegin=TimeBegin.getValue().toString();
-    	timeend=TimeEnd.getValue().toString();
+    	vo.setHavekids(Child.getValue().toString());
+    	vo.setStarttime(TimeBegin.getValue().toString());
+    	vo.setLasttime(TimeEnd.getValue().toString());
          UiswitchHelper.getApplication().goto_confirmUi();
     	}
     }
