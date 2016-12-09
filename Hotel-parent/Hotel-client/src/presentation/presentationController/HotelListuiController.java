@@ -30,6 +30,7 @@ public class HotelListuiController implements Initializable{
 	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	private ObservableList<SimpleHotel> finallist;
 	private ObservableList<SimpleHotel> reservationedlist;
+	private ArrayList<SimpleHotel> hotellist3;
 	@FXML
 	private CheckBox ReservationCheckbox;//是否预定过该酒店
 	@FXML
@@ -49,7 +50,22 @@ public class HotelListuiController implements Initializable{
   private void ReservationClicked(ActionEvent event){
 	  
 	  if(ReservationCheckbox.isSelected()){
-		  Hoteltable.setItems(reservationedlist);
+		  ArrayList<SimpleHotel> hotellist4=new ArrayList<SimpleHotel>();
+		 
+		  		 
+		  for(int i=0;i<hotellist3.size();i++){
+			 
+			  
+			if(hotellist3.get(i).getIfreservationed().equals("是")){
+					  hotellist4.add(hotellist3.get(i));
+				  }
+				
+				  
+			  
+		  }
+		 
+		  ObservableList<SimpleHotel> finallist2=FXCollections.observableArrayList(hotellist4);
+		  Hoteltable.setItems(finallist2);
 	  }
 	  else{
 		  Hoteltable.setItems((finallist));
@@ -75,10 +91,10 @@ public class HotelListuiController implements Initializable{
 		ArrayList<SimpleHotel> hotellist2=new ArrayList<SimpleHotel>();
 		for(int i=0;i<hotellist1.size();i++){
 			HotelVO vo=hotellist1.get(i);
-			hotellist2.add(new SimpleHotel(vo.getName(),vo.getStar(),vo.getGrade(),vo.getSingleRoomPrice(),"否"));
+			hotellist2.add(new SimpleHotel(vo.getName(),vo.getStar(),vo.getGrade(),vo.getSingleRoomPrice(),reservationService.Ifreservationed(LoginController.UserName, vo)));
 		
 		}
-		
+		hotellist3=hotellist2;
 		finallist =FXCollections.observableArrayList(hotellist2);
 		System.out.println(hotellist2.get(0).getGrade());
 		
