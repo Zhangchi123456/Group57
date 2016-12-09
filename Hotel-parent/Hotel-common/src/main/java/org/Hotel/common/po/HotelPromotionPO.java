@@ -55,6 +55,10 @@ public class HotelPromotionPO implements Serializable{
 		
 		return hoteltype;
 	}
+	
+	public void setId(String hotelid, String type){
+		this.hoteltype = hotelid + type;
+	}
 
 
 	public String getType() {

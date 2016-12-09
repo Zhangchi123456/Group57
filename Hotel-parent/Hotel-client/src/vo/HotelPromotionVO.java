@@ -52,6 +52,7 @@ public class HotelPromotionVO {
 		po.setDatediscount(date_discount);
 		po.setStartdate(start_date);
 		po.setEnddate(end_date);
+		po.setId(hotel_name, name);
 		return po;
 	}
 	
