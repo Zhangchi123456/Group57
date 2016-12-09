@@ -15,7 +15,7 @@ public interface HotelStaffLogicService {
 	public ArrayList<RoomVO> roomShowAll(String hotelid, int room_id, String room_type)throws RemoteException;
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String roomid, String type) throws RemoteException;
+	public boolean changeRoomInfo(String hotelid, String roomid, String type) throws RemoteException;
 	
 	//酒店基本信息生成
 	public boolean formHotelInfo(HotelVO vo)throws RemoteException;

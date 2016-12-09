@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.HotelroomInfouiController.SimpleRoom;
+import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import vo.OrderVO;
 import vo.RoomVO;
 import javafx.scene.control.TableView;
@@ -45,6 +46,9 @@ public class HotelorderuiController implements Initializable{
 	@FXML
 	private Label OrderList;
 	
+    public ObservableList<SimpleHotelOrder> temp;
+	public static String Orderid;
+	
 	String Name = HotelmanageController.getHotelVO().getName();
 	OrderLogicService am = new OrderLogicServiceImpl();
 	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
@@ -56,6 +60,10 @@ public class HotelorderuiController implements Initializable{
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event) throws IOException{
+		int selectnumber=table.getSelectionModel().getSelectedIndex();
+		  
+	    Orderid = temp.get(selectnumber).getOrdernum();
+	    
 		UiswitchHelper.getApplication().goto_ordeinfoui();
 	}
 	@Override

@@ -174,10 +174,10 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			CirclePO po = entry.getValue();
 		if(city.equals(po.getCity())){
 			list.add(po);
-			return list;
 		}
 		}
-		return null;
+
+		return list;
 	}
 	
 	public CirclePO circleFind(String city, String circle)throws RemoteException{
@@ -214,7 +214,8 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		while(iterator.hasNext()){
 			Entry<String, CirclePO> entry = iterator.next();
 			po = entry.getValue();
-				citylist.add(po.getCity());
+			if(!citylist.contains(po.getCity()))
+			citylist.add(po.getCity());
 
 		}
 		return citylist;

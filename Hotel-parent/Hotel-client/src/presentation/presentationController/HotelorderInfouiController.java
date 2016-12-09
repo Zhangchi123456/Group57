@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import vo.OrderVO;
 
 public class HotelorderInfouiController implements Initializable{
 
@@ -46,8 +47,13 @@ public class HotelorderInfouiController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		
+		String orderid = HotelorderuiController.Orderid;
+		
+		OrderVO ordervo = orderShowAll(orderid);
+		INtimetx.setText(ordervo.getStarttime());
+		OutTimetx.setText(ordervo.getLeavetime());
+				
 	}
 
 }
