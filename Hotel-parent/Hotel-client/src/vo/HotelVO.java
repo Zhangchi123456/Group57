@@ -75,9 +75,9 @@ public class HotelVO {
 		this.leftStandardRoom=po.getLeftStandardRoom();
 		this.leftSuiteRoom=po.getLeftSuiteRoom();
 		this.name=po.getName();
-		this.standardRoom=this.getStandardRoom();
-		this.standardRoomPrice=this.getStandardRoomPrice();
-		this.star=this.getStar();
+		this.standardRoom=po.getStandardRoom();
+		this.standardRoomPrice=po.getStandardRoomPrice();
+		this.star=po.getStar();
 		this.suiteRoom=po.getSuiteRoom();
 		this.suiteRoomPrice=po.getSuiteRoomPrice();
 		this.singleRoom=po.getSingleRoom();

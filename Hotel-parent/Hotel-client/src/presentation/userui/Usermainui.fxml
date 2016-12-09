@@ -165,9 +165,9 @@
                   <ChoiceBox fx:id="HotelgradeChoicebox" prefHeight="36.0" prefWidth="114.0">
                   <items>
                   <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="5分" />
-                    <String fx:value="4分及以上" />
-                    <String fx:value="3分及以上" />
+                    <String fx:value="10分" />
+                    <String fx:value="8分及以上" />
+                    <String fx:value="5分及以上" />
                     <String fx:value="任意分数" />
                   </FXCollections>
                   </items>
