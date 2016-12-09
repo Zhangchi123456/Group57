@@ -1,11 +1,13 @@
 package org.Hotel.server.datahelp.impl;
 
+import java.rmi.RemoteException;
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.Hotel.server.config.Database;
+import org.Hotel.server.dataImpl.PromotionDataImpl;
 import org.Hotel.common.po.HotelPromotionPO;
 import org.Hotel.common.po.WebPromotionPO;
 import org.Hotel.common.po.WebStaffPO;
@@ -51,20 +53,22 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	public void updateHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
 		
+		String hotelname=po.getHotelid();
+		String name=po.getType();
 		double birthdaydiscount=po.getBirthdaydiscount();
 		double multiorderdiscount=po.getMultiorderdiscount();
 		double enterpricediscount=po.getEnterpricediscount();
 		double datediscount=po.getDatediscount();
-		Date startdate=po.getStartdate();
-		Date enddate=po.getEnddate();
+//		Date startdate=po.getStartdate();
+//		Date enddate=po.getEnddate();
 		
-		String query="UPDATE hotel_strategy SET bithday_discount="+"'"+birthdaydiscount+"',"
+		String query="UPDATE hotel_strategy SET birthday_discount="+"'"+birthdaydiscount+"',"
 				+ "multiorder_discount="+"'"+multiorderdiscount+"',"
-				+ "enterprice_discount_discount="+"'"+enterpricediscount+"',"
-				+ "date_discount="+"'"+datediscount+"',"
-				+ "start_date="+"'"+startdate+"',"
-				+ "end_date="+"'"+enddate+"'"		
-				+ " WHERE startdate="+"'"+startdate+"'";
+				+ "enterprise_discount="+"'"+enterpricediscount+"',"
+				+ "date_discount="+"'"+datediscount+"'"
+//				+ "start_date="+"'"+startdate+"',"
+//				+ "end_date="+"'"+enddate+"'"		
+				+ " WHERE hotel_name="+"'"+hotelname+"' and name='"+name+"'";
 				
 		try{
 			db.update(query);
@@ -75,6 +79,15 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}
 		
 	}//end update hotel strategy
+	
+//	public static void main(String[] args) throws RemoteException{
+//		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
+//		PromotionDataImpl data=PromotionDataImpl.getInstance();
+//		HotelPromotionPO po2=new HotelPromotionPO("生日折扣", "南行酒店",
+//				0.2,0, 
+//				0,0,null,null);
+//		data.updateHotelPromotionData(po2);
+//	}
 	
 	public void insertHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();

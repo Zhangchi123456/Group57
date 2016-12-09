@@ -110,6 +110,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	}
 	
+	
 	public MemberLevelPO findLV(int level) throws RemoteException{
 		MemberLevelPO po = new MemberLevelPO();
 		Iterator<Entry<Integer, MemberLevelPO>> iterator = map_lv.entrySet().iterator();
