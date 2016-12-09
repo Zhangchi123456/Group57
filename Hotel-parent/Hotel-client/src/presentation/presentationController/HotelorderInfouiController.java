@@ -37,7 +37,7 @@ public class HotelorderInfouiController implements Initializable{
 		
 	}
 	@FXML
-	private void RefrashClicked(ActionEvent event){
+	private void RefreshClicked(ActionEvent event){
 		
 	}
 	@FXML
