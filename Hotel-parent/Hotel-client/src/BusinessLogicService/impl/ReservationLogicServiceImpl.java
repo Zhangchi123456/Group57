@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.common.po.HotelPromotionPO;
 
 import BusinessLogicService.impl.RMIHelper;
 import vo.HotelPromotionVO;
@@ -21,6 +22,7 @@ import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 
 import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
@@ -221,6 +223,23 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		
 		 return vo;
 		 
+	 }
+	 
+	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
+		 PromotionDataService promotionservice=(PromotionDataService)RMIHelper.find("PromotionDataService");
+		 ArrayList<HotelPromotionPO> hotelprolist=promotionservice.findByHotelProID(name);
+		 ArrayList<HotelPromotionVO> hotelprolist2 = new ArrayList<HotelPromotionVO>();
+		 for(int i=0;i<hotelprolist.size();i++){
+			 HotelPromotionVO vo=new HotelPromotionVO();
+			 vo.setByPO(hotelprolist.get(i));
+			 hotelprolist2.add(vo);
+		 }
+		 return hotelprolist2;
+	 }
+	 
+	 public ArrayList<WebPromotionVO> showall(){
+		 ArrayList<WebPromotionVO> LIST=promotionService.getWebPromotionList();
+		 return LIST;
 	 }
 	
 }
