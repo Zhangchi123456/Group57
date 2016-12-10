@@ -72,7 +72,6 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 					voList.add(vo);
 				}
 			}
-			System.out.println(voList.size()+voList.get(2).getName());
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
