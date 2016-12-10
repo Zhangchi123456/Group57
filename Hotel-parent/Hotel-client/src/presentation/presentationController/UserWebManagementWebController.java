@@ -7,6 +7,7 @@ import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class UserWebManagementWebController implements Initializable{
@@ -15,9 +16,18 @@ public class UserWebManagementWebController implements Initializable{
     private TextField NameText,PhonenumberText,PasswordText;
     
     @FXML
+    private PasswordField password,ensurePassword,oldpassword;
+    
+    @FXML
     private void SaveButtonClicked(ActionEvent event){
     	
     }
+    
+    @FXML
+    private void ModifyButtonClicked(ActionEvent event){
+    	
+    }
+    
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Loginui();;

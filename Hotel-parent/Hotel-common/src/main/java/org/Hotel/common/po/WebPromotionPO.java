@@ -11,11 +11,13 @@ public class WebPromotionPO implements Serializable{
 	
 	private Date enddate;
 	
+	private int id;
+	
 	public WebPromotionPO() {
 		super();
 	}
 	
-	public WebPromotionPO(double datediscount,Date startdate,Date enddate) {
+	public WebPromotionPO(double datediscount,Date startdate,Date enddate,int id) {
 		super();
 	
 		this.datediscount = datediscount;
@@ -23,6 +25,8 @@ public class WebPromotionPO implements Serializable{
 		this.startdate = startdate;
 		
 		this.enddate = enddate;
+		
+		this.id=id;
 	}
 	
 	public double getDatediscount() {
@@ -53,6 +57,16 @@ public class WebPromotionPO implements Serializable{
 	public void setEnddate(Date enddate) {
 		
 		this.enddate = enddate;
+	}
+	
+	 public int getID() {
+			
+			return id;
+		}
+		
+	private void setID(int id) {
+			
+		this.id = id;
 	}
 	
 }
