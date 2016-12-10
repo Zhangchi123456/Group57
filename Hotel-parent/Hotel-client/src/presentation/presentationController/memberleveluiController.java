@@ -68,7 +68,7 @@ public class memberleveluiController implements Initializable{
 		int cre = Integer.parseInt(credit.getText());
 		if(discount.getText()!=null){
 			double dis = Double.parseDouble(discount.getText());
-			if(dis>0&&dis<100){
+			if(dis>0&&dis<=100){
 				MemberLevelVO vo = new MemberLevelVO(lv,cre,dis/100);
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				boolean suitable = promotion.updateMemberLevel(vo);
