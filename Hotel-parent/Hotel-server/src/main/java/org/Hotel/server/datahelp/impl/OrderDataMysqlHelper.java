@@ -34,10 +34,10 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 				String membername=rs.getString("member_name");
 				String state=rs.getString("status");
 				//date
-				Date starttime=rs.getDate("start_time");
-				Date endtime=rs.getDate("end_time");
-				Date lasttime=rs.getDate("last_time");
-				Date dischargetime=rs.getDate("remove_time");
+				String starttime=rs.getString("start_time");
+				String endtime=rs.getString("end_time");
+				String lasttime=rs.getString("last_time");
+				String dischargetime=rs.getString("remove_time");
 				//room
 				int singleRoom=rs.getInt("single_room");
 				int standardRoom=rs.getInt("standard_room");
@@ -72,7 +72,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		String state=orderpo.getState();
 		String comment=orderpo.getComment();
 		//date
-		Date dischargetime=orderpo.getDischargetime();
+		String dischargetime=orderpo.getDischargetime();
 		//comment
 		String query="UPDATE order1 SET status='"+state+"',"
 				+ "remove_time="+dischargetime+","
@@ -102,10 +102,10 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		String membername=po.getName();
 		String state=po.getState();
 		//date
-		Date starttime=po.getStarttime();
-		Date endtime=po.getLeavetime();
-		Date lasttime=po.getLasttime();
-		Date dischargetime=po.getDischargetime();
+		String starttime=po.getStarttime();
+		String endtime=po.getLeavetime();
+		String lasttime=po.getLasttime();
+		String dischargetime=po.getDischargetime();
 		//room
 		int singleRoom=po.getSingleRoom();
 		int standardRoom=po.getStandardRoom();
