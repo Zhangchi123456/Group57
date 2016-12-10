@@ -25,11 +25,14 @@ import vo.OrderVO;
 public class HotelorderInfouiController implements Initializable{
 
 	private ObservableList<String> Statelist;
-	@FXML
-	private TextField INtimetx,OutTimetx;//入住时间，离开时间
 	
 	@FXML
-	private Label OrderUser;//订单持有者
+	private Button refresh,back;
+	@FXML
+	private TextField INtimetx,OutTimetx,OrderUser;//入住时间，离开时间
+	
+	@FXML
+	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State;//订单持有者
 	
 	@FXML
 	private ChoiceBox Statetx;//更改订单状态
@@ -50,17 +53,13 @@ public class HotelorderInfouiController implements Initializable{
 		
 	}
 	@FXML
-	private void RefreshClicked(ActionEvent event){
+	private void RefrashClicked(ActionEvent event){
 		
 		MemberActController.setcurrentOrdervo(ordervo);
 		
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
-	}
-	@FXML
-    private void CheckClicked(ActionEvent event){
-		
-		UiswitchHelper.getApplication().goto_ordeinfoui();
+		Person.setText(ordervo.getId());
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -69,6 +68,7 @@ public class HotelorderInfouiController implements Initializable{
 		
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
+		Person.setText(ordervo.getId());
 		
 		ArrayList<String> statelist = new ArrayList<String>();
 		statelist.add("未执行");
@@ -82,16 +82,16 @@ public class HotelorderInfouiController implements Initializable{
 	     .selectedItemProperty()
 	     .addListener((ov,oldv,newv)->{
 	    	 if(newv=="未执行"){
-	    	 OrderUser.setText("未执行");
+	    		 CurrentState.setText("未执行");
 	    	 }
 	    	 else if(newv=="已执行"){
-	    	 OrderUser.setText("未执行");
+	    		 CurrentState.setText("未执行");
 	    	 }
 	    	 else if(newv=="异常"){
-	         OrderUser.setText("异常");
+	    		 CurrentState.setText("异常");
 	    	 }
 	    	 else{
-	    	 OrderUser.setText("已撤销");
+	    		 CurrentState.setText("已撤销");
 	    	 }
 	    	 
 	     });

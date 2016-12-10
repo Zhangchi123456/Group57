@@ -30,4 +30,5 @@ public interface HotelStaffLogicService {
 	//退房信息更新
 	public boolean changeCheckOutInfo(int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom)throws RemoteException;
 	
+	public RoomVO FindRoomByID(int roomid)throws RemoteException;
 }

@@ -48,14 +48,14 @@ public class HotelroomInfouiController implements Initializable{
 	@FXML
 	private Label roomList;
 	
-	public ObservableList<SimpleHotelOrder> temp;
+	public ObservableList<SimpleRoom> temp;
 		
 	String Name = HotelmanageController.getRoomVO().getHotelid();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
      
 	@FXML
-	private void backButtonClicked(ActionEvent event) throws IOException{
+	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
@@ -63,8 +63,18 @@ public class HotelroomInfouiController implements Initializable{
 	private void okButtonClicked(ActionEvent event){
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
 		
-		temp.get(selectnumber).setState(state);
-		temp.get(selectnumber).setLast(lasttime);
+		String room_id = temp.get(selectnumber).getRoomnum();
+		int roomid = Integer.parseInt(room_id);
+		RoomVO vo;
+		try {
+			vo = hser.FindRoomByID(roomid);
+			temp.get(selectnumber).setState(vo.getRoomstate());
+			temp.get(selectnumber).setLast(vo.getLeavetime());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

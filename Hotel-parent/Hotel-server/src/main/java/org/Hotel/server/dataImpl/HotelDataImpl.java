@@ -55,7 +55,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		if(map_circle == null){
 			dataFactory = new DataFactoryImpl();
 			circleDataHelper = dataFactory.getHotelDataHelper();
-			map_circle = hotelDataHelper.getCircleData();
+			map_circle = circleDataHelper.getCircleData();
 		}
 	}
 	
@@ -208,6 +208,20 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			Entry<String,HotelPO> entry=iterator.next();
 			po=entry.getValue();
 			if(hotelname.equals(po.getName())){
+				break;
+			}
+			
+		}
+		return po;
+	}
+	
+	public RoomPO FindroombyID(int roomid)throws RemoteException{
+		RoomPO po=new RoomPO();
+		Iterator<Entry<Integer, RoomPO>> iterator=map_room.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<Integer, RoomPO> entry=iterator.next();
+			po=entry.getValue();
+			if(roomid == po.getRoomid()){
 				break;
 			}
 			
