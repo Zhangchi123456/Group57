@@ -64,6 +64,9 @@ public class hoteldiscountdateuiController implements Initializable{
 	private TableColumn<DateInfo,String> hoteldiscountdateTable_discount;
 	
 	@FXML
+	private TableColumn<DateInfo,String> id;
+	
+	@FXML
 	private Button delete;
 	
 	@FXML
@@ -107,23 +110,11 @@ public class hoteldiscountdateuiController implements Initializable{
 			String start = data.get(selectnumber).getStart();
 			String end = data.get(selectnumber).getEnd();
 			double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
-		
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-			Date start_date = null;
-			Date end_date = null;
-		
-			try {
-				start_date = sdf.parse(start);
-				end_date = sdf.parse(end);
-			} catch (ParseException e) {
-			
-				e.printStackTrace();
-			}
+			int id = Integer.parseInt(data.get(selectnumber).getID());
 		
 			PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		
-			HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date,end_date);
+			HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start, end, id);
 		
 			promotion.deleteHotelPromotion(vo);
 		
@@ -141,22 +132,9 @@ public class hoteldiscountdateuiController implements Initializable{
 	
 		String start = TimeBegin.getValue().toString();
 		String end = TimeEnd.getValue().toString();
-		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date start_date = null;
-		Date end_date = null;
-		try {
-			start_date = sdf.parse(start);
-			end_date = sdf.parse(end);
-		} catch (ParseException e) {
-			AlertBox alt = new AlertBox();
-			alt.display("请指定日期！");
-		}
-		
 		String input = newDiscount.getText();
 		
-		if(input!=null){
+		if(input!=null && start!=null && end!=null){
 			
 			double discount = Double.parseDouble(input);
 			
@@ -168,7 +146,7 @@ public class hoteldiscountdateuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 		
-				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date, end_date);
+				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start, end, 0);
 				
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.addHotelPromotion(vo);
@@ -176,6 +154,9 @@ public class hoteldiscountdateuiController implements Initializable{
 				this.showTable(name,hotel_name);
 			
 			}
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("信息填写不完整！");
 		}
 	}
 	
@@ -201,11 +182,12 @@ public class hoteldiscountdateuiController implements Initializable{
 		for(int i=0;i<proList.size();i++){
 			
 			HotelPromotionVO vo = proList.get(i);
-			String start = vo.getStartDate().toString();
-			String end = vo.getEndDate().toString();
-			String discount = String.valueOf(vo.getDateDiscount()*100);;
+			String start = vo.getStartDate();
+			String end = vo.getEndDate();
+			String discount = String.valueOf(vo.getDateDiscount()*100);
+			String ID = String.valueOf(vo.getId());
 			
-			DateInfo info = new DateInfo(start,end,discount);
+			DateInfo info = new DateInfo(start,end,discount,ID);
 			
 			data.add(info);
         }
@@ -237,6 +219,15 @@ public class hoteldiscountdateuiController implements Initializable{
 	                        ).setStart(((t.getNewValue())));
 	        });
 		
+		id.setCellValueFactory( new PropertyValueFactory<>("ID") );
+		id.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
+		id.setOnEditCommit(
+	            (CellEditEvent<DateInfo, String> t) -> {
+	                ((DateInfo) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setStart(((t.getNewValue())));
+	        });
+		
 		hoteldiscountdateTable.setItems(data);
 		
 	}
@@ -247,11 +238,13 @@ public class hoteldiscountdateuiController implements Initializable{
 		private final SimpleStringProperty start;
         private final SimpleStringProperty end;
         private final SimpleStringProperty discount;
+        private final SimpleStringProperty ID;
         
-        DateInfo(String start, String end, String discount){
+        DateInfo(String start, String end, String discount, String ID){
         	this.start = new SimpleStringProperty(start);
         	this.end = new SimpleStringProperty(end);
         	this.discount = new SimpleStringProperty(discount);
+        	this.ID = new SimpleStringProperty(ID);
         }
         
         public void setStart(String start){
@@ -262,8 +255,12 @@ public class hoteldiscountdateuiController implements Initializable{
         	this.end.set(end);
         }
         
-        public void setDiscount(double discount){
-        	this.discount.set(String.valueOf(discount));
+        public void setDiscount(String discount){
+        	this.discount.set(discount);
+        }
+        
+        public void setID(String ID){
+        	this.ID.set(ID);
         }
         
         public String getStart(){
@@ -276,6 +273,10 @@ public class hoteldiscountdateuiController implements Initializable{
         
         public String getDiscount(){
         	return discount.get();
+        }
+        
+        public String getID(){
+        	return ID.get();
         }
 	}
 
