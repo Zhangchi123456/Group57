@@ -52,6 +52,7 @@ public class HotelroomInfouiController implements Initializable{
 		
 	String Name = HotelmanageController.getRoomVO().getHotelid();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
+	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
      
 	@FXML
@@ -66,10 +67,20 @@ public class HotelroomInfouiController implements Initializable{
 		String room_id = temp.get(selectnumber).getRoomnum();
 		int roomid = Integer.parseInt(room_id);
 		RoomVO vo;
+		OrderVO ordervo;
 		try {
 			vo = hser.FindRoomByID(roomid);
 			vo.setRoomstate("可用");
-			hser.changeCheckOutInfo(roomid, 1, 1, 1, 1, "可用", vo.getLeavetime());
+			int orderid = vo.getOrderid();
+			ordervo = oser.orderShowAll(orderid);
+			if(vo.getRoomtype().equals("单人房"))
+			    hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("标准间"))
+				hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("家庭房"))
+				hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("套间"))
+				hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime());
 			temp.get(selectnumber).setState(vo.getRoomstate());
 			temp.get(selectnumber).setLast(vo.getLeavetime());
 		} catch (RemoteException e) {
