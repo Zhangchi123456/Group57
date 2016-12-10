@@ -61,7 +61,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	}
 	
 	public boolean delete(WebPromotionPO po) throws RemoteException{
-			map_web.remove(po);
+			map_web.remove(po.getID());
 			webproDataHelper.deleteWebPromotionData(po);
 			return true;
 
@@ -80,7 +80,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean delete(HotelPromotionPO po) throws RemoteException{
 
-		map_hotel.remove(po);
+		map_hotel.remove(po.getId());
 		hotelproDataHelper.deleteHotelPromotionData(po);
 		return true;
 
