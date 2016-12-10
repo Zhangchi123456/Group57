@@ -136,7 +136,7 @@ public class webdiscountdateuiController implements Initializable{
 		int selectnumber=webdiscountdateTable.getSelectionModel().getSelectedIndex();
     	String start = data.get(selectnumber).getStart();
 		String end = data.get(selectnumber).getEnd();
-		double discount = data.get(selectnumber).getDiscount();
+		double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -178,9 +178,9 @@ public class webdiscountdateuiController implements Initializable{
 			WebPromotionVO vo = proList.get(i);
 			String start = vo.getStartDate().toString();
 			String end = vo.getEndDate().toString();
-			double discount = vo.getDateDiscount();;
+			String discount = String.valueOf(vo.getDateDiscount()*100);;
 			
-			DateInfo info = new DateInfo(start,end,discount*100);
+			DateInfo info = new DateInfo(start,end,discount);
 			
 			data.add(info);
         }
@@ -189,7 +189,7 @@ public class webdiscountdateuiController implements Initializable{
 		webdiscountdateTable_start.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
 		webdiscountdateTable_start.setOnEditCommit(
 	            (CellEditEvent<DateInfo, String> t) -> {
-	                ((DateInfo) t.getTableView().getItems().get(
+	            	((DateInfo) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
 	                        ).setStart(((t.getNewValue())));
 	        });
@@ -216,16 +216,16 @@ public class webdiscountdateuiController implements Initializable{
 		
 	}
 
-	public static class DateInfo{
+	public class DateInfo{
 	
 		private final SimpleStringProperty start;
 		private final SimpleStringProperty end;
     	private final SimpleStringProperty discount;
     
-    	private DateInfo(String start, String end, double discount){
+    	private DateInfo(String start, String end, String discount){
     		this.start = new SimpleStringProperty(start);
     		this.end = new SimpleStringProperty(end);
-    		this.discount = new SimpleStringProperty(String.valueOf(discount));
+    		this.discount = new SimpleStringProperty(discount);
     	}
     
     	public void setStart(String start){
@@ -236,8 +236,8 @@ public class webdiscountdateuiController implements Initializable{
     		this.end.set(end);
     	}
     
-    	public void setDiscount(double discount){
-    		this.discount.set(String.valueOf(discount));
+    	public void setDiscount(String discount){
+    		this.discount.set(discount);
     	}
     
     	public String getStart(){
@@ -248,8 +248,8 @@ public class webdiscountdateuiController implements Initializable{
     		return end.get();
     	}
     
-    	public double getDiscount(){
-    		return Double.parseDouble(discount.get());
+    	public String getDiscount(){
+    		return discount.get();
     	}
 	}
 

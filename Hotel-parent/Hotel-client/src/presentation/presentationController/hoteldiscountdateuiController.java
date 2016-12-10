@@ -106,7 +106,7 @@ public class hoteldiscountdateuiController implements Initializable{
 			int selectnumber=hoteldiscountdateTable.getSelectionModel().getSelectedIndex();
 			String start = data.get(selectnumber).getStart();
 			String end = data.get(selectnumber).getEnd();
-			double discount = data.get(selectnumber).getDiscount();
+			double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
 		
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -196,15 +196,16 @@ public class hoteldiscountdateuiController implements Initializable{
 		
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<HotelPromotionVO> proList= promotion.getHotelPromotionList(name,hotel_name);
+
 		
 		for(int i=0;i<proList.size();i++){
 			
 			HotelPromotionVO vo = proList.get(i);
 			String start = vo.getStartDate().toString();
 			String end = vo.getEndDate().toString();
-			double discount = vo.getDateDiscount();;
+			String discount = String.valueOf(vo.getDateDiscount()*100);;
 			
-			DateInfo info = new DateInfo(start,end,discount*100);
+			DateInfo info = new DateInfo(start,end,discount);
 			
 			data.add(info);
         }
@@ -247,10 +248,10 @@ public class hoteldiscountdateuiController implements Initializable{
         private final SimpleStringProperty end;
         private final SimpleStringProperty discount;
         
-        private DateInfo(String start, String end, double discount){
+        DateInfo(String start, String end, String discount){
         	this.start = new SimpleStringProperty(start);
         	this.end = new SimpleStringProperty(end);
-        	this.discount = new SimpleStringProperty(String.valueOf(discount));
+        	this.discount = new SimpleStringProperty(discount);
         }
         
         public void setStart(String start){
@@ -273,8 +274,8 @@ public class hoteldiscountdateuiController implements Initializable{
         	return end.get();
         }
         
-        public double getDiscount(){
-        	return Double.parseDouble(discount.get());
+        public String getDiscount(){
+        	return discount.get();
         }
 	}
 
