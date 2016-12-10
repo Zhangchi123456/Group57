@@ -10,18 +10,104 @@ public class RoomVO {
 	
 	private int roomid;
 	
+    private String roomstate;
+	
+	private String starttime;
+	
+	private String leavetime;
+	
+	private int orderid;
+	
 	public RoomVO() {
 		
 	}
 	
-	public RoomVO(String roomtype, int roomid, String hotelid) {
+	public RoomVO(String roomtype, int roomid, String hotelid, String roomstate, String starttime, String leavetime, int orderid) {
 		super();
 		
 		this.roomtype = roomtype;
 		
 		this.roomid = roomid;
 		
-		this.hotelid =hotelid;
+		this.hotelid = hotelid;
+		
+		this.roomstate = roomstate;
+		
+		this.starttime = starttime;
+		
+		this.leavetime = leavetime;
+		
+		this.orderid = orderid;
+	}
+
+	/**
+	 * @return the roomid
+	 */
+	public int getRoomid() {
+		return roomid;
+	}
+
+	/**
+	 * @param roomid the roomid to set
+	 */
+	public void setRoomid(int roomid) {
+		this.roomid = roomid;
+	}
+
+	/**
+	 * @return the roomstate
+	 */
+	public String getRoomstate() {
+		return roomstate;
+	}
+
+	/**
+	 * @param roomstate the roomstate to set
+	 */
+	public void setRoomstate(String roomstate) {
+		this.roomstate = roomstate;
+	}
+
+	/**
+	 * @return the starttime
+	 */
+	public String getStarttime() {
+		return starttime;
+	}
+
+	/**
+	 * @param starttime the starttime to set
+	 */
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	/**
+	 * @return the leavetime
+	 */
+	public String getLeavetime() {
+		return leavetime;
+	}
+
+	/**
+	 * @param leavetime the leavetime to set
+	 */
+	public void setLeavetime(String leavetime) {
+		this.leavetime = leavetime;
+	}
+
+	/**
+	 * @return the orderid
+	 */
+	public int getOrderid() {
+		return orderid;
+	}
+
+	/**
+	 * @param orderid the orderid to set
+	 */
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
 	}
 
 	public int getId() {
@@ -58,6 +144,10 @@ public class RoomVO {
 		this.hotelid = roompo.getHotelid();
 		this.roomid = roompo.getId();
 		this.roomtype = roompo.getRoomtype();
+        this.roomstate = roompo.getRoomstate();
+		this.starttime = roompo.getStarttime();
+		this.leavetime = roompo.getLeavetime();	
+		this.orderid = roompo.getOrderid();
 		
 	}
 	
@@ -67,6 +157,10 @@ public class RoomVO {
 		po.setHotelid(hotelid);
 		po.setId(roomid);
 		po.setRoomtype(roomtype);
+		po.setRoomstate(roomstate);
+		po.setStarttime(starttime);
+		po.setLeavetime(leavetime);
+		po.setOrderid(orderid);
 		
 		return po;
 	}

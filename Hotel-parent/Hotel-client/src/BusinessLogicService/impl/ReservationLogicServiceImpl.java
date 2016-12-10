@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.Hotel.common.po.HotelPO;
+import org.Hotel.common.po.HotelPromotionPO;
 
 import BusinessLogicService.impl.RMIHelper;
 import vo.HotelPromotionVO;
@@ -21,10 +22,11 @@ import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 
 import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
-    PromotionLogicService promotionService=new PromotionLogicServiceImpl();
+    PromotionLogicService promotionService;
     OrderLogicService orderService=new OrderLogicServiceImpl();
     public ArrayList<String> getallcity() throws RemoteException{
     	return hotelservice.cityShowAll();
@@ -34,7 +36,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 
 	
 	
-	public double Computeprice(MemberVO member,WebPromotionVO webpro,HotelPromotionVO hotelpro,int num,int price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
+	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,int price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
              SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
             String strin=checkindate.toString();
@@ -43,24 +45,33 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             Date Dateout=sdf.parse(strout);
              MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
              finalprice=num*price*level.getDiscount();
-             if(member.getbirthday().isBefore(checkoutdate)||member.getbirthday().isEqual(checkindate)){
-            	 finalprice=finalprice*hotelpro.getBirthdayDiscount();
+             for(int i=0;i<webprolist.size();i++){
+            	 WebPromotionVO webpro=webprolist.get(i);
+            	
              }
-             if(Datein.after(hotelpro.getStartDate())||Dateout.before(hotelpro.getEndDate())){
-            	 finalprice=finalprice*hotelpro.getDateDiscount();
+             for(int j=0;j<hotelprolist.size();j++){
+            	 HotelPromotionVO hotelpro=hotelprolist.get(j);
+            	 switch(hotelpro.getName()){
+            	 case"多间折扣":
+            		 if(num>=3){
+            			 finalprice=finalprice*hotelpro.getMultiorderDiscount();
+            		 }
+            		 break;
+            	 case "企业折扣":
+            		 if(member.getproperty().equals("企业会员")){
+            			 finalprice=finalprice*hotelpro.getEnterpriceDiscount();
+            		 }
+            		 break;
+            	 case"生日折扣":
+            		 if(member.getbirthday().isAfter(checkindate)||member.getbirthday().isBefore(checkoutdate)||member.getbirthday().isEqual(checkindate)||member.getbirthday().isEqual(checkoutdate)){
+            			 finalprice=finalprice-price*(1-hotelpro.getBirthdayDiscount());
+            		 }
+            		 break;
+            	 case"日期折扣":
+            		
+            		 break;
+            	 }
              }
-             if(num>=3){
-            	 finalprice=finalprice*hotelpro.getMultiorderDiscount();
-             }
-             if(Datein.after((Date) webpro.getStartDate())||Dateout.before((Date) webpro.getEndDate())){
-            	 finalprice=finalprice*webpro.getDateDiscount();
-             }
-             if(member.getproperty().equals("企业会员")){
-            	 finalprice=finalprice* hotelpro.getEnterpriceDiscount()*level.getDiscount();
-             }else{
-            	 finalprice=finalprice*level.getDiscount();
-             }
-             
              
             		 
 			return finalprice;
@@ -222,5 +233,27 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return vo;
 		 
 	 }
+	 
+	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
+		 PromotionDataService promotionservice=(PromotionDataService)RMIHelper.find("PromotionDataService");
+		 ArrayList<HotelPromotionPO> hotelprolist=promotionservice.findByHotelProID(name);
+		 ArrayList<HotelPromotionVO> hotelprolist2 = new ArrayList<HotelPromotionVO>();
+		 for(int i=0;i<hotelprolist.size();i++){
+			 HotelPromotionVO vo=new HotelPromotionVO();
+			 vo.setByPO(hotelprolist.get(i));
+			 hotelprolist2.add(vo);
+		 }
+		 return hotelprolist2;
+	 }
+	 
+	 public ArrayList<WebPromotionVO> showall(){
+		 ArrayList<WebPromotionVO> LIST=promotionService.getWebPromotionList();
+		 return LIST;
+	 }
+
+
+
+
+
 	
 }

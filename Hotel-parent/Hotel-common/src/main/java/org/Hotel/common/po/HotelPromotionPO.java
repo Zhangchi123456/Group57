@@ -17,11 +17,11 @@ public class HotelPromotionPO implements Serializable{
 	
 	private double datediscount;
 	
-	private Date startdate;
+	private String startdate;
 	
-	private Date enddate;
+	private String enddate;
 	
-	private String hoteltype = hotelid + type;
+	private int id;
 	
 	public HotelPromotionPO() {
 		super();
@@ -29,7 +29,7 @@ public class HotelPromotionPO implements Serializable{
 	
 	public HotelPromotionPO(String type, String hotelid,
 			double birthdaydiscount,double multiorderdiscount, 
-			double enterpricediscount,double datediscount,Date startdate,Date enddate) {
+			double enterpricediscount,double datediscount,String startdate,String enddate,int id) {
 		super();
 		
 		this.type = type;
@@ -48,16 +48,16 @@ public class HotelPromotionPO implements Serializable{
 		
 		this.enddate = enddate;
 		
-		this.hoteltype = hotelid + type;
+		this.id=id;
 	}
 	
-	public String getId(){
+	public int getId(){
 		
-		return hoteltype;
+		return this.id;
 	}
 	
-	public void setId(String hotelid, String type){
-		this.hoteltype = hotelid + type;
+	private void setId(int id){
+		this.id=id;
 	}
 
 
@@ -81,7 +81,7 @@ public class HotelPromotionPO implements Serializable{
 		this.hotelid = hotelid;
 	}
 	
-public double getBirthdaydiscount() {
+	public double getBirthdaydiscount() {
 		
 		return birthdaydiscount;
 	}
@@ -121,22 +121,22 @@ public double getBirthdaydiscount() {
 		this.datediscount = datediscount;
 	}
 	
-	public Date getStartdate() {
+	public String getStartdate() {
 		
 		return startdate;
 	}
 	
-	public void setStartdate(Date startdate) {
+	public void setStartdate(String startdate) {
 		
 		this.startdate = startdate;
 	}
 	
-    public Date getEnddate() {
+    public String getEnddate() {
 		
 		return enddate;
 	}
 	
-	public void setEnddate(Date enddate) {
+	public void setEnddate(String enddate) {
 		
 		this.enddate = enddate;
 	}

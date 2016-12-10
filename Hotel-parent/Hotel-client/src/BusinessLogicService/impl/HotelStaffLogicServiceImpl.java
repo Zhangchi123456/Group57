@@ -55,7 +55,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String hotelid, String roomid, String type) throws RemoteException {
+	public boolean changeRoomInfo(String roomid, String type) throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
@@ -94,7 +94,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom)throws RemoteException {
+	public boolean changeCheckInInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
@@ -105,18 +105,23 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		int new_familyRoom = HotelmanageController.getHotelVO().getLeftFamilyRoom()-familyRoom;
 		int new_suiteRoom = HotelmanageController.getHotelVO().getLeftSuiteRoom()-suiteRoom;
 		
+		RoomVO roomvo = FindRoomByID(roomid);
+		
 		HotelmanageController.getHotelVO().setLeftSingleRoom(new_singleRoom);
 		HotelmanageController.getHotelVO().setLeftStandardRoom(new_standardRoom);
 		HotelmanageController.getHotelVO().setLeftFamilyRoom(new_familyRoom);
 		HotelmanageController.getHotelVO().setLeftSuiteRoom(new_suiteRoom);		
+		roomvo.setStarttime(starttime);
+		roomvo.setLeavetime(leavetime);
 		
-		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()));
+		
+		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()))&&hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO(roomvo));
 		
 		return info;
 	}
 	
 	//退房信息更新
-	public boolean changeCheckOutInfo(int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom)throws RemoteException {
+	public boolean changeCheckOutInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
@@ -127,21 +132,32 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		int new_familyRoom = HotelmanageController.getHotelVO().getLeftFamilyRoom()+familyRoom;
 		int new_suiteRoom = HotelmanageController.getHotelVO().getLeftSuiteRoom()+suiteRoom;
 		
+		RoomVO roomvo = FindRoomByID(roomid);
+		
 		HotelmanageController.getHotelVO().setLeftSingleRoom(new_singleRoom);
 		HotelmanageController.getHotelVO().setLeftStandardRoom(new_standardRoom);
 		HotelmanageController.getHotelVO().setLeftFamilyRoom(new_familyRoom);
 		HotelmanageController.getHotelVO().setLeftSuiteRoom(new_suiteRoom);		
+		roomvo.setRoomstate(roomstate);
+		roomvo.setLeavetime(leavetime);
 		
-		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()));
+		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()))&&hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO(roomvo));;
 		
 		return info;
 		
 	}
 	
-	//根据房间号查找订单
-	public OrderVO findOrderByRoom(int roomid)throws RemoteException {
+	public RoomVO FindRoomByID(int roomid)throws RemoteException {
+		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
-		return null;
+		RoomPO po = hds.FindroombyID(roomid);
+		
+		RoomVO vo = new RoomVO();
+		
+		vo.setRoomPO(po);
+		
+		return vo;
 	}
+
 	
 }

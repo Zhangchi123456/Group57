@@ -1,6 +1,7 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -73,9 +74,17 @@ public class HotelListuiController implements Initializable{
       
   }
     @FXML
-    private void CheckButtonClicked(ActionEvent event){
+    private void CheckButtonClicked(ActionEvent event) throws RemoteException{
     	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
-    	System.out.println(finallist.get(selectnumber).getHotel());
+    	if(ReservationCheckbox.isSelected()){
+    		ObservableList<SimpleHotel> list=Hoteltable.getItems();
+    		String name=list.get(selectnumber).getHotel();
+    		HotelVO hotelVO=reservationService.findbyname(name);
+    		ReservationController.setHotelvo(hotelVO);
+    	}else{
+    		HotelVO currenthotel=ReservationController.getHotelvolist().get(selectnumber);
+    		ReservationController.setHotelvo(currenthotel);
+    	}
         UiswitchHelper.getApplication().goto_hotelInfoBrowseui();
     }
 	@Override

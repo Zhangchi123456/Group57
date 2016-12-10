@@ -48,47 +48,53 @@ public class HotelroomInfouiController implements Initializable{
 	@FXML
 	private Label roomList;
 	
-	public ObservableList<SimpleHotelOrder> temp;
+	public ObservableList<SimpleRoom> temp;
 		
 	String Name = HotelmanageController.getRoomVO().getHotelid();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
-	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
-	private void backButtonClicked(ActionEvent event) throws IOException{
+	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
+		int selectnumber=table.getSelectionModel().getSelectedIndex();
+		
+		String room_id = temp.get(selectnumber).getRoomnum();
+		int roomid = Integer.parseInt(room_id);
+		RoomVO vo;
+		OrderVO ordervo;
 		try {
-			roomlist = hser.roomShowAll(Name);
-			
-			for(int i=0;i<roomlist.size();i++){
-				int id = roomlist.get(i).getId();
-				orderlist.add(hser.findOrderByRoom(id));
-			}
-			if(roomlist!=null&&orderlist!=null)
-			Roomlist(roomlist, orderlist);
+			vo = hser.FindRoomByID(roomid);
+			vo.setRoomstate("可用");
+			int orderid = vo.getOrderid();
+			ordervo = oser.orderShowAll(orderid);
+			if(vo.getRoomtype().equals("单人房"))
+			    hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("标准间"))
+				hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("家庭房"))
+				hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime());
+			if(vo.getRoomtype().equals("套间"))
+				hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime());
+			temp.get(selectnumber).setState(vo.getRoomstate());
+			temp.get(selectnumber).setLast(vo.getLeavetime());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-   	 
+	
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			roomlist = hser.roomShowAll(Name);
-				
-			for(int i=0;i<roomlist.size();i++){
-				int id = roomlist.get(i).getId();
-				orderlist.add(hser.findOrderByRoom(id));
-			}
-			if(roomlist!=null&&orderlist!=null)
-		   	Roomlist(roomlist, orderlist);
+			if(roomlist!=null)
+		   	Roomlist(roomlist);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,13 +104,13 @@ public class HotelroomInfouiController implements Initializable{
 	
 	
 	
-	public void  Roomlist(ArrayList<RoomVO> roomlist, ArrayList<OrderVO> orderlist){
+	public void  Roomlist(ArrayList<RoomVO> roomlist){
     	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
     	for(int i=0;i<roomlist.size();i++){
     	temp.add(new SimpleRoom(String.valueOf(roomlist.get(i).getId()), 
     			roomlist.get(i).getRoomtype(), 
-    			orderlist.get(i).getState(), orderlist.get(i).
-    			getLasttime().toString()));
+    			roomlist.get(i).getRoomstate(), 
+    			roomlist.get(i).getLeavetime()));
     	}
     	  roomNum.setCellValueFactory(
 		            new PropertyValueFactory<>("roomnum"));		 

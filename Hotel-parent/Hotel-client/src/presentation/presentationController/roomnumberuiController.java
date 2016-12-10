@@ -35,6 +35,8 @@ public class roomnumberuiController implements Initializable{
 	@FXML
 	private Button back;
 	
+	private int id = 0;
+	
 	@FXML
 	public void toBusinesspartner(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesspartnerui();
@@ -64,7 +66,7 @@ public class roomnumberuiController implements Initializable{
 				}else{
 					String name = "多间折扣";
 					String hotel_name = HotelmanageController.getHotelVO().getName();
-					HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, discount/100, 0, null, null);
+					HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, discount/100, 0, null, null, id);
 			
 					PromotionLogicService promotion = new PromotionLogicServiceImpl();
 					promotion.updateHotelPromotion(vo);
@@ -87,6 +89,7 @@ public class roomnumberuiController implements Initializable{
 		String hotelname = HotelmanageController.getHotelVO().getName();
 		String name = "多间折扣";
 		vo = promotion.getHotelPromotion(hotelname,name);
+		id = vo.getId();
 		double discount = vo.getMultiorderDiscount()*100;
 		roomnumberdiscount.setText(String.valueOf(discount));
 		

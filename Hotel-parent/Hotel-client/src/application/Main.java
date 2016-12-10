@@ -529,7 +529,15 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     
+	      //跳转到查看优惠界面
+	     public void goto_benefitui(){
+	    	 try {
+					PreplaceSceneContent("/presentation/orderui/Benefit.fxml");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	     }
 	     
 	     
 	     

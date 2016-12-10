@@ -55,6 +55,9 @@ public class webdiscountdateuiController implements Initializable{
 	private TableColumn<DateInfo,String> webdiscountdateTable_discount;
 	
 	@FXML
+	private TableColumn<DateInfo,String> id;
+	
+	@FXML
 	private Button delete;
 	
 	@FXML
@@ -69,7 +72,7 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	private Button back;
 	
-	final static ObservableList<DateInfo> data = FXCollections.observableArrayList();
+	private ObservableList<DateInfo> data;
 	
 	//跳到会员等级折扣
 	@FXML
@@ -89,25 +92,13 @@ public class webdiscountdateuiController implements Initializable{
 	//添加策略确认按钮
 	@FXML
 	public void SureClicked(ActionEvent event){
+		
 		String start = TimeBegin.getValue().toString();
 		String end = TimeEnd.getValue().toString();
-		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date start_date = null;
-		Date end_date = null;
-		try {
-			start_date = sdf.parse(start);
-			end_date = sdf.parse(end);
-		} catch (ParseException e) {
-			AlertBox alt = new AlertBox();
-			alt.display("请指定日期！");
-		}
-		
 		String input = newDiscount.getText();
 		
-		if(input!=null){
-			
+		if(input!=null && start!=null && end!=null){
+	
 			double discount = Double.parseDouble(input);
 			
 			if(discount<0||discount>100){
@@ -118,7 +109,7 @@ public class webdiscountdateuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 		
-				WebPromotionVO vo = new WebPromotionVO(discount/100, start_date, end_date);
+				WebPromotionVO vo = new WebPromotionVO(discount/100, start, end, 0);
 				
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.addWebPromotion(vo);
@@ -126,6 +117,9 @@ public class webdiscountdateuiController implements Initializable{
 				this.showTable();
 			}
 			
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("信息填写不完整！");
 		}
 	}
 	
@@ -136,24 +130,12 @@ public class webdiscountdateuiController implements Initializable{
 		int selectnumber=webdiscountdateTable.getSelectionModel().getSelectedIndex();
     	String start = data.get(selectnumber).getStart();
 		String end = data.get(selectnumber).getEnd();
-		double discount = data.get(selectnumber).getDiscount();
-		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date start_date = null;
-		Date end_date = null;
-		
-		try {
-			start_date = sdf.parse(start);
-			end_date = sdf.parse(end);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
+		int id = Integer.parseInt(data.get(selectnumber).getID());
 		
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		
-		WebPromotionVO vo = new WebPromotionVO(discount/100,start_date,end_date);
+		WebPromotionVO vo = new WebPromotionVO(discount/100,start,end,id);
 		
 		promotion.deleteWebPromotion(vo);
 		
@@ -170,17 +152,20 @@ public class webdiscountdateuiController implements Initializable{
 	
 	public void showTable(){
 		
+		data = FXCollections.observableArrayList();
+		
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<WebPromotionVO> proList= promotion.getWebPromotionList();
 		
 		for(int i=0;i<proList.size();i++){
 			
 			WebPromotionVO vo = proList.get(i);
-			String start = vo.getStartDate().toString();
-			String end = vo.getEndDate().toString();
-			double discount = vo.getDateDiscount();;
+			String start = vo.getStartDate();
+			String end = vo.getEndDate();
+			String discount = String.valueOf(vo.getDateDiscount()*100);
+			String ID = String.valueOf(vo.getID());
 			
-			DateInfo info = new DateInfo(start,end,discount*100);
+			DateInfo info = new DateInfo(start,end,discount,ID);
 			
 			data.add(info);
         }
@@ -189,7 +174,7 @@ public class webdiscountdateuiController implements Initializable{
 		webdiscountdateTable_start.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
 		webdiscountdateTable_start.setOnEditCommit(
 	            (CellEditEvent<DateInfo, String> t) -> {
-	                ((DateInfo) t.getTableView().getItems().get(
+	            	((DateInfo) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
 	                        ).setStart(((t.getNewValue())));
 	        });
@@ -212,20 +197,31 @@ public class webdiscountdateuiController implements Initializable{
 	                        ).setStart(((t.getNewValue())));
 	        });
 		
+		id.setCellValueFactory( new PropertyValueFactory<>("ID") );
+		id.setCellFactory(TextFieldTableCell.<DateInfo>forTableColumn());
+		id.setOnEditCommit(
+	            (CellEditEvent<DateInfo, String> t) -> {
+	                ((DateInfo) t.getTableView().getItems().get(
+	                        t.getTablePosition().getRow())
+	                        ).setStart(((t.getNewValue())));
+	        });
+		
 		webdiscountdateTable.setItems(data);
 		
 	}
 
-	public static class DateInfo{
+	public class DateInfo{
 	
 		private final SimpleStringProperty start;
 		private final SimpleStringProperty end;
     	private final SimpleStringProperty discount;
+    	private final SimpleStringProperty ID;
     
-    	private DateInfo(String start, String end, double discount){
+    	private DateInfo(String start, String end, String discount, String ID){
     		this.start = new SimpleStringProperty(start);
     		this.end = new SimpleStringProperty(end);
-    		this.discount = new SimpleStringProperty(String.valueOf(discount));
+    		this.discount = new SimpleStringProperty(discount);
+    		this.ID = new SimpleStringProperty(ID);
     	}
     
     	public void setStart(String start){
@@ -236,8 +232,12 @@ public class webdiscountdateuiController implements Initializable{
     		this.end.set(end);
     	}
     
-    	public void setDiscount(double discount){
-    		this.discount.set(String.valueOf(discount));
+    	public void setDiscount(String discount){
+    		this.discount.set(discount);
+    	}
+    	
+    	public void setID(String ID){
+    		this.ID.set(ID);
     	}
     
     	public String getStart(){
@@ -248,8 +248,12 @@ public class webdiscountdateuiController implements Initializable{
     		return end.get();
     	}
     
-    	public double getDiscount(){
-    		return Double.parseDouble(discount.get());
+    	public String getDiscount(){
+    		return discount.get();
+    	}
+    	
+    	public String getID(){
+    		return ID.get();
     	}
 	}
 

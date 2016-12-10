@@ -59,6 +59,7 @@
                 <TableColumn fx:id="webdiscountdateTable_start" prefWidth="90.0" text="开始日期" />
                 <TableColumn fx:id="webdiscountdateTable_end" prefWidth="90.0" text="结束日期" />
                   <TableColumn fx:id="webdiscountdateTable_discount" prefWidth="90.0" text="折扣(%)" />
+                  <TableColumn fx:id="id" prefWidth="75.0" text="ID" visible="false" />
               </columns>
             </TableView>
             <Button fx:id="delete" contentDisplay="CENTER" mnemonicParsing="false" onAction="#DeleteClicked" prefHeight="32.0" prefWidth="270.0" text="删除">

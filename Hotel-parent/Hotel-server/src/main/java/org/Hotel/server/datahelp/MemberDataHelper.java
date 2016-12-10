@@ -38,7 +38,7 @@ public interface MemberDataHelper {
 	/**
 	 * @return	从数据文件读入信用信息
 	 */
-	public Map<Integer,CreditPO> getCreditData();
+	public Map<Integer, CreditPO> getCreditData();
 	/**
 	 * 从数据文件中写入信用信息
 	 * @param map	

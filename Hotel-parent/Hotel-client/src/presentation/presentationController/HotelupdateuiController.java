@@ -32,12 +32,12 @@ public class HotelupdateuiController implements Initializable{
 	private Label Update,roomNum,INtime,OutTime,orderNum;
      
 	@FXML
-	private void backButtonClicked(ActionEvent event) throws IOException{
+	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
-	private void okButtonClicked(ActionEvent event){
+	private void SureClicked(ActionEvent event){
 		
 	}
 	@Override

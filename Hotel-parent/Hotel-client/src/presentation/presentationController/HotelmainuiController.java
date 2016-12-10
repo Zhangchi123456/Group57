@@ -26,7 +26,7 @@ import javafx.scene.control.Button;
 
 public class HotelmainuiController implements Initializable{
 	@FXML
-	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion;
+	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion,Return;
 	
 	@FXML
 	private Label title,welcome;

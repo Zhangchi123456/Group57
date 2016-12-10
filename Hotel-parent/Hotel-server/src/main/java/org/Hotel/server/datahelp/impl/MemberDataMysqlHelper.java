@@ -15,18 +15,8 @@ import org.Hotel.server.datahelp.*;
  * @author Jerry
  *
  */
-/**
- * @author Jerry
- *
- */
-/**
- * @author Jerry
- *
- */
-/**
- * @author Jerry
- *
- */
+
+
 
 
 public class MemberDataMysqlHelper implements MemberDataHelper{
@@ -110,6 +100,11 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		String name=memberpo.getName();
 		String phoneNums=memberpo.getConnection();
 		boolean isEnterpriseMember=memberpo.isEnterprise();
+		int isenterprise=0;
+		if(isEnterpriseMember)
+		{
+			isenterprise=1;
+		}
 		Date birthday=memberpo.getBirthday();
 		
 		String query="INSERT INTO member(name,password,phone_num,credit,level,is_enterprise_member,birthday) "
@@ -119,7 +114,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				"'"+phoneNums+"',"+
 				"'"+credit+"',"+
 				"'"+String.valueOf(level)+"',"+
-				"'"+String.valueOf(isEnterpriseMember)+"',"+
+				"'"+isenterprise+"',"+
 				"'"+String.valueOf(birthday)+"'"+")";
 		try{
 			db.update(query);
@@ -206,7 +201,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				int credit=rs.getInt("credit");
 				int creditchange=rs.getInt("credit_change");
 				
-				Date time=rs.getDate("time");
+				String time=rs.getString("time");//record time
 				
 				String action=rs.getString("action");
 				String name=rs.getString("member_name");
@@ -257,7 +252,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		int credit=creditpo.getCredit();
 		int creditchange=creditpo.getCreditchange();
 		
-		Date time=creditpo.getTime();
+		String time=creditpo.getTime();//reocrd_time
 		
 		String action=creditpo.getAction();
 		String name=creditpo.getName();
