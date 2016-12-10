@@ -15,7 +15,7 @@ public class CreditPO implements Serializable{
 	
 	private int credit;
 	
-	private Date time;
+	private String time;
 	
 	private String action;
 	
@@ -23,7 +23,7 @@ public class CreditPO implements Serializable{
 		
 	}
 	
-	public CreditPO(String name, int id, int orderid, int creditchange, int credit, Date time, String action) {
+	public CreditPO(String name, int id, int orderid, int creditchange, int credit, String time, String action) {
 		
 		super();
 		
@@ -102,14 +102,14 @@ public class CreditPO implements Serializable{
 	/**
 	 * @return the time
 	 */
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
 	/**
 	 * @param time the time to set
 	 */
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
