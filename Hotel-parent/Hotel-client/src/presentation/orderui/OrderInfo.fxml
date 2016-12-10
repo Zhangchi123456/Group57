@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
    <top>
-      <Label prefHeight="102.0" prefWidth="300.0" text="          订单信息" BorderPane.alignment="CENTER">
+      <Label prefHeight="102.0" prefWidth="300.0" text="        订单信息确认" BorderPane.alignment="CENTER">
          <font>
             <Font size="26.0" />
          </font>
@@ -20,26 +20,6 @@
       <VBox prefHeight="492.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="64.0" prefWidth="800.0">
-               <children>
-                  <Label text="            订单号 ：">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="OrderId" prefHeight="25.0" prefWidth="120.0" text="123456">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Label>
-                  <Label text="                    房间数量:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="RoomnumLabel" text="Label" />
-               </children>
-            </HBox>
-            <HBox prefHeight="69.0" prefWidth="800.0">
                <children>
                   <Label text="            酒店名 ：">
                      <font>
@@ -51,17 +31,24 @@
                         <Font size="23.0" />
                      </font>
                   </Label>
-                  <Label text="                    总价:">
+               </children>
+            </HBox>
+            <HBox prefHeight="69.0" prefWidth="800.0">
+               <children>
+                  <Label prefHeight="33.0" prefWidth="183.0" text="             总价   ：">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="TotalpriceLabel" text="Label" />
+                  <Label fx:id="TotalpriceLabel" prefHeight="30.0" prefWidth="87.0" text="Label">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="181.0" text="         有无儿童 ：">
+                  <Label prefHeight="26.0" prefWidth="182.0" text="        有无儿童  ：">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -82,57 +69,57 @@
                   </Label>
                   <Label fx:id="UserNum" prefHeight="37.0" prefWidth="143.0" text="2">
                      <font>
-                        <Font size="18.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0">
                <children>
-                  <Label text="             电话   ：">
+                  <Label prefHeight="32.0" prefWidth="182.0" text="          房间数量：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Telephone" prefHeight="37.0" prefWidth="143.0" text="15050754319">
+                  <Label fx:id="RoomnumLabel" prefHeight="35.0" prefWidth="79.0" text="Label">
                      <font>
-                        <Font size="19.0" />
+                        <Font size="22.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="60.0" prefWidth="800.0">
+               <children>
+                  <Label text="         房间类型 ：">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="RoomType" prefHeight="37.0" prefWidth="161.0" text="大">
+                     <font>
+                        <Font size="22.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0">
                <children>
-                  <Label text="            房间类型：">
+                  <Label prefHeight="26.0" prefWidth="183.0" text="            日期    ：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="RoomType" prefHeight="37.0" prefWidth="143.0" text="大">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="60.0" prefWidth="800.0">
-               <children>
-                  <Label text="            日期  ：">
+                  <Label id="TimeBegin" fx:id="TimeBegin" prefHeight="37.0" prefWidth="139.0" text="2016-01-02">
                      <font>
                         <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <Label id="TimeBegin" fx:id="TimeBegin" prefHeight="37.0" prefWidth="143.0">
-                     <font>
-                        <Font size="20.0" />
                      </font>
                   </Label>
                   <Label prefHeight="28.0" prefWidth="64.0" text="   ——" />
-                  <Label fx:id="TimeEnd" prefHeight="37.0" prefWidth="143.0">
+                  <Label fx:id="TimeEnd" prefHeight="37.0" prefWidth="141.0" text="2016-12-15">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
+                  <Label prefHeight="30.0" prefWidth="274.0" text="订单最晚入住时间为入住日期当晚的18时" textFill="#bf1616" />
                </children>
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0" spacing="10.0">

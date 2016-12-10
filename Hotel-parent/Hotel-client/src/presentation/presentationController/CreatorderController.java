@@ -3,6 +3,8 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
 import vo.OrderVO;
@@ -18,7 +21,9 @@ public class CreatorderController implements Initializable{
 	 private String username,usernum,telephone,roomnum,roomtype,havechild,timebegin,timeend;
 	
 	 @FXML
-	 private TextField UserName,UserNum,TelePhone,RoomnumText;//用户名，人数，电话
+	 private TextField UserNum,RoomnumText;//人数，电话
+	 @FXML 
+	 private Label UserName;
 	 @FXML
 	 private ChoiceBox RoomType,Child;//房间类型，有无孩子
 	 @FXML
@@ -44,8 +49,10 @@ public class CreatorderController implements Initializable{
     	
     	
     	roomtype=RoomType.getValue().toString();
-    	if("单人房".equals(roomtype)){
-    		vo.setSingleRoom(roomnum);
+    	roomnum=RoomnumText.getText();
+    	
+    	if("单人房".equals(roomtype)){   		
+   		    vo.setSingleRoom(roomnum);
     		vo.setFamilyRoom("0");
     		vo.setStandardRoom("0");
     		vo.setSuiteRoom("0");
@@ -72,14 +79,13 @@ public class CreatorderController implements Initializable{
     	vo.setHavekids(Child.getValue().toString());
     	vo.setStarttime(TimeBegin.getValue().toString());
     	vo.setLasttime(TimeEnd.getValue().toString());
-    	
+    	ReservationController.setOrdervo(vo);
          UiswitchHelper.getApplication().goto_confirmUi();
     	}
     }
     
     private boolean Allisfilled(){
-    	if(UserName.getText().isEmpty()||UserNum.getText().isEmpty()||TelePhone.getText().isEmpty()||
-    			RoomnumText.getText().isEmpty()||RoomType.getValue().toString().equals(null)||Child.getValue().toString().equals(null)||
+    	if(UserNum.getText().isEmpty()||RoomnumText.getText().isEmpty()||RoomType.getValue().toString().equals(null)||Child.getValue().toString().equals(null)||
     			TimeBegin.getValue().toString().equals(null)||TimeEnd.getValue().toString().equals(null)){
     		return false;
     	}
@@ -95,7 +101,8 @@ public class CreatorderController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		LoginController con = new LoginController();
+		UserName.setText(con.UserName);
 	}
 
 }

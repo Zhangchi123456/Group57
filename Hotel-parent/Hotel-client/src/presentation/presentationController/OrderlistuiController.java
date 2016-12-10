@@ -85,8 +85,14 @@ public class OrderlistuiController implements Initializable{
 	  if(OrderStationChoiceBox.getValue().equals("所有订单")){
 		  orderlist = am.findUserOrderListAll(UserName);
 		  if(orderlist!=null);
-		  Orderlist(orderlist);
-	  }
+		  Orderlist(orderlist);}
+	  
+	  if(OrderStationChoiceBox.getValue().equals("已撤销订单")){
+			  orderlist = am.findUserOrderListStation(UserName,"已撤销订单");
+			  if(orderlist!=null);
+			  Orderlist(orderlist);
+	  
+   }
    }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

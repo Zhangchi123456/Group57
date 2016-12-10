@@ -37,7 +37,7 @@
                     <String fx:value="已执行订单" />
                     <String fx:value="未执行订单" />
                     <String fx:value="异常订单" />
-                    
+                      <String fx:value="已撤销订单" />
                   </FXCollections>
                   </items>
                   </ChoiceBox>

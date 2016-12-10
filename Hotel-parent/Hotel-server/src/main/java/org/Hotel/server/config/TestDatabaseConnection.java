@@ -21,39 +21,40 @@ public class TestDatabaseConnection  {
 	public static Database db=Database.getInstance();
 	public static void main(String[] args){
 		
-		String query="SELECT * FROM web_manager";
-		Map<String, WebManagerPO> map= new HashMap<String, WebManagerPO>();
-		ResultSet rs=db.select(query);
-		String s="";
-		int i=1;
-		try{	
-			while(rs.next()){
-				int id=rs.getInt("id");
-				String name=rs.getString("name");
-				String password=rs.getString("password");
-			    
-				WebManagerPO po=new WebManagerPO(name,password);
-				map.put(name, po);
-				System.out.println(po.getPassword());
-			}
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}finally{
-				try{
-					rs.close();
-				}catch(SQLException e){
-					e.printStackTrace();
-				}
-			}
-			db.close();
-			String src=null;
-			System.out.println(src);
+//		String query="SELECT * FROM web_manager";
+//		Map<String, WebManagerPO> map= new HashMap<String, WebManagerPO>();
+//		ResultSet rs=db.select(query);
+//		String s="";
+//		int i=1;
+//		try{	
+//			while(rs.next()){
+//				int id=rs.getInt("id");
+//				String name=rs.getString("name");
+//				String password=rs.getString("password");
+//			    
+//				WebManagerPO po=new WebManagerPO(name,password);
+//				map.put(name, po);
+//				System.out.println(po.getPassword());
+//			}
+//			}
+//			catch(Exception e){
+//				e.printStackTrace();
+//			}finally{
+//				try{
+//					rs.close();
+//				}catch(SQLException e){
+//					e.printStackTrace();
+//				}
+//			}
+//			db.close();
+//			String src=null;
+//			System.out.println(src);
 //			getWebManagerData();
-			getOrderData();
-			getHotelData();
-			test();
-			getCircleData() ;
+//			getOrderData();
+//			getHotelData();
+//			test();
+//			getCircleData() ;
+			updateOrderData();
 		}
 //	public static Map<String, WebManagerPO> getWebManagerData() {
 //		Database db=Database.getInstance();
@@ -100,10 +101,10 @@ public class TestDatabaseConnection  {
 			String membername=rs.getString("member_name");
 			String state=rs.getString("status");
 			//date
-			Date starttime=rs.getDate("start_time");
-			Date endtime=rs.getDate("end_time");
-			Date lasttime=rs.getDate("last_date");
-			Date dischargetime=rs.getDate("remove_date");
+			String starttime=rs.getString("start_time");
+			String endtime=rs.getString("end_time");
+			String lasttime=rs.getString("last_date");
+			String dischargetime=rs.getString("remove_date");
 			//room
 			int singleRoom=rs.getInt("single_room");
 			int standardRoom=rs.getInt("standard_room");
@@ -225,4 +226,29 @@ public class TestDatabaseConnection  {
 		return null;
 	}//end get circle data
 
+	
+	public static void updateOrderData() {
+		db=Database.getInstance();
+		//order info
+		int id=3;
+		double grade=4.0;
+		
+		String state="已执行订单";
+		String comment="hao";
+		//date
+		String dischargetime="2016-01-02";
+		//comment
+		String query="UPDATE order1 SET status='"+state+"',"
+				+ "remove_time="+dischargetime+","
+				+ "comment='"+comment+"',"
+				+ "score='"+grade+"'"
+				+ " WHERE id='"+id+"'";
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
+	}
 }

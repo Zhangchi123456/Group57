@@ -24,15 +24,12 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		boolean tem = false;
 	  try {
 		OrderVO vo =new OrderVO();  
-		OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));
-		System.out.println(po.getDischargetime());
+		OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));		
 		vo.SetbyOrderPO(po);
 		vo.setComment(EvaluateInfo);
-		vo.setGrade(score);	
-		System.out.println(vo.getDischargetime());
-		po=vo.toOrderPO(vo);
-		System.out.println(po.getDischargetime());
-		 tem =ser.update(po);
+		vo.setGrade(score);		
+		po=vo.toOrderPO(vo);	
+		 tem =ser.update(po);	
 	} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -228,15 +225,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		OrderVO tem = new OrderVO();
 		try {
 			a=ser.orderShowAll(order_id);
-		
-			
-				OrderVO temp=new OrderVO() ;
-		//		System.out.println(a.get(i).getName());
-				temp.SetbyOrderPO(a);
-				
-				
-		//		System.out.println(tem.get(i).getName());
-			
+				tem.SetbyOrderPO(a);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
