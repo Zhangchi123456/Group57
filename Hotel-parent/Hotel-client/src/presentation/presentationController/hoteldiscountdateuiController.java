@@ -81,7 +81,7 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	private Button back;
 	
-	final static ObservableList<DateInfo> data = FXCollections.observableArrayList();
+	private ObservableList<DateInfo> data;
 	
 	String hotel_name = HotelmanageController.getHotelVO().getName();
 	String name = "日期折扣";
@@ -175,6 +175,8 @@ public class hoteldiscountdateuiController implements Initializable{
 	
 	public void showTable(String name,String hotel_name){
 		
+		data = FXCollections.observableArrayList();
+				
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<HotelPromotionVO> proList= promotion.getHotelPromotionList(name,hotel_name);
 
