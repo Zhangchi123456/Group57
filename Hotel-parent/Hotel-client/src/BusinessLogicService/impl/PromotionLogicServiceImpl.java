@@ -66,7 +66,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 		try{
 			ArrayList<HotelPromotionPO> poList = promotiondataservice.findByHotelProID(hotel_name);
 			for(int i=0;i<poList.size();i++){
-				if(poList.get(i).getType() == "日期折扣"){
+				if(poList.get(i).getType().equals(name)){
 					HotelPromotionVO vo = new HotelPromotionVO();
 					vo.setByPO(poList.get(i));
 					voList.add(vo);
