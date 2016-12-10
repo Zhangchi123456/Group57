@@ -1,7 +1,7 @@
 package org.Hotel.common.po;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 public class OrderPO implements Serializable{
 
@@ -11,17 +11,17 @@ public class OrderPO implements Serializable{
 	
 	private String hotelid;
 	
-	private Date starttime;
+	private String starttime;
 	
 	private String state;
 	
-	private Date leavetime;
+	private String leavetime;
 	
 	private double price;
 	
-	private Date dischargetime;
+	private String dischargetime;
 	
-	private Date lasttime;
+	private String lasttime;
 	
 	private int peoplenum;
 	
@@ -42,7 +42,7 @@ public class OrderPO implements Serializable{
 	public OrderPO() {
 		super();
 	}
-	public OrderPO(int id, String name, String hotelid, Date starttime, Date leavetime, String state, double price, Date dischargetime, Date lasttime, int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment,double grade) {
+	public OrderPO(int id, String name, String hotelid, String starttime, String leavetime, String state, double price, String dischargetime, String lasttime, int peoplenum, boolean havekids, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String comment,double grade) {
 		super();
 		
 		this.id = id;
@@ -213,49 +213,49 @@ public class OrderPO implements Serializable{
 	/**
 	 * @return the starttime
 	 */
-	public Date getStarttime() {
+	public String getStarttime() {
 		return starttime;
 	}
 	/**
 	 * @param starttime the starttime to set
 	 */
-	public void setStarttime(Date starttime) {
+	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 	/**
 	 * @return the leavetime
 	 */
-	public Date getLeavetime() {
+	public String getLeavetime() {
 		return leavetime;
 	}
 	/**
 	 * @param leavetime the leavetime to set
 	 */
-	public void setLeavetime(Date leavetime) {
+	public void setLeavetime(String leavetime) {
 		this.leavetime = leavetime;
 	}
 	/**
 	 * @return the lasttime
 	 */
-	public Date getLasttime() {
+	public String getLasttime() {
 		return lasttime;
 	}
 	/**
 	 * @param lasttime the lasttime to set
 	 */
-	public void setLasttime(Date lasttime) {
+	public void setLasttime(String lasttime) {
 		this.lasttime = lasttime;
 	}
 	/**
 	 * @return the dischargetime
 	 */
-	public Date getDischargetime() {
+	public String getDischargetime() {
 		return dischargetime;
 	}
 	/**
 	 * @param dischargetime the dischargetime to set
 	 */
-	public void setDischargetime(Date dischargetime) {
+	public void setDischargetime(String dischargetime) {
 		this.dischargetime = dischargetime;
 	}
 	public String getState() {

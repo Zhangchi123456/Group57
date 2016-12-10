@@ -1,10 +1,7 @@
 package vo;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import java.text.ParseException;
 import org.Hotel.common.po.OrderPO;
 
 public class OrderVO {
@@ -88,21 +85,21 @@ public class OrderVO {
 		
 		this.name = po.getName();
 		this.hotelid = po.getHotelid();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");   
+	
 		  
 		
-		this.starttime = format.format(po.getStarttime());
+		this.starttime = po.getStarttime();
 		
-		this.leavetime =format.format( po.getLeavetime());
+		this.leavetime =po.getLeavetime();
 		
 		this.state = po.getState();
 		
 		this.price = String.valueOf( po.getPrice());
-		SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");
-		if(po.getLasttime()!=null)
-		this.lasttime = formatter.format((po.getLasttime()));
-		if(po.getDischargetime()!=null)
-		this.dischargetime = formatter.format(po.getDischargetime());
+		
+		
+		this.lasttime =po.getLasttime();
+		
+		this.dischargetime = po.getDischargetime();
 		
 		this.peoplenum = String.valueOf(po.getPeoplenum());
 		
@@ -130,38 +127,11 @@ public class OrderVO {
 	public OrderPO toOrderPO(OrderVO vo){
 		OrderPO po = new OrderPO();
 		po.setId(Integer.parseInt(id));
-		po.setComment(comment);
-		System.out.println(vo.dischargetime);
-		
-		
-		try {
-			SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-mm-dd hh:mm:ss ");		  
-		    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");   		    
-		    java.sql.Date sdate = null; //初始化   	      		   		      
-		    java.util.Date udate = sdf.parse(starttime);   
-		    sdate = new java.sql.Date(udate.getTime()); 
-		    po.setStarttime(sdate);
-		    java.sql.Date sdate1 = null;
-		    java.util.Date udate1 = sdf.parse(leavetime);   
-		    sdate1 = new java.sql.Date(udate1.getTime()); 
-		    po.setLeavetime(sdate1);
-		    java.sql.Date sdate2 = null;
-		    if(dischargetime!=null){
-		    java.util.Date udate2 = formatter.parse(dischargetime);   
-		    sdate2 = new java.sql.Date(udate1.getTime());}
-		    po.setDischargetime(sdate2);
-		    java.sql.Date sdate3 = null;
-		    if(lasttime!=null){
-		    java.util.Date udate3 = formatter.parse(lasttime);   
-		    sdate3 = new java.sql.Date(udate1.getTime()); }
-		    
-		    po.setLasttime(sdate3);
-		    
-		    
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		po.setComment(comment);											       		    
+        po.setStarttime(vo.starttime);
+	    po.setLeavetime(vo.leavetime);
+	    po.setDischargetime(vo.dischargetime);
+		  
 		
 		if(havekids.equals("有")){
 		po.setHavekids(true);
