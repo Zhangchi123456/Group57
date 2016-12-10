@@ -1,7 +1,5 @@
 package vo;
 
-import java.util.Date;
-
 import org.Hotel.common.po.HotelPromotionPO;
 
 public class HotelPromotionVO {
@@ -12,12 +10,12 @@ public class HotelPromotionVO {
 	private double enterprice_discount;
 	private double multiorder_discount;
 	private double date_discount;
-	private Date start_date;
-	private Date end_date;
+	private String start_date;
+	private String end_date;
 	private int id;
 	
 	public HotelPromotionVO(String hotel_name,String name,double birthday_discount,double enterprice_discount,
-			double multiorder_discount, double date_discount,Date start_date,Date end_date,int id){
+			double multiorder_discount, double date_discount,String start_date,String end_date,int id){
 		this.hotel_name = hotel_name;
 		this.name = name;
 		this.birthday_discount = birthday_discount;
@@ -75,11 +73,11 @@ public class HotelPromotionVO {
 		return date_discount;
 	}
 	
-	public Date getStartDate(){
+	public String getStartDate(){
 		return start_date;
 	}
 	
-	public Date getEndDate(){
+	public String getEndDate(){
 		return end_date;
 	}
 	
