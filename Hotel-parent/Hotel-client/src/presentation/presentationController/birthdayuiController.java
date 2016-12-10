@@ -36,6 +36,8 @@ public class birthdayuiController implements Initializable{
 	@FXML
 	private Button back;
 	
+	private int id = 0;
+	
 	@FXML
 	public void toBusinesspartner(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesspartnerui();
@@ -69,7 +71,7 @@ public class birthdayuiController implements Initializable{
 			}else{
 				String name = "生日折扣";
 				String hotelname = HotelmanageController.getHotelVO().getName();
-				HotelPromotionVO vo = new HotelPromotionVO(hotelname, name, discount/100, 0, 0, 0, null, null);
+				HotelPromotionVO vo = new HotelPromotionVO(hotelname, name, discount/100, 0, 0, 0, null, null, id);
 			
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.updateHotelPromotion(vo);
@@ -93,6 +95,7 @@ public class birthdayuiController implements Initializable{
 		String name = "生日折扣";
 		HotelPromotionVO vo = promotion.getHotelPromotion(hotel_name,name);
 		double discount = vo.getBirthdayDiscount()*100;
+		id = vo.getId();
 		birthdaydiscount.setText(String.valueOf(discount));
 	}
 
