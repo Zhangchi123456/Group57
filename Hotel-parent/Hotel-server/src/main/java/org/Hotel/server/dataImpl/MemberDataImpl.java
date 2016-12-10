@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.po.CirclePO;
+import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
@@ -26,7 +27,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	private Map<Integer, MemberLevelPO> map_lv;
 	
-	private MemberDataHelper memberDataHelper, memberlvDataHelper;
+	private Map<String, CreditPO> map_cre;
+	
+	private MemberDataHelper memberDataHelper, memberlvDataHelper, creditDataHelper;
 	
 	private DataFactory dataFactory;
 	
@@ -51,6 +54,13 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			memberlvDataHelper = dataFactory.getMemberDataHelper();
 			map_lv = memberlvDataHelper.getMemberLevelData();
 		}
+		
+		if(map_cre == null){
+			dataFactory = new DataFactoryImpl();
+			creditDataHelper = dataFactory.getMemberDataHelper();
+			map_cre = creditDataHelper.getCreditData();
+		}
+		
 	}
 
 	public boolean insert(MemberPO po) throws RemoteException{
@@ -85,6 +95,38 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	}
 	
+	public boolean insert(CreditPO po) throws RemoteException{
+		String name = po.getName();
+		if(map_cre.get(name) == null){
+			map_cre.put(name, po);
+			creditDataHelper.insertCreditData(po);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean delete(CreditPO po) throws RemoteException{
+		String name = po.getName();
+		if(map_cre.get(name) != null){
+			map_cre.remove(name, po);
+			creditDataHelper.deleteCreditData(po);
+			return true;
+		}
+		return false;
+	
+	}
+	
+	public boolean update(CreditPO po) throws RemoteException{
+		String name = po.getName();
+		if(map_cre.get(name) != null){
+			map_cre.put(name, po);
+			creditDataHelper.updateCreditData(po);
+			return true;
+		}
+		return false;
+
+	}
+	
 	public boolean update(MemberLevelPO po) throws RemoteException{
 		int member_lv = po.getLevel();
 		if(map_lv.get(member_lv) != null){
@@ -110,6 +152,17 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	}
 	
+	public CreditPO findCreditByName(String name) throws RemoteException{
+		CreditPO po = new CreditPO();
+		Iterator<Entry<String, CreditPO>> iterator = map_cre.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<String, CreditPO> entry = iterator.next();
+			po = entry.getValue();
+		if(name.equals(po.getName()))
+        break;
+		}
+			return po;
+	}
 	
 	public MemberLevelPO findLV(int level) throws RemoteException{
 		MemberLevelPO po = new MemberLevelPO();

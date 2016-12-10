@@ -141,6 +141,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return roomlist;
 	}//显示所有客房信息
 	
+	
 	public boolean updateRoom(RoomPO roompo)throws RemoteException{
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) != null){
