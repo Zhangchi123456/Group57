@@ -15,10 +15,10 @@ import org.Hotel.server.datahelp.PromotionDataHelper;
 
 public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	Database db;
-	public Map<String, HotelPromotionPO> getHotelPromotionData() {
+	public Map<Integer, HotelPromotionPO> getHotelPromotionData() {
 		db=Database.getInstance();
 		String query="SELECT * FROM hotel_strategy";
-		Map<String, HotelPromotionPO> map= new HashMap<String, HotelPromotionPO>();
+		Map<Integer, HotelPromotionPO> map= new HashMap<Integer, HotelPromotionPO>();
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
@@ -36,8 +36,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			   
 				HotelPromotionPO po=new HotelPromotionPO(name, hotelname,birthdaydiscount,
 						multiorderdiscount,
-						enterprisediscount,datediscount,startdate,enddate);
-				map.put(hotelname+name, po);
+						enterprisediscount,datediscount,startdate,enddate,id);
+				map.put(id, po);
 			}
 			return map;
 		}catch(Exception e){
@@ -53,8 +53,9 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	public void updateHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
 		
-		String hotelname=po.getHotelid();
-		String name=po.getType();
+		int id=po.getId();
+//		String hotelname=po.getHotelid();
+//		String name=po.getType();
 		double birthdaydiscount=po.getBirthdaydiscount();
 		double multiorderdiscount=po.getMultiorderdiscount();
 		double enterpricediscount=po.getEnterpricediscount();
@@ -68,7 +69,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				+ "date_discount="+"'"+datediscount+"'"
 //				+ "start_date="+"'"+startdate+"',"
 //				+ "end_date="+"'"+enddate+"'"		
-				+ " WHERE hotel_name="+"'"+hotelname+"' and name='"+name+"'";
+				+ " WHERE id="+"'"+id+"'";
 				
 		try{
 			db.update(query);
@@ -102,15 +103,15 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		Date enddate=po.getEnddate();
 		
 		String query="INSERT INTO hotel_strategy(hotel_name,birthday_discount,"
-				+ "multiorder_discount,enterprice_discount,date_discount"
+				+ "multiorder_discount,enterprise_discount,date_discount,"
 				+ "start_date,end_date,name) VALUE("
 				+ "'"+hotelid+"',"
 				+ "'"+birthdaydiscount+"',"
 				+ "'"+multiorderdiscount+"',"
 				+ "'"+enterpricediscount+"',"
 				+ "'"+datediscount+"',"
-				+ "'"+startdate+"',"
-				+ "'"+enddate+ "',"
+				+ ""+startdate+","
+				+ ""+enddate+ ","
 				+ "'"+type+"')";
 		try{
 			db.update(query);
@@ -121,12 +122,22 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}
 	}//end insert hotel promotion
 	
+//	public static void main(String[] args){
+//		HotelPromotionPO po=new HotelPromotionPO("日期折扣", "debugjiudian",
+//				0,0, 
+//				0,1,null,null);
+//		
+//		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
+//		data.insertHotelPromotionData(po);
+//	}
+	
 	public void deleteHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
-		String hotelname=po.getHotelid();
-		Date startdate=po.getStartdate();
-		String query="DELETE hotel_strategy WHERE hotel_name='"+hotelname+"' and "
-				+ "start_name="+startdate;
+		
+		int id=po.getId();
+//		String hotelname=po.getHotelid();
+//		Date startdate=po.getStartdate();
+		String query="DELETE FROM hotel_strategy WHERE id="+id+"";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -137,11 +148,22 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		
 	}//end delete hotel promotion
 	
-	public Map<Date, WebPromotionPO> getWebPromotionData() {
+//	public static void main(String[] args){
+//		
+//		HotelPromotionPO po=new HotelPromotionPO("日期折扣", "debugjiudian",
+//				0,0, 
+//				0,1,null,null,57);
+//		
+//		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
+////		data.insertHotelPromotionData(po);
+//		data.deleteHotelPromotionData(po);
+//	}
+	
+	public Map<Integer, WebPromotionPO> getWebPromotionData() {
 		db=Database.getInstance();
 		
 		String query="SELECT * FROM web_strategy";
-		Map<Date, WebPromotionPO> map= new HashMap<Date, WebPromotionPO>();
+		Map<Integer, WebPromotionPO> map= new HashMap<Integer, WebPromotionPO>();
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
@@ -150,8 +172,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				Date startdate=rs.getDate("start_date");
 				Date enddate=rs.getDate("end_date");
 				
-				WebPromotionPO po=new WebPromotionPO(datediscount,startdate,enddate);
-				map.put(startdate, po);
+				WebPromotionPO po=new WebPromotionPO(datediscount,startdate,enddate,id);
+				map.put(id, po);
 			}
 			return map;
 		}catch(Exception e){
@@ -162,32 +184,21 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		return null;
 	}//end get web strategy data
 
+	//System has no such feature
 	public void updateWebPromotionData(WebPromotionPO po) {
-		db=Database.getInstance();
-		
-		double datediscount=po.getDatediscount();
-		Date startdate=po.getStartdate();
-		Date enddate=po.getEnddate();
-		
-		String query="UPDATE hotel_strategy SET "
-				+ "date_discount="+"'"+datediscount+"',"
-				+ "start_date="+"'"+startdate+"',"
-				+ "end_date="+"'"+enddate+"'"		
-				+ " WHERE start_date="+"'"+startdate+"'";
-				
-		try{
-			db.update(query);
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-			db.close();
-		}
-	}//end update web strategy
-
-	public void deleteWebPromotionData(WebPromotionPO po) {
 //		db=Database.getInstance();
+//		
+//		int id=po.getID();
+//		double datediscount=po.getDatediscount();
 //		Date startdate=po.getStartdate();
-//		String query="DELETE hotel_strategy WHERE start_date='"+startdate+"'";
+//		Date enddate=po.getEnddate();
+//		
+//		String query="UPDATE hotel_strategy SET "
+//				+ "date_discount="+"'"+datediscount+"',"
+//				+ "start_date="+"'"+startdate+"',"
+//				+ "end_date="+"'"+enddate+"'"		
+//				+ " WHERE id="+"'"+id+"'";
+//				
 //		try{
 //			db.update(query);
 //		}catch(Exception e){
@@ -195,6 +206,21 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 //		}finally{
 //			db.close();
 //		}
+	}//end update web strategy
+
+	public void deleteWebPromotionData(WebPromotionPO po) {
+		db=Database.getInstance();
+		
+		int id=po.getID();
+//		Date startdate=po.getStartdate();
+		String query="DELETE FROM web_strategy WHERE id='"+id+"'";
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 		
 	}
 
@@ -205,11 +231,11 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		Date startdate=po.getStartdate();
 		Date enddate=po.getEnddate();
 		
-		String query="INSERT INTO web_strategy(date_discount"
-				+ "start_date,end_date,name) VALUE('"+
-				String.valueOf(datediscount)+"',"+
-				"'"+String.valueOf(startdate)+"',"+"'"+String.valueOf(enddate)
-				+"')";
+		String query="INSERT INTO web_strategy(date_discount,"
+				+ "start_date,end_date) VALUE("+
+				datediscount+","+
+				""+startdate+","+""+enddate
+				+")";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -220,12 +246,21 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		
 	}
 	
-	public static void main(String[] args){
-		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
-		HotelPromotionPO po=new HotelPromotionPO("生日折扣", "南行酒店",
-				0.4,0, 
-				0,0,null,null);
-		data.updateHotelPromotionData(po);
-	}
+//	public static void main(String[] args){
+//		
+//		WebPromotionPO po=new WebPromotionPO(0,null,null,2);
+//		
+//		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
+////		data.insertWebPromotionData(po);
+//		data.deleteWebPromotionData(po);
+//	}//test web promotion insert and delete
+	
+//	public static void main(String[] args){
+//		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
+//		HotelPromotionPO po=new HotelPromotionPO("生日折扣", "南行酒店",
+//				0.4,0, 
+//				0,0,null,null);
+//		data.updateHotelPromotionData(po);
+//	}
 
 }

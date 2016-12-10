@@ -32,5 +32,12 @@ public interface ReservationLogicService {
 	 
 	//判断酒店是否预订过
 	 public String Ifreservationed(String name,HotelVO vo);
-	
+	//获得酒店的营销策略
+	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException;
+	 
+	//获得网站的营销策略
+	 public ArrayList<WebPromotionVO> showall();
+
+
+
 }
