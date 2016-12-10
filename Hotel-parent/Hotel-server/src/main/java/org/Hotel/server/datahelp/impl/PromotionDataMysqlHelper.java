@@ -110,8 +110,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				+ "'"+multiorderdiscount+"',"
 				+ "'"+enterpricediscount+"',"
 				+ "'"+datediscount+"',"
-				+ ""+startdate+","
-				+ ""+enddate+ ","
+				+ "'"+startdate+"',"
+				+ "'"+enddate+ "',"
 				+ "'"+type+"')";
 		try{
 			db.update(query);
@@ -232,10 +232,10 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		String enddate=po.getEnddate();
 		
 		String query="INSERT INTO web_strategy(date_discount,"
-				+ "start_date,end_date) VALUE("+
-				datediscount+","+
-				""+startdate+","+""+enddate
-				+")";
+				+ "start_date,end_date) VALUE('"+
+				datediscount+"',"+
+				"'"+startdate+"',"+"'"+enddate
+				+"')";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -248,11 +248,11 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	
 //	public static void main(String[] args){
 //		
-//		WebPromotionPO po=new WebPromotionPO(0,null,null,2);
+//		WebPromotionPO po=new WebPromotionPO(0,"1999-11-22",null,3);
 //		
 //		PromotionDataMysqlHelper data=new PromotionDataMysqlHelper();
-////		data.insertWebPromotionData(po);
-//		data.deleteWebPromotionData(po);
+//		data.insertWebPromotionData(po);
+////		data.deleteWebPromotionData(po);
 //	}//test web promotion insert and delete
 	
 //	public static void main(String[] args){

@@ -75,7 +75,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		String dischargetime=orderpo.getDischargetime();
 		//comment
 		String query="UPDATE order1 SET status='"+state+"',"
-				+ "remove_time="+dischargetime+","
+				+ "remove_time='"+dischargetime+"',"
 				+ "comment='"+comment+"',"
 				+ "score='"+grade+"'"
 				+ " WHERE id='"+id+"'";

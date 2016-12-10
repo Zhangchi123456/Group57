@@ -13,7 +13,7 @@ public class MemberPO implements Serializable{
 	
 	private String connection;
 	
-	private Date birthday;
+	private String birthday;
 	
 	private int credit;
 	
@@ -26,7 +26,7 @@ public class MemberPO implements Serializable{
 	}
 	
 	public MemberPO(int id, String password, String connection, 
-			Date birthday, String name, int credit, boolean enterprise, int level) {
+			String birthday, String name, int credit, boolean enterprise, int level) {
 		
 		super();
 		
@@ -127,12 +127,12 @@ public class MemberPO implements Serializable{
 		this.connection = connection;
 	}
 	
-	public Date getBirthday() {
+	public String getBirthday() {
 		
 		return birthday;
 	}
 	
-	public void setBirthday(Date birthday){
+	public void setBirthday(String birthday){
 		
 		this.birthday = birthday;
 	}
