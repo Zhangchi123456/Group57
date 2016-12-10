@@ -2,11 +2,14 @@ package BusinessLogicService.impl;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import org.Hotel.common.dataService.MemberDataService;
+import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberPO;
 
 import BusinessLogicService.Service.MemberLogicService;
+import vo.CreditRecordVO;
 import vo.MemberVO;
 
 public class MemberLogicServiceImpl implements MemberLogicService{
@@ -26,4 +29,19 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		 vo.setbypo(po);
 		 return vo;
 	 }
+	 
+	 public ArrayList<CreditRecordVO> FindCreditbyname(String name) throws RemoteException, ParseException{
+		 memberService=(MemberDataService)RMIHelper.find("MemberDataService");
+		 ArrayList<CreditPO> creditpolist=memberService.findCreditByName(name);
+		
+		 ArrayList<CreditRecordVO> creditvolist=new ArrayList<CreditRecordVO>();
+		 for(int i=0;i<creditpolist.size();i++){
+			 CreditRecordVO vo=new CreditRecordVO();
+			 vo.setbyCreditPO(creditvolist.get(i).ToCreditpo());
+			 creditvolist.add(vo);
+		 }
+		 
+		 return creditvolist;
+	 }
+	 
 }

@@ -159,6 +159,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 				voList.add(vo);
 			}
 			return voList;
+			
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
