@@ -27,7 +27,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	private Map<Integer, MemberLevelPO> map_lv;
 	
-	private Map<String, CreditPO> map_cre;
+	private Map<Integer, CreditPO> map_cre;
 	
 	private MemberDataHelper memberDataHelper, memberlvDataHelper, creditDataHelper;
 	
@@ -96,30 +96,20 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	}
 	
 	public boolean insert(CreditPO po) throws RemoteException{
-		String name = po.getName();
-		if(map_cre.get(name) == null){
-			map_cre.put(name, po);
+		if(po!=null){
 			creditDataHelper.insertCreditData(po);
-			return true;
-		}
-		return false;
+			map_cre=creditDataHelper.getCreditData();
+				return true;
+			}
+			else
+				return false;
 	}
 	
-	public boolean delete(CreditPO po) throws RemoteException{
-		String name = po.getName();
-		if(map_cre.get(name) != null){
-			map_cre.remove(name, po);
-			creditDataHelper.deleteCreditData(po);
-			return true;
-		}
-		return false;
-	
-	}
 	
 	public boolean update(CreditPO po) throws RemoteException{
-		String name = po.getName();
-		if(map_cre.get(name) != null){
-			map_cre.put(name, po);
+		int id = po.getId();
+		if(map_cre.get(id) != null){
+			map_cre.put(id, po);
 			creditDataHelper.updateCreditData(po);
 			return true;
 		}
@@ -154,9 +144,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	public CreditPO findCreditByName(String name) throws RemoteException{
 		CreditPO po = new CreditPO();
-		Iterator<Entry<String, CreditPO>> iterator = map_cre.entrySet().iterator();
+		Iterator<Entry<Integer, CreditPO>> iterator = map_cre.entrySet().iterator();
 		while(iterator.hasNext()){
-			Entry<String, CreditPO> entry = iterator.next();
+			Entry<Integer, CreditPO> entry = iterator.next();
 			po = entry.getValue();
 		if(name.equals(po.getName()))
         break;

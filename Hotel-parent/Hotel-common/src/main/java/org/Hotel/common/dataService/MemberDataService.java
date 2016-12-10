@@ -19,8 +19,6 @@ public interface MemberDataService extends Remote{
 	
 	public boolean insert(CreditPO po) throws RemoteException;
 	
-	public boolean delete(CreditPO po) throws RemoteException;
-	
 	public boolean update(CreditPO po) throws RemoteException;
 	
 	public MemberPO find(String name) throws RemoteException;
