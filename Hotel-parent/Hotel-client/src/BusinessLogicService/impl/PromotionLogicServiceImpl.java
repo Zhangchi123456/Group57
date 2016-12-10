@@ -63,11 +63,11 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 	@Override
 	public ArrayList<HotelPromotionVO> getHotelPromotionList(String name, String hotel_name) {
 		ArrayList<HotelPromotionVO> voList = new ArrayList<HotelPromotionVO>();
-		HotelPromotionVO vo = new HotelPromotionVO();
 		try{
 			ArrayList<HotelPromotionPO> poList = promotiondataservice.findByHotelProID(hotel_name);
 			for(int i=0;i<poList.size();i++){
 				if(poList.get(i).getType() == "日期折扣"){
+					HotelPromotionVO vo = new HotelPromotionVO();
 					vo.setByPO(poList.get(i));
 					voList.add(vo);
 				}
@@ -92,11 +92,11 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 	public ArrayList<WebPromotionVO> getWebPromotionList() {
 		
 		ArrayList<WebPromotionVO> voList =new ArrayList<WebPromotionVO>();
-		WebPromotionVO vo = new WebPromotionVO();
-
+		
 		try{
 			ArrayList<WebPromotionPO> poList = promotiondataservice.showAllWebPro(); 
 			for(int i=0;i<poList.size();i++){
+				WebPromotionVO vo = new WebPromotionVO();
 				vo.setByPO(poList.get(i));
 				voList.add(vo);
 			}
