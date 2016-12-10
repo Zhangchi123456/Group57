@@ -72,7 +72,7 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	private Button back;
 	
-	final static ObservableList<DateInfo> data = FXCollections.observableArrayList();
+	private ObservableList<DateInfo> data;
 	
 	//跳到会员等级折扣
 	@FXML
@@ -151,6 +151,8 @@ public class webdiscountdateuiController implements Initializable{
 	}
 	
 	public void showTable(){
+		
+		data = FXCollections.observableArrayList();
 		
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<WebPromotionVO> proList= promotion.getWebPromotionList();
