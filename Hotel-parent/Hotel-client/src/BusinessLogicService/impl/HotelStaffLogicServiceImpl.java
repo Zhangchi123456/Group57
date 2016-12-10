@@ -138,10 +138,4 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 	}
 	
-	//根据房间号查找订单
-	public OrderVO findOrderByRoom(int roomid)throws RemoteException {
-		
-		return null;
-	}
-	
 }

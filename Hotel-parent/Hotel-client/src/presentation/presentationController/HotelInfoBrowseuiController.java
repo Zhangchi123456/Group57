@@ -1,9 +1,12 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
@@ -18,11 +21,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import vo.HotelPromotionVO;
 import vo.HotelVO;
+import vo.WebPromotionVO;
 
 public class HotelInfoBrowseuiController implements Initializable{
 	private HotelVO hotelvo;
 	private HotelPromotionVO hotelpromotion;
-	private ReservationLogicService reservationService;
+	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	@FXML
 	private Button formOrder,Back,myOrder;	//跳转的按钮
 	@FXML
@@ -42,8 +46,13 @@ public class HotelInfoBrowseuiController implements Initializable{
 	 //初始化方法
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-	/*  hotelvo=ReservationController.getCurrentHotelvo();
-		hotelpromotion=ReservationController.getHotelPromotionvo();
+	hotelvo=ReservationController.getCurrentHotelvo();
+	ArrayList<WebPromotionVO> weblist=reservationService.showall();
+	ReservationController.setWebpromotionvolist(weblist);
+	try {
+		ArrayList<HotelPromotionVO> prolist=reservationService.findhotelpro(hotelvo.getName());
+		ReservationController.setHotelproList(prolist);
+		
 		hotelName.setText(hotelvo.getName());
 		Star.setText(String.valueOf(hotelvo.getStar()));
 		address.setText(hotelvo.getAddress());
@@ -51,9 +60,13 @@ public class HotelInfoBrowseuiController implements Initializable{
 		StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
 	    FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
 	    SuiteLabel.setText(String.valueOf(hotelvo.getSuiteRoomPrice()));
-	    benefit.setText("日期优惠："+String.valueOf(hotelpromotion.getStartDate())+"-"+String.valueOf(hotelpromotion.getEndDate())+" 折扣值："+String.valueOf(hotelpromotion.getDateDiscount())
-	    		+"3间以上优惠： "+String.valueOf(hotelpromotion.getMultiorderDiscount()));
-		*/
+	    
+	
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
+		
 
+}
 }

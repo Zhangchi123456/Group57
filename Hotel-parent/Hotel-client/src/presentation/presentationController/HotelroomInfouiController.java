@@ -52,9 +52,7 @@ public class HotelroomInfouiController implements Initializable{
 		
 	String Name = HotelmanageController.getRoomVO().getHotelid();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
-	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
-	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
 	private void backButtonClicked(ActionEvent event) throws IOException{
@@ -63,32 +61,17 @@ public class HotelroomInfouiController implements Initializable{
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
-		try {
-			roomlist = hser.roomShowAll(Name);
-			
-			for(int i=0;i<roomlist.size();i++){
-				int id = roomlist.get(i).getId();
-				orderlist.add(hser.findOrderByRoom(id));
-			}
-			if(roomlist!=null&&orderlist!=null)
-			Roomlist(roomlist, orderlist);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-   	 
+		int selectnumber=table.getSelectionModel().getSelectedIndex();
+		
+		temp.get(selectnumber).setState(state);
+		temp.get(selectnumber).setLast(lasttime);
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			roomlist = hser.roomShowAll(Name);
-				
-			for(int i=0;i<roomlist.size();i++){
-				int id = roomlist.get(i).getId();
-				orderlist.add(hser.findOrderByRoom(id));
-			}
-			if(roomlist!=null&&orderlist!=null)
-		   	Roomlist(roomlist, orderlist);
+			if(roomlist!=null)
+		   	Roomlist(roomlist);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,13 +81,13 @@ public class HotelroomInfouiController implements Initializable{
 	
 	
 	
-	public void  Roomlist(ArrayList<RoomVO> roomlist, ArrayList<OrderVO> orderlist){
+	public void  Roomlist(ArrayList<RoomVO> roomlist){
     	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
     	for(int i=0;i<roomlist.size();i++){
     	temp.add(new SimpleRoom(String.valueOf(roomlist.get(i).getId()), 
     			roomlist.get(i).getRoomtype(), 
-    			orderlist.get(i).getState(), orderlist.get(i).
-    			getLasttime().toString()));
+    			roomlist.get(i).getRoomstate(), 
+    			roomlist.get(i).getLeavetime()));
     	}
     	  roomNum.setCellValueFactory(
 		            new PropertyValueFactory<>("roomnum"));		 

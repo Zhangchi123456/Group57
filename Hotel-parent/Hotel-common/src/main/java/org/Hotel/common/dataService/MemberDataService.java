@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 
@@ -16,6 +17,12 @@ public interface MemberDataService extends Remote{
 	
 	public boolean update(MemberLevelPO po) throws RemoteException;
 	
+	public boolean insert(CreditPO po) throws RemoteException;
+	
+	public boolean delete(CreditPO po) throws RemoteException;
+	
+	public boolean update(CreditPO po) throws RemoteException;
+	
 	public MemberPO find(String name) throws RemoteException;
 	
 	public MemberLevelPO findLV(int level) throws RemoteException;
@@ -23,5 +30,7 @@ public interface MemberDataService extends Remote{
 	public ArrayList<MemberPO> showAll() throws RemoteException;
 	
 	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException;
+	
+	public CreditPO findCreditByName(String name) throws RemoteException;
 
 }
