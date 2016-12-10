@@ -25,7 +25,7 @@ public interface HotelStaffLogicService {
 	public boolean changeHotelInfo(HotelVO vo)throws RemoteException;
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;
+	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;
 	
 	//退房信息更新
 	public boolean changeCheckOutInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException;

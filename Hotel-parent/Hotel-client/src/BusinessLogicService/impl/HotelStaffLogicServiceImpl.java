@@ -94,7 +94,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
+	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
 		
 		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
@@ -113,6 +113,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		HotelmanageController.getHotelVO().setLeftSuiteRoom(new_suiteRoom);		
 		roomvo.setStarttime(starttime);
 		roomvo.setLeavetime(leavetime);
+		roomvo.setOrderid(orderid);
 		
 		
 		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()))&&hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO(roomvo));
