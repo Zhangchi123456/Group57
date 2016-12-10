@@ -15,6 +15,7 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.33331298828125" minWidth="10.0" prefWidth="266.33331298828125" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.33331298828125" minWidth="10.0" prefWidth="266.33331298828125" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.33331298828125" minWidth="10.0" prefWidth="266.33331298828125" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="418.33331298828125" minWidth="10.0" prefWidth="266.33331298828125" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -28,7 +29,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="hotelInfo" text="酒店基本信息" GridPane.columnIndex="1" GridPane.columnSpan="2">
+      <Label fx:id="hotelInfo" prefHeight="49.0" prefWidth="287.0" text="酒店基本信息" GridPane.columnIndex="1" GridPane.columnSpan="3">
          <font>
             <Font size="40.0" />
          </font>
@@ -66,7 +67,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="welcome" text="欢迎!" textAlignment="CENTER" textFill="#f60000" GridPane.columnIndex="3">
+      <Label fx:id="welcome" text="欢迎!" textAlignment="CENTER" textFill="#f60000" GridPane.columnIndex="4">
          <font>
             <Font size="25.0" />
          </font>
@@ -119,6 +120,8 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="469.0" text="*优惠说明:日期折扣类型的优惠只有一个订单的入住和离开日期都在折扣日期内" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
+      <Label prefHeight="16.0" prefWidth="565.0" text="才享受.生日折扣计算方法为若生日在入住和离开日期内则对该订单一个房间的当天价格使用优惠" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" />
    </children>
    <padding>
       <Insets left="50.0" right="50.0" />
