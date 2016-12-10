@@ -28,9 +28,9 @@ public class HotelInfoBrowseuiController implements Initializable{
 	private HotelPromotionVO hotelpromotion;
 	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	@FXML
-	private Button formOrder,Back,myOrder;	//跳转的按钮
+	private Button formOrder,Back,myOrder,Checkbenefit;	//跳转的按钮
 	@FXML
-	private Label hotelName,Star,introduction,address,SingleLabel,StandardLabel,FamilyLabel,SuiteLabel,benefit;
+	private Label hotelName,Star,introduction,address,SingleLabel,StandardLabel,FamilyLabel,SuiteLabel;
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelListui();
@@ -42,6 +42,10 @@ public class HotelInfoBrowseuiController implements Initializable{
 	@FXML
 	private void CreatorderButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_OrderinputUi();
+	}
+	@FXML
+	private void CheckbenefitClicked(ActionEvent event){
+		UiswitchHelper.getApplication().goto_benefitui();
 	}
 	 //初始化方法
 	@Override

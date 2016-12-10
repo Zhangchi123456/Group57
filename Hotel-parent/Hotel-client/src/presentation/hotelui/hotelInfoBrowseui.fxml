@@ -80,7 +80,7 @@
       <Label id="AddressProvince" fx:id="address" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label id="BussinessCircle" fx:id="SingleLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Label id="HotelStar" fx:id="Star" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <Label id="HotelDescription" fx:id="introduction" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label id="HotelDescription" fx:id="introduction" prefHeight="24.0" prefWidth="144.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <Label text="房间价格:" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
@@ -114,7 +114,11 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="benefit" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Button fx:id="Checkbenefit" mnemonicParsing="false" onAction="#CheckbenefitClicked" text="查看优惠" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets left="50.0" right="50.0" />
