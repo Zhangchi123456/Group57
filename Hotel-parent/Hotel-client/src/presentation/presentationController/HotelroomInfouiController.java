@@ -69,7 +69,7 @@ public class HotelroomInfouiController implements Initializable{
 		try {
 			vo = hser.FindRoomByID(roomid);
 			vo.setRoomstate("可用");
-			vo.setLeavetime(leavetime);
+			hser.changeCheckOutInfo(roomid, 1, 1, 1, 1, "可用", vo.getLeavetime());
 			temp.get(selectnumber).setState(vo.getRoomstate());
 			temp.get(selectnumber).setLast(vo.getLeavetime());
 		} catch (RemoteException e) {
