@@ -31,8 +31,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				double enterprisediscount=rs.getDouble("enterprise_discount");
 				double datediscount=rs.getDouble("date_discount");
 				//date
-				Date startdate=rs.getDate("start_date");
-				Date enddate=rs.getDate("end_date");
+				String startdate=rs.getString("start_date");
+				String enddate=rs.getString("end_date");
 			   
 				HotelPromotionPO po=new HotelPromotionPO(name, hotelname,birthdaydiscount,
 						multiorderdiscount,
@@ -99,8 +99,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		double multiorderdiscount=po.getMultiorderdiscount();
 		double enterpricediscount=po.getEnterpricediscount();
 		double datediscount=po.getDatediscount();
-		Date startdate=po.getStartdate();
-		Date enddate=po.getEnddate();
+		String startdate=po.getStartdate();
+		String enddate=po.getEnddate();
 		
 		String query="INSERT INTO hotel_strategy(hotel_name,birthday_discount,"
 				+ "multiorder_discount,enterprise_discount,date_discount,"
@@ -169,8 +169,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 			while(rs.next()){
 				int id=rs.getInt("id");
 				double datediscount=rs.getDouble("date_discount");
-				Date startdate=rs.getDate("start_date");
-				Date enddate=rs.getDate("end_date");
+				String startdate=rs.getString("start_date");
+				String enddate=rs.getString("end_date");
 				
 				WebPromotionPO po=new WebPromotionPO(datediscount,startdate,enddate,id);
 				map.put(id, po);
@@ -228,8 +228,8 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		db=Database.getInstance();
 		//hotel promotion info
 		double datediscount=po.getDatediscount();
-		Date startdate=po.getStartdate();
-		Date enddate=po.getEnddate();
+		String startdate=po.getStartdate();
+		String enddate=po.getEnddate();
 		
 		String query="INSERT INTO web_strategy(date_discount,"
 				+ "start_date,end_date) VALUE("+
