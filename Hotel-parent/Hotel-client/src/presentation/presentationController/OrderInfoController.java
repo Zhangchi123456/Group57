@@ -6,8 +6,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.MemberActController;
+import Controller.ReservationController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,22 +22,37 @@ import vo.OrderVO;
 
 public class OrderInfoController implements Initializable {
 	@FXML
-	private Label OrderId,HotelName,UserNum,Child,Telephone,RoomType,TimeBegin,TimeEnd,RoomnumLabel,RTotalpriceLabel,UserName;
+	private Label HotelName,UserNum,Child,RoomType,TimeBegin,TimeEnd,RoomnumLabel,TotalpriceLabel;
     
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 	
-	    OrderLogicService a = new OrderLogicServiceImpl();
-	    a.input(MemberActController.getOrdervo());
 		UiswitchHelper.getApplication().goto_Usermainui();
 	}
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-	OrderVO vo =	MemberActController.getOrdervo();
-	OrderId.setText(vo.getId());
-	HotelName.setText(vo.getHotelid());
+	ReservationLogicService res = new ReservationLogicServiceImpl();
+	OrderVO vo =	ReservationController.getOrdervo();
+  
+	HotelName.setText(ReservationController.getCurrentHotelvo().getName());
 	UserNum.setText(String.valueOf(vo.getPeoplenum()));
 	Child.setText(vo.isHavekids());
+	if(Integer.parseInt(vo.getFamilyRoom())!=0){
+		RoomType.setText("家庭房");		
+	}
+	if(Integer.parseInt(vo.getSingleRoom())!=0){
+		RoomType.setText("单人房");		
+	}
+	if(Integer.parseInt(vo.getStandardRoom())!=0){
+		RoomType.setText("标准间");		
+	}
+	if(Integer.parseInt(vo.getSuiteRoom())!=0){
+		RoomType.setText("套间");		
+	}
+	TimeBegin.setText(vo.getStarttime());
+	TimeEnd.setText(vo.getLeavetime());
+	TotalpriceLabel.setText("100");
+	vo.setPrice(TotalpriceLabel.getText());
 	}
 }

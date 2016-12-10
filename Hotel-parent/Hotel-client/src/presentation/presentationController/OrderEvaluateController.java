@@ -48,19 +48,17 @@ public class OrderEvaluateController  implements Initializable {
 		  if(Score.getText().toString().equals("")||EvaluateInfo.getText().toString().equals("")){
 				AlertBox alt = new AlertBox();
 				alt.display("信息填写不完整");
-		}
-		  else{ 
-	 
-		 boolean tem= ser.evaluate(OrderId.getText().toString(), Score.getText().toString(), EvaluateInfo.getText().toString());
-		
-		
+		}	  	  
+		   else {  
+			   if(Double.parseDouble(Score.getText())<0.0||Double.parseDouble(Score.getText())>5.0){
+				   AlertBox alt = new AlertBox();
+					alt.display("评分填写错误");
+			   }
+			   else{
+		       boolean tem= ser.evaluate(OrderId.getText().toString(), Score.getText().toString(), EvaluateInfo.getText().toString());
 				UiswitchHelper.getApplication().goto_Usermainui();
-		
-		 
-		
-		
-		 
-		  } 
+			   }
+	  } 
 	  }
 	 
 	 
