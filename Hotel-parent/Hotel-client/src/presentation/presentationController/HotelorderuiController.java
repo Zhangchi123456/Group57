@@ -54,12 +54,12 @@ public class HotelorderuiController implements Initializable{
 	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	@FXML
-	private void backButtonClicked(ActionEvent event) throws IOException{
+	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
 	@FXML
-	private void okButtonClicked(ActionEvent event) throws IOException{
+	private void CheckClicked(ActionEvent event) throws IOException{
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
 		  
 	    Orderid = temp.get(selectnumber).getOrdernum();

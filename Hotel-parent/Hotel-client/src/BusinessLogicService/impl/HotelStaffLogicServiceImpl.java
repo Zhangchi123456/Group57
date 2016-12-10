@@ -138,4 +138,16 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 	}
 	
+	public RoomVO FindRoomByID(int roomid)throws RemoteException {
+		hds=(HotelDataService) RMIHelper.find("HotelDataService");
+		
+		RoomPO po = hds.FindroombyID(roomid);
+		
+		RoomVO vo = new RoomVO();
+		
+		vo.setRoomPO(po);
+		
+		return vo;
+	}
+	
 }
