@@ -1,10 +1,15 @@
 package presentation.presentationController;
 
 import java.net.URL;
-
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.MemberLogicService;
+import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
+import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import vo.CreditRecordVO;
 import javafx.collections.ObservableList;
 import Controller.MemberActController;
@@ -25,6 +30,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class UsercreditrecorduiController implements Initializable{
 	private ObservableList<CreditRecord> finallist;
+	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
+	private MemberLogicService memberService=new MemberLogicServiceImpl();
+	private ArrayList<CreditRecordVO> creditlist0=new ArrayList<CreditRecordVO>();
   @FXML
   private TableView<CreditRecord> CreditrecordTable;
   
@@ -40,20 +48,21 @@ public class UsercreditrecorduiController implements Initializable{
   }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		try {
+			creditlist0=memberService.FindCreditbyname(LoginController.UserName);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//ArrayList<CreditRecordVO> creditlist=MemberActController.getCreditRecordVOList();
-		ArrayList<CreditRecordVO> creditlist=new ArrayList<CreditRecordVO>();
-		CreditRecordVO cred=new CreditRecordVO();
-		cred.action="1";
-		cred.creditlast="credilast";
-		CreditRecordVO cred2=new CreditRecordVO();
-		cred2.action="2";
-		cred2.creditlast="last2";
-		creditlist.add(cred);
-		creditlist.add(cred2);
+		
 		ArrayList<CreditRecord> creditlist2=new ArrayList<CreditRecord>();
-		for(int i=0;i<creditlist.size();i++){
-			creditlist2.add(new CreditRecord(creditlist.get(i).action,creditlist.get(i).orderid
-					,creditlist.get(i).time,creditlist.get(i).creditchange,creditlist.get(i).creditlast));
+		for(int i=0;i<creditlist0.size();i++){
+			creditlist2.add(new CreditRecord(creditlist0.get(i).action,creditlist0.get(i).orderid
+					,creditlist0.get(i).time,creditlist0.get(i).creditchange,creditlist0.get(i).creditlast));
 		}
 		 finallist =FXCollections.observableArrayList(creditlist2);
 		
