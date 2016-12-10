@@ -19,7 +19,7 @@ import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 public class PromotionDataImpl extends UnicastRemoteObject implements PromotionDataService,Serializable{
 	
 
-	private Map<Integer, WebPromotionPO> map_web;
+	public  Map<Integer, WebPromotionPO> map_web;
 	
 	private Map<Integer, HotelPromotionPO> map_hotel;
 	
@@ -60,12 +60,13 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			return false;
 	}
 	
+	
 	public boolean delete(WebPromotionPO po) throws RemoteException{
-			map_web.remove(po);
+			map_web.remove(po.getID());
 			webproDataHelper.deleteWebPromotionData(po);
 			return true;
-
 	}
+	
 	
 	public boolean insert(HotelPromotionPO po) throws RemoteException{
 		if(po!=null){

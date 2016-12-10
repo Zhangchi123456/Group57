@@ -41,7 +41,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				String phonenums=memrs.getString("phone_num");
 				String name=memrs.getString("name");
 				String password=memrs.getString("password");
-				Date birthday=memrs.getDate("birthday");
+				String birthday=memrs.getString("birthday");
 				
 				MemberPO mempo=new MemberPO(id, password, phonenums, birthday, name, credit, isEnterpriseMember, level);
 				map.put(id, mempo);
@@ -68,16 +68,16 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		String password=memberpo.getPassword();
 		String name=memberpo.getName();
 		String phoneNums=memberpo.getConnection();
-		Date birthday=memberpo.getBirthday();
+		String birthday=memberpo.getBirthday();
 		
 		String query="UPDATE member SET "+
 				 "name="+"'"+name+"',"+
 				 "phone_num="+"'"+phoneNums+"',"+
 				 "password="+"'"+password+"',"+
-				 "birthbday="+"'"+String.valueOf(birthday)+"',"+
-				 "level="+"'"+String.valueOf(level)+"',"+
-				 "credit="+"'"+String.valueOf(credit)+"' "+
-				 "WHERE id='"+String.valueOf(id)+"'";
+				 "birthbday="+"'"+birthday+"',"+
+				 "level="+"'"+level+"',"+
+				 "credit="+"'"+credit+"' "+
+				 "WHERE id='"+id+"'";
 		try{
 			db.update(query);
 			
@@ -105,7 +105,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		{
 			isenterprise=1;
 		}
-		Date birthday=memberpo.getBirthday();
+		String birthday=memberpo.getBirthday();
 		
 		String query="INSERT INTO member(name,password,phone_num,credit,level,is_enterprise_member,birthday) "
 				+" VALUE("
