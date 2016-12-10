@@ -65,7 +65,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_hotels.put(name, po);
 			hotelsDataHelper.insertHotelStaffData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -75,7 +75,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webs.put(name, po);
 			websDataHelper.insertWebStaffData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -85,7 +85,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webm.put(name, po);
 			webmDataHelper.insertWebManagerData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -95,7 +95,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 				map_hotels.remove(name, po);
 				hotelsDataHelper.deleteHotelStaffData(po);
 				return true;
-			}
+			}else
 			return false;
 		}
 	
@@ -105,7 +105,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webs.remove(name, po);
 			websDataHelper.deleteWebStaffData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -115,7 +115,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webm.remove(name, po);
 			webmDataHelper.deleteWebManagerData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -125,7 +125,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_hotels.put(name, po);
 			hotelsDataHelper.updateHotelStaffData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -135,7 +135,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webs.put(name, po);
 			websDataHelper.updateWebStaffData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -145,7 +145,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			map_webm.put(name, po);
 			webmDataHelper.updateWebManagerData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	

@@ -69,7 +69,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			map.put(member_id, po);
 			memberDataHelper.insertMemberData(po);
 			return true;
-		}
+		}else
 		return false;
 	}
 	
@@ -79,7 +79,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			map.remove(member_id, po);
 			memberDataHelper.deleteMemberData(po);
 			return true;
-		}
+		}else
 		return false;
 	
 	}
@@ -90,7 +90,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			map.put(member_id, po);
 			memberDataHelper.updateMemberData(po);
 			return true;
-		}
+		}else
 		return false;
 
 	}
@@ -112,7 +112,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			map_cre.put(id, po);
 			creditDataHelper.updateCreditData(po);
 			return true;
-		}
+		}else
 		return false;
 
 	}
@@ -123,7 +123,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			map_lv.put(member_lv, po);
 			memberlvDataHelper.updateMemberLevelData(po);
 			return true;
-		}
+		}else
 		return false;
 
 	}
@@ -142,16 +142,16 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 	
 	}
 	
-	public CreditPO findCreditByName(String name) throws RemoteException{
-		CreditPO po = new CreditPO();
+	public ArrayList<CreditPO> findCreditByName(String name) throws RemoteException{
+		ArrayList<CreditPO> list = new ArrayList<CreditPO>();
 		Iterator<Entry<Integer, CreditPO>> iterator = map_cre.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<Integer, CreditPO> entry = iterator.next();
-			po = entry.getValue();
+			CreditPO po = entry.getValue();
 		if(name.equals(po.getName()))
-        break;
+        list.add(po);
 		}
-			return po;
+			return list;
 	}
 	
 	public MemberLevelPO findLV(int level) throws RemoteException{

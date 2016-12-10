@@ -44,7 +44,7 @@
             <TableColumn fx:id="Last" minWidth="200.0" prefWidth="75.0" text="最后一次退房时间" />
         </columns>
       </TableView>
-      <Button fx:id="ok" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="50.0" prefWidth="200.0" text="确认" GridPane.rowIndex="8">
+      <Button fx:id="ok" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="50.0" prefWidth="200.0" text="退房" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>

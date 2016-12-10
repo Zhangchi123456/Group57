@@ -29,6 +29,6 @@ public interface MemberDataService extends Remote{
 	
 	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException;
 	
-	public CreditPO findCreditByName(String name) throws RemoteException;
+	public ArrayList<CreditPO> findCreditByName(String name) throws RemoteException;
 
 }

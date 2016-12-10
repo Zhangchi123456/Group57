@@ -148,7 +148,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			map_room.put(room_id, roompo);
 			roomDataHelper.updateRoomData(roompo);
 			return true;
-		}
+		}else
 		return false;
 		
 	}
@@ -159,7 +159,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			map_room.remove(room_id, roompo);
 			roomDataHelper.deleteRoomData(roompo);
 			return true;
-		}
+		}else
 		return false;
 		
 	}
@@ -169,7 +169,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			map_room.put(room_id, roompo);
 			roomDataHelper.insertRoomData(roompo);
 			return true;
-		}
+		}else
         return false;
 		
 	}
