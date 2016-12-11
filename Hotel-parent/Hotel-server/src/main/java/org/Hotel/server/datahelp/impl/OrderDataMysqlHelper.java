@@ -112,7 +112,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		int familyRoom=po.getFamilyRoom();
 		int suiteRoom=po.getSuiteRoom();
 		
-		String query="INSERT INTO member(hotel_name,member_name,start_time,end_time,last_time,"
+		String query="INSERT INTO order1(hotel_name,member_name,start_time,end_time,last_time,"
 				+"remove_time,people_num,have_kids,single_room,standard_room,family_room"
 				+",suite_room,status,comment,score) VALUE("
 				
