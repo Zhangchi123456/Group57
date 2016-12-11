@@ -4,9 +4,11 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.Hotel.common.dataService.UserDataService;
+import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.UserLogicService;
+import vo.HotelStaffVO;
 import vo.WebStaffVO;
 
 public class UserLogicServiceImpl implements UserLogicService{
@@ -71,6 +73,38 @@ public class UserLogicServiceImpl implements UserLogicService{
 			e.printStackTrace();
 		}
 		return false;
+		
+	}
+
+
+	@Override
+	public ArrayList<HotelStaffVO> findHotelStaff() {
+		try {
+			ArrayList<HotelStaffPO> list=userdata.showAllHotelStaff();
+			ArrayList<HotelStaffVO> listvo=new ArrayList<>();
+			for(HotelStaffPO po:list){
+				if(po!=null){
+					HotelStaffVO vo=new HotelStaffVO(po.getName(),po.getPassword(),po.getHotelName());
+					listvo.add(vo);
+				}
+			}
+			return listvo;
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	@Override
+	public void saveHotelStaff(HotelStaffVO vo) {
+		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getPassword(),vo.getHotelname());
+		try {
+			userdata.update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

@@ -81,7 +81,7 @@
          <top>
             <HBox spacing="120.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="用户名">
+                  <Label fx:id="user" text="用户名">
                      <HBox.margin>
                         <Insets left="30.0" top="40.0" />
                      </HBox.margin>

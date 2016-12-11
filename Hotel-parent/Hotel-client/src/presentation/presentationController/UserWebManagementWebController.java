@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.UserLogicService;
 import BusinessLogicService.impl.UserLogicServiceImpl;
-
+import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import vo.*;
 import javafx.collections.FXCollections;
@@ -14,6 +14,7 @@ import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
@@ -26,7 +27,8 @@ public class UserWebManagementWebController implements Initializable{
 	ObservableList<WebStaffVO> WebStaffVOs,staffSelected;
 	UserLogicService userblservice =new UserLogicServiceImpl();
 	ArrayList<WebStaffVO> list=new ArrayList<WebStaffVO>();
-	
+	@FXML
+    private Label user;
     @FXML
     private TextField NameText,oldPassword;
     
@@ -62,8 +64,8 @@ public class UserWebManagementWebController implements Initializable{
     		userblservice.saveWebStaff(new WebStaffVO(vo.getName(),vo.getPassword()));
     		AlertBox alt = new AlertBox();
 			alt.display("密码已保存");
-			password.clear();
-			ensurePassword.clear();
+//			password.clear();
+//			ensurePassword.clear();
     	}
     	
     }
@@ -104,7 +106,7 @@ public class UserWebManagementWebController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		user.setText(LoginHelper.getLogVO().getUsername());
 		
 		table.setItems(getWebStaff());
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
