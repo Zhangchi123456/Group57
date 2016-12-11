@@ -57,9 +57,9 @@ public class HotelVO {
 		this.leftSuiteRoom=leftSuiteRoom;
 		//room price
 		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
+		this.standardRoomPrice=standardRoomPrice;
+		this.familyRoomPrice=familyRoomPrice;
+		this.suiteRoomPrice=suiteRoomPrice;
 	}
 
 	public void setbuHotelPO(HotelPO po){
