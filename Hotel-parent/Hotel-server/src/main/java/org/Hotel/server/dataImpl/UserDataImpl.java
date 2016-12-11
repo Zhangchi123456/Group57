@@ -162,15 +162,18 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public WebStaffPO findByWebStaff(String name) throws RemoteException{
+		System.out.println(name);
 		WebStaffPO po = new WebStaffPO();
 		Iterator<Entry<String, WebStaffPO>> iterator = map_webs.entrySet().iterator();
 		while(iterator.hasNext()){
 			Entry<String, WebStaffPO> entry = iterator.next();
 			po = entry.getValue();
-			if(name.equals(po.getName()))
-			break;
+			if(name.equals(po.getName())){
+				return po;
+			}
+			
 		}
-		return po;
+		return null;
 	}
 	
 	public WebManagerPO findByWebManager(String name) throws RemoteException{

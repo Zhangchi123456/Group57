@@ -31,6 +31,51 @@ public class UserLogicServiceImpl implements UserLogicService{
 		}
 		return null;
 	}
+
+
+	@Override
+	public void saveWebStaff(WebStaffVO vo) {
+		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
+		try {
+			userdata.update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	@Override
+	public boolean findWebStaffBYName(String name) {
+//		System.out.println(name);
+		WebStaffPO po=null;
+		try {
+			po=userdata.findByWebStaff(name);
+			System.out.println("name"+po.getName()+"passwrod"+po.getPassword());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(po.getName().length()==0){
+			return false;
+		}else 
+			return true;
+		
+	}
+
+
+	@Override
+	public boolean addWebStaff(WebStaffVO vo) {
+		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
+		try {
+			return userdata.insert(po);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
 	
 //	public static void main(String[] args){
 //		UserLogicServiceImpl user=new UserLogicServiceImpl();

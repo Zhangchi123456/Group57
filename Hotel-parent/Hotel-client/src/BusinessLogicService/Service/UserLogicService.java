@@ -10,5 +10,11 @@ public interface UserLogicService {
 	
 	
 	public ArrayList<WebStaffVO> findWebStaff();
+	
+	public void saveWebStaff(WebStaffVO vo);
+	
+	public boolean findWebStaffBYName(String name);
+	
+	public boolean addWebStaff(WebStaffVO vo);
 
 }
