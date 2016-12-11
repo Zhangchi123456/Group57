@@ -1,7 +1,11 @@
 package presentation.presentationController;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.MemberLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +18,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.MemberVO;
 
 public class CreditChargeController implements Initializable{
+	MemberLogicService memberlogic = new MemberLogicServiceImpl();
 	private String Username,Chargenum;
 	
     @FXML
@@ -31,8 +37,23 @@ public class CreditChargeController implements Initializable{
     		AlertBox alt2 = new AlertBox();
 			alt2.display("充值金额必须大于0元");
     	}else{
+    		MemberVO vo = new MemberVO(0, 0, Chargenum, Chargenum, Chargenum);
     		Username=UsernameText.getText().toString();
     		Chargenum=ChargenumText.getText().toString();
+    		try {
+				vo=memberlogic.Findmemberbyname(Username);
+				vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum));
+				memberlogic.updateMemberinfo(vo);
+				AlertBox alt = new AlertBox();
+				alt.display("充值成功");
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
     	}
     	
     }

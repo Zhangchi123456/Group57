@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreditChargeController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreditChargeController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,7 @@
       </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="434.0" prefWidth="731.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="113.0">
                <children>
@@ -44,32 +44,31 @@
                   <TextField fx:id="ChargenumText" prefHeight="26.0" prefWidth="191.0" />
                </children>
             </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#ConfirmClicked" prefHeight="52.0" prefWidth="103.0" text="确认">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Label prefHeight="19.0" prefWidth="62.0" />
+                  <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="52.0" prefWidth="100.0" text="返回">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets right="50.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets right="200.0" />
+               </padding>
+            </HBox>
          </children>
          <padding>
             <Insets left="200.0" />
          </padding>
       </VBox>
    </center>
-   <bottom>
-      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="270.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#ConfirmClicked" text="确认">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" text="返回">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
-         <opaqueInsets>
-            <Insets right="50.0" />
-         </opaqueInsets>
-         <padding>
-            <Insets right="200.0" />
-         </padding>
-      </HBox>
-   </bottom>
 </BorderPane>

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.Hotel.common.po.CirclePO;
@@ -18,8 +19,83 @@ import org.Hotel.server.dataImpl.OrderDataImpl;
 import junit.framework.TestCase;
 
 public class TestDatabaseConnection  {
+	 public static Map<Integer, OrderPO> map ;
 	public static Database db=Database.getInstance();
 	public static void main(String[] args){
+//		try {
+//			HotelDataImpl a = new HotelDataImpl();
+//			System.out.println(a.Findhotelbyname("夫子酒店").getFamilyRoomPrice());
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		getHotelData();
+	    OrderDataImpl a;
+		try {
+			a = new OrderDataImpl();
+			a.orderShowAllByStation("异常订单");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+	}
+		public Map<String, HotelPO> getHotelData1() {
+			Map<String, HotelPO> map=new HashMap<String,HotelPO>();
+			String query="SELECT * FROM hotel";
+			try{
+				db=Database.getInstance();
+				ResultSet hotelrs=db.select(query);
+				
+				while(hotelrs.next()){
+					//hotel info
+					int id=hotelrs.getInt("id");
+					String name=hotelrs.getString("name");
+					String circle=hotelrs.getString("circle_name");
+					double grade=hotelrs.getDouble("score");
+					int star=hotelrs.getInt("star");
+					String introduction=hotelrs.getString("introduction");
+//					String facility=hotelrs.getString("facility");  facility attribute was emerged with introduction
+					String city=hotelrs.getString("city");
+					String address=hotelrs.getString("address");
+					//room
+					//room nums
+					int singleRoom=hotelrs.getInt("single_room");
+					int standardRoom=hotelrs.getInt("standard_room");
+					int familyRoom=hotelrs.getInt("family_room");
+					int suiteRoom=hotelrs.getInt("suite_room");
+					//left room nums
+					int leftSingleRoom=hotelrs.getInt("single_room_left");
+					int leftStandardRoom=hotelrs.getInt("standard_room_left");
+					int leftFamilyRoom=hotelrs.getInt("family_room_left");
+					int leftSuiteRoom=hotelrs.getInt("suite_room_left");
+					//room prices
+					double singleRoomPrice=hotelrs.getDouble("single_room_price");
+					double standardRoomPrice=hotelrs.getDouble("standard_room_price");
+					double familyRoomPrice=hotelrs.getDouble("family_room_price");
+					double suiteRoomPrice=hotelrs.getDouble("suite_room_price");
+					
+					HotelPO hotelpo=new HotelPO(name, circle, 
+							star, grade,
+							introduction,city,address,
+							singleRoom,leftSingleRoom,
+							standardRoom,leftStandardRoom,
+							familyRoom,leftFamilyRoom,
+							suiteRoom,leftSuiteRoom,
+							singleRoomPrice,standardRoomPrice,
+							familyRoomPrice,suiteRoomPrice);
+					
+					map.put(name, hotelpo);
+				}//end while
+				return map;
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				db.close();
+			}
+			return null;
+		}
 		
 //		String query="SELECT * FROM web_manager";
 //		Map<String, WebManagerPO> map= new HashMap<String, WebManagerPO>();
@@ -54,8 +130,7 @@ public class TestDatabaseConnection  {
 //			getHotelData();
 //			test();
 //			getCircleData() ;
-			updateOrderData();
-		}
+	
 //	public static Map<String, WebManagerPO> getWebManagerData() {
 //		Database db=Database.getInstance();
 //		
@@ -81,7 +156,20 @@ public class TestDatabaseConnection  {
 //		}
 //		return null;
 //	}
-//	
+//		public static ArrayList<OrderPO> orderShowAllByStation(String station)throws RemoteException{
+//		 
+//		ArrayList<OrderPO> orderlist = new ArrayList<OrderPO>();
+//		Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();
+//		while(iterator.hasNext()){
+//			Map.Entry<Integer, OrderPO> entry = iterator.next();
+//			OrderPO orderpo = entry.getValue();
+//			if(station .equals(orderpo.getState()));
+//			orderlist.add(orderpo);
+//		}
+//		System.out.println(orderlist.size());
+//     	return orderlist;
+//		
+//	}
 //	
 	public static Map<Integer, OrderPO> getOrderData() {
 		Database db=Database.getInstance();
@@ -179,7 +267,7 @@ public class TestDatabaseConnection  {
 						familyRoomPrice,suiteRoomPrice);
 				
 				map.put(name, hotelpo);
-				System.out.println(hotelpo.getName());
+				System.out.println(hotelpo.getFamilyRoomPrice());
 			}//end while
 			return map;
 		}catch(Exception e){
