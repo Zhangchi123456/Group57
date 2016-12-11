@@ -136,9 +136,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			Entry<Integer, MemberPO> entry = iterator.next();
 			po = entry.getValue();
 		if(name.equals(po.getName()))
-        break;
+        return po;
 		}
-			return po;
+			return null;
 	
 	}
 	
@@ -161,9 +161,10 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			Entry<Integer, MemberLevelPO> entry = iterator.next();
 			po = entry.getValue();
 		if(level == po.getLevel())
-        break;
-		}
+       
 			return po;
+		}
+			return null;
 	}
 	
 	public CreditPO findCreditRecord(int orderid) throws RemoteException{
@@ -173,9 +174,9 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			Entry<Integer, CreditPO> entry = iterator.next();
 			po = entry.getValue();
 		if(orderid == po.getOrderid())
-        break;
+        return po;
 		}
-			return po;
+			return null;
 	}
 	
 	public ArrayList<MemberPO> showAll() throws RemoteException{

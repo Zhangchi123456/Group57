@@ -131,9 +131,9 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			
 		    hotelpropo = entry.getValue();
 			if(type.equals(hotelpropo.getType())&&hotel_id.equals(hotelpropo.getHotelid()))
-            break;
+				return hotelpropo;
 		}
-		return hotelpropo;
+		return null;
 		}
 	
 	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException{
