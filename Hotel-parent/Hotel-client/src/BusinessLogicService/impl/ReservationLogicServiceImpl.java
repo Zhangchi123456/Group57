@@ -38,13 +38,16 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	
 	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
+              int day=checkoutdate.getDayOfYear()-checkindate.getDayOfYear();
+              
+            
              SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
             String strin=checkindate.toString();
             String strout=checkoutdate.toString();
             Date Datein=sdf.parse(strin);
             Date Dateout=sdf.parse(strout);
              MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
-             finalprice=num*price*level.getDiscount();
+             finalprice=day*num*price*level.getDiscount();
              for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
             	 Date start=sdf.parse(webpro.getStartDate());
