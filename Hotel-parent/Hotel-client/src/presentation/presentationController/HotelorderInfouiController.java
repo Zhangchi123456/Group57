@@ -32,7 +32,7 @@ public class HotelorderInfouiController implements Initializable{
 	private TextField INtimetx,OutTimetx,OrderUser;//入住时间，离开时间
 	
 	@FXML
-	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State;//订单持有者
+	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State,SingleRoom,StandardRoom,FamilyRoom,SuiteRoom,singlenumber,standardnumber,familynumber,suitenumber;//订单持有者
 	
 	@FXML
 	private ChoiceBox Statetx;//更改订单状态
@@ -46,8 +46,6 @@ public class HotelorderInfouiController implements Initializable{
 	@SuppressWarnings("unchecked")
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
-		
-		String state = Statetx.getValue().toString();
 			
 		UiswitchHelper.getApplication().goto_orderui();
 		
@@ -55,12 +53,21 @@ public class HotelorderInfouiController implements Initializable{
 	@FXML
 	private void RefrashClicked(ActionEvent event){
 		
+		String state = Statetx.getValue().toString();
+		ordervo.setState(state);
+		
 		MemberActController.setcurrentOrdervo(ordervo);
 		
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
 		Person.setText(ordervo.getId());
+		CurrentState.setText(ordervo.getState());
+		singlenumber.setText(ordervo.getSingleRoom());
+		standardnumber.setText(ordervo.getStandardRoom());
+		familynumber.setText(ordervo.getFamilyRoom());
+		suitenumber.setText(ordervo.getSuiteRoom());
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -69,6 +76,11 @@ public class HotelorderInfouiController implements Initializable{
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
 		Person.setText(ordervo.getId());
+		CurrentState.setText(ordervo.getState());
+		singlenumber.setText(ordervo.getSingleRoom());
+		standardnumber.setText(ordervo.getStandardRoom());
+		familynumber.setText(ordervo.getFamilyRoom());
+		suitenumber.setText(ordervo.getSuiteRoom());
 		
 		ArrayList<String> statelist = new ArrayList<String>();
 		statelist.add("未执行");
@@ -83,15 +95,19 @@ public class HotelorderInfouiController implements Initializable{
 	     .addListener((ov,oldv,newv)->{
 	    	 if(newv=="未执行"){
 	    		 CurrentState.setText("未执行");
+	    		 ordervo.setState("未执行");
 	    	 }
 	    	 else if(newv=="已执行"){
-	    		 CurrentState.setText("未执行");
+	    		 CurrentState.setText("已执行");
+	    		 ordervo.setState("已执行");
 	    	 }
 	    	 else if(newv=="异常"){
 	    		 CurrentState.setText("异常");
+	    		 ordervo.setState("异常");
 	    	 }
 	    	 else{
 	    		 CurrentState.setText("已撤销");
+	    		 ordervo.setState("已撤销");
 	    	 }
 	    	 
 	     });

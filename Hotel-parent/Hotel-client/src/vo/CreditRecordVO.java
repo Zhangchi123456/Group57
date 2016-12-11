@@ -38,4 +38,64 @@ public class CreditRecordVO {
     	
     	return cred;
     }
+	/**
+	 * @return the action
+	 */
+	public String getAction() {
+		return action;
+	}
+	/**
+	 * @param action the action to set
+	 */
+	public void setAction(String action) {
+		this.action = action;
+	}
+	/**
+	 * @return the orderid
+	 */
+	public String getOrderid() {
+		return orderid;
+	}
+	/**
+	 * @param orderid the orderid to set
+	 */
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+	/**
+	 * @return the time
+	 */
+	public String getTime() {
+		return time;
+	}
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+	/**
+	 * @return the creditchange
+	 */
+	public String getCreditchange() {
+		return creditchange;
+	}
+	/**
+	 * @param creditchange the creditchange to set
+	 */
+	public void setCreditchange(String creditchange) {
+		this.creditchange = creditchange;
+	}
+	/**
+	 * @return the creditlast
+	 */
+	public String getCreditlast() {
+		return creditlast;
+	}
+	/**
+	 * @param creditlast the creditlast to set
+	 */
+	public void setCreditlast(String creditlast) {
+		this.creditlast = creditlast;
+	}
 }

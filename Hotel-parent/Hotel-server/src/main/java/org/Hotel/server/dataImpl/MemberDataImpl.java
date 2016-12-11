@@ -166,6 +166,18 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			return po;
 	}
 	
+	public CreditPO findCreditRecord(int orderid) throws RemoteException{
+		CreditPO po = new CreditPO();
+		Iterator<Entry<Integer, CreditPO>> iterator = map_cre.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<Integer, CreditPO> entry = iterator.next();
+			po = entry.getValue();
+		if(orderid == po.getOrderid())
+        break;
+		}
+			return po;
+	}
+	
 	public ArrayList<MemberPO> showAll() throws RemoteException{
 		ArrayList<MemberPO> memberlist = new ArrayList<MemberPO>();
 		Iterator<Map.Entry<Integer,MemberPO>> iterator = map.entrySet().iterator();

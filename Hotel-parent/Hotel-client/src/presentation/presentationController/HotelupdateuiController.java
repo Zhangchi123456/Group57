@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import vo.CreditRecordVO;
 import vo.OrderVO;
 
 public class HotelupdateuiController implements Initializable{
