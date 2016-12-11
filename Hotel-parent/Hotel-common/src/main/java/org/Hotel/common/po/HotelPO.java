@@ -58,9 +58,9 @@ public class HotelPO implements Serializable{
 		this.leftSuiteRoom=leftSuiteRoom;
 		//room price
 		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
-		this.singleRoomPrice=singleRoomPrice;
+		this.familyRoomPrice =familyRoomPrice;
+		this.standardRoomPrice=standardRoomPrice;
+		this.suiteRoomPrice=suiteRoomPrice;
 	}
 
 	
