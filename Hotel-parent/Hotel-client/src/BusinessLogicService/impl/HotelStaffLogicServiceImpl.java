@@ -8,6 +8,7 @@ import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
 import org.Hotel.common.dataService.UserDataService;
 import org.Hotel.common.po.CreditPO;
+import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
 
@@ -36,8 +37,8 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		HotelStaffPO po = uds.findByHotelStaff(name);
 		String hotelname = po.getHotelName();
-		
-		hotelvo.setName(hotelname);
+		HotelPO hotelpo = hds.Findhotelbyname(hotelname);
+	    hotelvo.setbuHotelPO(hotelpo);
 		
 		return hotelvo;
 	}
