@@ -10,6 +10,9 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.MemberLogicService;
+import BusinessLogicService.Service.PromotionLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
+import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Controller.MemberActController;
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
@@ -22,13 +25,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import presentation.userui.AlertBox;
+import vo.MemberLevelVO;
 import vo.MemberVO;
 
 public class UserinformationuiController implements Initializable{
 	 private MemberVO membervo;
 	 private String membername,phonenumber;
 	 private LocalDate birthday;
-	 private MemberLogicService memberService;
+	 private MemberLogicService memberService=new MemberLogicServiceImpl();
+	 private PromotionLogicService promotionService=new PromotionLogicServiceImpl();
      @FXML
      private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel,DiscountLabel;
      //             会员性质              会员等级          会员信用值               会员折扣
@@ -84,6 +89,9 @@ public class UserinformationuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		membervo=ReservationController.getMembervo();
+		
+		MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(membervo.getlevel()));
+		DiscountLabel.setText(String.valueOf(level.getDiscount()*10)+"折");
 		MembernameText.setText(membervo.getname());
 		
 		MembercharacterLabel.setText(membervo.getproperty());
