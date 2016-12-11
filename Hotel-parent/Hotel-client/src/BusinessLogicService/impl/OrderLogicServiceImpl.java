@@ -80,9 +80,12 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	@Override
 	public boolean changeOrderStation(String OrderId,String OrderStation) {
 		boolean tem = false;
-		MemberActController.getOrdervo().setState(OrderStation);
 		  try {
-			  tem =ser.update(MemberActController.getOrdervo().toOrderPO( MemberActController.getOrdervo()));
+			  OrderPO po=ser.orderShowAll(Integer.parseInt(OrderId));
+			  OrderVO vo=new OrderVO();
+			  vo.SetbyOrderPO(po);
+			  vo.setState(OrderStation);
+			  tem =ser.update(vo.toOrderPO(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

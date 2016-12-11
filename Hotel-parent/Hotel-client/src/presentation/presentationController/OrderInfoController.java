@@ -31,6 +31,7 @@ public class OrderInfoController implements Initializable {
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
+		vo.setState("未执行订单");
 	    orderlogic.input(vo);
 	   
 		UiswitchHelper.getApplication().goto_Usermainui();

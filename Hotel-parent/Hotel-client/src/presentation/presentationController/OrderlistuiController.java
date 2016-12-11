@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.userui.AlertBox;
 import Controller.MemberActController;
 import Controller.ReservationController;
 
@@ -46,6 +47,7 @@ public class OrderlistuiController implements Initializable{
    String UserName =a.UserName;
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
+   AlertBox alt = new AlertBox();	
    
    
    //监听
@@ -64,6 +66,26 @@ public class OrderlistuiController implements Initializable{
 	    
 	
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
+   }
+
+   @FXML 
+   private void  DeleteOrderClicked(ActionEvent event){
+	        
+	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
+	 if(!temp.get(selectnumber).getOrderstation().equals("未执行订单")){
+		 alt.display("不能撤销该订单");
+	 }
+	 else{
+	    Orderid=  temp.get(selectnumber).getOrder();
+	  boolean bool= am.changeOrderStation(Orderid, "已撤销订单");
+	  if(bool){ 
+		  alt.display("订单已撤销");
+		  orderlist =am.findUserOrderListAll(UserName);
+	    	 if(orderlist!=null);
+	    	 Orderlist(orderlist);
+	  }
+	  
+	 }
    }
    @FXML 
    private void ChoiceBoxClicked(ActionEvent event){
