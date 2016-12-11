@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.abnormalOrderController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.abnormalOrderController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="800.0" spacing="20.0">
+      <VBox prefHeight="600.0" prefWidth="899.0" spacing="20.0">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0">
                <padding>
@@ -27,21 +27,45 @@
                   </Label>
                </children>
             </HBox>
-            <TableView fx:id="Table" prefHeight="406.0" prefWidth="800.0">
-              <columns>
-                <TableColumn fx:id="OrderId" prefWidth="172.0" text="订单号" />
-                <TableColumn fx:id="HotelName" minWidth="0.0" prefWidth="179.0" text="酒店名称" />
-                  <TableColumn fx:id="User" prefWidth="150.0" text="用户名" />
-                  <TableColumn minWidth="0.0" prefWidth="155.0">
-                     <graphic>
-                        <RadioButton fx:id="Delete" mnemonicParsing="false" text="撤销" />
-                     </graphic>
-                  </TableColumn>
-              </columns>
-            </TableView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="386.0" prefWidth="805.0">
                <children>
-                  <Label prefHeight="19.0" prefWidth="596.0" />
+                  <TableView fx:id="Table" prefHeight="407.0" prefWidth="674.0">
+                    <columns>
+                      <TableColumn fx:id="OrderId" prefWidth="146.0" text="订单号" />
+                      <TableColumn fx:id="HotelName" minWidth="0.0" prefWidth="205.0" text="酒店名称" />
+                        <TableColumn fx:id="User" prefWidth="157.0" text="用户名" />
+                        <TableColumn fx:id="OrderPrice" prefWidth="180.0" text="订单价格" />
+                    </columns>
+                  </TableView>
+                  <VBox prefHeight="383.0" prefWidth="193.0" spacing="30.0">
+                     <children>
+                        <RadioButton fx:id="halfcredit" mnemonicParsing="false" prefHeight="59.0" prefWidth="198.0" text="恢复一半信用值">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="allcredit" mnemonicParsing="false" prefHeight="59.0" prefWidth="198.0" text="恢复所有信用值">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </RadioButton>
+                        <Label prefHeight="120.0" prefWidth="39.0">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="deleteorder" mnemonicParsing="false" onAction="#DeleteClicked" prefHeight="58.0" prefWidth="178.0" text="确认撤销订单">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="62.0" prefWidth="815.0">
+               <children>
+                  <Label prefHeight="19.0" prefWidth="642.0" />
                   <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="56.0" prefWidth="119.0" text="返 回">
                      <font>
                         <Font size="30.0" />

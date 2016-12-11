@@ -60,9 +60,12 @@ public class OrderlistuiController implements Initializable{
    private void EvaluateClicked(ActionEvent event){
 	   
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	  
+	  if(temp.get(selectnumber).getOrderstation().equals("已执行订单")){
 	    Orderid=  temp.get(selectnumber).getOrder();
-	    Hotelname  = temp.get(selectnumber).getHotel();
+	    Hotelname  = temp.get(selectnumber).getHotel();}
+	  else{
+		 alt.display("未完成订单不能评价");
+	  }
 	    
 	
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
@@ -137,14 +140,7 @@ public class OrderlistuiController implements Initializable{
    		String.valueOf(Integer.parseInt(orderlist.get(i).getSingleRoom())+Integer.parseInt(orderlist.get(i).getFamilyRoom())+Integer.parseInt(orderlist.get(i).getStandardRoom())+Integer.parseInt(orderlist.get(i).getSuiteRoom())),
    		orderlist.get(i).getComment(),orderlist.get(i).getState()));
     	}
-	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
-	//			  new SimpleOrder("123456","zhangchi","无","如家酒店","2016/6/16","2016/6/18","未执行"，"12.0","2016/6/16","2016/6/18",2,false,0,1,1,0),
-		//		  new SimpleOrder("a","b","c","d","f","g","q"),
-			//	  new SimpleOrder("a","b","c","d","f","g","q")
-		//		  );
-	//		  new SimpleOrder("a","b","c","d","f","","")
-		     
-
+	
 		  HotelName.setCellValueFactory(
 		            new PropertyValueFactory<>("hotel"));		 
 		  HotelName.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());

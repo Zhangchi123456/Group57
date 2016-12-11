@@ -237,4 +237,29 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 		return tem;
 	}
+
+
+	@Override
+	public ArrayList<OrderVO> orderShowAllByStation(String station) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
+		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
+		try {
+			a=ser.orderShowAllByStation(station);
+		
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO() ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tem;
+	}
 }

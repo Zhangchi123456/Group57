@@ -57,7 +57,7 @@ public class MemberVO {
     	MemberPO po=new MemberPO();
     	if(memberbirthday!=null){
     	po.setBirthday(memberbirthday.toString());
-    	System.out.println(po.getBirthday());
+    	
     	}
     	po.setPassword(password);
     	po.setCredit(membercreditvalue);

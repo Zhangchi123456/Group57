@@ -115,7 +115,21 @@ OrderDataService,Serializable{
 	     	return orderlist;
 			
 		}
+		public ArrayList<OrderPO> orderShowAllByStation(String station)throws RemoteException{
+			ArrayList<OrderPO> orderlist = new ArrayList<OrderPO>();
+			Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();
+			while(iterator.hasNext()){
+				Map.Entry<Integer, OrderPO> entry = iterator.next();
+				OrderPO orderpo = entry.getValue();
+				if(station.equals(orderpo.getState())){
+				orderlist.add(orderpo);
+				}
+				
+			}
 		
+	     	return orderlist;
+			
+		}
 		public ArrayList<OrderPO> orderShowAllByHotel(String hotel_id)throws RemoteException{
 			ArrayList<OrderPO> orderlist = new ArrayList<OrderPO>();
 			Iterator<Map.Entry<Integer,OrderPO>> iterator = map.entrySet().iterator();

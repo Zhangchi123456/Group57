@@ -22,6 +22,6 @@ public interface OrderDataService extends Remote{
 	public ArrayList<OrderPO> orderShowAllByHotel(String hotel_id)throws RemoteException;
 	
 	public ArrayList<OrderPO> orderShowAllByName(String name, String state)throws RemoteException;
-	
+	public ArrayList<OrderPO> orderShowAllByStation(String station)throws RemoteException;
 	public ArrayList<OrderPO> orderShowAllByHotel(String hotel_id, String name)throws RemoteException;
 }
