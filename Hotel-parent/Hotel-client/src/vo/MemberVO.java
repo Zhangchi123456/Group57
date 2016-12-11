@@ -114,4 +114,123 @@ public class MemberVO {
     public String getBirthday(){
     	return this.Birthday;
     }
+
+	/**
+	 * @return the memberid
+	 */
+	public int getMemberid() {
+		return memberid;
+	}
+
+	/**
+	 * @param memberid the memberid to set
+	 */
+	public void setMemberid(int memberid) {
+		this.memberid = memberid;
+	}
+
+	/**
+	 * @return the membercreditvalue
+	 */
+	public int getMembercreditvalue() {
+		return membercreditvalue;
+	}
+
+	/**
+	 * @param membercreditvalue the membercreditvalue to set
+	 */
+	public void setMembercreditvalue(int membercreditvalue) {
+		this.membercreditvalue = membercreditvalue;
+	}
+
+	/**
+	 * @return the membername
+	 */
+	public String getMembername() {
+		return membername;
+	}
+
+	/**
+	 * @param membername the membername to set
+	 */
+	public void setMembername(String membername) {
+		this.membername = membername;
+	}
+
+	/**
+	 * @return the memberlevel
+	 */
+	public String getMemberlevel() {
+		return memberlevel;
+	}
+
+	/**
+	 * @param memberlevel the memberlevel to set
+	 */
+	public void setMemberlevel(String memberlevel) {
+		this.memberlevel = memberlevel;
+	}
+
+	/**
+	 * @return the memberbirthday
+	 */
+	public LocalDate getMemberbirthday() {
+		return memberbirthday;
+	}
+
+	/**
+	 * @param memberbirthday the memberbirthday to set
+	 */
+	public void setMemberbirthday(LocalDate memberbirthday) {
+		this.memberbirthday = memberbirthday;
+	}
+
+	/**
+	 * @return the memberproperty
+	 */
+	public String getMemberproperty() {
+		return memberproperty;
+	}
+
+	/**
+	 * @param memberproperty the memberproperty to set
+	 */
+	public void setMemberproperty(String memberproperty) {
+		this.memberproperty = memberproperty;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the phonenumber
+	 */
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	/**
+	 * @param phonenumber the phonenumber to set
+	 */
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(String birthday) {
+		Birthday = birthday;
+	}
 }
