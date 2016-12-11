@@ -4,8 +4,11 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.MemberLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
 import Helper.RegisterHelper;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
@@ -25,7 +28,7 @@ import vo.MemberVO;
 public class RegisteruiController implements Initializable {
 	 private RegisterHelper helper=new RegisterHelper();
 	 private String name,password,confirmpassword,phonenumber;
-	 
+	 MemberLogicService memberlogic = new MemberLogicServiceImpl();
 	 LocalDate birthday;
 	  
      @FXML
@@ -68,6 +71,7 @@ public class RegisteruiController implements Initializable {
      @FXML
      private void CommitbuttonClicked(ActionEvent event){
     	 MemberVO membervo=new MemberVO(0, 0, null, null, null);
+    	
     	 if(!Allisfilled()){
     		 AlertBox alt = new AlertBox();
 				alt.display("信息填写不全");
@@ -76,7 +80,14 @@ public class RegisteruiController implements Initializable {
     		 AlertBox alt2 = new AlertBox();
 				alt2.display("密码两次填写不一致");
     	 }
-    	 if(Member.isSelected()){
+    	 else if(testname(NameText.getText())){
+    			 AlertBox alt = new AlertBox();
+ 				alt.display("用户名已存在");
+    		 }
+    	
+    	 else{
+    	     if(Member.isSelected()){
+    		
     		 name=NameText.getText();
     		 password=PasswordText.getText();
     		 confirmpassword=PasswordconfirmText.getText();
@@ -110,6 +121,9 @@ public class RegisteruiController implements Initializable {
 				e.printStackTrace();
 			}
     	 }
+    	     AlertBox alt = new AlertBox();
+				alt.display("注册成功");
+    	 }
      }
      
      private boolean Allisfilled(){
@@ -126,6 +140,21 @@ public class RegisteruiController implements Initializable {
     		 return true;
     	 }
     	 return false;
+     }
+     private boolean testname(String name){
+    	 ArrayList<MemberVO> member = new ArrayList<MemberVO>();
+    	 try {
+			member = memberlogic.showall();
+			for(int i=0;i<member.size();i++){
+				if(name.equals(member.get(i).getname()))
+					return true;						
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+    	 
      }
      @FXML
      private void ReturnbuttonClicked(ActionEvent event){
