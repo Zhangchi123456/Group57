@@ -1,8 +1,7 @@
 package presentation.presentationController;
 
-import main.java.org.Hotel.client.presentation.controller.user.*;
-import main.java.org.Hotel.client.presentation.view.user.*;
-import main.java.org.Hotel.client.util.UserType;
+
+import util.UserType;
 
 import java.net.URL;
 

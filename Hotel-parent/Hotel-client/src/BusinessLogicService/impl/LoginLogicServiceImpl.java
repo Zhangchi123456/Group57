@@ -8,7 +8,7 @@ import org.Hotel.common.po.WebManagerPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.LoginLogicService;
-import main.java.org.Hotel.client.util.UserType;
+import util.UserType;
 
 public class LoginLogicServiceImpl implements LoginLogicService {
 
