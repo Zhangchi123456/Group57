@@ -54,7 +54,7 @@ public class businesscircleuiController implements Initializable{
 	
 	@FXML
 	public void CityChoiceBoxClicked(ActionEvent event){
-		
+	//选择城市名	
 		String city_name = city.getValue().toString();
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		ArrayList<CircleVO> voList = promotion.getCircle(city_name);
@@ -68,7 +68,7 @@ public class businesscircleuiController implements Initializable{
 	
 	@FXML
 	public void CircleChoiceBoxClicked(ActionEvent event){
-		
+	//选择商圈名	
 		String city_name = city.getValue().toString();
 		String circle = businesscircle.getValue().toString();
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -79,7 +79,7 @@ public class businesscircleuiController implements Initializable{
 	
 	@FXML
 	public void SureClicked(ActionEvent event){
-		
+	//确认更新	
 		String city_name = city.getValue().toString();
 		String circle = businesscircle.getValue().toString();
 		if(discount.getText()!=null){

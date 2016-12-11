@@ -52,7 +52,7 @@ public class memberleveluiController implements Initializable{
 	
 	@FXML
 	public void ChoiceBoxClicked(ActionEvent event){
-		
+	//选择会员等级	
 		int lv = Integer.parseInt(level.getValue().toString());
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		MemberLevelVO vo = promotion.getMemberLevel(lv);
@@ -63,7 +63,7 @@ public class memberleveluiController implements Initializable{
 	
 	@FXML
 	public void SureClicked(ActionEvent event){
-		
+	//确认更新	
 		int lv = Integer.parseInt(level.getValue().toString());
 		int cre = Integer.parseInt(credit.getText());
 		if(discount.getText()!=null){
@@ -98,7 +98,7 @@ public class memberleveluiController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+	//初始化	
 		level.setItems(FXCollections.observableArrayList("1","2","3","4","5","6"));
 		
 	}

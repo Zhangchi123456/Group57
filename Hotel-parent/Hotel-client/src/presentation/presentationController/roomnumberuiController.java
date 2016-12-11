@@ -37,6 +37,7 @@ public class roomnumberuiController implements Initializable{
 	
 	private int id = 0;
 	
+	//界面跳转方法
 	@FXML
 	public void toBusinesspartner(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesspartnerui();
@@ -52,8 +53,15 @@ public class roomnumberuiController implements Initializable{
 		UiswitchHelper.getApplication().goto_hoteldiscountdateui();
 	}
 	
+
+	@FXML
+	public void toBack(ActionEvent event){
+		UiswitchHelper.getApplication().goto_HotelMainui();
+	}
+	
 	@FXML
 	public void update(ActionEvent event){
+	//确认更新
 		String input = roomnumberdiscount.getText();
 		if(input != null){
 			double discount = Double.parseDouble(input);
@@ -77,13 +85,9 @@ public class roomnumberuiController implements Initializable{
 		}
 	}
 	
-	@FXML
-	public void toBack(ActionEvent event){
-		UiswitchHelper.getApplication().goto_HotelMainui();
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+	//界面初始化
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		HotelPromotionVO vo;
 		String hotelname = HotelmanageController.getHotelVO().getName();

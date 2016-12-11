@@ -3,6 +3,7 @@ package presentation.presentationController;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -93,12 +94,14 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
-		String start = TimeBegin.getValue().toString();
-		String end = TimeEnd.getValue().toString();
+		LocalDate start = TimeBegin.getValue();
+		LocalDate end = TimeEnd.getValue();
 		String input = newDiscount.getText();
 		
 		if(input!=null && start!=null && end!=null){
-	
+			
+			String start_date = start.toString();
+			String end_date = end.toString();
 			double discount = Double.parseDouble(input);
 			
 			if(discount<0||discount>100){
@@ -109,7 +112,7 @@ public class webdiscountdateuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 		
-				WebPromotionVO vo = new WebPromotionVO(discount/100, start, end, 0);
+				WebPromotionVO vo = new WebPromotionVO(discount/100, start_date, end_date, 0);
 				
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.addWebPromotion(vo);
@@ -145,13 +148,13 @@ public class webdiscountdateuiController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+	//界面初始化	
 		this.showTable();
 		
 	}
 	
 	public void showTable(){
-		
+	//表格内容显示	
 		data = FXCollections.observableArrayList();
 		
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -211,7 +214,7 @@ public class webdiscountdateuiController implements Initializable{
 	}
 
 	public class DateInfo{
-	
+	//表格信息类
 		private final SimpleStringProperty start;
 		private final SimpleStringProperty end;
     	private final SimpleStringProperty discount;

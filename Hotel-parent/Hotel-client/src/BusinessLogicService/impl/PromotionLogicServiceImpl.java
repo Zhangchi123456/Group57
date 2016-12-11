@@ -30,6 +30,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void updateHotelPromotion(HotelPromotionVO vo) {
+	//更新酒店促销策略
 		try{
 			promotiondataservice.update(vo.toPO());
 		}catch(RemoteException e){
@@ -39,7 +40,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public HotelPromotionVO getHotelPromotion(String hotel_name, String name) {
-		
+	//根据酒店名与策略名获取已有促销策略	
 		HotelPromotionVO vo = new HotelPromotionVO();
 		try{
 			vo.setByPO(promotiondataservice.findByHotelProType(name, hotel_name));
@@ -51,7 +52,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void addHotelPromotion(HotelPromotionVO vo) {
-		
+	//新增酒店促销策略	
 		try{
 			promotiondataservice.insert(vo.toPO());
 		}catch(RemoteException e){
@@ -62,6 +63,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public ArrayList<HotelPromotionVO> getHotelPromotionList(String name, String hotel_name) {
+	//根据酒店名与策略名获取已有促销策略
 		ArrayList<HotelPromotionVO> voList = new ArrayList<HotelPromotionVO>();
 		try{
 			ArrayList<HotelPromotionPO> poList = promotiondataservice.findByHotelProID(hotel_name);
@@ -80,6 +82,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void addWebPromotion(WebPromotionVO vo) {
+	//新增网站促销策略
 		try{
 			promotiondataservice.insert(vo.toPO());
 		}catch(RemoteException e){
@@ -90,7 +93,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public ArrayList<WebPromotionVO> getWebPromotionList() {
-		
+	//获取已有网站促销策略	
 		ArrayList<WebPromotionVO> voList =new ArrayList<WebPromotionVO>();
 		
 		try{
@@ -109,6 +112,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public MemberLevelVO getMemberLevel(int lv) {
+	//获取会员级别对应信息
 		MemberLevelVO vo = new MemberLevelVO();
 		try {
 			vo.setByPO(memberdataservice.findLV(lv));
@@ -120,7 +124,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public boolean updateMemberLevel(MemberLevelVO vo) {
-		
+	//更新会员级别信息	
 		try{
 			int lv = vo.getLevel();
 			if(lv==1){
@@ -148,7 +152,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public ArrayList<CircleVO> getCircle(String city_name) {
-		
+	//根据城市名获取商圈列表	
 		ArrayList<CircleVO> voList = new ArrayList<CircleVO>();
 		
 		try{
@@ -167,6 +171,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public CircleVO getCircle(String city_name, String circle) {
+	//获取商圈的折扣信息
 		CircleVO vo = new CircleVO();
 		try {
 			vo.setByPO(hoteldataservice.circleFind(city_name, circle));
@@ -178,6 +183,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void updateCircle(CircleVO vo) {
+	//更新商圈折扣信息
 		try{
 			hoteldataservice.update(vo.toPO());
 		}catch(RemoteException e){
@@ -187,6 +193,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void deleteWebPromotion(WebPromotionVO vo) {
+	//删除网站营销策略
 		try{
 			promotiondataservice.delete(vo.toPO());
 		}catch(RemoteException e){
@@ -197,6 +204,7 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 
 	@Override
 	public void deleteHotelPromotion(HotelPromotionVO vo) {
+	//删除酒店营销策略
 		try{
 			promotiondataservice.delete(vo.toPO());
 		}catch(RemoteException e){
