@@ -1,6 +1,6 @@
 package BusinessLogicService.Service;
 
-import main.java.org.Hotel.client.util.UserType;
+import util.UserType;
 
 public interface LoginLogicService {
 	
