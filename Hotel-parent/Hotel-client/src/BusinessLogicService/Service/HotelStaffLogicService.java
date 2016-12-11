@@ -3,6 +3,7 @@ package BusinessLogicService.Service;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -32,4 +33,7 @@ public interface HotelStaffLogicService {
 	
 	//根据房间号查找房间
 	public RoomVO FindRoomByID(int roomid)throws RemoteException;
+	
+	//根据订单号查找信用记录
+	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException;
 }

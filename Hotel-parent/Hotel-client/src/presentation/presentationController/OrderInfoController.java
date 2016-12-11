@@ -30,6 +30,7 @@ public class OrderInfoController implements Initializable {
     
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
+		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
 	    orderlogic.input(vo);
 	    AlertBox alt = new AlertBox();
 	    alt.display("订单生成成功");
@@ -40,8 +41,8 @@ public class OrderInfoController implements Initializable {
 		// TODO Auto-generated method stub
 	ReservationLogicService res = new ReservationLogicServiceImpl();
 	
-  
-	HotelName.setText(ReservationController.getCurrentHotelvo().getName());
+    vo.setHotelid(ReservationController.getCurrentHotelvo().getName());
+	HotelName.setText(vo.getHotelid());
 	UserNum.setText(String.valueOf(vo.getPeoplenum()));
 	Child.setText(vo.isHavekids());
 	if(Integer.parseInt(vo.getFamilyRoom())!=0){

@@ -195,9 +195,9 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			Entry<String, CirclePO> entry = iterator.next();
 			po = entry.getValue();
 		if(city.equals(po.getCity())&&circle.equals(po.getName()))
-        break;
+        return po;
 		}
-			return po;
+			return null;
 	
 	}
 	
@@ -208,11 +208,11 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			Entry<String,HotelPO> entry=iterator.next();
 			po=entry.getValue();
 			if(hotelname.equals(po.getName())){
-				break;
+				return po;
 			}
 			
 		}
-		return po;
+		return null;
 	}
 	
 	public RoomPO FindroombyID(int roomid)throws RemoteException{
@@ -222,11 +222,11 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			Entry<Integer, RoomPO> entry=iterator.next();
 			po=entry.getValue();
 			if(roomid == po.getRoomid()){
-				break;
+				return po;
 			}
 			
 		}
-		return po;
+		return null;
 	}
 	
 	public ArrayList<String> cityShowAll()throws RemoteException{

@@ -4,8 +4,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.Hotel.common.dataService.HotelDataService;
+import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
 import org.Hotel.common.dataService.UserDataService;
+import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
 
@@ -14,6 +16,7 @@ import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 import Controller.HotelmanageController;
 import Controller.MemberActController;
+import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -23,6 +26,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	HotelDataService hds;
 	OrderDataService ods;
 	UserDataService uds;
+	MemberDataService mds;
 	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException {
@@ -156,6 +160,19 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		RoomVO vo = new RoomVO();
 		
 		vo.setRoomPO(po);
+		
+		return vo;
+	}
+	
+	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException {
+		
+		mds = (MemberDataService) RMIHelper.find("MemberDataService");
+		
+		CreditPO po = mds.findCreditRecord(orderid);
+		
+		CreditRecordVO vo = new CreditRecordVO();
+		
+		vo.setbyCreditPO(po);
 		
 		return vo;
 	}

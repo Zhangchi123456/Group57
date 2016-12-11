@@ -150,7 +150,12 @@ public class OrderVO {
 		po.setStandardRoom(Integer.parseInt(standardRoom));
 		po.setState(state);
 		po.setSuiteRoom(Integer.parseInt(suiteRoom));
+		if(grade==null){
+			po.setGrade(Double.parseDouble("10"));
+		}
+		else{
 		po.setGrade(Double.parseDouble(grade));
+		}
 		return po;
 	}
 	
