@@ -17,8 +17,6 @@ import org.Hotel.server.datahelp.UserDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
 public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
-	
-
 	private Map<String, HotelStaffPO> map_hotels;
 	
 	private Map<String, WebStaffPO> map_webs;
@@ -162,7 +160,6 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 	}
 	
 	public WebStaffPO findByWebStaff(String name) throws RemoteException{
-		System.out.println(name);
 		WebStaffPO po = new WebStaffPO();
 		Iterator<Entry<String, WebStaffPO>> iterator = map_webs.entrySet().iterator();
 		while(iterator.hasNext()){

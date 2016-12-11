@@ -13,12 +13,7 @@ import org.Hotel.server.datahelp.*;
 
 /**
  * @author Jerry
- *
  */
-
-
-
-
 public class MemberDataMysqlHelper implements MemberDataHelper{
 	Database db;
 	
@@ -54,7 +49,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 			db.close();
 		}
 		return null;
-	}
+	}//end get member data
 	/*
 	 * update member data:password,credit,birthday,level,phone_num,name
 	 */	
@@ -86,7 +81,6 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		}finally{
 			db.close();
 		}
-		
 	}//end update member info
 
 	
@@ -107,7 +101,8 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		}
 		String birthday=memberpo.getBirthday();
 		
-		String query="INSERT INTO member(name,password,phone_num,credit,level,is_enterprise_member,birthday) "
+		String query="INSERT INTO member(name,password,phone_num,credit,level,"
+				+ "is_enterprise_member,birthday) "
 				+" VALUE("
 				+ "'"+name+"',"+
 				"'"+password+"',"+
@@ -124,14 +119,12 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		}finally{
 			db.close();
 		}
-		
 	}//end insert member data
 	
 	//not such feature in System
 	public void deleteMemberData(MemberPO meberpo) {
 		
 	}
-	
 	
 	public Map<Integer, MemberLevelPO> getMemberLevelData() {
 		db=Database.getInstance();;
@@ -224,18 +217,6 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	//get member name by member id
 	//replace by add member name into table crecdt_record
 	private String getMemberName(Database db2, int memID) {
-//		String query="Select name FROM member WHERE id='"+String.valueOf(memID)+"'";
-//		try{
-//			ResultSet rs=db.select(query);
-//			if(rs.next()){
-//				String name=rs.getString("name");
-//				return name;
-//			}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
 		return null;
 	}
 	//System have no such feature
@@ -253,10 +234,8 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		int creditchange=creditpo.getCreditchange();
 		
 		String time=creditpo.getTime();//reocrd_time
-		
 		String action=creditpo.getAction();
 		String name=creditpo.getName();
-		
 		
 		String query="INSERT INTO member(time,member_name,action,credit,credit_change,order_id"
 				+" VALUE("
@@ -267,7 +246,6 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				"'"+creditchange+"',"+
 				"'"+orderID+"'"+
 				")";
-		
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -275,23 +253,10 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		}finally{
 			db.close();
 		}
-		
-	}
+	}//insert credit record
 	
 	//diprecated by add member name into credit_record table
 	private int getMemberID(Database db,String name){
-//		String query="Select id FROM member WHERE name='"+name+"'";
-//		try{
-//			ResultSet rs=db.select(query);
-//			if(rs.next()){
-//				int id=rs.getInt("id");
-//				return id;
-//			}
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
 		return 0;
 	}
 	//System have no such feature

@@ -85,24 +85,6 @@ public class Database {
 		}
 	}
 	
-	public static void main(String[] args){
-		Database db=Database.getInstance();
-		String query="SELECT remove_time FROM order1 WHERE id='1'";
-		
-		
-		ResultSet rs=db.select(query);
-		try{	
-			while(rs.next()){
-				String s=rs.getDate("remove_time").toString();
-				System.out.println(s);
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
-		}
-		db.close();
-	}
-		
 }
 
 	
