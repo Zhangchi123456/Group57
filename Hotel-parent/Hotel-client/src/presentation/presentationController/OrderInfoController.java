@@ -30,6 +30,7 @@ public class OrderInfoController implements Initializable {
     
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
+		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
 	    orderlogic.input(vo);
 	    AlertBox alt = new AlertBox();
 	    alt.display("订单生成成功");

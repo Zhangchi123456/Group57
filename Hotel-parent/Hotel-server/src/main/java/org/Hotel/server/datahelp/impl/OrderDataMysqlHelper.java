@@ -93,7 +93,11 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		//info
 		int id=po.getId();
 		int peoplenum=po.getPeoplenum();
-		boolean havekids=po.isHavekids();
+		boolean havekids1=po.isHavekids();
+		int havekids=0;
+		if(havekids1){
+			havekids=1;
+		}
 		double price=po.getPrice();
 		double grade=po.getGrade();
 		
