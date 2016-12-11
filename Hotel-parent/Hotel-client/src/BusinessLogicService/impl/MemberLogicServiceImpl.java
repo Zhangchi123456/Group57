@@ -37,7 +37,7 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		 ArrayList<CreditRecordVO> creditvolist=new ArrayList<CreditRecordVO>();
 		 for(int i=0;i<creditpolist.size();i++){
 			 CreditRecordVO vo=new CreditRecordVO();
-			 vo.setbyCreditPO(creditvolist.get(i).ToCreditpo());
+			 vo.setbyCreditPO(creditpolist.get(i));
 			 creditvolist.add(vo);
 		 }
 		 

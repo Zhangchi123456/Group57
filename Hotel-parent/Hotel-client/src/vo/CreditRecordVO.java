@@ -32,9 +32,8 @@ public class CreditRecordVO {
     	
     	cred.setCredit(Integer.parseInt(creditlast));
     	cred.setId(Integer.parseInt(orderid));
-    	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-    	Date date=sdf.parse(time);
-    	cred.setTime(date);
+    	
+    	cred.setTime(time);
     	
     	return cred;
     }

@@ -68,25 +68,25 @@ public class UsercreditrecorduiController implements Initializable{
 		
 		//设置订单号列表项
 		orderid.setCellValueFactory(
-	            new PropertyValueFactory<>("orderid"));
+	            new PropertyValueFactory<>("time"));
 	 
 		orderid.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
 		orderid.setOnEditCommit(
 	            (CellEditEvent<CreditRecord, String> t) -> {
 	                ((CreditRecord) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
-	                        ).setOrderId(t.getNewValue());
+	                        ).setTime(t.getNewValue());
 	        });
 		// init time column
 		time.setCellValueFactory(
-	            new PropertyValueFactory<>("time"));
+	            new PropertyValueFactory<>("hotel"));
 	 
 		time.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
 		time.setOnEditCommit(
 	            (CellEditEvent<CreditRecord, String> t) -> {
 	                ((CreditRecord) t.getTableView().getItems().get(
 	                        t.getTablePosition().getRow())
-	                        ).setTime(t.getNewValue());
+	                        ).setOrder(t.getNewValue());
 	        });
 		// show action info
 		action.setCellValueFactory(
@@ -134,18 +134,21 @@ public class UsercreditrecorduiController implements Initializable{
 	public static class CreditRecord {
 		 
         private final SimpleStringProperty action;
-        private final SimpleStringProperty orderid;
+        
         private final SimpleStringProperty time;
         private final SimpleStringProperty creditchange;
         private final SimpleStringProperty creditlast;
        
+        private final SimpleStringProperty hotel;
+       
  
         private CreditRecord(String Action,String Orderid,String Time,String Creditchange,String Creditlast){
         	  this.action = new SimpleStringProperty(Action);
-        	  this.orderid = new SimpleStringProperty(String.valueOf(Orderid));
-        	  this.time = new SimpleStringProperty(Time);    	  
+        	  
+        	  this.time = new SimpleStringProperty(Orderid);    	  
         	  this.creditchange = new SimpleStringProperty(String.valueOf(Creditchange));
         	  this.creditlast = new SimpleStringProperty(Creditlast);
+        	this.hotel=new SimpleStringProperty(Time);
         	
         }  
  
@@ -170,9 +173,8 @@ public class UsercreditrecorduiController implements Initializable{
 			time.set(hotelname);
 		}
 
-		public void setOrderId(String hotelname) {
-			
-			orderid.set(hotelname);
+		public void setOrder(String Orderid){
+			hotel.set(Orderid);
 		}
 
 
@@ -182,10 +184,10 @@ public class UsercreditrecorduiController implements Initializable{
         }
  
      
-
-		public String getOrderId() {
-			return orderid.get();
+		public String getorder(){
+			return hotel.get();
 		}
+	
 
 		public String getTime() {
 			return time.get();
