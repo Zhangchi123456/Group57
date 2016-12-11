@@ -5,6 +5,10 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import BusinessLogicService.Service.UserLogicService;
+import BusinessLogicService.impl.UserLogicServiceImpl;
+import vo.HotelStaffVO;
 import vo.MemberVO;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,7 +29,8 @@ import presentation.presentationController.UsercreditrecorduiController.CreditRe
 import presentation.userui.AlertBox;
 
 public class UserWebManagementController implements Initializable{
-	
+	ObservableList<MemberVO> MemberVOs,staffSelected;
+	UserLogicService userblservice =new UserLogicServiceImpl();
 	@FXML
     private Label user;
     @FXML
@@ -33,9 +38,9 @@ public class UserWebManagementController implements Initializable{
     @FXML
     private DatePicker BirthdayDatepicker;
     @FXML
-    private TableView table;
+    private TableView<MemberVO> table;
     @FXML
-    private TableColumn nameColumn;
+    private TableColumn<MemberVO,String> nameColumn;
     
  
     
@@ -59,7 +64,17 @@ public class UserWebManagementController implements Initializable{
 		
 	}
 	
-	
+	private ObservableList getHotelStaff(){
+        MemberVOs = FXCollections.observableArrayList();
+        MemberVOs.clear();
+        MemberVOs.retainAll();
+        //get member vo from data layer
+        ArrayList<MemberVO> list=userblservice.findHotelStaff();
+        for(HotelStaffVO vo:list){
+        	HotelStaffVOs.add(vo);
+        }
+        return HotelStaffVOs;
+    }
 	
 	
 	

@@ -36,9 +36,9 @@ public class UserWebManagementHotelController implements Initializable{
     @FXML
     private Label username;
     @FXML
-    private TableView table;
+    private TableView<HotelStaffVO> table;
     @FXML
-    private TableColumn nameColumn,hotelColumn;
+    private TableColumn<HotelStaffVO,String> nameColumn,hotelColumn;
     
     @FXML
     private void SaveButtonClicked(ActionEvent event){
