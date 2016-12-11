@@ -146,12 +146,5 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	}
 		return hotelprolist;
 	}
-//	public static void main(String[] args) throws RemoteException{
-//		PromotionDataImpl data=PromotionDataImpl.getInstance();
-//		HotelPromotionPO po2=new HotelPromotionPO("生日折扣", "南行酒店",
-//				0.2,0, 
-//				0,0,null,null);
-//		data.update(po2);
-//	}
-	
+
 }
