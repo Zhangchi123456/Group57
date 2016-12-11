@@ -55,8 +55,10 @@ public class MemberVO {
     
     public MemberPO topo() throws ParseException{
     	MemberPO po=new MemberPO();
-    	
+    	if(memberbirthday!=null){
     	po.setBirthday(memberbirthday.toString());
+    	System.out.println(po.getBirthday());
+    	}
     	po.setPassword(password);
     	po.setCredit(membercreditvalue);
     	po.setId(memberid);
