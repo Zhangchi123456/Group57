@@ -15,16 +15,11 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		db=Database.getInstance();
 		Map<Integer, OrderPO> map=new HashMap<Integer, OrderPO>();
 		
-//		String query="SELECT order.id,order.hotel_name,order.statr_time"
-//				+ ",order.end_time,order.last_time,order.remove_time,order.people_num,order.have_kids,"
-//				+ "order.single_room,order.standard_room,order.family_room,order.suite_room,"
-//				+ "order.status,order.price,order.comment,order.score,member.name AS member_name"
-//				+ " FROM order,member WHERE order.member_id=member.id";
 		String query="SELECT * FROM order1";
 		try{
 			ResultSet rs=db.select(query);
 			while(rs.next()){
-				//info
+				//order info
 				int id=rs.getInt("id");
 				int peoplenum=rs.getInt("people_num");
 				double price=rs.getDouble("price");
@@ -46,7 +41,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 				//comment
 				String comment=rs.getString("comment");
 				double grade=rs.getDouble("score");
-				
+				//initial order po
 				OrderPO po=new OrderPO(id, membername, hotelname, starttime,
 						endtime, state, price, lasttime,
 						dischargetime, peoplenum,  havekids, singleRoom,
@@ -86,11 +81,11 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		}finally{
 			db.close();
 		}
-	}
+	}//end update order
 
 	public void insertOrderData(OrderPO po) {
 		db=Database.getInstance();
-		//info
+		// order info
 		int id=po.getId();
 		int peoplenum=po.getPeoplenum();
 		boolean havekids1=po.isHavekids();
@@ -143,22 +138,11 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 	//get member id by member name
 	//add member name to order table so no need to call member id
 	private int getmemberid(Database db, String membername) {
-//		String query="SELECT id FROM member WHERE name='"+membername+"'";
-//		try{
-//			ResultSet rs=db.select(query);
-//			if(rs.next()){
-//				int id=rs.getInt("id");
-//				return id;			}
-//		}catch (Exception e){
-//			e.printStackTrace();
-//		}
 		return 0;
 	}
 
 	//no such feature
 	public void deleteOrderData(OrderPO orderpo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -180,23 +180,12 @@ public class UserDataMysqlHelper implements UserDataHelper {
 
 	//no further operation on web manager 
 	public void updateWebManagerData(WebManagerPO webmanagerpo) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	public void deleteWebManagerData(WebManagerPO webmanagerpo) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	public void insertWebManagerData(WebManagerPO webmanagerpo) {
-		// TODO Auto-generated method stub
-		
 	}
-
 	public void deleteWebManagerData(WebStaffPO webmanagerpo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

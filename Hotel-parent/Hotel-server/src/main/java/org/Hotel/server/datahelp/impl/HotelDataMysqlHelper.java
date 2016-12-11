@@ -33,7 +33,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				double grade=hotelrs.getDouble("score");
 				int star=hotelrs.getInt("star");
 				String introduction=hotelrs.getString("introduction");
-//				String facility=hotelrs.getString("facility");  facility attribute was emerged with introduction
 				String city=hotelrs.getString("city");
 				String address=hotelrs.getString("address");
 				//room
@@ -74,24 +73,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end getHotelData
 
-	//add circle_name to table hotel
-//	private String getCircle(Database db, int circle_id) {
-//		String query="SELECT name FROM circle WHERE id="+String.valueOf(circle_id);
-//		ResultSet rs;
-//		String res=null;
-//		try{
-//			rs=db.select(query);
-//			if(rs.next()){
-//				res=rs.getString("name");
-//				return res;
-//			}
-//			
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return res;
-//	}
-
 	/*
 	 * updata a hotel record 
 	 */
@@ -126,7 +107,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 			db.close();
 		}
 	}//end update hotel data
-	
 	/*
 	 * insert a hotel record 
 	 */
@@ -190,41 +170,11 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		}
 	}//end insert hotel data
 	
-	//get circle id from my sql by circle name
-//	private int getCircleID(Database db,String name){
-//		db=Database.getInstance();
-//		String query="SELECT id FROM circle WHERE name="+"'"+name+"'";
-//		ResultSet rs;
-//		int res;
-//		try{
-//			rs=db.select(query);
-//			if(rs.next()){
-//				res=rs.getInt("id");
-//				return res;
-//			}
-//			
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		
-//		return -1;
-//	}
-	
 	/*
 	 * delete a hotel record 
 	 * not such feature in system
 	 */
 	public void deleteHotelData(HotelPO hotelpo){
-//		db=Database.getInstance();
-//		String name=hotelpo.getName();
-//		String query="DELETE FROM hotel WHERE name='"+name+"'";
-//		try{
-//			db.update(query);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
 	}
 	// return all roominfo
 	public Map<Integer, RoomPO> getRoomData() {
@@ -256,33 +206,20 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end getRoomData
 	
-
-//	private String getHotelName(Database db2, int hotelid) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-	
 	/*
 	 * system have no such feature
 	 */
 			
 	public void updateRoomData(RoomPO roompo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void insertRoomData(RoomPO roompo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void deleteRoomData(RoomPO roompo) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public Map<String, CirclePO> getCircleData() {
-		
 		String query="SELECT * FROM circle";
 		db=Database.getInstance();
 		Map<String,CirclePO> map=new HashMap<String,CirclePO>();
@@ -305,18 +242,6 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		return null;
 	}//end get circle data
 
-	public static void main(String[] args){
-		CirclePO po = new CirclePO();
-		HotelDataMysqlHelper data=new HotelDataMysqlHelper();
-		Map<String , CirclePO> map=data.getCircleData();
-		Iterator<Map.Entry<String,CirclePO>> iterator = map.entrySet().iterator();
-		while(iterator.hasNext()){
-			Entry<String, CirclePO> entry = iterator.next();
-			po = entry.getValue();
-		System.out.println("circle:"+po.getName()+" city:"+po.getCity());
-		}
-	}
-	
 	public void updateCircleData(CirclePO po) {
 		db=Database.getInstance();
 		
@@ -341,42 +266,10 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 
 	//system has no such feature
 	public void insertCircleData(CirclePO po) {
-//		db=Database.getInstance();
-//		
-//		String name=po.getName();
-//		String city=po.getCity();
-//		double discount=po.getDiscount();
-//		
-//		String query="INSERT INTO circle(name,city,discount) VALUE("+"'"+name+"',"
-//				+ "'"+city+"',"
-//				+ "'"+discount+"')";
-//		
-//		try{
-//			db.update(query);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
-		
 	}
 
 	//system has no such feacher
 	public void deleteCircleData(CirclePO po) {
-//		db=Database.getInstance();
-//		
-//		String name=po.getName();
-//		
-//		String query="DELETE FROM circle WHERE name='"+name+"'";
-//		
-//		try{
-//			db.update(query);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
-		
 	}
 	
 	
