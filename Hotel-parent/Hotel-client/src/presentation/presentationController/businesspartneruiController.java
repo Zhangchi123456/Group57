@@ -54,6 +54,7 @@ public class businesspartneruiController implements Initializable{
 	
 	@FXML
 	public void SureClicked(ActionEvent event){
+	//确认更新
 		String input = businesspartnerdiscount.getText();
 		if(input != null){
 			double discount = Double.parseDouble(input);

@@ -90,6 +90,7 @@ public class birthdayuiController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+	//初始化
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		String hotel_name = HotelmanageController.getHotelVO().getName();
 		String name = "生日折扣";
