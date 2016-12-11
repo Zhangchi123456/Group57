@@ -37,7 +37,7 @@ public class UsercreditrecorduiController implements Initializable{
   private TableView<CreditRecord> CreditrecordTable;
   
   @FXML
-  private TableColumn<CreditRecord,String> time,orderid,action,creditchange,creditlast;
+  private TableColumn<CreditRecord,String> timecol,orderid,action,creditchange,creditlast;
   
   
   
@@ -65,29 +65,28 @@ public class UsercreditrecorduiController implements Initializable{
 					,creditlist0.get(i).time,creditlist0.get(i).creditchange,creditlist0.get(i).creditlast));
 		}
 		 finallist =FXCollections.observableArrayList(creditlist2);
-		
-		//设置订单号列表项
-		orderid.setCellValueFactory(
-	            new PropertyValueFactory<>("time"));
-	 
-		orderid.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
-		orderid.setOnEditCommit(
-	            (CellEditEvent<CreditRecord, String> t) -> {
-	                ((CreditRecord) t.getTableView().getItems().get(
-	                        t.getTablePosition().getRow())
-	                        ).setTime(t.getNewValue());
-	        });
-		// init time column
-		time.setCellValueFactory(
-	            new PropertyValueFactory<>("hotel"));
-	 
-		time.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
-		time.setOnEditCommit(
-	            (CellEditEvent<CreditRecord, String> t) -> {
-	                ((CreditRecord) t.getTableView().getItems().get(
-	                        t.getTablePosition().getRow())
-	                        ).setOrder(t.getNewValue());
-	        });
+		 timecol.setCellValueFactory(
+		            new PropertyValueFactory<>("time"));
+		 
+			timecol.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
+			timecol.setOnEditCommit(
+		            (CellEditEvent<CreditRecord, String> t) -> {
+		                ((CreditRecord) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setTime(t.getNewValue());
+		        });
+
+			
+			orderid.setCellValueFactory(
+			            new PropertyValueFactory<>("ordernumber"));
+			 
+				orderid.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
+				orderid.setOnEditCommit(
+			            (CellEditEvent<CreditRecord, String> t) -> {
+			                ((CreditRecord) t.getTableView().getItems().get(
+			                        t.getTablePosition().getRow())
+			                        ).setOrdernumber(t.getNewValue());
+			        });
 		// show action info
 		action.setCellValueFactory(
 	            new PropertyValueFactory<>("action"));
@@ -135,20 +134,22 @@ public class UsercreditrecorduiController implements Initializable{
 		 
         private final SimpleStringProperty action;
         
-        private final SimpleStringProperty time;
+   
         private final SimpleStringProperty creditchange;
         private final SimpleStringProperty creditlast;
        
-        private final SimpleStringProperty hotel;
+        private final SimpleStringProperty ordernumber;
+        private final SimpleStringProperty time;
+
        
  
         private CreditRecord(String Action,String Orderid,String Time,String Creditchange,String Creditlast){
         	  this.action = new SimpleStringProperty(Action);
         	  
-        	  this.time = new SimpleStringProperty(Orderid);    	  
         	  this.creditchange = new SimpleStringProperty(String.valueOf(Creditchange));
         	  this.creditlast = new SimpleStringProperty(Creditlast);
-        	this.hotel=new SimpleStringProperty(Time);
+              this.ordernumber=new SimpleStringProperty(Orderid);
+              this.time=new SimpleStringProperty(Time);
         	
         }  
  
@@ -167,16 +168,21 @@ public class UsercreditrecorduiController implements Initializable{
 			
 			creditlast.set(Creditlast);
 		}
-
-		public void setTime(String hotelname) {
-			
-			time.set(hotelname);
+        
+		public void setTime(String Time){
+			time.set(Time);
 		}
-
-		public void setOrder(String Orderid){
-			hotel.set(Orderid);
+		
+		public void setOrdernumber(String orderid){
+			ordernumber.set(orderid);
 		}
-
+		
+		public String getOrdernumber(){
+			return ordernumber.get();
+		}
+		public String getTime(){
+			return time.get();
+		}
 
 
 		public String getAction() {
@@ -184,14 +190,7 @@ public class UsercreditrecorduiController implements Initializable{
         }
  
      
-		public String getorder(){
-			return hotel.get();
-		}
 	
-
-		public String getTime() {
-			return time.get();
-		}
 
 		public String getCreditchange() {
 			return creditchange.get();
