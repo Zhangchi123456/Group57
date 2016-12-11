@@ -26,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.UsercreditrecorduiController.CreditRecord;
 import vo.HotelVO;
+import vo.WebPromotionVO;
 
 public class HotelListuiController implements Initializable{
 	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
@@ -46,6 +47,10 @@ public class HotelListuiController implements Initializable{
     @FXML
     private void ReturnButtonClicked(ActionEvent event){
         UiswitchHelper.getApplication().goto_Usermainui();
+    }
+    @FXML
+    private void CreatOrderClicked(ActionEvent event){
+        UiswitchHelper.getApplication().goto_OrderinputUi();
     }
   @FXML
   private void ReservationClicked(ActionEvent event){
@@ -89,8 +94,17 @@ public class HotelListuiController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		ArrayList<WebPromotionVO> weblist=reservationService.showall();
+		ReservationController.setWebpromotionvolist(weblist);
 		ArrayList<HotelVO> hotellist1=ReservationController.getHotelvolist();
+		System.out.println("family"+hotellist1.get(0).getFamilyRoomPrice());
+		try {
+			HotelVO testhotel=reservationService.findbyname("南行酒店");
+			System.out.println(testhotel.getFamilyRoomPrice());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*HotelVO vo1=new HotelVO();
 		vo1.setName("123");vo1.setStar(5);
 		HotelVO vo2=new HotelVO();
@@ -105,7 +119,7 @@ public class HotelListuiController implements Initializable{
 		}
 		hotellist3=hotellist2;
 		finallist =FXCollections.observableArrayList(hotellist2);
-		System.out.println(hotellist2.get(0).getGrade());
+		
 		
 		HotelName.setCellValueFactory(
 	            new PropertyValueFactory<>("hotel"));

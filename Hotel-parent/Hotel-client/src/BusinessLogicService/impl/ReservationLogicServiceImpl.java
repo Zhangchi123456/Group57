@@ -71,8 +71,10 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 }
             		 break;
             	 case"生日折扣":
+            		 if(member.getBirthday()!=null){
             		 if(member.getbirthday().isAfter(checkindate)||member.getbirthday().isBefore(checkoutdate)||member.getbirthday().isEqual(checkindate)||member.getbirthday().isEqual(checkoutdate)){
             			 finalprice=finalprice-price*(1-hotelpro.getBirthdayDiscount());
+            		 }
             		 }
             		 break;
             	 case"日期折扣":
