@@ -16,7 +16,7 @@ import vo.WebStaffVO;
 
 public class UserLogicServiceImpl implements UserLogicService{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
-	MemberDataService memberdata=(MemberDataService) RMIHelper.find("UserDataService");
+	MemberDataService memberdata=(MemberDataService) RMIHelper.find("MemberDataService");
 	
 	
 	@Override
@@ -73,7 +73,6 @@ public class UserLogicServiceImpl implements UserLogicService{
 		try {
 			return userdata.insert(po);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -115,20 +114,21 @@ public class UserLogicServiceImpl implements UserLogicService{
 
 	@Override
 	public ArrayList<MemberVO> findMember() {
-//		try {
-//			ArrayList<MemberPO> list=memberdata.showAll();
-//			ArrayList<MemberVO> listvo=new ArrayList<>();
-//			for(MemberPO po:list){
-//				if(po!=null){
-//					MemberVO vo=new WebStaffVO(po);
-//					listvo.add(vo);
-//				}
-//			}
-//			return listvo;
-//		} catch (RemoteException e) {
-//			
-//			e.printStackTrace();
-//		}
+		try {
+			ArrayList<MemberPO> list=memberdata.showAll();
+			ArrayList<MemberVO> listvo=new ArrayList<>();
+			for(MemberPO po:list){
+				if(po!=null){
+					MemberVO vo=new MemberVO(0, 0, null, null, null);
+					vo.setbypo(po);
+					listvo.add(vo);
+				}
+			}
+			return listvo;
+		} catch (RemoteException e) {
+			
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -139,12 +139,5 @@ public class UserLogicServiceImpl implements UserLogicService{
 		
 	}
 	
-//	public static void main(String[] args){
-//		UserLogicServiceImpl user=new UserLogicServiceImpl();
-//		ArrayList<WebStaffVO> list=user.findWebStaff();
-//		for(WebStaffVO vo:list){
-//			System.out.println(vo.getName());
-//		}
-//	}
 
 }

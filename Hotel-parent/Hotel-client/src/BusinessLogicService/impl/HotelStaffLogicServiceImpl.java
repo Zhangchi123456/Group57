@@ -33,14 +33,16 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	public HotelVO findHotel(String name)throws RemoteException {
 		
 		uds = (UserDataService) RMIHelper.find("UserDataService");
+		hds = (HotelDataService) RMIHelper.find("HotelDataService");
 		HotelVO hotelvo = new HotelVO();
 		
 		HotelStaffPO po = uds.findByHotelStaff(name);
 		String hotelname = po.getHotelName();
-		HotelPO hotelpo = hds.Findhotelbyname(hotelname);
-	    hotelvo.setbuHotelPO(hotelpo);
-		
+		HotelPO hotelpo = new HotelPO();
+		hotelpo = hds.Findhotelbyname(hotelname);
+		hotelvo.setbuHotelPO(hotelpo);
 		return hotelvo;
+		
 	}
 	
 	//显示所有客房
