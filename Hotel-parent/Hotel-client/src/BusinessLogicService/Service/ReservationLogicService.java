@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.MemberVO;
+import vo.OrderVO;
 import vo.WebPromotionVO;
 
 public interface ReservationLogicService {
@@ -37,7 +38,8 @@ public interface ReservationLogicService {
 	 
 	//获得网站的营销策略
 	 public ArrayList<WebPromotionVO> showall();
-
+    //判断房间是否还有剩余
+	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype) throws ParseException;
 
 
 }
