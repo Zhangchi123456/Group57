@@ -156,9 +156,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			Entry<String, HotelStaffPO> entry = iterator.next();
 			po = entry.getValue();
 			if(name.equals(po.getName()))
-			break;
+			return po;
 		}
-		return po;
+		return null;
 	}
 	
 	public WebStaffPO findByWebStaff(String name) throws RemoteException{
@@ -183,9 +183,9 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			Entry<String, WebManagerPO> entry = iterator.next();
 			po = entry.getValue();
 			if(name.equals(po.getName()))
-			break;
+			return po;
 		}
-		return po;
+		return null;
 	}
 	
 	public ArrayList<HotelStaffPO> showAllHotelStaff() throws RemoteException{

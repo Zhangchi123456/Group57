@@ -96,10 +96,10 @@ OrderDataService,Serializable{
 				Map.Entry<Integer, OrderPO> entry = iterator.next();
 				orderpo = entry.getValue();
 				if(order_id == orderpo.getId())
-				break;
+				return orderpo;
 
 			}
-			return orderpo;
+			return null;
 			
 		}
 		
