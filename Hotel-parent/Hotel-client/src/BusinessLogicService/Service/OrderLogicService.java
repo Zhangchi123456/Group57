@@ -1,5 +1,6 @@
 package BusinessLogicService.Service;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.Hotel.common.po.OrderPO;
@@ -17,4 +18,5 @@ public interface OrderLogicService {
     public ArrayList<OrderVO> findUserOrderListHotel(String Hotel);//通过酒店名查找订单   
     public ArrayList<OrderVO> showALl();
     public OrderVO orderShowAll(int order_id);
+	public ArrayList<OrderVO> orderShowAllByStation(String station);
 }

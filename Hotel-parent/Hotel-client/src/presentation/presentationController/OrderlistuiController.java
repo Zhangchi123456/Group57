@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.userui.AlertBox;
 import Controller.MemberActController;
 import Controller.ReservationController;
 
@@ -46,6 +47,7 @@ public class OrderlistuiController implements Initializable{
    String UserName =a.UserName;
    OrderLogicService am = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
+   AlertBox alt = new AlertBox();	
    
    
    //监听
@@ -58,12 +60,35 @@ public class OrderlistuiController implements Initializable{
    private void EvaluateClicked(ActionEvent event){
 	   
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	  
+	  if(temp.get(selectnumber).getOrderstation().equals("已执行订单")){
 	    Orderid=  temp.get(selectnumber).getOrder();
-	    Hotelname  = temp.get(selectnumber).getHotel();
+	    Hotelname  = temp.get(selectnumber).getHotel();}
+	  else{
+		 alt.display("未完成订单不能评价");
+	  }
 	    
 	
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
+   }
+
+   @FXML 
+   private void  DeleteOrderClicked(ActionEvent event){
+	        
+	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
+	 if(!temp.get(selectnumber).getOrderstation().equals("未执行订单")){
+		 alt.display("不能撤销该订单");
+	 }
+	 else{
+	    Orderid=  temp.get(selectnumber).getOrder();
+	  boolean bool= am.changeOrderStation(Orderid, "已撤销订单");
+	  if(bool){ 
+		  alt.display("订单已撤销");
+		  orderlist =am.findUserOrderListAll(UserName);
+	    	 if(orderlist!=null);
+	    	 Orderlist(orderlist);
+	  }
+	  
+	 }
    }
    @FXML 
    private void ChoiceBoxClicked(ActionEvent event){
@@ -115,14 +140,7 @@ public class OrderlistuiController implements Initializable{
    		String.valueOf(Integer.parseInt(orderlist.get(i).getSingleRoom())+Integer.parseInt(orderlist.get(i).getFamilyRoom())+Integer.parseInt(orderlist.get(i).getStandardRoom())+Integer.parseInt(orderlist.get(i).getSuiteRoom())),
    		orderlist.get(i).getComment(),orderlist.get(i).getState()));
     	}
-	//	  ObservableList<SimpleOrder> data =FXCollections.observableArrayList(
-	//			  new SimpleOrder("123456","zhangchi","无","如家酒店","2016/6/16","2016/6/18","未执行"，"12.0","2016/6/16","2016/6/18",2,false,0,1,1,0),
-		//		  new SimpleOrder("a","b","c","d","f","g","q"),
-			//	  new SimpleOrder("a","b","c","d","f","g","q")
-		//		  );
-	//		  new SimpleOrder("a","b","c","d","f","","")
-		     
-
+	
 		  HotelName.setCellValueFactory(
 		            new PropertyValueFactory<>("hotel"));		 
 		  HotelName.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());

@@ -80,9 +80,12 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 	@Override
 	public boolean changeOrderStation(String OrderId,String OrderStation) {
 		boolean tem = false;
-		MemberActController.getOrdervo().setState(OrderStation);
 		  try {
-			  tem =ser.update(MemberActController.getOrdervo().toOrderPO( MemberActController.getOrdervo()));
+			  OrderPO po=ser.orderShowAll(Integer.parseInt(OrderId));
+			  OrderVO vo=new OrderVO();
+			  vo.SetbyOrderPO(po);
+			  vo.setState(OrderStation);
+			  tem =ser.update(vo.toOrderPO(vo));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -227,6 +230,31 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		try {
 			a=ser.orderShowAll(order_id);
 				tem.SetbyOrderPO(a);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return tem;
+	}
+
+
+	@Override
+	public ArrayList<OrderVO> orderShowAllByStation(String station) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
+		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
+		try {
+			a=ser.orderShowAllByStation(station);
+		
+			for(int i=0;i<a.size();i++){
+				OrderVO temp=new OrderVO() ;
+		//		System.out.println(a.get(i).getName());
+				temp.SetbyOrderPO(a.get(i));
+				
+				tem.add(temp);
+		//		System.out.println(tem.get(i).getName());
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
