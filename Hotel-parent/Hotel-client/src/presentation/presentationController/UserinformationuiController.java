@@ -54,8 +54,8 @@ public class UserinformationuiController implements Initializable{
     		 membername=MembernameText.getText().toString();
     		 phonenumber=PhonenumberText.getText().toString();
     		 birthday=BirthdayDatepicker.getValue();
-    		
-    		 MemberActController.getmemberVo().updateInfo(membername, birthday, phonenumber);
+    		membervo=MemberActController.getmemberVo();
+    		 membervo.updateInfo(membername, birthday, phonenumber);
     		 try {
 				if(memberService.updateMemberinfo(membervo)){
 					 AlertBox alt = new AlertBox();

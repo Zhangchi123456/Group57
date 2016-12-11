@@ -50,7 +50,7 @@ public class HotelroomInfouiController implements Initializable{
 	
 	public ObservableList<SimpleRoom> temp;
 		
-	String Name = HotelmanageController.getRoomVO().getHotelid();
+	String Name = HotelmanageController.getHotelVO().getName();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();

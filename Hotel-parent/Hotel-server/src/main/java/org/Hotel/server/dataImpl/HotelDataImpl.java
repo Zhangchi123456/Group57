@@ -82,12 +82,11 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	
 	public boolean update(HotelPO hotelpo)throws RemoteException{
 		String hotel_id = hotelpo.getName();
-		if(map.get(hotel_id) != null){
+	
 			map.put(hotel_id, hotelpo);
 			hotelDataHelper.updateHotelData(hotelpo);
 			return true;
-		}
-		return false;	
+	
 	}//更新酒店信息
 	
 	public boolean update(CirclePO po)throws RemoteException{

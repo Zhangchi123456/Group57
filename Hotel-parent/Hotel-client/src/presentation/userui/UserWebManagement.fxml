@@ -25,7 +25,7 @@
          <left>
             <VBox spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#MemberAddClicked" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>

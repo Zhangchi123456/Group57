@@ -57,7 +57,7 @@
                   <Insets left="15.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="157.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="65.0">
                <children>
                   <Label text="酒店星级:">
                      <font>
@@ -76,6 +76,7 @@
                   </FXCollections>
                   </items>
                   </ChoiceBox>
+                  <Label fx:id="ShowStar" text="Label" textFill="RED" />
                   
                </children>
             </HBox>

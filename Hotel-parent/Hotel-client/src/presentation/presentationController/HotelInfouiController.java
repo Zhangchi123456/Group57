@@ -2,8 +2,11 @@ package presentation.presentationController;
 
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.HotelStaffLogicService;
+import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,13 +20,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.HotelVO;
 
 public class HotelInfouiController implements Initializable{
 	private String hotelstar,hoteldescription,hoteladdress;
 	@FXML
 	private Button ReturnButton;//返回按钮
 	@FXML
-	private Label HotelName;//酒店名称
+	private Label HotelnameLabel,ShowStar;//酒店名称
 	@FXML
 	private TextArea HotelDescription;//酒店介绍
 	@FXML
@@ -31,6 +35,9 @@ public class HotelInfouiController implements Initializable{
 	@FXML
 	private ChoiceBox HotelStar;//酒店星级
 	//界面跳转
+	
+	HotelStaffLogicService hser;
+	HotelVO hotelvo = HotelmanageController.getHotelVO();
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -44,21 +51,35 @@ public class HotelInfouiController implements Initializable{
 			hotelstar=HotelStar.getValue().toString();
 			hoteldescription=HotelDescription.getText();
 			hoteladdress=HotelAddress.getText();
+			
+			hotelvo.setStar(Integer.parseInt(hotelstar));
+			hotelvo.setAdsress(hoteladdress);
+			hotelvo.setIntroduction(hoteldescription);
+			
+			HotelmanageController.setHotelvo(hotelvo);
+			try {
+				hser.changeHotelInfo(hotelvo);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	private boolean Allisfilled(){
 		if(HotelDescription.getText().isEmpty()||HotelAddress.getText().isEmpty()||HotelStar.getValue().toString().equals(null)){
 			return false;
-		}
+		}else
 		return true;
 	}
 	//初始化界面
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
+		HotelnameLabel.setText(hotelvo.getName());
+		HotelDescription.setText(hotelvo.getIntroduction());
+		HotelAddress.setText(hotelvo.getAddress());
+		ShowStar.setText(String.valueOf(hotelvo.getStar()));
 	}
 
 }
