@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
+import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.OrderLogicServiceImpl;
 import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
@@ -24,6 +26,7 @@ import vo.OrderVO;
 public class CreatorderController implements Initializable{
 	 private String username,usernum,telephone,roomnum,roomtype,havechild,timebegin,timeend;
 	 private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
+	 private OrderLogicService orderService=new OrderLogicServiceImpl();
 	 @FXML
 	 private TextField UserNum,RoomnumText;//人数，电话
 	 @FXML 
@@ -39,6 +42,7 @@ public class CreatorderController implements Initializable{
     
     @FXML
     private void ConfirmButtonClicked(ActionEvent event) throws NumberFormatException, ParseException{
+    	
     	if(!Allisfilled()){
     		AlertBox alt = new AlertBox();
 			alt.display("信息填写不全");
@@ -48,13 +52,23 @@ public class CreatorderController implements Initializable{
     	}else if(TimeBegin.getValue().getDayOfYear()==TimeEnd.getValue().getDayOfYear()){
     		AlertBox alt2 = new AlertBox();
 			alt2.display("无法当天入住当天离开");
-    	}else{
+    	}else if(TimeBegin.getValue().getYear()!=TimeEnd.getValue().getYear()){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("无法跨年预订");
+    	}else if(ReservationController.getMembervo().getcredit()<0){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("信用值为负无法预订，请先充值");
+    	}else if(!reservationService.roomleft(ReservationController.getCurrentHotelvo(), orderService.findUserOrderListHotel(ReservationController.getCurrentHotelvo().getName()),TimeBegin.getValue(),TimeEnd.getValue(),Integer.parseInt(RoomnumText.getText().toString()), RoomType.getValue().toString())){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("抱歉，无房间剩余");
+    	}
+    	else{
     	OrderVO vo = new OrderVO();
     	
     	vo.setName(UserName.getText());
     	vo.setPeoplenum(UserNum.getText());
     	
-    	
+    	vo.setHotelid(ReservationController.getCurrentHotelvo().getName());
     	
     	roomtype=RoomType.getValue().toString();
     	roomnum=RoomnumText.getText();
@@ -100,6 +114,7 @@ public class CreatorderController implements Initializable{
     	ReservationController.setOrdervo(vo);
          UiswitchHelper.getApplication().goto_confirmUi();
     	}
+    	
     }
     
     private boolean Allisfilled(){

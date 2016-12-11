@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
    <top>
       <Label prefHeight="102.0" prefWidth="300.0" text="        订单信息确认" BorderPane.alignment="CENTER">
          <font>
@@ -139,6 +139,11 @@
             <HBox prefHeight="60.0" prefWidth="800.0" spacing="10.0">
                <children>
                   <Label prefHeight="60.0" prefWidth="681.0" />
+                  <Button mnemonicParsing="false" onAction="#ReturnClicked" text="返 回">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
                   <Button id="Sure" mnemonicParsing="false" onAction="#ConfirmClicked" prefHeight="45.0" prefWidth="93.0" text="确 定">
                      <font>
                         <Font size="24.0" />
