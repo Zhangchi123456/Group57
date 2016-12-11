@@ -92,11 +92,12 @@ public class UserinformationuiController implements Initializable{
 		System.out.println(membervo.getcredit());
 		PhonenumberText.setText(membervo.getphonenumber());
 		
-		Date input = membervo.Birthday;
+		if(membervo.getBirthday()!=null){
 		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		 LocalDate date=LocalDate.parse(input.toString(), dtf);
-		 
-		BirthdayDatepicker.setValue(date);
+		 String birth=membervo.Birthday;
+		 LocalDate date=LocalDate.parse(birth,dtf);
+		
+		BirthdayDatepicker.setValue(date);}
 		if(membervo.getproperty().equals("企业会员")){
 			
 		}

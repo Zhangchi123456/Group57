@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import org.Hotel.common.po.MemberPO;
@@ -19,7 +20,7 @@ public class MemberVO {
     private LocalDate memberbirthday;
     private String memberproperty;
     private String password;
-    public Date Birthday;
+    public String Birthday;
     
     //手机号码暂未确定是否用到。
     private String phonenumber; 
@@ -54,9 +55,8 @@ public class MemberVO {
     
     public MemberPO topo() throws ParseException{
     	MemberPO po=new MemberPO();
-    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    	Date Birthday=formatter.parse(memberbirthday.toString());
-    	po.setBirthday(Birthday);
+    	
+    	po.setBirthday(memberbirthday.toString());
     	po.setPassword(password);
     	po.setCredit(membercreditvalue);
     	po.setId(memberid);
@@ -66,8 +66,13 @@ public class MemberVO {
     	return po;
     }
     public void setbypo(MemberPO po){
-    	 Birthday=po.getBirthday();
     	
+    		this.Birthday=po.getBirthday();
+    	if(po.getBirthday()!=null){
+    		 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    		 LocalDate date=LocalDate.parse(po.getBirthday(),dtf);
+    		 this.memberbirthday=date;
+    	}
     	this.membercreditvalue=po.getCredit();
     	this.memberid=po.getId();
     	this.memberlevel=String.valueOf(po.getLevel());
@@ -105,5 +110,8 @@ public class MemberVO {
     }
     public String getphonenumber(){
     	return this.phonenumber;
+    }
+    public String getBirthday(){
+    	return this.Birthday;
     }
 }

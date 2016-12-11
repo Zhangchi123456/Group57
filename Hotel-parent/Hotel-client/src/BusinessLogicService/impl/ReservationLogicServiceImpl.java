@@ -47,6 +47,11 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
              finalprice=num*price*level.getDiscount();
              for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
+            	 Date start=sdf.parse(webpro.getStartDate());
+            	 Date end=sdf.parse(webpro.getEndDate());
+            	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+            		 finalprice=finalprice*webpro.getDateDiscount();
+            	 }
             	
              }
              for(int j=0;j<hotelprolist.size();j++){
@@ -68,7 +73,12 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 }
             		 break;
             	 case"日期折扣":
-            		
+            		 Date start=sdf.parse(hotelpro.getStartDate());
+                	 Date end=sdf.parse(hotelpro.getEndDate());
+                	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+                		 finalprice=finalprice*hotelpro.getDateDiscount();
+                	 }
+                	
             		 break;
             	 }
              }
