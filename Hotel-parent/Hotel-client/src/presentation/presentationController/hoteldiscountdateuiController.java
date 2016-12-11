@@ -86,6 +86,7 @@ public class hoteldiscountdateuiController implements Initializable{
 	String hotel_name = HotelmanageController.getHotelVO().getName();
 	String name = "日期折扣";
 	
+	//界面跳转方法
 	@FXML
 	public void toBusinesspartner(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesspartnerui();
@@ -102,8 +103,13 @@ public class hoteldiscountdateuiController implements Initializable{
 	}
 	
 	@FXML
+	public void toBack(ActionEvent event){
+		UiswitchHelper.getApplication().goto_HotelMainui();
+	}
+	
+	@FXML
 	public void delete(ActionEvent event){
-		
+	//删除已有折扣日期	
 		if(hoteldiscountdateTable.getSelectionModel()!=null){
 			
 			int selectnumber=hoteldiscountdateTable.getSelectionModel().getSelectedIndex();
@@ -129,13 +135,15 @@ public class hoteldiscountdateuiController implements Initializable{
 	
 	@FXML
 	public void add(ActionEvent event){
-	
-		String start = TimeBegin.getValue().toString();
-		String end = TimeEnd.getValue().toString();
+	//新增折扣日期
+		LocalDate start = TimeBegin.getValue();
+		LocalDate end = TimeEnd.getValue();
 		String input = newDiscount.getText();
 		
 		if(input!=null && start!=null && end!=null){
 			
+			String start_date = start.toString();
+			String end_date = start.toString();
 			double discount = Double.parseDouble(input);
 			
 			if(discount<0||discount>100){
@@ -146,7 +154,7 @@ public class hoteldiscountdateuiController implements Initializable{
 				alt.display("不可为0！");
 			}else{
 		
-				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start, end, 0);
+				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date, end_date, 0);
 				
 				PromotionLogicService promotion = new PromotionLogicServiceImpl();
 				promotion.addHotelPromotion(vo);
@@ -159,22 +167,18 @@ public class hoteldiscountdateuiController implements Initializable{
 			alt.display("信息填写不完整！");
 		}
 	}
-	
-	@FXML
-	public void toBack(ActionEvent event){
-		UiswitchHelper.getApplication().goto_HotelMainui();
-	}
 
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+	//界面初始化	
 		this.showTable(name,hotel_name);
 	
 	}
 	
+	
 	public void showTable(String name,String hotel_name){
-		
+	//表格信息展示方法	
 		data = FXCollections.observableArrayList();
 				
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
@@ -234,9 +238,8 @@ public class hoteldiscountdateuiController implements Initializable{
 		
 	}
 	
-	
 	public static class DateInfo{
-		
+	//表格信息类	
 		private final SimpleStringProperty start;
         private final SimpleStringProperty end;
         private final SimpleStringProperty discount;

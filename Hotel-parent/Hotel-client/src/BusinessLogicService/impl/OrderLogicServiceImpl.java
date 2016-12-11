@@ -44,7 +44,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		// TODO Auto-generated method stub
 		boolean tem = false;
 		  try {
-			 tem =ser.insert(MemberActController.getOrdervo().toOrderPO( MemberActController.getOrdervo()));
+			 tem =ser.insert(VO.toOrderPO(VO));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

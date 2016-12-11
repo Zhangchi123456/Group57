@@ -18,41 +18,53 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
 import vo.OrderVO;
 
 public class OrderInfoController implements Initializable {
 	@FXML
-	private Label HotelName,UserNum,Child,RoomType,TimeBegin,TimeEnd,RoomnumLabel,TotalpriceLabel;
+	private Label HotelName,UserNum,Child,RoomType,TimeBegin,TimeEnd,RoomnumLabel,TotalpriceLabel,OrderId;
+	
+    OrderVO vo =	ReservationController.getOrdervo();
+    OrderLogicService orderlogic = new OrderLogicServiceImpl();
     
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
-	
+	    orderlogic.input(vo);
+	    AlertBox alt = new AlertBox();
+	    alt.display("订单生成成功");
 		UiswitchHelper.getApplication().goto_Usermainui();
 	}
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 	ReservationLogicService res = new ReservationLogicServiceImpl();
-	OrderVO vo =	ReservationController.getOrdervo();
+	
   
 	HotelName.setText(ReservationController.getCurrentHotelvo().getName());
 	UserNum.setText(String.valueOf(vo.getPeoplenum()));
 	Child.setText(vo.isHavekids());
 	if(Integer.parseInt(vo.getFamilyRoom())!=0){
-		RoomType.setText("家庭房");		
+		RoomType.setText("家庭房");	
+		RoomnumLabel.setText(vo.getFamilyRoom());
 	}
 	if(Integer.parseInt(vo.getSingleRoom())!=0){
-		RoomType.setText("单人房");		
+		RoomType.setText("单人房");	
+		RoomnumLabel.setText(vo.getSingleRoom());
 	}
 	if(Integer.parseInt(vo.getStandardRoom())!=0){
 		RoomType.setText("标准间");		
+		RoomnumLabel.setText(vo.getStandardRoom());
 	}
 	if(Integer.parseInt(vo.getSuiteRoom())!=0){
-		RoomType.setText("套间");		
+		RoomType.setText("套间");	
+		RoomnumLabel.setText(vo.getSuiteRoom());
 	}
+	OrderId.setText(vo.getId());
 	TimeBegin.setText(vo.getStarttime());
 	TimeEnd.setText(vo.getLeavetime());
-	TotalpriceLabel.setText("100");
-	vo.setPrice(TotalpriceLabel.getText());
+	TotalpriceLabel.setText(vo.getPrice());
+	
 	}
+	
 }

@@ -67,9 +67,10 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		db=Database.getInstance();
 		
 		String name=po.getName();
+		System.out.println(name);
 		String password=po.getPassword();
 		
-		String query="INSERT INTO web_staff(password) VALUE("
+		String query="INSERT INTO web_staff(name,password) VALUE("+"'"+name+"',"
 				+"'"+password+"')";
 		try{
 			db.update(query);

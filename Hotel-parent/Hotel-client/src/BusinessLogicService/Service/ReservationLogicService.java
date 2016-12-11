@@ -19,7 +19,7 @@ public interface ReservationLogicService {
 	
 	
 	//计算订单总价,需要考虑会员等级折扣，网站营销策略折扣，酒店营销折扣，合作企业折扣
-	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,int price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException;
+	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException;
 	
 	//通过商圈从数据库找到酒店列表
 	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException;

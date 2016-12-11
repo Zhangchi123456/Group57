@@ -26,7 +26,7 @@ import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
-    PromotionLogicService promotionService;
+    PromotionLogicService promotionService=new PromotionLogicServiceImpl();
     OrderLogicService orderService=new OrderLogicServiceImpl();
     public ArrayList<String> getallcity() throws RemoteException{
     	return hotelservice.cityShowAll();
@@ -36,7 +36,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 
 	
 	
-	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,int price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
+	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
              SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
             String strin=checkindate.toString();
@@ -47,6 +47,11 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
              finalprice=num*price*level.getDiscount();
              for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
+            	 Date start=sdf.parse(webpro.getStartDate());
+            	 Date end=sdf.parse(webpro.getEndDate());
+            	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+            		 finalprice=finalprice*webpro.getDateDiscount();
+            	 }
             	
              }
              for(int j=0;j<hotelprolist.size();j++){
@@ -68,7 +73,12 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 }
             		 break;
             	 case"日期折扣":
-            		
+            		 Date start=sdf.parse(hotelpro.getStartDate());
+                	 Date end=sdf.parse(hotelpro.getEndDate());
+                	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+                		 finalprice=finalprice*hotelpro.getDateDiscount();
+                	 }
+                	
             		 break;
             	 }
              }

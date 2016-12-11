@@ -14,7 +14,7 @@ public class AlertBox {
 
     public void display( String message){
     	Stage window = new Stage();
-		 window.setTitle("错误提示");
+		 window.setTitle("系统提示");
 		    //modality要使用Modality.APPLICATION_MODEL
 		   
 		    window.setMinWidth(300);
