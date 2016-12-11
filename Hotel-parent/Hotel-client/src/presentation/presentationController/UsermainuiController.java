@@ -12,6 +12,7 @@ import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.impl.MemberLogicServiceImpl;
 import BusinessLogicService.impl.ReservationLogicServiceImpl;
+import Controller.MemberActController;
 import Controller.ReservationController;
 import Helper.InituiHelper;
 import Helper.LoginHelper;
@@ -177,6 +178,7 @@ public class UsermainuiController implements Initializable{
 		try {
 			MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
 			ReservationController.setMembervo(member);
+			MemberActController.setMembervo(member);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
