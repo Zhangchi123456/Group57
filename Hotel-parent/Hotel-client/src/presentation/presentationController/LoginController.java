@@ -9,9 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.LoginLogicService;
-import BusinessLogicService.Service.user.UserLogicService;
 import BusinessLogicService.impl.LoginLogicServiceImpl;
-import BusinessLogicService.impl.userbl.UserLogicServiceImp;
 import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;

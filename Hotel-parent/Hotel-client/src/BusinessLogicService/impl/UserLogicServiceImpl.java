@@ -3,16 +3,20 @@ package BusinessLogicService.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.UserDataService;
 import org.Hotel.common.po.HotelStaffPO;
+import org.Hotel.common.po.MemberPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.UserLogicService;
 import vo.HotelStaffVO;
+import vo.MemberVO;
 import vo.WebStaffVO;
 
 public class UserLogicServiceImpl implements UserLogicService{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
+	MemberDataService memberdata=(MemberDataService) RMIHelper.find("UserDataService");
 	
 	
 	@Override
@@ -105,6 +109,33 @@ public class UserLogicServiceImpl implements UserLogicService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		
+	}
+
+
+	@Override
+	public ArrayList<MemberVO> findMember() {
+//		try {
+//			ArrayList<MemberPO> list=memberdata.showAll();
+//			ArrayList<MemberVO> listvo=new ArrayList<>();
+//			for(MemberPO po:list){
+//				if(po!=null){
+//					MemberVO vo=new WebStaffVO(po);
+//					listvo.add(vo);
+//				}
+//			}
+//			return listvo;
+//		} catch (RemoteException e) {
+//			
+//			e.printStackTrace();
+//		}
+		return null;
+	}
+
+
+	@Override
+	public void saveMember(MemberVO vo) {
+		
 		
 	}
 	
