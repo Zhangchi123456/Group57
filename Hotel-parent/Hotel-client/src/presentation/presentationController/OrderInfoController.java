@@ -32,9 +32,10 @@ public class OrderInfoController implements Initializable {
 	private void ConfirmClicked(ActionEvent event){
 		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
 	    orderlogic.input(vo);
-	    AlertBox alt = new AlertBox();
-	    alt.display("订单生成成功");
+	   
 		UiswitchHelper.getApplication().goto_Usermainui();
+		AlertBox alt = new AlertBox();
+	    alt.display("订单生成成功");
 	}
 	
 	public void initialize(URL location, ResourceBundle resources) {

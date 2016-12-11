@@ -131,7 +131,8 @@ public class OrderVO {
         po.setStarttime(vo.starttime);
 	    po.setLeavetime(vo.leavetime);
 	    po.setDischargetime(vo.dischargetime);
-		  
+		po.setLasttime(lasttime);
+		
 		
 		if(havekids.equals("有")){
 		po.setHavekids(true);
