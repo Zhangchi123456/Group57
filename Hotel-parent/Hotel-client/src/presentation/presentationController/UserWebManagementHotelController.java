@@ -71,13 +71,12 @@ public class UserWebManagementHotelController implements Initializable{
     private void modifyButtonClicked(ActionEvent event){
     	staffSelected = FXCollections.observableArrayList();
     	staffSelected=table.getSelectionModel().getSelectedItems();
-    	
-    	nameText.setText(staffSelected.get(0).getName());
-    	PasswordText.setText(staffSelected.get(0).getPassword());
-    	hotel.setText(staffSelected.get(0).getHotelname());
-    	//clear
-    	newpassword.clear();
-    	ensurepassword.clear();
+    	if(!staffSelected.isEmpty()){
+    		nameText.setText(staffSelected.get(0).getName());
+    		PasswordText.setText(staffSelected.get(0).getPassword());
+    		hotel.setText(staffSelected.get(0).getHotelname());
+    	}
+    
     }
 	@FXML
 	private void ReturnClicked(ActionEvent event){

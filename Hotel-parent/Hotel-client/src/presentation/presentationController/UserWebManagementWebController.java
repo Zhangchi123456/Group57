@@ -74,12 +74,11 @@ public class UserWebManagementWebController implements Initializable{
     private void ModifyButtonClicked(ActionEvent event){
     	staffSelected = FXCollections.observableArrayList();
     	staffSelected=table.getSelectionModel().getSelectedItems();
-    	
+    	if(!staffSelected.isEmpty()){
     	NameText.setText(staffSelected.get(0).getName());
     	oldPassword.setText(staffSelected.get(0).getPassword());
-    	//clear
-    	password.clear();
-    	ensurePassword.clear();
+    	}
+    	
     }
     
 	@FXML

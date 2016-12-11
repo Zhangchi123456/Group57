@@ -10,6 +10,7 @@ import BusinessLogicService.Service.UserLogicService;
 import BusinessLogicService.impl.UserLogicServiceImpl;
 import vo.HotelStaffVO;
 import vo.MemberVO;
+import vo.WebStaffVO;
 import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,11 +33,11 @@ import presentation.userui.AlertBox;
 
 public class UserWebManagementController implements Initializable{
 	ObservableList<MemberVO> MemberVOs,staffSelected;
-//	UserLogicService userblservice =new UserLogicServiceImpl();
+	UserLogicService userblservice =new UserLogicServiceImpl();
 	@FXML
     private Label user;
     @FXML
-    private TextField NameText,MemberlevelText,PhonenumberText,CreditvalueText,membertype;
+    private TextField NameText,MemberlevelText,PhonenumberText,CreditValueText,membertype;
     @FXML
     private DatePicker BirthdayDatepicker;
     @FXML
@@ -47,21 +48,63 @@ public class UserWebManagementController implements Initializable{
     
 	@FXML
 	private void modifyButtonClicked(ActionEvent event){
-//		staffSelected = FXCollections.observableArrayList();
-//    	staffSelected=table.getSelectionModel().getSelectedItems();
-//    	//set member info
-//    	NameText.setText(staffSelected.get(0).getname());
-//    	MemberlevelText.setText(staffSelected.get(0).getlevel());
-//    	CreditvalueText.setText(String.valueOf(staffSelected.get(0).getcredit()));
-//    	PhonenumberText.setText(String.valueOf(staffSelected.get(0).getphonenumber()));
-//    	membertype.setText(String.valueOf(staffSelected.get(0).getproperty()));
-//    	BirthdayDatepicker.setValue(LocalDate.parse(staffSelected.get(0).getBirthday()));
+		staffSelected = FXCollections.observableArrayList();
+    	staffSelected=table.getSelectionModel().getSelectedItems();
+    	//set member info
+    	if(!staffSelected.isEmpty()){
+    		NameText.setText(staffSelected.get(0).getname());
+    		MemberlevelText.setText(staffSelected.get(0).getlevel());
+    		CreditValueText.setText(String.valueOf(staffSelected.get(0).getcredit()));
+    		//phone number exist
+    		if(staffSelected.get(0).getphonenumber()!=null){
+    			PhonenumberText.setText(String.valueOf(staffSelected.get(0).getphonenumber()));
+    		}
+    		membertype.setText(String.valueOf(staffSelected.get(0).getproperty()));
+    		BirthdayDatepicker.setValue(staffSelected.get(0).getbirthday());
+    	}
 	}
 	@FXML
 	private void SaveButtonClicked(ActionEvent event){
+		String phoneNum =PhonenumberText.getText().trim();
+		LocalDate birthday=BirthdayDatepicker.getValue();
 		
+		if(staffSelected.isEmpty())
+		{
+			return;
+		}
+		MemberVO vo=staffSelected.get(0);
+    	//edit phonenum and birthday
+		
+		//can't delete phone numbers
+    	if(phoneNum.length()==0&&birthday==null){
+    		return;
+    	}else if(birthday==null&&phoneNum.length()!=0){
+    		if(!phoneNum.equals(vo.getPhonenumber())){
+    			vo.setPhonenumber(phoneNum);
+    			userblservice.saveMember(vo);
+    			AlertBox alt = new AlertBox();
+    			alt.display("会员信息已保存");
+    		}
+    	}else if(birthday!=null&&phoneNum.length()==0){
+    		if(!birthday.equals(vo.getbirthday())){
+    			vo.setMemberbirthday(birthday);
+    			userblservice.saveMember(vo);
+    			AlertBox alt = new AlertBox();
+    			alt.display("会员信息已保存");
+    		}
+    	}else{
+    		if(!phoneNum.equals(vo.getPhonenumber())||!birthday.equals(vo.getbirthday())){
+    			vo.setPhonenumber(phoneNum);
+    			vo.setMemberbirthday(birthday);
+    			userblservice.saveMember(vo);
+    			AlertBox alt = new AlertBox();
+    			alt.display("会员信息已保存");
+    		}
+
+    	}
+    	
 	}
-	//jump to ui
+	//jump to other ui
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Loginui();;
@@ -80,37 +123,26 @@ public class UserWebManagementController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		user.setText(LoginHelper.getLogVO().getUsername());
-//		
-//		table.setItems(getMember());
-//		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-//		//table can only select one item
-//		table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		user.setText(LoginHelper.getLogVO().getUsername());
 		
-		
+		table.setItems(getMember());
+		nameColumn.setCellValueFactory(new PropertyValueFactory<>("membername"));
+		//table can only select one item
+		table.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 	
-//	private ObservableList getMember(){
-//        MemberVOs = FXCollections.observableArrayList();
-//        MemberVOs.clear();
-//        MemberVOs.retainAll();
-//        //get member vo from data layer
-//        ArrayList<MemberVO> list=userblservice.findMember();
-//        for(MemberVO vo:list){
-//        	MemberVOs.add(vo);
-//        }
-//        return MemberVOs;
-//    }
+	private ObservableList getMember(){
+        MemberVOs = FXCollections.observableArrayList();
+        //get member vo from data layer
+        ArrayList<MemberVO> list=userblservice.findMember();
+        for(MemberVO vo:list){
+        	MemberVOs.add(vo);
+        }
+        return MemberVOs;
+    }
 	
 	
 	
 }
-
-
-
-
-
-
-
 
 
