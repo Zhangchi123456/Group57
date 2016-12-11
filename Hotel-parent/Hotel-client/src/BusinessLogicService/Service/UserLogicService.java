@@ -15,6 +15,9 @@ public interface UserLogicService {
 	//hotel staff
 	public ArrayList<HotelStaffVO> findHotelStaff();
 	public void saveHotelStaff(HotelStaffVO vo);
+	//member
+	public ArrayList<MemberVO> findMember();
+	public void saveMember(MemberVO vo);
 	
 		
 

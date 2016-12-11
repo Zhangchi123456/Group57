@@ -18,7 +18,7 @@ public class UserLogicServiceImp implements UserLogicService{
 	@Override
 	public boolean hasLogin(String name) {
 		
-			
+		
 		return false;
 	}
 
