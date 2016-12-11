@@ -2,6 +2,7 @@ package presentation.presentationController;
 
 import java.net.URL;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javax.swing.plaf.synth.SynthSpinnerUI;
@@ -61,6 +62,9 @@ public class CreatorderController implements Initializable{
     	}else if(!reservationService.roomleft(ReservationController.getCurrentHotelvo(), orderService.findUserOrderListHotel(ReservationController.getCurrentHotelvo().getName()),TimeBegin.getValue(),TimeEnd.getValue(),Integer.parseInt(RoomnumText.getText().toString()), RoomType.getValue().toString())){
     		AlertBox alt2 = new AlertBox();
 			alt2.display("抱歉，无房间剩余");
+    	}else if(TimeBegin.getValue().isBefore(LocalDate.now())){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("抱歉，无法预订今天之前的房间");
     	}
     	else{
     	OrderVO vo = new OrderVO();
