@@ -45,6 +45,9 @@ public class CreatorderController implements Initializable{
     	}else if(!Isdateright()){
     		AlertBox alt2 = new AlertBox();
 			alt2.display("日期选择错误");
+    	}else if(TimeBegin.getValue().getDayOfYear()==TimeEnd.getValue().getDayOfYear()){
+    		AlertBox alt2 = new AlertBox();
+			alt2.display("无法当天入住当天离开");
     	}else{
     	OrderVO vo = new OrderVO();
     	
