@@ -44,7 +44,7 @@
                               <Font size="21.0" />
                            </font>
                         </RadioButton>
-                        <RadioButton fx:id="allcredit" mnemonicParsing="false" prefHeight="59.0" prefWidth="198.0" text="恢复所有信用值">
+                        <RadioButton fx:id="allcredit" mnemonicParsing="false" prefHeight="59.0" prefWidth="198.0" selected="true" text="恢复所有信用值">
                            <font>
                               <Font size="21.0" />
                            </font>
