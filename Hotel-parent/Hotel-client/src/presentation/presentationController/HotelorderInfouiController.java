@@ -45,6 +45,7 @@ public class HotelorderInfouiController implements Initializable{
 	@FXML
 	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State,SingleRoom,StandardRoom,FamilyRoom,SuiteRoom,singlenumber,standardnumber,familynumber,suitenumber;//订单持有者
 	
+	@SuppressWarnings("rawtypes")
 	@FXML
 	private ChoiceBox Statetx;//更改订单状态
      
@@ -57,7 +58,6 @@ public class HotelorderInfouiController implements Initializable{
 	OrderVO ordervo = ser.orderShowAll(orderid);
 
 	
-	@SuppressWarnings("unchecked")
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
 			
