@@ -93,7 +93,11 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		//info
 		int id=po.getId();
 		int peoplenum=po.getPeoplenum();
-		boolean havekids=po.isHavekids();
+		boolean havekids1=po.isHavekids();
+		int havekids=0;
+		if(havekids1){
+			havekids=1;
+		}
 		double price=po.getPrice();
 		double grade=po.getGrade();
 		
@@ -105,6 +109,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		String starttime=po.getStarttime();
 		String endtime=po.getLeavetime();
 		String lasttime=po.getLasttime();
+		
 		String dischargetime=po.getDischargetime();
 		//room
 		int singleRoom=po.getSingleRoom();
@@ -112,7 +117,7 @@ public class OrderDataMysqlHelper implements OrderDataHelper {
 		int familyRoom=po.getFamilyRoom();
 		int suiteRoom=po.getSuiteRoom();
 		
-		String query="INSERT INTO member(hotel_name,member_name,start_time,end_time,last_time,"
+		String query="INSERT INTO order1(hotel_name,member_name,start_time,end_time,last_time,"
 				+"remove_time,people_num,have_kids,single_room,standard_room,family_room"
 				+",suite_room,status,comment,score) VALUE("
 				

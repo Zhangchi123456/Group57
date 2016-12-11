@@ -90,7 +90,7 @@ public class businesspartneruiController implements Initializable{
 		PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		HotelPromotionVO vo;
 		String hotel_name = HotelmanageController.getHotelVO().getName();
-		String name = "企业特惠";
+		String name = "企业折扣";
 		vo = promotion.getHotelPromotion(hotel_name,name);
 		id = vo.getId();
 		double discount = vo.getEnterpriceDiscount()*100;

@@ -74,7 +74,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 				 "name="+"'"+name+"',"+
 				 "phone_num="+"'"+phoneNums+"',"+
 				 "password="+"'"+password+"',"+
-				 "birthbday="+"'"+birthday+"',"+
+				 "birthday="+"'"+birthday+"',"+
 				 "level="+"'"+level+"',"+
 				 "credit="+"'"+credit+"' "+
 				 "WHERE id='"+id+"'";

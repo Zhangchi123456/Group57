@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -80,7 +81,7 @@
          <top>
             <HBox spacing="120.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label text="用户名">
+                  <Label fx:id="user" text="用户名">
                      <HBox.margin>
                         <Insets left="30.0" top="40.0" />
                      </HBox.margin>
@@ -88,12 +89,13 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font size="18.0" />
+                        <Font size="22.0" />
                      </font>
                   </Label>
+                  <Region prefHeight="89.0" prefWidth="539.0" />
                   <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="46.0" prefWidth="94.0" text="登出">
                      <HBox.margin>
-                        <Insets left="600.0" top="40.0" />
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="35.0" />
                      </HBox.margin>
                      <font>
                         <Font size="20.0" />
@@ -106,28 +108,40 @@
             </HBox>
          </top>
          <center>
-            <SplitPane dividerPositions="0.42289719626168226" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.16238317757009346" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <TableView fx:id="MemberTable" prefHeight="359.0" prefWidth="221.0" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn fx:id="Memberid" prefWidth="167.0" sortable="false" text="用户ID" />
-                            <TableColumn fx:id="Membername" prefWidth="251.0" sortable="false" text="用户名" />
-                          </columns>
-                           <padding>
-                              <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
-                           </padding>
-                        </TableView>
+                        <VBox prefHeight="520.0" prefWidth="136.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="table" prefHeight="484.0" prefWidth="136.0">
+                                <columns>
+                                  <TableColumn fx:id="nameColumn" prefWidth="120.0" sortable="false" text="姓名" />
+                                </columns>
+                                 <padding>
+                                    <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
+                                 </padding>
+                              </TableView>
+                              <HBox>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Region prefHeight="0.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="22.0" prefWidth="60.0" text="修改" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="389.0" prefWidth="393.0">
                      <children>
                         <GridPane layoutY="-9.0" prefHeight="364.0" prefWidth="443.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-9.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="92.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="198.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="149.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="182.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="326.0" minWidth="10.0" prefWidth="236.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="288.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -136,11 +150,13 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label prefHeight="29.0" prefWidth="98.0" text="    姓名：">
+                              <Label prefHeight="29.0" prefWidth="98.0" text="姓名：" GridPane.rowIndex="1">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                                  <font>
                                     <Font size="17.0" />
@@ -151,32 +167,32 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label GridPane.rowIndex="4">
+                              <Label GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="NameText" prefHeight="30.0" prefWidth="179.0" GridPane.columnIndex="1">
+                              <TextField fx:id="NameText" editable="false" prefHeight="30.0" prefWidth="179.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="MemberlevelText" prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <TextField fx:id="MemberlevelText" editable="false" prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="PhonenumberText" prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <TextField fx:id="PhonenumberText" prefHeight="30.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <TextField fx:id="CreditValueText" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <TextField fx:id="CreditValueText" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <DatePicker fx:id="BirthdayDatepicker" prefHeight="30.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <DatePicker fx:id="BirthdayDatepicker" prefHeight="30.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -184,26 +200,6 @@
                               <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
                                  <children>
                                     <HBox prefHeight="100.0" prefWidth="156.0" />
-                                    <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" />
-                                    <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
-                                       <padding>
-                                          <Insets left="10.0" />
-                                       </padding>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" />
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
                                        <padding>
                                           <Insets left="10.0" />
@@ -231,32 +227,84 @@
                                     </HBox>
                                  </children>
                               </VBox>
-                              <Label prefHeight="29.0" prefWidth="98.0" text="  会员等级:" GridPane.rowIndex="1">
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" />
+                                    <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0">
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Label prefHeight="29.0" prefWidth="98.0" text="会员等级:" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
                               </Label>
-                              <Label prefHeight="29.0" prefWidth="98.0" text="  联系方式：" GridPane.rowIndex="2">
+                              <Label prefHeight="29.0" prefWidth="98.0" text="联系方式：" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
                               </Label>
-                              <Label prefHeight="29.0" prefWidth="98.0" text="    生日：" GridPane.rowIndex="3">
+                              <Label prefHeight="29.0" prefWidth="98.0" text="生日：" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
                               </Label>
-                              <Label prefHeight="29.0" prefWidth="98.0" text="    信用值：" GridPane.rowIndex="4">
+                              <Label prefHeight="29.0" prefWidth="98.0" text="信用值：" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Button>
+                              <Label text="修改会员信息">
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="10.0" layoutY="102.0" prefHeight="29.0" prefWidth="98.0" text="会员类型：" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </GridPane.margin>
+                              </Label>
+                              <TextField fx:id="membertype" editable="false" layoutX="195.0" layoutY="90.0" prefHeight="0.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
                         </GridPane>
                      </children>
                   </AnchorPane>
