@@ -45,6 +45,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		boolean tem = false;
 		  try {
 			 tem =ser.insert(VO.toOrderPO(VO));
+			 System.out.println(VO.getLasttime());
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
