@@ -47,16 +47,13 @@ public class UserLogicServiceImpl implements UserLogicService{
 
 	@Override
 	public boolean findWebStaffBYName(String name) {
-//		System.out.println(name);
 		WebStaffPO po=null;
 		try {
 			po=userdata.findByWebStaff(name);
-			System.out.println("name"+po.getName()+"passwrod"+po.getPassword());
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(po.getName().length()==0){
+		if(po==null){
 			return false;
 		}else 
 			return true;
