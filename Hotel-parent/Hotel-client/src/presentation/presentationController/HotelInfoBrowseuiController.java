@@ -51,8 +51,8 @@ public class HotelInfoBrowseuiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	hotelvo=ReservationController.getCurrentHotelvo();
-	/*ArrayList<WebPromotionVO> weblist=reservationService.showall();
-	ReservationController.setWebpromotionvolist(weblist);*/
+	ArrayList<WebPromotionVO> weblist=reservationService.showall();
+	ReservationController.setWebpromotionvolist(weblist);
 	try {
 		ArrayList<HotelPromotionVO> prolist=reservationService.findhotelpro(hotelvo.getName());
 		ReservationController.setHotelproList(prolist);

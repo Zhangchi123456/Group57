@@ -26,7 +26,7 @@ import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
-    PromotionLogicService promotionService;
+    PromotionLogicService promotionService=new PromotionLogicServiceImpl();
     OrderLogicService orderService=new OrderLogicServiceImpl();
     public ArrayList<String> getallcity() throws RemoteException{
     	return hotelservice.cityShowAll();
