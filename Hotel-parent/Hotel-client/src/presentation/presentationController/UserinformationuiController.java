@@ -59,7 +59,7 @@ public class UserinformationuiController implements Initializable{
     		 try {
 				if(memberService.updateMemberinfo(membervo)){
 					 AlertBox alt = new AlertBox();
-						alt.display("保存成功");
+						alt.display("保存成功,请退出系统重新登录");
 				 }else{
 					 AlertBox alt = new AlertBox();
 						alt.display("保存失败，请重试");
