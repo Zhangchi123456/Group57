@@ -178,31 +178,33 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	}
 	// return all roominfo
 	public Map<Integer, RoomPO> getRoomData() {
-//		Map<Integer, RoomPO> map=new HashMap<Integer,RoomPO>();
-//		String query="SELECT * FROM room";
-//		//try{
-//			db=Database.getInstance();
-//			ResultSet roomrs=db.select(query);
-//			
-//			//while(roomrs.next()){
-//				//room info
-//				//int id=roomrs.getInt("id");
-//				//String roomtype=roomrs.getString("type");
-//				//get hotelname 
-//				//int hotelid=roomrs.getInt("hotel_id");
-//				//String hotelname=getHotelName(db,hotelid);
-//				
-//				//RoomPO roompo=new RoomPO(roomtype, int roomnum, int roomid, double price, String hotelid) {
-//				
-//				
-//				
-//			}//end while
-//			return map;
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}finally{
-//			db.close();
-//		}
+		db=Database.getInstance();
+		Map<Integer, RoomPO> map=new HashMap<Integer,RoomPO>();
+		String query="SELECT * FROM room";
+		try{
+			db=Database.getInstance();
+			ResultSet roomrs=db.select(query);
+			
+			while(roomrs.next()){
+				//room info
+				int id=roomrs.getInt("id");
+				int orderid=roomrs.getInt("order_id");
+				String roomtype=roomrs.getString("type");
+				String roomstate=roomrs.getString("state");
+				String hotelname=roomrs.getString("hotel_name");
+				//time
+				String starttime=roomrs.getString("start_time");
+				String leavetime=roomrs.getString("leave_time");
+				
+				RoomPO po=new RoomPO(roomtype,id, hotelname, roomstate,starttime, leavetime, orderid);
+				map.put(id, po);
+			}//end while
+			return map;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 		return null;
 	}//end getRoomData
 	
@@ -210,12 +212,37 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 	 * system have no such feature
 	 */
 			
-	public void updateRoomData(RoomPO roompo) {
-	}
+	public void updateRoomData(RoomPO po) {
+		db=Database.getInstance();
+		String state=po.getRoomstate();
+		String starttime=po.getStarttime();
+		String leavetime=po.getLeavetime();
+		int orderid=po.getOrderid();
+		String query="UPDATE room SET state="+"'"+state+"',"
+				+ "start_time="+"'"+starttime+"',"
+				 + "leave_time="+"'"+leavetime+"',"
+				 + "order_id="+"'"+orderid+"'";
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}		
+	}//end update
 
-	public void insertRoomData(RoomPO roompo) {
+	public void insertRoomData(RoomPO po) {
+		db=Database.getInstance();
+		String hotelName=po.getHotelid();
+		String type=po.getRoomtype();
+		
+		String query="INSERT INTO room(hotel_name,type,state) VALUE("
+				+"'"+ hotelName+"',"
+				+"'"+ type+"',"
+				+"'不可用'"
+				+")";
 	}
-
+	//room don't have to delete
 	public void deleteRoomData(RoomPO roompo) {
 	}
 

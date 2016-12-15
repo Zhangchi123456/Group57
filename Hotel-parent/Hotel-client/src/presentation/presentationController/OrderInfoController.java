@@ -2,11 +2,15 @@ package presentation.presentationController;
 
 
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
 import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.MemberActController;
@@ -19,6 +23,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.CreditRecordVO;
 import vo.OrderVO;
 
 public class OrderInfoController implements Initializable {
@@ -33,7 +38,22 @@ public class OrderInfoController implements Initializable {
 		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
 		vo.setState("未执行订单");
 	    orderlogic.input(vo);
-	   
+	    MemberLogicService memberservice=new MemberLogicServiceImpl();
+	    CreditRecordVO credit=new CreditRecordVO();
+		credit.setOrderid(vo.getId());
+		credit.membername=ReservationController.getMembervo().getMembername();
+		try {
+			if(memberservice.addCreditRecord(credit)){
+				System.out.println("succeed");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		UiswitchHelper.getApplication().goto_Usermainui();
 		AlertBox alt = new AlertBox();
 	    alt.display("订单生成成功");
@@ -71,7 +91,6 @@ public class OrderInfoController implements Initializable {
 	TimeBegin.setText(vo.getStarttime());
 	TimeEnd.setText(vo.getLeavetime());
 	TotalpriceLabel.setText(vo.getPrice());
-	
 	}
 	
 }
