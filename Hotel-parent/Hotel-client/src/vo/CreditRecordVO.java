@@ -13,6 +13,7 @@ public class CreditRecordVO {
     public String time;
     public String creditchange;
     public String creditlast;
+    public String membername;
     
     public CreditRecordVO(){
     	
@@ -29,12 +30,13 @@ public class CreditRecordVO {
     public CreditPO ToCreditpo() throws ParseException{
     	CreditPO cred=new CreditPO();
     	cred.setAction(action);
-    	
+    	if(creditlast!=null){
     	cred.setCredit(Integer.parseInt(creditlast));
+    	}
     	cred.setId(Integer.parseInt(orderid));
     	
     	cred.setTime(time);
-    	
+    	cred.setName(membername);
     	return cred;
     }
 	/**

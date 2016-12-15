@@ -13,4 +13,6 @@ public interface MemberLogicService {
         public MemberVO Findmemberbyname(String name) throws RemoteException;
         public ArrayList<MemberVO> showall()throws RemoteException;
         public ArrayList<CreditRecordVO> FindCreditbyname(String name) throws RemoteException, ParseException;
+        
+        public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException;
 }
