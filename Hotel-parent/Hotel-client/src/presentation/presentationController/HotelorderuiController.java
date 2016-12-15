@@ -61,7 +61,7 @@ public class HotelorderuiController implements Initializable{
 	@FXML
 	private void CheckClicked(ActionEvent event) throws IOException{
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
-		  
+		temp=table.getItems();
 	    Orderid = temp.get(selectnumber).getOrdernum();
 	    
 		UiswitchHelper.getApplication().goto_ordeinfoui();

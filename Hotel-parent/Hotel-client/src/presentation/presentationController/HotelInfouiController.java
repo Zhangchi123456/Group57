@@ -49,17 +49,36 @@ public class HotelInfouiController implements Initializable{
 			alt.display("信息填写不全");
 		}else{
 
+			int instar=0;
 			hotelstar=HotelStar.getValue().toString();
 			hoteldescription=HotelDescription.getText();
 			hoteladdress=HotelAddress.getText();
 			
-			hotelvo.setStar(Integer.parseInt(hotelstar));
+			if(hotelstar.equals("一星")){
+				instar=1;
+			}
+			if(hotelstar.equals("二星")){
+				instar=2;
+			}
+			if(hotelstar.equals("三星")){
+				instar=3;
+			}
+			if(hotelstar.equals("四星")){
+				instar=4;
+			}
+			if(hotelstar.equals("五星")){
+				instar=5;
+			}
+			hotelvo.setStar(instar);
 			hotelvo.setAdsress(hoteladdress);
 			hotelvo.setIntroduction(hoteldescription);
 			
 			HotelmanageController.setHotelvo(hotelvo);
 			try {
-				hser.changeHotelInfo(hotelvo);
+				if(hser.changeHotelInfo(hotelvo)==true){
+					AlertBox alt2 = new AlertBox();
+					alt2.display("保存成功！");
+				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

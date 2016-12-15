@@ -30,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.HotelorderuiController.SimpleHotelOrder;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
+import presentation.userui.AlertBox;
 import vo.OrderVO;
 import vo.RoomVO;
 import javafx.scene.control.TableView;
@@ -63,7 +64,7 @@ public class HotelroomInfouiController implements Initializable{
 	@FXML
 	private void okButtonClicked(ActionEvent event){
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
-		
+		temp=table.getItems();
 		String room_id = temp.get(selectnumber).getRoomnum();
 		int roomid = Integer.parseInt(room_id);
 		RoomVO vo;
@@ -74,13 +75,25 @@ public class HotelroomInfouiController implements Initializable{
 			int orderid = vo.getOrderid();
 			ordervo = oser.orderShowAll(orderid);
 			if(vo.getRoomtype().equals("单人房"))
-			    hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime());
+			    if(hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime())==true){
+			    	AlertBox alt1 = new AlertBox();
+					alt1.display("退房成功！");
+			    }
 			if(vo.getRoomtype().equals("标准间"))
-				hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime());
+				if(hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime())==true){
+					AlertBox alt2 = new AlertBox();
+					alt2.display("退房成功！");
+				}
 			if(vo.getRoomtype().equals("家庭房"))
-				hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime());
+				if(hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime())==true){
+					AlertBox alt3 = new AlertBox();
+					alt3.display("退房成功！");
+				}
 			if(vo.getRoomtype().equals("套间"))
-				hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime());
+				if(hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime())==true){
+					AlertBox alt4 = new AlertBox();
+					alt4.display("退房成功！");
+				}
 			temp.get(selectnumber).setState(vo.getRoomstate());
 			temp.get(selectnumber).setLast(vo.getLeavetime());
 		} catch (RemoteException e) {
