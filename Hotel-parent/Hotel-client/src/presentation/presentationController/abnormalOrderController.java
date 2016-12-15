@@ -75,13 +75,7 @@ public class abnormalOrderController implements Initializable{
 				creditvo.membername=membervo.getname();
 				creditvo.creditlast=String.valueOf(membervo.getcredit());
 				creditvo.orderid=orderlist.get(selectnumber).getId();
-				memberlogic.addCreditRecord(creditvo);
-				
-				
-				
-				
-				
-				
+				memberlogic.addCreditRecord(creditvo);					
 				memberlogic.updateMemberinfo(membervo);
 				alt.display("更改成功");
 				orderlist=am.orderShowAllByStation("异常订单");
@@ -109,6 +103,7 @@ public class abnormalOrderController implements Initializable{
 				creditvo.orderid=orderlist.get(selectnumber).getId();
 				memberlogic.addCreditRecord(creditvo);
 				memberlogic.updateMemberinfo(membervo);
+				boolean a =am.changeOrderStation(orderlist.get(selectnumber).getId(),"已撤销订单");
 				alt.display("更改成功");
 				orderlist=am.orderShowAllByStation("异常订单");
 				 if(orderlist!=null);
