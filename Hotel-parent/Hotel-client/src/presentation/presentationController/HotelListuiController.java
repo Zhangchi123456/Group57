@@ -49,7 +49,17 @@ public class HotelListuiController implements Initializable{
         UiswitchHelper.getApplication().goto_Usermainui();
     }
     @FXML
-    private void CreatOrderClicked(ActionEvent event){
+    private void CreatOrderClicked(ActionEvent event) throws RemoteException{
+    	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
+    	if(ReservationCheckbox.isSelected()){
+    		ObservableList<SimpleHotel> list=Hoteltable.getItems();
+    		String name=list.get(selectnumber).getHotel();
+    		HotelVO hotelVO=reservationService.findbyname(name);
+    		ReservationController.setHotelvo(hotelVO);
+    	}else{
+    		HotelVO currenthotel=ReservationController.getHotelvolist().get(selectnumber);
+    		ReservationController.setHotelvo(currenthotel);
+    	}
         UiswitchHelper.getApplication().goto_OrderinputUi();
     }
   @FXML

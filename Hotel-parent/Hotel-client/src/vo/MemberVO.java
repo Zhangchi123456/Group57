@@ -80,6 +80,7 @@ public class MemberVO {
     	this.memberlevel=String.valueOf(po.getLevel());
     	this.membername=po.getName();
     	this.phonenumber=po.getConnection();
+    	this.password=po.getPassword();
     	if(po.isEnterprise()){
     		this.memberproperty="企业会员";
     	}else{
