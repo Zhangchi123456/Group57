@@ -42,7 +42,7 @@ public class CreditChargeController implements Initializable{
     		Chargenum=ChargenumText.getText().toString();
     		try {
 				vo=memberlogic.Findmemberbyname(Username);
-				vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum));
+				vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum)*100);
 				memberlogic.updateMemberinfo(vo);
 				AlertBox alt = new AlertBox();
 				alt.display("充值成功");

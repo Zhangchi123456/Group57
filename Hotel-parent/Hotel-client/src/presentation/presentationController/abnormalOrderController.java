@@ -2,6 +2,7 @@ package presentation.presentationController;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import presentation.userui.AlertBox;
+import vo.CreditRecordVO;
 import vo.MemberVO;
 import vo.OrderVO;
 
@@ -64,8 +66,22 @@ public class abnormalOrderController implements Initializable{
 		else if(halfcredit.isSelected()){
 			try {
 				membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-				int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())/2+membervo.getMembercreditvalue();
+				int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*5+membervo.getMembercreditvalue();
 				membervo.setMembercreditvalue(credit);
+				CreditRecordVO creditvo=new CreditRecordVO();
+				creditvo.action="异常订单撤销";
+				creditvo.creditchange=String.valueOf(credit);
+				creditvo.time=LocalDate.now().toString();
+				creditvo.membername=membervo.getname();
+				creditvo.creditlast=String.valueOf(membervo.getcredit());
+				creditvo.orderid=orderlist.get(selectnumber).getId();
+				memberlogic.addCreditRecord(creditvo);
+				
+				
+				
+				
+				
+				
 				memberlogic.updateMemberinfo(membervo);
 				alt.display("更改成功");
 				orderlist=am.orderShowAllByStation("异常订单");
@@ -82,8 +98,16 @@ public class abnormalOrderController implements Initializable{
 		else if(allcredit.isSelected()){
 			try {
 				membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-				int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())+membervo.getMembercreditvalue();
+				int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*10+membervo.getMembercreditvalue();
 				membervo.setMembercreditvalue(credit);
+				CreditRecordVO creditvo=new CreditRecordVO();
+				creditvo.action="异常订单撤销";
+				creditvo.creditchange=String.valueOf(credit);
+				creditvo.time=LocalDate.now().toString();
+				creditvo.membername=membervo.getname();
+				creditvo.creditlast=String.valueOf(membervo.getcredit());
+				creditvo.orderid=orderlist.get(selectnumber).getId();
+				memberlogic.addCreditRecord(creditvo);
 				memberlogic.updateMemberinfo(membervo);
 				alt.display("更改成功");
 				orderlist=am.orderShowAllByStation("异常订单");
