@@ -5,8 +5,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -106,14 +106,11 @@
             </HBox>
          </top>
          <center>
-            <SplitPane dividerPositions="0.20451127819548873" prefHeight="467.0" prefWidth="853.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.004700352526439483" prefHeight="467.0" prefWidth="853.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <TableView prefHeight="442.0" prefWidth="170.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn prefWidth="174.0" text="酒店名" />
-                          </columns>
                            <padding>
                               <Insets bottom="8.0" left="2.0" right="2.0" top="2.0" />
                            </padding>
@@ -123,23 +120,26 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="642.0">
                      <children>
-                        <GridPane layoutX="7.0" prefHeight="546.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
+                        <GridPane alignment="CENTER_RIGHT" hgap="8.0" layoutX="7.0" prefHeight="546.0" prefWidth="643.0" vgap="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="96.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="144.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="160.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="247.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="95.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="196.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="101.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="191.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="187.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label prefHeight="32.0" prefWidth="80.0" text="酒店名称：">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="84.0" text="酒店名称：">
                                  <GridPane.margin>
-                                    <Insets left="10.0" />
+                                    <Insets />
                                  </GridPane.margin>
                                  <font>
                                     <Font size="16.0" />
@@ -150,67 +150,73 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="HotelnameText" editable="false" prefHeight="30.0" prefWidth="119.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                              <TextField fx:id="HotelnameText" editable="false" prefHeight="30.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                               </TextField>
-                              <HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="2">
-                                 <padding>
-                                    <Insets bottom="10.0" left="50.0" top="25.0" />
-                                 </padding>
-                                 <GridPane.margin>
-                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                 </GridPane.margin>
-                                 <children>
-                                    <Label text="具体地址:">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="20.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Label prefHeight="28.0" prefWidth="77.0" text="   城市 ：" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
                               <ChoiceBox fx:id="CityChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" prefWidth="149.0" text="              商圈  ：" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <padding>
-                                    <Insets left="8.0" />
-                                 </padding>
+                              <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" prefWidth="149.0" text="商圈  ：" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="229.0" layoutY="147.0" prefHeight="19.0" prefWidth="90.0" text="   星级：" GridPane.rowIndex="2">
-                                 <padding>
-                                    <Insets left="8.0" />
-                                 </padding>
+                              <Label layoutX="229.0" layoutY="147.0" prefHeight="19.0" prefWidth="90.0" text="星级：" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <ChoiceBox fx:id="StarChoicebox" layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <ChoiceBox fx:id="StarChoicebox" layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <ChoiceBox fx:id="BusinessChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="AdressText" prefHeight="30.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label prefHeight="30.0" prefWidth="149.0" text="城市 ：" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="19.0" prefWidth="90.0" text="具体地址：" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="30.0" prefWidth="149.0" text="单人房 ：" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="30.0" prefWidth="149.0" text="家庭房 ：" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="30.0" prefWidth="149.0" text="标准间 ：" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label prefHeight="30.0" prefWidth="149.0" text="套间 ：" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="single1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" />
+                              <TextField fx:id="single2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" />
+                              <TextField fx:id="triple1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="double1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="dobule2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField fx:id="triple2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <TextField fx:id="square1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="square2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <Label prefHeight="30.0" prefWidth="149.0" text="简介 ：" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <AnchorPane prefHeight="92.0" prefWidth="155.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                  <children>
-                                    <HBox prefHeight="34.0" prefWidth="262.0" />
-                                    <HBox prefHeight="121.0" prefWidth="216.0" spacing="10.0">
-                                       <padding>
-                                          <Insets top="25.0" />
-                                       </padding>
-                                    </HBox>
+                                    <TextArea fx:id="introduction" layoutY="85.0" prefHeight="143.0" prefWidth="390.0" AnchorPane.bottomAnchor="-70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-197.0" AnchorPane.topAnchor="0.0" />
                                  </children>
-                              </VBox>
-                              <ChoiceBox fx:id="BusinessChoicebox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="AdressText" prefHeight="26.0" prefWidth="151.0" GridPane.columnIndex="3" />
+                              </AnchorPane>
                            </children>
                         </GridPane>
                      </children>
@@ -222,8 +228,6 @@
             <HBox alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="987.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <Button mnemonicParsing="false" onAction="#AddHotelStuffButtonClicked" prefHeight="15.0" prefWidth="180.0" text="添加酒店工作人员" />
-                  <Button mnemonicParsing="false" onAction="#AddRoomClicked" prefHeight="15.0" prefWidth="180.0" text="添加房间" />
-                  <Button mnemonicParsing="false" onAction="#AddIntroductionClicked" prefHeight="15.0" prefWidth="180.0" text="添加简介" />
                   <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="15.0" prefWidth="180.0" text="保存酒店信息" />
                </children>
                <BorderPane.margin>

@@ -237,9 +237,9 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 		String action=creditpo.getAction();
 		String name=creditpo.getName();
 		
-		String query="INSERT INTO credit_record(time,member_name,action,credit,credit_change,order_id"
-				+" VALUE("
-				+ "'"+time+"',"+
+		String query="INSERT INTO credit_record(time,member_name,action,credit,credit_change,order_id)"
+				+" VALUE("+ 
+				"'"+time+"',"+
 				"'"+name+"',"+
 				"'"+action+"',"+
 				"'"+credit+"',"+

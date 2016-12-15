@@ -67,7 +67,6 @@ public class UserWebManagementWebController implements Initializable{
 //			password.clear();
 //			ensurePassword.clear();
     	}
-    	
     }
     
     @FXML
