@@ -39,7 +39,7 @@
       <TableView fx:id="table" prefHeight="400.0" prefWidth="800.0" GridPane.columnSpan="6" GridPane.rowIndex="2" GridPane.rowSpan="6">
         <columns>
           <TableColumn fx:id="OrderNum" minWidth="300.0" prefWidth="75.0" text="订单编号" />
-          <TableColumn fx:id="OrderInfo" minWidth="300.0" prefWidth="75.0" text="订单信息" />
+          <TableColumn fx:id="OrderInfo" minWidth="300.0" prefWidth="75.0" text="实际入住人数" />
             <TableColumn fx:id="State" minWidth="200.0" prefWidth="25.0" text="订单状态" />
         </columns>
       </TableView>

@@ -29,12 +29,13 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	UserDataService uds;
 	MemberDataService mds;
 	
+	HotelVO hotelvo = new HotelVO();
+	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException {
 		
 		uds = (UserDataService) RMIHelper.find("UserDataService");
 		hds = (HotelDataService) RMIHelper.find("HotelDataService");
-		HotelVO hotelvo = new HotelVO();
 		
 		HotelStaffPO po = uds.findByHotelStaff(name);
 		String hotelname = po.getHotelName();
@@ -68,9 +69,13 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		boolean info = false;
 		
-		HotelmanageController.getRoomVO().setRoomtype(type);
+		RoomVO roomvo = new RoomVO();
+		RoomPO roompo = hds.FindroombyID(Integer.parseInt(roomid));
 		
-		info = hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO( HotelmanageController.getRoomVO()));
+		roomvo.setRoomPO(roompo);
+		roomvo.setRoomtype(type);
+		
+		info = hds.updateRoom(roomvo.toRoomPO(roomvo));
 		
 		return info;
 	}
@@ -82,7 +87,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		boolean info = false;
 		
-		info = hds.insert(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()));
+		info = hds.insert(vo.Tohotelpo(vo));
 		
 		return info;
 	}
@@ -95,7 +100,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		boolean info = false;
 		
-		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()));
+		info = hds.update(vo.Tohotelpo(vo));
 		
 		return info;
 	}
@@ -107,23 +112,23 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		boolean info = false;
 		
-		int new_singleRoom = HotelmanageController.getHotelVO().getLeftSingleRoom()-singleRoom;
-		int new_standardRoom = HotelmanageController.getHotelVO().getLeftStandardRoom()-standardRoom;
-		int new_familyRoom = HotelmanageController.getHotelVO().getLeftFamilyRoom()-familyRoom;
-		int new_suiteRoom = HotelmanageController.getHotelVO().getLeftSuiteRoom()-suiteRoom;
+		int new_singleRoom = hotelvo.getLeftSingleRoom()-singleRoom;
+		int new_standardRoom = hotelvo.getLeftStandardRoom()-standardRoom;
+		int new_familyRoom = hotelvo.getLeftFamilyRoom()-familyRoom;
+		int new_suiteRoom = hotelvo.getLeftSuiteRoom()-suiteRoom;
 		
 		RoomVO roomvo = FindRoomByID(roomid);
 		
-		HotelmanageController.getHotelVO().setLeftSingleRoom(new_singleRoom);
-		HotelmanageController.getHotelVO().setLeftStandardRoom(new_standardRoom);
-		HotelmanageController.getHotelVO().setLeftFamilyRoom(new_familyRoom);
-		HotelmanageController.getHotelVO().setLeftSuiteRoom(new_suiteRoom);		
+		hotelvo.setLeftSingleRoom(new_singleRoom);
+		hotelvo.setLeftStandardRoom(new_standardRoom);
+		hotelvo.setLeftFamilyRoom(new_familyRoom);
+		hotelvo.setLeftSuiteRoom(new_suiteRoom);		
 		roomvo.setStarttime(starttime);
 		roomvo.setLeavetime(leavetime);
 		roomvo.setOrderid(orderid);
 		
 		
-		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()))&&hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO(roomvo));
+		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
 		
 		return info;
 	}
@@ -135,21 +140,21 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		boolean info = false;
 		
-		int new_singleRoom = HotelmanageController.getHotelVO().getLeftSingleRoom()+singleRoom;
-		int new_standardRoom = HotelmanageController.getHotelVO().getLeftStandardRoom()+standardRoom;
-		int new_familyRoom = HotelmanageController.getHotelVO().getLeftFamilyRoom()+familyRoom;
-		int new_suiteRoom = HotelmanageController.getHotelVO().getLeftSuiteRoom()+suiteRoom;
+		int new_singleRoom = hotelvo.getLeftSingleRoom()+singleRoom;
+		int new_standardRoom = hotelvo.getLeftStandardRoom()+standardRoom;
+		int new_familyRoom = hotelvo.getLeftFamilyRoom()+familyRoom;
+		int new_suiteRoom = hotelvo.getLeftSuiteRoom()+suiteRoom;
 		
 		RoomVO roomvo = FindRoomByID(roomid);
 		
-		HotelmanageController.getHotelVO().setLeftSingleRoom(new_singleRoom);
-		HotelmanageController.getHotelVO().setLeftStandardRoom(new_standardRoom);
-		HotelmanageController.getHotelVO().setLeftFamilyRoom(new_familyRoom);
-		HotelmanageController.getHotelVO().setLeftSuiteRoom(new_suiteRoom);		
+		hotelvo.setLeftSingleRoom(new_singleRoom);
+		hotelvo.setLeftStandardRoom(new_standardRoom);
+		hotelvo.setLeftFamilyRoom(new_familyRoom);
+		hotelvo.setLeftSuiteRoom(new_suiteRoom);		
 		roomvo.setRoomstate(roomstate);
 		roomvo.setLeavetime(leavetime);
 		
-		info = hds.update(HotelmanageController.getHotelVO().Tohotelpo( HotelmanageController.getHotelVO()))&&hds.updateRoom(HotelmanageController.getRoomVO().toRoomPO(roomvo));;
+		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));;
 		
 		return info;
 		
