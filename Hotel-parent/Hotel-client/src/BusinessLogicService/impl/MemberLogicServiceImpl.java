@@ -39,7 +39,7 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		 
 		 return creditvolist;
 	 }
-	@Override
+	
 	public ArrayList<MemberVO> showall() throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<MemberPO> allmember = memberService.showAll();
@@ -50,6 +50,14 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 			member.add(vo);
 		}
 		return member;
+	}
+	
+	public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException{
+		CreditPO po=vo.ToCreditpo();
+		if(memberService.insert(po)){
+			return true;
+		}
+		return false;
 	}
 	 
 }

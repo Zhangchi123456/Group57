@@ -48,6 +48,7 @@ public class HotelInfouiController implements Initializable{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不全");
 		}else{
+
 			hotelstar=HotelStar.getValue().toString();
 			hoteldescription=HotelDescription.getText();
 			hoteladdress=HotelAddress.getText();
@@ -76,10 +77,26 @@ public class HotelInfouiController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		String star = "";
 		HotelnameLabel.setText(hotelvo.getName());
 		HotelDescription.setText(hotelvo.getIntroduction());
 		HotelAddress.setText(hotelvo.getAddress());
-		ShowStar.setText(String.valueOf(hotelvo.getStar()));
+		if(hotelvo.getStar()==1){
+			star="★";
+		}
+		if(hotelvo.getStar()==2){
+			star="★★";
+		}
+		if(hotelvo.getStar()==3){
+			star="★★★";
+		}
+		if(hotelvo.getStar()==4){
+			star="★★★★";
+		}
+		if(hotelvo.getStar()==5){
+			star="★★★★★";
+		}
+		ShowStar.setText(star);
 	}
 
 }
