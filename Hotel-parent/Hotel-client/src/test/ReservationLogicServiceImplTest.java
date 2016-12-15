@@ -1,6 +1,7 @@
 package test;
 
 import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 
 import org.junit.Before;

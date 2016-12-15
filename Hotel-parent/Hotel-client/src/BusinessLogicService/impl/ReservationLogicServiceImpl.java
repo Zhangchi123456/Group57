@@ -38,12 +38,15 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	
 	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
-              int day=checkoutdate.getDayOfYear()-checkindate.getDayOfYear();
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
               
             
-             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
+             
             String strin=checkindate.toString();
             String strout=checkoutdate.toString();
+            long m=sdf.parse(strout).getTime()-sdf.parse(strin).getTime();
+            int day=(int)(m/(1000 * 60 * 60 * 24));
+            
             Date Datein=sdf.parse(strin);
             Date Dateout=sdf.parse(strout);
              MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
@@ -53,7 +56,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 Date start=sdf.parse(webpro.getStartDate());
             	 Date end=sdf.parse(webpro.getEndDate());
             	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+            		 if(webpro.getDateDiscount()!=0){
             		 finalprice=finalprice*webpro.getDateDiscount();
+            		 }
             	 }
             	
              }
@@ -61,19 +66,21 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 HotelPromotionVO hotelpro=hotelprolist.get(j);
             	 switch(hotelpro.getName()){
             	 case"多间折扣":
-            		 if(num>=3){
+            		 if(num>=3||hotelpro.getMultiorderDiscount()!=0){
             			 finalprice=finalprice*hotelpro.getMultiorderDiscount();
             		 }
             		 break;
             	 case "企业折扣":
-            		 if(member.getproperty().equals("企业会员")){
+            		 if(member.getproperty().equals("企业会员")||hotelpro.getEnterpriceDiscount()!=0){
             			 finalprice=finalprice*hotelpro.getEnterpriceDiscount();
             		 }
             		 break;
             	 case"生日折扣":
             		 if(member.getBirthday()!=null){
             		 if(member.getbirthday().isAfter(checkindate)||member.getbirthday().isBefore(checkoutdate)||member.getbirthday().isEqual(checkindate)||member.getbirthday().isEqual(checkoutdate)){
+            			 if(hotelpro.getBirthdayDiscount()!=0){
             			 finalprice=finalprice-price*(1-hotelpro.getBirthdayDiscount());
+            			 }
             		 }
             		 }
             		 break;
@@ -81,7 +88,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 Date start=sdf.parse(hotelpro.getStartDate());
                 	 Date end=sdf.parse(hotelpro.getEndDate());
                 	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+                		 if(hotelpro.getDateDiscount()!=0){
                 		 finalprice=finalprice*hotelpro.getDateDiscount();
+                		 }
                 	 }
                 	
             		 break;

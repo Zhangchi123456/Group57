@@ -3,7 +3,10 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.UserLogicService;
+import BusinessLogicService.impl.UserLogicServiceImpl;
 import Helper.UiswitchHelper;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,10 +14,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.HotelStaffVO;
 import vo.WebStaffVO;
 
 public class UserWebAddHotelController implements Initializable{
-    
+	UserLogicService userblservice =new UserLogicServiceImpl();
 	@FXML
 	private TextField HotelnameText,AddressText,
 	single1,single2,double1,double2,triple1,triple2,square1,square2;
@@ -59,17 +63,31 @@ public class UserWebAddHotelController implements Initializable{
     			squN.length()==0||squP.length()==0){
     		AlertBox alt = new AlertBox();
 			alt.display("房间数，房间价格不得为空！");
-    	}else if(true){
-    		
+    	}//if any room number and room price <0
+    	else if(singlenum<0||singleprice<0||
+    			doublenum<0||doubleprice<0||
+    			triplenum<0||tripleprice<0||
+    			squarenum<0||squareprice<0){
+    		AlertBox alt = new AlertBox();
+			alt.display("房间价格，房间数不得小于零！");
     	}
     	else{
-    		WebStaffVO vo=staffSelected.get(0);
-    		staffSelected.get(0).setPassword(newPass);
-    		userblservice.saveWebStaff(new WebStaffVO(vo.getName(),vo.getPassword()));
-    		AlertBox alt = new AlertBox();
-			alt.display("密码已保存");
-			password.clear();
-			ensurePassword.clear();
+//    		HotelVO vo=new HotelVO(name, String circle, 
+//    				int star, double grade,
+//    				String introduction,
+//    				String city,String address,
+//    				int singleRoom,int leftSingleRoom,
+//    				int standardRoom,int leftStandardRoom,
+//    				int familyRoom,int leftFamilyRoom,
+//    				int suiteRoom,int leftSuiteRoom,
+//    				double singleRoomPrice,double standardRoomPrice,
+//    				double familyRoomPrice,double suiteRoomPrice);
+//    		staffSelected.get(0).setPassword(newPass);
+//    		userblservice.saveWebStaff(new WebStaffVO(vo.getName(),vo.getPassword()));
+//    		AlertBox alt = new AlertBox();
+//			alt.display("密码已保存");
+//			password.clear();
+//			ensurePassword.clear();
     	}
 		
 	}

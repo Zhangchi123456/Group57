@@ -2,6 +2,7 @@ package presentation.presentationController;
 
 import java.net.URL;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -53,9 +54,6 @@ public class CreatorderController implements Initializable{
     	}else if(TimeBegin.getValue().getDayOfYear()==TimeEnd.getValue().getDayOfYear()){
     		AlertBox alt2 = new AlertBox();
 			alt2.display("无法当天入住当天离开");
-    	}else if(TimeBegin.getValue().getYear()!=TimeEnd.getValue().getYear()){
-    		AlertBox alt2 = new AlertBox();
-			alt2.display("无法跨年预订");
     	}else if(ReservationController.getMembervo().getcredit()<0){
     		AlertBox alt2 = new AlertBox();
 			alt2.display("信用值为负无法预订，请先充值");
@@ -67,6 +65,7 @@ public class CreatorderController implements Initializable{
 			alt2.display("抱歉，无法预订今天之前的房间");
     	}
     	else{
+    	
     	OrderVO vo = new OrderVO();
     	
     	vo.setName(UserName.getText());
@@ -110,6 +109,7 @@ public class CreatorderController implements Initializable{
     	
     	
     	double price=reservationService.Computeprice(ReservationController.getMembervo(), ReservationController.getWebPromotionvolist(),ReservationController.getHotelprolist(),Integer.parseInt(roomnum), Aprice,TimeBegin.getValue(), TimeEnd.getValue());
+    	
     	vo.setPrice(String.valueOf(price));
     	vo.setId(String.valueOf(Math.round(Math.random()*100000)));
     	vo.setHavekids(Child.getValue().toString());
