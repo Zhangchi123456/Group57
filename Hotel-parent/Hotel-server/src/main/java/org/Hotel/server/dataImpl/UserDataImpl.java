@@ -233,7 +233,7 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 
 	public boolean isCurrentUser(String name) throws RemoteException{
 		for(String str:currentUser){
-			if(name.equals(name)){
+			if(str.equals(name)){
 				return true;
 			}
 		}
