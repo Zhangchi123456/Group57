@@ -15,6 +15,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: Azure;" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsermainuiController">
@@ -114,10 +116,19 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label text="开始搜索您心仪的酒店:" textFill="WHITE">
+                  <Label text="开始搜索您心仪的酒店:">
                      <font>
                         <Font name="Yuanti SC Bold" size="25.0" />
                      </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#f2f2f2" />
+                              <Stop color="#f2f2f2" offset="0.00749063670411985" />
+                              <Stop color="#e1d2d2" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
                   </Label>
                </children>
             </HBox>

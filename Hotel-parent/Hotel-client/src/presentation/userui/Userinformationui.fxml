@@ -5,19 +5,30 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UserinformationuiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UserinformationuiController">
    <top>
-      <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" stylesheets="@user.css" BorderPane.alignment="CENTER">
          <children>
             <Label text="个人信息界面">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Yuanti SC Regular" size="40.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#d12c00" />
+                        <Stop color="#0a0a0a" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </children>
          <padding>
@@ -32,37 +43,46 @@
                <children>
                   <Label text="会员性质:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="MembercharacterLabel" text="Label" />
+                  <Label fx:id="MembercharacterLabel" text="Label">
+                     <font>
+                        <Font name="Yuanti SC Bold" size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                <children>
                   <Label text="会员等级:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="MemberlevelLabel" text="Label" />
+                  <Label fx:id="MemberlevelLabel" text="Label">
+                     <font>
+                        <Font name="Yuanti SC Bold" size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="200.0">
                <children>
                   <Label text="享受折扣:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="DiscountLabel" text="Label" />
+                  <Label fx:id="DiscountLabel" text="Label">
+                     <font>
+                        <Font name="Yuanti SC Bold" size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="215.0">
                <children>
                   <Label text="用户名:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
                   <TextField fx:id="MembernameText" />
@@ -72,7 +92,7 @@
                <children>
                   <Label text="联系方式:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
                   <TextField fx:id="PhonenumberText" />
@@ -82,7 +102,7 @@
                <children>
                   <Label text="生日:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
                   <DatePicker fx:id="BirthdayDatepicker" />
@@ -92,10 +112,13 @@
                <children>
                   <Label text="信用值:">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="MembercreditvalueLabel" text="Label" />
+                  <Label fx:id="MembercreditvalueLabel" text="Label">
+                     <font>
+                        <Font name="Yuanti SC Bold" size="17.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>
@@ -107,14 +130,36 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="450.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#SaveButtonClicked" text="保存">
-               <font>
-                  <Font size="20.0" />
-               </font></Button>
-            <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" text="返回">
+            <Button fx:id="SaveButton" mnemonicParsing="false" onAction="#SaveButtonClicked" styleClass="bton1" text="保存">
                <font>
                   <Font size="20.0" />
                </font>
+               <effect>
+                  <Reflection />
+               </effect>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#d12c00" />
+                        <Stop color="#3c261e" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill></Button>
+            <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" styleClass="bton1" text="返回">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <Reflection bottomOpacity="0.07" fraction="0.77" topOpacity="0.44" />
+               </effect>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#d12c00" />
+                        <Stop color="#3c261e" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Button>
          </children>
          <padding>
