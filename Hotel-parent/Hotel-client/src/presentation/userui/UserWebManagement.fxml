@@ -19,13 +19,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UserWebManagementController">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UserWebManagementController">
    <children>
-      <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="631.0" prefWidth="1008.0">
+      <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="650.0" prefWidth="1000.0">
          <left>
-            <VBox spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="519.0" prefWidth="150.0" spacing="60.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
@@ -36,10 +36,10 @@
                         <DropShadow />
                      </effect>
                      <font>
-                        <Font size="16.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#AddHotelMangement" prefHeight="61.0" prefWidth="110.0" text="酒工管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelMangement" prefHeight="61.0" prefWidth="110.0" text="酒工管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -47,10 +47,10 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="16.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#Webmanange" prefHeight="60.0" prefWidth="110.0" text="网营管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#Webmanange" prefHeight="60.0" prefWidth="110.0" text="网营管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -58,10 +58,10 @@
                         <Insets left="20.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="16.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="61.0" prefWidth="109.0" text="添加酒店">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="61.0" prefWidth="109.0" text="添加酒店">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>
@@ -69,7 +69,7 @@
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font size="16.0" />
+                        <Font size="17.0" />
                      </font>
                   </Button>
                </children>
@@ -79,9 +79,9 @@
             </VBox>
          </left>
          <top>
-            <HBox spacing="120.0" BorderPane.alignment="CENTER">
+            <HBox minWidth="1000.0" prefHeight="100.0" prefWidth="1000.0" spacing="120.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="user" prefHeight="49.0" prefWidth="231.0" text="用户名">
+                  <Label fx:id="user" prefHeight="77.0" prefWidth="231.0" text="Label">
                      <HBox.margin>
                         <Insets left="30.0" top="40.0" />
                      </HBox.margin>
@@ -89,11 +89,11 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <font>
-                        <Font size="22.0" />
+                        <Font size="24.0" />
                      </font>
                   </Label>
                   <Region prefHeight="89.0" prefWidth="388.0" />
-                  <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="46.0" prefWidth="94.0" text="登出">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="61.0" prefWidth="84.0" styleClass="buttonlogout">
                      <HBox.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="35.0" />
                      </HBox.margin>
@@ -108,7 +108,7 @@
             </HBox>
          </top>
          <center>
-            <SplitPane dividerPositions="0.16238317757009346" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <SplitPane blendMode="MULTIPLY" dividerPositions="0.16238317757009346" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>

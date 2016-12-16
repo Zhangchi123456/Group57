@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesscircleuiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesscircleuiController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0">
          <padding>
@@ -25,7 +25,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox layoutY="120.0" prefHeight="400.0" prefWidth="300.0" spacing="30.0">
+      <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="400.0" prefWidth="300.0" spacing="30.0">
          <children>
             <Button fx:id="button_webdiscountdate" mnemonicParsing="false" onAction="#DataClicked" prefHeight="50.0" prefWidth="200.0" text="特定期间折扣">
                <font>
@@ -50,7 +50,7 @@
             <Insets bottom="20.0" left="50.0" right="20.0" top="50.0" />
          </padding>
       </VBox>
-      <VBox layoutX="388.0" layoutY="160.0" prefHeight="302.0" prefWidth="288.0" spacing="60.0">
+      <VBox blendMode="MULTIPLY" layoutX="388.0" layoutY="160.0" prefHeight="302.0" prefWidth="288.0" spacing="60.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                <children>
@@ -102,7 +102,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="516.0" layoutY="525.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="117.0" text="返 回">
+      <Button blendMode="MULTIPLY" layoutX="516.0" layoutY="525.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="117.0" text="返 回">
          <font>
             <Font size="27.0" />
          </font>

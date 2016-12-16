@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreditChargeController">
+<BorderPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreditChargeController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,7 @@
       </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="434.0" prefWidth="731.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" blendMode="MULTIPLY" prefHeight="434.0" prefWidth="731.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="113.0">
                <children>
