@@ -16,7 +16,20 @@
 
 
 }
+.background3 {
+    -fx-background-image: url("hotel1.jpg");
+    -fx-background-repeat: repeat;
+	
 
+
+}
+.background4 {
+    -fx-background-image: url("benefit1.jpg");
+    -fx-background-repeat: repeat;
+	
+
+
+}
 .buttonlogout
 {
  -fx-background-image: url("logout.PNG");

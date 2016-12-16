@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfouiController">
+<BorderPane prefHeight="650.0" prefWidth="800.0" styleClass="background3" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfouiController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -99,12 +99,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#SaveClicked" text="保存">
+            <Button mnemonicParsing="false" onAction="#SaveClicked" styleClass="bton1" stylesheets="@../userui/user.css" text="保存">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button id="ReturnButton" fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" text="返回">
+            <Button id="ReturnButton" fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" styleClass="bton1" text="返回">
                <font>
                   <Font size="20.0" />
                </font>

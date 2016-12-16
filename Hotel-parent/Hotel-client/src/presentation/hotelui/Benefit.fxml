@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.BenefitController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background4" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.BenefitController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -16,7 +16,7 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#ReturnClicked" text="返回">
+            <Button mnemonicParsing="false" onAction="#ReturnClicked" styleClass="bton1" text="返回">
                <font>
                   <Font size="20.0" />
                </font>
@@ -38,27 +38,42 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hotel1" />
+                  <Label fx:id="hotel1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hotel2" />
+                  <Label fx:id="hotel2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="86.0" prefWidth="800.0">
                <children>
-                  <Label fx:id="hotel3" />
+                  <Label fx:id="hotel3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hotel4" />
+                  <Label fx:id="hotel4">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="hotel5" />
+                  <Label fx:id="hotel5">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>
@@ -78,17 +93,26 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="web1" />
+                  <Label fx:id="web1">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="web2" />
+                  <Label fx:id="web2">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="web3" />
+                  <Label fx:id="web3">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
          </children>

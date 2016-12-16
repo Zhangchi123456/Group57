@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" vgap="25.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelroomInfouiController">
+<GridPane hgap="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background2" stylesheets="@../userui/user.css" vgap="25.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelroomInfouiController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,12 +31,12 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="roomList" text="客房列表" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="2">
+      <Label fx:id="roomList" text="客房列表" textFill="WHITE" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="2">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <TableView fx:id="table" prefHeight="400.0" prefWidth="800.0" GridPane.columnSpan="6" GridPane.rowIndex="2" GridPane.rowSpan="6">
+      <TableView fx:id="table" blendMode="HARD_LIGHT" prefHeight="489.0" prefWidth="1000.0" GridPane.columnSpan="6" GridPane.rowIndex="2" GridPane.rowSpan="6">
         <columns>
           <TableColumn fx:id="roomNum" minWidth="200.0" prefWidth="75.0" text="房间号" />
           <TableColumn fx:id="RoomInfo" minWidth="200.0" prefWidth="75.0" text="客房信息" />
@@ -44,14 +44,14 @@
             <TableColumn fx:id="Last" minWidth="200.0" prefWidth="75.0" text="最后一次退房时间" />
         </columns>
       </TableView>
-      <Button fx:id="ok" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="50.0" prefWidth="200.0" text="退房" GridPane.rowIndex="8">
+      <Button fx:id="ok" mnemonicParsing="false" onAction="#okButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="退房" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>
          <GridPane.margin>
             <Insets bottom="30.0" left="30.0" />
          </GridPane.margin></Button>
-      <Button fx:id="back" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="200.0" text="返回" GridPane.columnIndex="5" GridPane.rowIndex="8">
+      <Button fx:id="back" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="返回" GridPane.columnIndex="5" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>
