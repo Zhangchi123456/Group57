@@ -27,6 +27,7 @@ public class UserWebManagementWebController implements Initializable{
 	ObservableList<WebStaffVO> WebStaffVOs,staffSelected;
 	UserLogicService userblservice =new UserLogicServiceImpl();
 	ArrayList<WebStaffVO> list=new ArrayList<WebStaffVO>();
+	WebStaffVO currentWS=null;
 	@FXML
     private Label user;
     @FXML
@@ -59,23 +60,27 @@ public class UserWebManagementWebController implements Initializable{
     		AlertBox alt = new AlertBox();
 			alt.display("确认密码与密码不同");
     	}else{
-    		WebStaffVO vo=staffSelected.get(0);
-    		staffSelected.get(0).setPassword(newPass);
+    		WebStaffVO vo=currentWS;
+    		currentWS.setPassword(newPass);
     		userblservice.saveWebStaff(new WebStaffVO(vo.getName(),vo.getPassword()));
     		AlertBox alt = new AlertBox();
 			alt.display("密码已保存");
-//			password.clear();
-//			ensurePassword.clear();
     	}
     }
     
     @FXML
     private void ModifyButtonClicked(ActionEvent event){
+    	//clear new and ensure password
+    	password.clear();
+    	ensurePassword.clear();
+    	
     	staffSelected = FXCollections.observableArrayList();
     	staffSelected=table.getSelectionModel().getSelectedItems();
     	if(!staffSelected.isEmpty()){
-    	NameText.setText(staffSelected.get(0).getName());
-    	oldPassword.setText(staffSelected.get(0).getPassword());
+    		currentWS=staffSelected.get(0);
+    		
+    		NameText.setText(staffSelected.get(0).getName());
+    		oldPassword.setText(staffSelected.get(0).getPassword());
     	}
     	
     }

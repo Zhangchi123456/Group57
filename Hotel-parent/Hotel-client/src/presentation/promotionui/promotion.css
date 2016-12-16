@@ -1,6 +1,6 @@
 
 .background {
-    -fx-background-image: url("scene3.jpg");
+    -fx-background-image: url("31.jpg");
     -fx-background-repeat: repeat;
 	
 
@@ -9,27 +9,8 @@
         linear-gradient(#20262b, #191d22),
         radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
 }
-.background2 {
-    -fx-background-image: url("room2_Fotor.jpg");  
-    -fx-background-repeat: repeat;
-	
 
 
-}
-.background3 {
-    -fx-background-image: url("hotel1.jpg");
-    -fx-background-repeat: repeat;
-	
-
-
-}
-.background4 {
-    -fx-background-image: url("benefit2.jpg");
-    -fx-background-repeat: repeat;
-	
-
-
-}
 .buttonlogout
 {
  -fx-background-image: url("logout.PNG");

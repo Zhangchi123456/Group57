@@ -3,12 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfoBrowseuiController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background3" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelInfoBrowseuiController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="398.6666564941406" minWidth="10.0" prefWidth="262.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.3333740234375" minWidth="10.0" prefWidth="271.0" />
@@ -29,7 +31,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="hotelInfo" prefHeight="49.0" prefWidth="287.0" text="酒店基本信息" GridPane.columnIndex="1" GridPane.columnSpan="3">
+      <Label fx:id="hotelInfo" prefHeight="49.0" prefWidth="287.0" text="酒店基本信息" GridPane.columnIndex="2" GridPane.columnSpan="3">
          <font>
             <Font size="40.0" />
          </font>
@@ -39,53 +41,92 @@
       </Label>
       <Label text="酒店名称：" GridPane.rowIndex="1">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
       <Label fx:id="Address" text="地址：" GridPane.rowIndex="2">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
       <Label text="星级:" GridPane.columnIndex="3" GridPane.rowIndex="1">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
       <Label text="简介:" GridPane.rowIndex="5">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#CreatorderButtonClicked" prefHeight="50.0" prefWidth="200.0" text="生成订单" GridPane.columnIndex="2" GridPane.rowIndex="8">
+      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#CreatorderButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="生成订单" GridPane.columnIndex="3" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Button fx:id="Back" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="200.0" text="返回" GridPane.columnIndex="4" GridPane.rowIndex="8">
+      <Button fx:id="Back" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="返回" GridPane.columnIndex="5" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
       <Label fx:id="welcome" text="欢迎!" textAlignment="CENTER" textFill="#f60000" GridPane.columnIndex="4">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="myOrder" mnemonicParsing="false" onAction="#MyorderButtoncClicked" prefHeight="50.0" prefWidth="200.0" text="我的订单" GridPane.rowIndex="8">
+      <Button fx:id="myOrder" mnemonicParsing="false" onAction="#MyorderButtoncClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="我的订单" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Label fx:id="hotelName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label id="AddressProvince" fx:id="address" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label id="BussinessCircle" fx:id="SingleLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Label id="HotelStar" fx:id="Star" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-      <Label id="HotelDescription" fx:id="introduction" prefHeight="24.0" prefWidth="144.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="hotelName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label id="AddressProvince" fx:id="address" prefHeight="23.0" prefWidth="603.0" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label id="BussinessCircle" fx:id="SingleLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label id="HotelStar" fx:id="Star" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label id="HotelDescription" fx:id="introduction" prefHeight="24.0" prefWidth="144.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Label text="房间价格:" GridPane.rowIndex="3">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
       <Label text="单人房:" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
@@ -97,31 +138,46 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="StandardLabel" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Label fx:id="StandardLabel" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Label text="家庭房:" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="FamilyLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Label fx:id="FamilyLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Label text="套间:" GridPane.columnIndex="3" GridPane.rowIndex="4">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="SuiteLabel" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Label fx:id="SuiteLabel" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="4">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <Label text="优惠:" GridPane.rowIndex="6">
          <font>
             <Font size="20.0" />
          </font>
+         <effect>
+            <SepiaTone />
+         </effect>
       </Label>
-      <Button fx:id="Checkbenefit" mnemonicParsing="false" onAction="#CheckbenefitClicked" text="查看优惠" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <Button fx:id="Checkbenefit" mnemonicParsing="false" onAction="#CheckbenefitClicked" styleClass="bton1" text="查看优惠" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <font>
             <Font size="18.0" />
          </font>
+         <effect>
+            <InnerShadow />
+         </effect>
       </Button>
-      <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="469.0" text="*优惠说明:日期折扣类型的优惠只有一个订单的入住和离开日期都在折扣日期内" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
-      <Label prefHeight="16.0" prefWidth="565.0" text="才享受.生日折扣计算方法为若生日在入住和离开日期内则对该订单一个房间的当天价格使用优惠" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" />
+      <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="469.0" text="*优惠说明:日期折扣类型的优惠只有一个订单的入住和离开日期都在折扣日期内" textFill="#ff0101" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="6" />
+      <Label prefHeight="16.0" prefWidth="565.0" text="才享受.生日折扣计算方法为若生日在入住和离开日期内则对该订单一个房间的当天价格使用优惠" textFill="RED" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="7" />
    </children>
    <padding>
       <Insets left="50.0" right="50.0" />

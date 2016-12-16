@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderlistuiController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderlistuiController">
    <top>
       <HBox alignment="CENTER" prefHeight="95.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -56,7 +56,7 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="777.0" spacing="280.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#EvaluateClicked" prefHeight="54.0" prefWidth="125.0" text="评价订单">
+                  <Button mnemonicParsing="false" onAction="#EvaluateClicked" prefHeight="54.0" prefWidth="125.0" styleClass="bton1" text="评价订单">
                      <font>
                         <Font size="20.0" />
                      </font>
