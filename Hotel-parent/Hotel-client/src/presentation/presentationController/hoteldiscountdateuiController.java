@@ -136,11 +136,11 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	public void add(ActionEvent event){
 	//新增折扣日期
-		LocalDate start = TimeBegin.getValue();
-		LocalDate end = TimeEnd.getValue();
-		String input = newDiscount.getText();
-		
-		if(input!=null && start!=null && end!=null){
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
+			
+			LocalDate start = TimeBegin.getValue();
+			LocalDate end = TimeEnd.getValue();
+			String input = newDiscount.getText();
 			
 			String start_date = start.toString();
 			String end_date = start.toString();
@@ -162,6 +162,7 @@ public class hoteldiscountdateuiController implements Initializable{
 				this.showTable(name,hotel_name);
 			
 			}
+			
 		}else{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不完整！");

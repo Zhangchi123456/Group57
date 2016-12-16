@@ -94,11 +94,13 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
-		LocalDate start = TimeBegin.getValue();
-		LocalDate end = TimeEnd.getValue();
-		String input = newDiscount.getText();
 		
-		if(input!=null && start!=null && end!=null){
+		
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
+			
+			LocalDate start = TimeBegin.getValue();
+			LocalDate end = TimeEnd.getValue();
+			String input = newDiscount.getText();
 			
 			String start_date = start.toString();
 			String end_date = end.toString();
