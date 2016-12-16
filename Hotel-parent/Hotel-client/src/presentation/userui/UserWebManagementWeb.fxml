@@ -26,7 +26,7 @@
          <left>
             <VBox prefHeight="557.0" prefWidth="153.0" spacing="60.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#MemberMangementClicked" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#MemberMangementClicked" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
@@ -37,7 +37,7 @@
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelMangement" prefHeight="61.0" prefWidth="109.0" text="酒工管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelMangement" prefHeight="61.0" prefWidth="109.0" styleClass="bton1" text="酒工管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -48,7 +48,7 @@
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="62.0" prefWidth="108.0" text="网营管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="62.0" prefWidth="108.0" styleClass="bton1" text="网营管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -62,7 +62,7 @@
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="60.0" prefWidth="108.0" text="添加酒店">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="60.0" prefWidth="108.0" styleClass="bton1" text="添加酒店">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>
@@ -95,8 +95,8 @@
                                  <children>
                                     <ButtonBar prefHeight="20.0" prefWidth="135.0">
                                       <buttons>
-                                          <Button mnemonicParsing="false" onAction="#ModifyButtonClicked" prefHeight="38.0" prefWidth="60.0" text="修改" />
-                                          <Button mnemonicParsing="false" onAction="#AddButtonClicked" prefHeight="35.0" prefWidth="60.0" text="添加" />
+                                          <Button mnemonicParsing="false" onAction="#ModifyButtonClicked" prefHeight="38.0" prefWidth="60.0" styleClass="bton1" text="修改" />
+                                          <Button mnemonicParsing="false" onAction="#AddButtonClicked" prefHeight="35.0" prefWidth="60.0" styleClass="bton1" text="添加" />
                                       </buttons>
                                        <HBox.margin>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -168,7 +168,7 @@
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0" />
                                  </children>
                               </VBox>
-                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="45.0" prefWidth="90.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="45.0" prefWidth="90.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

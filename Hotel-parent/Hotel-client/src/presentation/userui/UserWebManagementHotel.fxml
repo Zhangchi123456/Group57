@@ -25,7 +25,7 @@
          <left>
             <VBox prefHeight="513.0" prefWidth="150.0" spacing="60.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#MemberManagementClicked" prefHeight="61.0" prefWidth="110.0" text="会员管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#MemberManagementClicked" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
@@ -36,7 +36,7 @@
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" text="酒工管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="酒工管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -50,7 +50,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#Webmanange" prefHeight="61.0" prefWidth="110.0" text="网营管理" textAlignment="CENTER">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#Webmanange" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="网营管理" textAlignment="CENTER">
                      <padding>
                         <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
                      </padding>
@@ -61,7 +61,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="61.0" prefWidth="110.0" text="添加酒店">
+                  <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#AddHotelClicked" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="添加酒店">
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin>
@@ -188,7 +188,7 @@
                                  </font>
                               </Label>
                               <TextField fx:id="PasswordText" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

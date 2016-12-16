@@ -52,13 +52,13 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#ConfirmClicked" prefHeight="55.0" prefWidth="133.0" text="确认">
+                  <Button mnemonicParsing="false" onAction="#ConfirmClicked" prefHeight="55.0" prefWidth="133.0" styleClass="bton1" text="确认">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </Button>
                   <Label prefHeight="19.0" prefWidth="62.0" />
-                  <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="57.0" prefWidth="125.0" text="返回">
+                  <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="57.0" prefWidth="125.0" styleClass="bton1" text="返回">
                      <font>
                         <Font size="23.0" />
                      </font>

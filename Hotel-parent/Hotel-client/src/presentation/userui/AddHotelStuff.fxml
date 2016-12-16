@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="620.0" prefHeight="600.0" prefWidth="800.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.AddHotelStuffController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="250.0" minWidth="620.0" prefHeight="600.0" prefWidth="800.0" spacing="10.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.AddHotelStuffController">
    <children>
       <Label prefHeight="98.0" prefWidth="331.0" text="添加酒店工作人员：">
          <font>
@@ -125,11 +125,11 @@
       <HBox spacing="40.0">
          <children>
             <Region HBox.hgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#AddButtonClicked" prefHeight="58.0" prefWidth="99.0" text="保存">
+            <Button mnemonicParsing="false" onAction="#AddButtonClicked" prefHeight="58.0" prefWidth="99.0" styleClass="bton1" text="保存">
                <font>
                   <Font size="27.0" />
                </font></Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="58.0" prefWidth="99.0" text="返回">
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="58.0" prefWidth="99.0" styleClass="bton1" text="返回">
                <font>
                   <Font size="27.0" />
                </font></Button>
