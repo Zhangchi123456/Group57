@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
 import vo.CreditRecordVO;
 import vo.OrderVO;
+import vo.RoomVO;
 
 public class HotelupdateuiController implements Initializable{
 	@FXML
@@ -38,6 +39,7 @@ public class HotelupdateuiController implements Initializable{
      
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
+
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -51,23 +53,53 @@ public class HotelupdateuiController implements Initializable{
 		}
 		int orderid = Integer.parseInt(orderNumtx.getText());
 		OrderVO ordervo = oser.orderShowAll(orderid);
+		String room_id = roomNumtx.getText().toString();
+		RoomVO roomvo;
 		try {
 		if(ordervo==null||ordervo.getState()=="已撤销"){
 			AlertBox alt3 = new AlertBox();
 			alt3.display("请填写正确订单号！");
 		}
-		else if(!isRight(roomNumtx.getText().toString())){
+		else if(!isRight(room_id)){
 			AlertBox alt4 = new AlertBox();
 			alt4.display("请填写可用房间号！");
 		}else{
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
+		roomvo = hser.FindRoomByID(Integer.parseInt(room_id));
 		
-		if(hser.changeCheckInInfo(Integer.parseInt(roomNumtx.getText()), orderid, Integer.parseInt(ordervo.getSingleRoom()), Integer.parseInt(ordervo.getStandardRoom()), Integer.parseInt(ordervo.getFamilyRoom()), Integer.parseInt(ordervo.getSuiteRoom()), ordervo.getStarttime(), ordervo.getLeavetime())==true){
-			AlertBox alt = new AlertBox();
-			alt.display("更新成功！");
-			}
-			}
+		switch(roomvo.getRoomtype()){
+		
+		case "单人间":
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 1, 0, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			
+				AlertBox alt = new AlertBox();			
+				alt.display("更新成功！");
+		    }
+			break;
+		case "标准间":
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 1, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+				
+				AlertBox alt = new AlertBox();			
+				alt.display("更新成功！");
+		    }
+			break;
+		case "家庭房":
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 1, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+				
+				AlertBox alt = new AlertBox();			
+				alt.display("更新成功！");
+		    }
+			break;
+		case "套间":
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 0, 1, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+				
+				AlertBox alt = new AlertBox();			
+				alt.display("更新成功！");
+		    }
+			break;
+		    }
+		}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
