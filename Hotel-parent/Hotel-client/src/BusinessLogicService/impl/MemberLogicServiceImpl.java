@@ -59,5 +59,13 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		}
 		return false;
 	}
+	@Override
+	public CreditRecordVO findCreditRecord(int orderid) throws RemoteException {
+		// TODO Auto-generated method stub
+		CreditPO po =memberService.findCreditRecord(orderid);
+		CreditRecordVO vo = new CreditRecordVO();
+		 vo.setbyCreditPO(po);
+		return vo;
+	}
 	 
 }
