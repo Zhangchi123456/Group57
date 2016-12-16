@@ -7,12 +7,15 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.RegisteruiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.RegisteruiController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <padding>
@@ -23,6 +26,14 @@
                <font>
                   <Font size="40.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.4269662921348315" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#f86014" />
+                        <Stop color="BLACK" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </children>
       </HBox>
@@ -103,15 +114,37 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="400.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Button fx:id="Commitbutton" mnemonicParsing="false" onAction="#CommitbuttonClicked" prefHeight="50.0" prefWidth="100.0" text="提交">
+            <Button fx:id="Commitbutton" mnemonicParsing="false" onAction="#CommitbuttonClicked" prefHeight="50.0" prefWidth="100.0" styleClass="bton1" text="提交">
                <font>
                   <Font size="20.0" />
                </font>
+               <effect>
+                  <Reflection />
+               </effect>
+               <textFill>
+                  <RadialGradient centerX="0.4269662921348315" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#f86014" />
+                        <Stop color="#3c3a38" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Button>
-            <Button fx:id="Returnbutton" mnemonicParsing="false" onAction="#ReturnbuttonClicked" prefHeight="50.0" prefWidth="100.0" text="返回">
+            <Button fx:id="Returnbutton" mnemonicParsing="false" onAction="#ReturnbuttonClicked" prefHeight="50.0" prefWidth="100.0" styleClass="bton1" text="返回">
                <font>
                   <Font size="20.0" />
                </font>
+               <effect>
+                  <Reflection />
+               </effect>
+               <textFill>
+                  <RadialGradient centerX="0.4269662921348315" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#f86014" />
+                        <Stop color="#3c3a38" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Button>
          </children>
          <padding>

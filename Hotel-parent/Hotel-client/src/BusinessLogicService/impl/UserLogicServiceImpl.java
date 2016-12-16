@@ -152,12 +152,9 @@ public class UserLogicServiceImpl implements UserLogicService{
 		return null;
 	}
 
-
 	@Override
-	public void saveMember(MemberVO vo) {
-		
+	public void saveMember(MemberVO vo){
 		MemberPO po;
-		
 		try {
 			po = vo.topo();
 			memberdata.update(po);
@@ -165,7 +162,6 @@ public class UserLogicServiceImpl implements UserLogicService{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		} catch (ParseException e1) {
-			
 			e1.printStackTrace();
 		}
 	}

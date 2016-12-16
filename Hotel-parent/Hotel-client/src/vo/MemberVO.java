@@ -236,4 +236,8 @@ public class MemberVO {
 	public void setBirthday(String birthday) {
 		Birthday = birthday;
 	}
+	
+	public void setbirthday(LocalDate birthday){
+		memberbirthday=birthday;
+	}
 }

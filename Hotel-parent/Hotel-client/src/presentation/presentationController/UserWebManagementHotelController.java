@@ -27,6 +27,8 @@ import vo.WebStaffVO;
 public class UserWebManagementHotelController implements Initializable{
 	ObservableList<HotelStaffVO> HotelStaffVOs,staffSelected;
 	UserLogicService userblservice =new UserLogicServiceImpl();
+	HotelStaffVO currentHS=null;
+	//ui items
 	@FXML
 	private Label user;
     @FXML
@@ -39,7 +41,7 @@ public class UserWebManagementHotelController implements Initializable{
     private TableView<HotelStaffVO> table;
     @FXML
     private TableColumn<HotelStaffVO,String> nameColumn,hotelColumn;
-    
+    //ui actions
     @FXML
     private void SaveButtonClicked(ActionEvent event){
     	String newPass=newpassword.getText().trim();
@@ -58,25 +60,26 @@ public class UserWebManagementHotelController implements Initializable{
     		AlertBox alt = new AlertBox();
 			alt.display("确认密码与密码不同");
     	}else{
-    		HotelStaffVO vo=staffSelected.get(0);
-    		staffSelected.get(0).setPassword(newPass);
+    		HotelStaffVO vo=currentHS;
+    		currentHS.setPassword(newPass);
     		userblservice.saveHotelStaff(new HotelStaffVO(vo.getName(),vo.getPassword(),vo.getHotelname()));
     		AlertBox alt = new AlertBox();
 			alt.display("密码已保存");
-//			newpassword.clear();
-//			ensurepassword.clear();
     	}
     }
     @FXML
     private void modifyButtonClicked(ActionEvent event){
+    	//clear new password and ensure password TextField
+    	newpassword.clear();
+    	ensurepassword.clear();
     	staffSelected = FXCollections.observableArrayList();
     	staffSelected=table.getSelectionModel().getSelectedItems();
     	if(!staffSelected.isEmpty()){
-    		nameText.setText(staffSelected.get(0).getName());
-    		PasswordText.setText(staffSelected.get(0).getPassword());
-    		hotel.setText(staffSelected.get(0).getHotelname());
+    		currentHS=staffSelected.get(0);
+    		nameText.setText(currentHS.getName());
+    		PasswordText.setText(currentHS.getPassword());
+    		hotel.setText(currentHS.getHotelname());
     	}
-    
     }
 	@FXML
 	private void ReturnClicked(ActionEvent event){

@@ -42,29 +42,29 @@ public class ReservationController {
     	   return (MemberVO)reservationmap.get(membervokey);
        }
 
-      public static void setHotelvo(HotelVO Hotelvo){
+       public static void setHotelvo(HotelVO Hotelvo){
 	   reservationmap.put(currenthotelkey, Hotelvo);
 }
-         public static HotelVO getCurrentHotelvo(){
+       public static HotelVO getCurrentHotelvo(){
 	   return (HotelVO)reservationmap.get(currenthotelkey);
 }
          
-         public static void setHotelpromotionvo(HotelPromotionVO Hotelpro){
+       public static void setHotelpromotionvo(HotelPromotionVO Hotelpro){
       	   reservationmap.put(currenthotelprokey, Hotelpro);
          }
-         public static HotelPromotionVO getHotelPromotionvo(){
+       public static HotelPromotionVO getHotelPromotionvo(){
       	   return (HotelPromotionVO)reservationmap.get(currenthotelprokey);
          }
-         public static void setHotelvoList(ArrayList<HotelVO> hotellist){
+       public static void setHotelvoList(ArrayList<HotelVO> hotellist){
       	   reservationmap.put(hotellistkey, hotellist);
          }
-         public static ArrayList<HotelVO> getHotelvolist(){
+       public static ArrayList<HotelVO> getHotelvolist(){
       	   return (ArrayList<HotelVO>)reservationmap.get(hotellistkey);
          }
-         public static void setHotelproList(ArrayList<HotelPromotionVO> hotelprolist){
+       public static void setHotelproList(ArrayList<HotelPromotionVO> hotelprolist){
         	   reservationmap.put(hotelprolistkey, hotelprolist);
            }
-           public static ArrayList<HotelPromotionVO> getHotelprolist(){
+       public static ArrayList<HotelPromotionVO> getHotelprolist(){
         	   return (ArrayList<HotelPromotionVO>)reservationmap.get(hotelprolistkey);
            }
 }
