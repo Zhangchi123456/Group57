@@ -10,7 +10,7 @@
         radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
 }
 .background2 {
-    -fx-background-image: url("room2_Fotor.jpg");
+    -fx-background-image: url("room2_Fotor.jpg");  
     -fx-background-repeat: repeat;
 	
 
@@ -24,7 +24,7 @@
 
 }
 .background4 {
-    -fx-background-image: url("benefit1.jpg");
+    -fx-background-image: url("benefit2.jpg");
     -fx-background-repeat: repeat;
 	
 
