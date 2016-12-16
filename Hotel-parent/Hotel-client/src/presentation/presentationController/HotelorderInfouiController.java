@@ -215,7 +215,7 @@ public class HotelorderInfouiController implements Initializable{
 						break;
 					}
 				}
-				tempcredit = Integer.parseInt(ordervo.getPrice());
+				tempcredit =(int) Double.parseDouble(ordervo.getPrice());
 				creditvo.setCreditchange("-"+ordervo.getPrice());
 				creditvo.setAction("异常");
 				creditvo.setCreditlast(String.valueOf(tempcredit - Integer.parseInt(ordervo.getPrice())));

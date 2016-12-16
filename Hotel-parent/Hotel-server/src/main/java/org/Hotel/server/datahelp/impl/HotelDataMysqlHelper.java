@@ -138,28 +138,30 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		double psuiteRoom=hotelpo.getSuiteRoomPrice();
 		
 		try{
-			String query="INSERT INTO hotel(name,star,score,city,address,introduction,circle,"
-					+ "single_room,single_room_left,single_room_price,standard_room,standard_room_left,"
-					+ "standard_room_price,family_room,family_room_left,family_room_price,"
-					+ "suite_room,suite_room_left,suite_room_price) VALUE("
-					+ "'"+name+"',"+
-					"'"+String.valueOf(star)+"',"+
-					"'"+String.valueOf(score)+"',"+
+			String query="INSERT INTO hotel(name,star,score,city,address,introduction,circle_name,"
+					+ "single_room,single_room_left,single_room_price,"
+					+ "standard_room,standard_room_left,standard_room_price,"
+					+ "family_room,family_room_left,family_room_price,"
+					+ "suite_room,suite_room_left,suite_room_price) VALUE("+ 
+					"'"+name+"',"+
+					"'"+star+"',"+
+					"'"+score+"',"+
 					"'"+city+"',"+
 					"'"+address+"',"+
+					"'"+introduction+"',"+
 					"'"+circle+"',"+
-					"'"+String.valueOf(singleRoom)+"',"+
-					"'"+String.valueOf(lsingleRoom)+"',"+
-					"'"+String.valueOf(psingleRoom)+"',"+
-					"'"+String.valueOf(standardRoom)+"',"+
-					"'"+String.valueOf(lstandardRoom)+"',"+
-					"'"+String.valueOf(pstandardRoom)+"',"+
-					"'"+String.valueOf(familyRoom)+"',"+
-					"'"+String.valueOf(lfamilyRoom)+"',"+
-					"'"+String.valueOf(pfamilyRoom)+"',"+
-					"'"+String.valueOf(suiteRoom)+"',"+
-					"'"+String.valueOf(lsuiteRoom)+"',"+
-					"'"+String.valueOf(psuiteRoom)+"'"+")";
+					"'"+singleRoom+"',"+
+					"'"+lsingleRoom+"',"+
+					"'"+psingleRoom+"',"+
+					"'"+standardRoom+"',"+
+					"'"+lstandardRoom+"',"+
+					"'"+pstandardRoom+"',"+
+					"'"+familyRoom+"',"+
+					"'"+lfamilyRoom+"',"+
+					"'"+pfamilyRoom+"',"+
+					"'"+suiteRoom+"',"+
+					"'"+lsuiteRoom+"',"+
+					"'"+psuiteRoom+"'"+")";
 			
 			db.update(query);
 			
@@ -214,6 +216,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 			
 	public void updateRoomData(RoomPO po) {
 		db=Database.getInstance();
+		int id=po.getId();
 		String state=po.getRoomstate();
 		String starttime=po.getStarttime();
 		String leavetime=po.getLeavetime();
@@ -221,7 +224,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		String query="UPDATE room SET state="+"'"+state+"',"
 				+ "start_time="+"'"+starttime+"',"
 				 + "leave_time="+"'"+leavetime+"',"
-				 + "order_id="+"'"+orderid+"'";
+				 + "order_id="+"'"+orderid+"' WHERE id='"+id+"'";
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -239,9 +242,17 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		String query="INSERT INTO room(hotel_name,type,state) VALUE("
 				+"'"+ hotelName+"',"
 				+"'"+ type+"',"
-				+"'不可用'"
+				+"'可用'"
 				+")";
+		try{
+			db.update(query);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			db.close();
+		}
 	}
+	
 	//room don't have to delete
 	public void deleteRoomData(RoomPO roompo) {
 	}

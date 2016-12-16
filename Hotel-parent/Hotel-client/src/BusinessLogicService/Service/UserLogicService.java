@@ -18,6 +18,18 @@ public interface UserLogicService {
 	//member
 	public ArrayList<MemberVO> findMember();
 	public void saveMember(MemberVO vo);
+	//hotel related
+	public ArrayList<String> showCity();
+	public ArrayList<String> showCircle(String city);
+	public boolean findHotel(String name);
+	public void addHotel(HotelVO vo);
+	//hotel add new hotel room
+	public void addRoom(RoomVO vo);
+	//add hotel staff
+	public void addHotelStaff(HotelStaffVO vo);
+	//add hotel strategy
+	public void addHotelStrategy(HotelPromotionVO vo);
+	
 	
 		
 

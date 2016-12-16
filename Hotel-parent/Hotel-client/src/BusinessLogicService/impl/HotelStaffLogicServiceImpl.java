@@ -126,7 +126,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		roomvo.setStarttime(starttime);
 		roomvo.setLeavetime(leavetime);
 		roomvo.setOrderid(orderid);
-		
+		roomvo.setRoomstate("不可用");
 		
 		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
 		
@@ -153,8 +153,9 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		hotelvo.setLeftSuiteRoom(new_suiteRoom);		
 		roomvo.setRoomstate(roomstate);
 		roomvo.setLeavetime(leavetime);
+		roomvo.setRoomstate("可用");
 		
-		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));;
+		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
 		
 		return info;
 		
