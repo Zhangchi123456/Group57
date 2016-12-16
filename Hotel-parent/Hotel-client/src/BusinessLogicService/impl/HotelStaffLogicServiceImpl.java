@@ -24,18 +24,14 @@ import vo.RoomVO;
 
 public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 
-	HotelDataService hds;
-	OrderDataService ods;
-	UserDataService uds;
-	MemberDataService mds;
+	HotelDataService hds = (HotelDataService) RMIHelper.find("HotelDataService");
+	UserDataService uds = (UserDataService) RMIHelper.find("UserDataService");
+	MemberDataService mds = (MemberDataService) RMIHelper.find("MemberDataService");
 	
 	HotelVO hotelvo = new HotelVO();
 	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException {
-		
-		uds = (UserDataService) RMIHelper.find("UserDataService");
-		hds = (HotelDataService) RMIHelper.find("HotelDataService");
 		
 		HotelStaffPO po = uds.findByHotelStaff(name);
 		String hotelname = po.getHotelName();
@@ -48,8 +44,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	
 	//显示所有客房
 	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException {
-		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
+
 		ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
 		ArrayList<RoomPO> list = hds.roomShowAll(hotelid);
 		for(int i=0;i<list.size();i++){
@@ -64,9 +59,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	
 	//房间信息更新
 	public boolean changeRoomInfo(String roomid, String type) throws RemoteException {
-		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
-		
+	
 		boolean info = false;
 		
 		RoomVO roomvo = new RoomVO();
@@ -83,8 +76,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	//酒店基本信息生成
 	public boolean formHotelInfo(HotelVO vo)throws RemoteException {
 		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
-		
 		boolean info = false;
 		
 		info = hds.insert(vo.Tohotelpo(vo));
@@ -96,8 +87,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	//酒店基本信息更新
 	public boolean changeHotelInfo(HotelVO vo)throws RemoteException {
 		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
-		
 		boolean info = false;
 		
 		info = hds.update(vo.Tohotelpo(vo));
@@ -107,8 +96,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	
 	//入住信息更新
 	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
-		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
 		boolean info = false;
 		
@@ -136,8 +123,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	//退房信息更新
 	public boolean changeCheckOutInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException {
 		
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
-		
 		boolean info = false;
 		
 		int new_singleRoom = hotelvo.getLeftSingleRoom()+singleRoom;
@@ -162,7 +147,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	public RoomVO FindRoomByID(int roomid)throws RemoteException {
-		hds=(HotelDataService) RMIHelper.find("HotelDataService");
 		
 		RoomPO po = hds.FindroombyID(roomid);
 		
@@ -174,8 +158,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	}
 	
 	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException {
-		
-		mds = (MemberDataService) RMIHelper.find("MemberDataService");
 		
 		CreditPO po = mds.findCreditRecord(orderid);
 		

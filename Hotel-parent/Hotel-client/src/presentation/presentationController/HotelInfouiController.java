@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.HotelStaffLogicService;
+import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
@@ -23,7 +24,7 @@ import presentation.userui.AlertBox;
 import vo.HotelVO;
 
 public class HotelInfouiController implements Initializable{
-	private String hotelstar,hoteldescription,hoteladdress;
+	String hotelstar,hoteldescription,hoteladdress;
 	@FXML
 	private Button ReturnButton;//返回按钮
 	@FXML
@@ -37,7 +38,8 @@ public class HotelInfouiController implements Initializable{
 	//界面跳转
 	
 	HotelStaffLogicService hser;
-	HotelVO hotelvo = HotelmanageController.getHotelVO();
+	HotelVO vo = HotelmanageController.getHotelVO();
+
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -48,7 +50,7 @@ public class HotelInfouiController implements Initializable{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不全");
 		}else{
-
+			
 			int instar=0;
 			hotelstar=HotelStar.getValue().toString();
 			hoteldescription=HotelDescription.getText();
@@ -69,13 +71,14 @@ public class HotelInfouiController implements Initializable{
 			if(hotelstar.equals("五星")){
 				instar=5;
 			}
-			hotelvo.setStar(instar);
-			hotelvo.setAdsress(hoteladdress);
-			hotelvo.setIntroduction(hoteldescription);
+			vo.setStar(instar);
+			vo.setAdsress(hoteladdress);
+			vo.setIntroduction(hoteldescription);
 			
-			HotelmanageController.setHotelvo(hotelvo);
+			
 			try {
-				if(hser.changeHotelInfo(hotelvo)==true){
+				if(hser.changeHotelInfo(
+						vo)){
 					AlertBox alt2 = new AlertBox();
 					alt2.display("保存成功！");
 				}
@@ -97,22 +100,25 @@ public class HotelInfouiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		String star = "";
-		HotelnameLabel.setText(hotelvo.getName());
-		HotelDescription.setText(hotelvo.getIntroduction());
-		HotelAddress.setText(hotelvo.getAddress());
-		if(hotelvo.getStar()==1){
+		
+		
+		HotelnameLabel.setText(vo.getName());
+		HotelDescription.setText(vo.getIntroduction());
+		HotelAddress.setText(vo.getAddress());
+		
+		if(vo.getStar()==1){
 			star="★";
 		}
-		if(hotelvo.getStar()==2){
+		if(vo.getStar()==2){
 			star="★★";
 		}
-		if(hotelvo.getStar()==3){
+		if(vo.getStar()==3){
 			star="★★★";
 		}
-		if(hotelvo.getStar()==4){
+		if(vo.getStar()==4){
 			star="★★★★";
 		}
-		if(hotelvo.getStar()==5){
+		if(vo.getStar()==5){
 			star="★★★★★";
 		}
 		ShowStar.setText(star);

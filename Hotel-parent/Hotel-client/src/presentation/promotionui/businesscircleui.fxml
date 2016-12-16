@@ -27,7 +27,7 @@
       </HBox>
       <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="400.0" prefWidth="300.0" spacing="30.0">
          <children>
-            <Button fx:id="button_webdiscountdate" mnemonicParsing="false" onAction="#DataClicked" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="特定期间折扣">
+            <Button fx:id="button_webdiscountdate" mnemonicParsing="false" onAction="#DataClicked" prefHeight="50.0" prefWidth="200.0" text="特定期间折扣">
                <font>
                   <Font size="20.0" />
                </font>
