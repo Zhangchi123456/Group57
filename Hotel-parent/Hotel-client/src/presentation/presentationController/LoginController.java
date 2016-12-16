@@ -54,19 +54,25 @@ public class LoginController implements Initializable{
 			AlertBox alt = new AlertBox();
 			alt.display("密码为空");
 		}
-		
 		else{
 			String LogId=UserId.getText().toString();
 			String Logpassword=PassWord.getText().toString();
 			LoginLogicService lcs=new LoginLogicServiceImpl();
-			if(lcs.findUser(LogId, Logpassword)==null){
-			
+	
+			if(lcs.findUser(LogId, Logpassword)==null){		
 				AlertBox alt = new AlertBox();
 				alt.display("用户名或者密码错误");
-				
-			
 			}//find user
 			else {
+				//if has log in
+				if(lcs.isCurrentUser(LogId)){
+					AlertBox alt = new AlertBox();
+					alt.display("用户已登陆");
+					return;
+				}
+				else{
+					lcs.addCurrentUser(LogId);
+				}//add to current user if not log in
 				UserType usertype =lcs.findUser(LogId, Logpassword);
 				if(UserType.Member.equals(usertype)){
 	              LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
