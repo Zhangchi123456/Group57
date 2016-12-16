@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesscircleuiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../userui/promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesscircleuiController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0">
          <padding>
@@ -102,7 +102,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button blendMode="MULTIPLY" layoutX="516.0" layoutY="525.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="117.0" text="返 回">
+      <Button blendMode="MULTIPLY" layoutX="599.0" layoutY="520.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="117.0" text="返 回">
          <font>
             <Font size="27.0" />
          </font>
