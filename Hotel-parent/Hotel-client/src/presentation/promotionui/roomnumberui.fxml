@@ -57,7 +57,7 @@
                </padding>
                <children>
                   <Label prefHeight="19.0" prefWidth="115.0" />
-                  <Button fx:id="back" mnemonicParsing="false" onAction="#update" styleClass="bton1" text="确认">
+                  <Button fx:id="back" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#update" styleClass="bton1" text="确认">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -68,17 +68,17 @@
       </VBox>
       <VBox layoutY="120.0" prefHeight="391.0" prefWidth="240.0" spacing="40.0">
          <children>
-            <Button fx:id="button_birthday" mnemonicParsing="false" onAction="#toBirthday" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="会员生日特惠">
+            <Button fx:id="button_birthday" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#toBirthday" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="会员生日特惠">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="button_businesspartner" mnemonicParsing="false" onAction="#toBusinesspartner" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="合作企业客户特惠">
+            <Button fx:id="button_businesspartner" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#toBusinesspartner" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="合作企业客户特惠">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="三间以上预定特惠">
+            <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="三间以上预定特惠">
                <font>
                   <Font size="20.0" />
                </font>
@@ -86,7 +86,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="button_hoteldiscountdate" mnemonicParsing="false" onAction="#toHoteldiscountdate" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="特定住宿期间特惠">
+            <Button fx:id="button_hoteldiscountdate" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#toHoteldiscountdate" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="特定住宿期间特惠">
                <font>
                   <Font size="20.0" />
                </font>
@@ -96,7 +96,7 @@
             <Insets bottom="30.0" left="20.0" right="10.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="confirm" layoutX="653.0" layoutY="514.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="82.0" styleClass="bton1" text="返回">
+      <Button fx:id="confirm" blendMode="MULTIPLY" layoutX="653.0" layoutY="514.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="82.0" styleClass="bton1" text="返回">
          <font>
             <Font size="23.0" />
          </font>
