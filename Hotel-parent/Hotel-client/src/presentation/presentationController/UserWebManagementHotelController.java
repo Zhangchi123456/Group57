@@ -27,6 +27,7 @@ import vo.WebStaffVO;
 public class UserWebManagementHotelController implements Initializable{
 	ObservableList<HotelStaffVO> HotelStaffVOs,staffSelected;
 	UserLogicService userblservice =new UserLogicServiceImpl();
+	
 	@FXML
 	private Label user;
     @FXML
@@ -63,8 +64,6 @@ public class UserWebManagementHotelController implements Initializable{
     		userblservice.saveHotelStaff(new HotelStaffVO(vo.getName(),vo.getPassword(),vo.getHotelname()));
     		AlertBox alt = new AlertBox();
 			alt.display("密码已保存");
-//			newpassword.clear();
-//			ensurepassword.clear();
     	}
     }
     @FXML
