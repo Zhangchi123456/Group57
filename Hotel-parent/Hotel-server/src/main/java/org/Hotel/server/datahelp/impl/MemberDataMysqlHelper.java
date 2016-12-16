@@ -1,7 +1,9 @@
 package org.Hotel.server.datahelp.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.sql.*;
 
@@ -53,6 +55,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	/*
 	 * update member data:password,credit,birthday,level,phone_num,name
 	 */	
+
 	public void updateMemberData(MemberPO memberpo) {
 		db=Database.getInstance();
 		//member info

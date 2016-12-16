@@ -189,6 +189,14 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		}
 		return memberlist;
 	}
+	public static void main(String[] args) throws RemoteException{
+		MemberDataImpl data=MemberDataImpl.getInstance();
+		ArrayList<MemberPO> list=new ArrayList<MemberPO>();
+		list=data.showAll();
+		for(MemberPO po: list){
+			System.out.println("id "+po.getId()+" name "+po.getName()+ " birthday "+ po.getBirthday().toString());
+		}
+	}
 	
 	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException{
 		ArrayList<MemberLevelPO> memberlvlist = new ArrayList<MemberLevelPO>();
