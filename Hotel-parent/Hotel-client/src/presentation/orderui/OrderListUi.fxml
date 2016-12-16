@@ -56,17 +56,17 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" prefHeight="63.0" prefWidth="777.0" spacing="280.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#EvaluateClicked" prefHeight="54.0" prefWidth="125.0" styleClass="bton1" text="评价订单">
+                  <Button mnemonicParsing="false" onAction="#EvaluateClicked" prefHeight="45.0" prefWidth="125.0" styleClass="bton1" text="评价订单">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#DeleteOrderClicked" prefHeight="45.0" prefWidth="122.0" text="撤销订单">
+                  <Button mnemonicParsing="false" onAction="#DeleteOrderClicked" prefHeight="45.0" prefWidth="122.0" styleClass="bton1" text="撤销订单">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="46.0" prefWidth="92.0" text="返回">
+                  <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="46.0" prefWidth="92.0" styleClass="bton1" text="返回">
                      <font>
                         <Font size="20.0" />
                      </font>

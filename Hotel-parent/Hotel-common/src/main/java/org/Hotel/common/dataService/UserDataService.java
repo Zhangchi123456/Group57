@@ -39,4 +39,8 @@ public interface UserDataService extends Remote{
 	public ArrayList<WebStaffPO> showAllWebStaff() throws RemoteException;
 	
 	public ArrayList<WebManagerPO> showAllWebManager() throws RemoteException;
+	//solve user duplicated log in 
+	public void addCurrentUser(String name) throws RemoteException;
+	public boolean isCurrentUser(String name) throws RemoteException;
+	public void removeCurrentUser(String name) throws RemoteException;
 }

@@ -1,5 +1,7 @@
 package BusinessLogicService.impl;
 
+import java.rmi.RemoteException;
+
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.UserDataService;
 import org.Hotel.common.po.HotelStaffPO;
@@ -15,14 +17,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 	UserDataService userservice=(UserDataService) RMIHelper.find("UserDataService");
 	MemberDataService memberservice=(MemberDataService) RMIHelper.find("MemberDataService");
 	
-	@Override
-	public boolean hasLogin(String name) {
-		
-			
-		return false;
-	}
-
-
 	@Override
 	public UserType findUser(String name, String password) {
 		try{
@@ -58,18 +52,36 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		}
 		return null;
 	}
-
+	/*
+	 * current user operation
+	 */
 	@Override
 	public void addCurrentUser(String name) {
-		// TODO Auto-generated method stub
-		
+		try {
+			userservice.addCurrentUser(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
-
 	@Override
-	public boolean currentUser(String name) {
-		// TODO Auto-generated method stub
+	public boolean isCurrentUser(String name) {
+		try {
+			return userservice.isCurrentUser(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
+	}
+	
+	public void removeCurrentUser(String name) {
+		try {
+			userservice.removeCurrentUser(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

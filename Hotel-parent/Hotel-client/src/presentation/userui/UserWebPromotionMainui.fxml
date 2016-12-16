@@ -42,17 +42,17 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="248.0" prefWidth="800.0" spacing="25.0">
                <children>
-                  <Button fx:id="CreditChargeButton" mnemonicParsing="false" onAction="#CreditChargeClicked" prefHeight="60.0" prefWidth="180.0" text="信用充值">
+                  <Button fx:id="CreditChargeButton" mnemonicParsing="false" onAction="#CreditChargeClicked" prefHeight="60.0" prefWidth="180.0" styleClass="bton1" text="信用充值">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="AbnormalOrderDealButton" mnemonicParsing="false" onAction="#AbnormalOrderDealClicked" prefHeight="60.0" prefWidth="180.0" text="异常订单处理">
+                  <Button fx:id="AbnormalOrderDealButton" mnemonicParsing="false" onAction="#AbnormalOrderDealClicked" prefHeight="60.0" prefWidth="180.0" styleClass="bton1" text="异常订单处理">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#WebPromotionClicked" prefHeight="60.0" prefWidth="189.0" text="网站促销策略制定">
+                  <Button mnemonicParsing="false" onAction="#WebPromotionClicked" prefHeight="60.0" prefWidth="189.0" styleClass="bton1" text="网站促销策略制定">
                      <font>
                         <Font size="20.0" />
                      </font>

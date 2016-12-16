@@ -17,6 +17,8 @@ import org.Hotel.server.datahelp.UserDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
 public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
+	private ArrayList<String> currentUser=new ArrayList<String>(); 
+	
 	private Map<String, HotelStaffPO> map_hotels;
 	
 	private Map<String, WebStaffPO> map_webs;
@@ -216,6 +218,30 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 			webmlist.add(webmpo);
 		}
 		return webmlist;
+	}
+	/*
+	 * Solve duplicated login  
+	 */
+	public void addCurrentUser(String name) throws RemoteException{
+		for(String str:currentUser){
+			if(name.equals(str)){
+				return;
+			}
+		}
+		currentUser.add(name);
+	}
+
+	public boolean isCurrentUser(String name) throws RemoteException{
+		for(String str:currentUser){
+			if(name.equals(name)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void removeCurrentUser(String name) throws RemoteException{
+		currentUser.remove(name);
 	}
 
 }
