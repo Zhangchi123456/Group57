@@ -15,6 +15,9 @@ import org.Hotel.server.datahelp.PromotionDataHelper;
 
 public class PromotionDataMysqlHelper implements PromotionDataHelper {
 	Database db;
+	/*
+	 * hotel promotion operation
+	 */
 	public Map<Integer, HotelPromotionPO> getHotelPromotionData() {
 		db=Database.getInstance();
 		String query="SELECT * FROM hotel_strategy";
@@ -47,12 +50,10 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}
 		return null;
 	}//end get hotel strategy data 
-	/*
-	 * update a record of hotel promotion
-	 */
+	// update a record of hotel promotion
 	public void updateHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
-		
+		//hotel strategy info
 		int id=po.getId();
 		double birthdaydiscount=po.getBirthdaydiscount();
 		double multiorderdiscount=po.getMultiorderdiscount();
@@ -64,7 +65,6 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 				+ "enterprise_discount="+"'"+enterpricediscount+"',"
 				+ "date_discount="+"'"+datediscount+"'"
 				+ " WHERE id="+"'"+id+"'";
-				
 		try{
 			db.update(query);
 		}catch(Exception e){
@@ -72,19 +72,19 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}finally{
 			db.close();
 		}
-		
 	}//end update hotel strategy
-	
 	
 	public void insertHotelPromotionData(HotelPromotionPO po) {
 		db=Database.getInstance();
-		//hotel promotion info
+		//hotel strategy info
 		String type=po.getType();
 		String hotelid=po.getHotelid();
+		//discount
 		double birthdaydiscount=po.getBirthdaydiscount();
 		double multiorderdiscount=po.getMultiorderdiscount();
 		double enterpricediscount=po.getEnterpricediscount();
 		double datediscount=po.getDatediscount();
+		//date
 		String startdate=po.getStartdate();
 		String enddate=po.getEnddate();
 		
@@ -120,9 +120,10 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		}finally{
 			db.close();
 		}
-		
 	}//end delete hotel promotion
-	
+	/*
+	 * web strategy operation
+	 */
 	public Map<Integer, WebPromotionPO> getWebPromotionData() {
 		db=Database.getInstance();
 		
@@ -148,7 +149,7 @@ public class PromotionDataMysqlHelper implements PromotionDataHelper {
 		return null;
 	}//end get web strategy data
 
-	//System has no such feature
+	//has no such feature
 	public void updateWebPromotionData(WebPromotionPO po) {
 	}//end update web strategy
 

@@ -12,7 +12,10 @@ import org.Hotel.server.datahelp.UserDataHelper;
 
 public class UserDataMysqlHelper implements UserDataHelper {
 	Database db;
-	
+	/*
+	 * webstaff operation
+	 * get update insert nut no delete method
+	 */
 	public Map<String, WebStaffPO> getWebStaffData() {
 		db=Database.getInstance();
 		
@@ -62,12 +65,10 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		// TODO Auto-generated method stub
 		
 	}
-
 	public void insertWebStaffData(WebStaffPO po) {
 		db=Database.getInstance();
 		
 		String name=po.getName();
-//		System.out.println(name);
 		String password=po.getPassword();
 		
 		String query="INSERT INTO web_staff(name,password) VALUE("+"'"+name+"',"
@@ -80,10 +81,11 @@ public class UserDataMysqlHelper implements UserDataHelper {
 			db.close();
 		}
 	}//end insert web staff data 
-	
 	/*
-	 * return all hotel staff data
+	 * hotelbstaff operation
+	 * get insert update nut no delete method
 	 */
+	 // return all hotel staff data
 	public Map<String, HotelStaffPO> getHotelStaffData() {
 		db=Database.getInstance();
 		String query="SELECT * FROM hotel_staff";
@@ -146,12 +148,15 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		}
 	}//end insert hotel staff
 	
-	//System has no such feature
+	//has no such feature
 	public void deleteHotelStaffData(HotelStaffPO hotelstaffpo) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	/*
+	 * web manager operation
+	 * get data only
+	 */
 	public Map<String, WebManagerPO> getWebManagerData() {
 		db=Database.getInstance();
 		
@@ -175,7 +180,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 			db.close();
 		}
 		return null;
-	}
+	}//end get web manager data
 	
 
 	//no further operation on web manager 
