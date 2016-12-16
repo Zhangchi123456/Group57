@@ -110,7 +110,7 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	public void delete(ActionEvent event){
 	//删除已有折扣日期	
-		if(hoteldiscountdateTable.getSelectionModel()!=null){
+		if(!hoteldiscountdateTable.getSelectionModel().isEmpty()){
 			
 			int selectnumber=hoteldiscountdateTable.getSelectionModel().getSelectedIndex();
 			String start = data.get(selectnumber).getStart();
@@ -127,8 +127,10 @@ public class hoteldiscountdateuiController implements Initializable{
 			this.showTable(name,hotel_name);
 			
 		}else{
+			
 			AlertBox alt = new AlertBox();
 			alt.display("请先做出选择！");
+			
 		}
 
 	}
@@ -136,17 +138,17 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	public void add(ActionEvent event){
 	//新增折扣日期
-		LocalDate start = TimeBegin.getValue();
-		LocalDate end = TimeEnd.getValue();
-		String input = newDiscount.getText();
-		
-		if(input!=null && start!=null && end!=null){
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
+			
+			LocalDate start = TimeBegin.getValue();
+			LocalDate end = TimeEnd.getValue();
+			String input = newDiscount.getText();
 			
 			String start_date = start.toString();
 			String end_date = start.toString();
 			double discount = Double.parseDouble(input);
 			
-			if(discount<0||discount>100){
+			if(discount<=0||discount>=100){
 				AlertBox alt = new AlertBox();
 				alt.display("超出输入范围！");
 			}else if(discount==0){
@@ -162,6 +164,7 @@ public class hoteldiscountdateuiController implements Initializable{
 				this.showTable(name,hotel_name);
 			
 			}
+			
 		}else{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不完整！");

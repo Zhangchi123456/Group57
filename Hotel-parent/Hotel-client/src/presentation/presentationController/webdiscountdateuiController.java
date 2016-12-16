@@ -94,17 +94,19 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
-		LocalDate start = TimeBegin.getValue();
-		LocalDate end = TimeEnd.getValue();
-		String input = newDiscount.getText();
 		
-		if(input!=null && start!=null && end!=null){
+		
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
+			
+			LocalDate start = TimeBegin.getValue();
+			LocalDate end = TimeEnd.getValue();
+			String input = newDiscount.getText();
 			
 			String start_date = start.toString();
 			String end_date = end.toString();
 			double discount = Double.parseDouble(input);
 			
-			if(discount<0||discount>100){
+			if(discount<=0||discount>=100){
 				AlertBox alt = new AlertBox();
 				alt.display("超出输入范围！");
 			}else if(discount==0){
@@ -130,19 +132,28 @@ public class webdiscountdateuiController implements Initializable{
 	@FXML
 	public void DeleteClicked(ActionEvent event){
 		
-		int selectnumber=webdiscountdateTable.getSelectionModel().getSelectedIndex();
-    	String start = data.get(selectnumber).getStart();
-		String end = data.get(selectnumber).getEnd();
-		double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
-		int id = Integer.parseInt(data.get(selectnumber).getID());
+		if(!webdiscountdateTable.getSelectionModel().isEmpty()){
+			
+			int selectnumber=webdiscountdateTable.getSelectionModel().getSelectedIndex();
+			String start = data.get(selectnumber).getStart();
+			String end = data.get(selectnumber).getEnd();
+			double discount = Double.parseDouble(data.get(selectnumber).getDiscount());
+			int id = Integer.parseInt(data.get(selectnumber).getID());
+			
+			PromotionLogicService promotion = new PromotionLogicServiceImpl();
 		
-		PromotionLogicService promotion = new PromotionLogicServiceImpl();
+			WebPromotionVO vo = new WebPromotionVO(discount/100,start,end,id);
 		
-		WebPromotionVO vo = new WebPromotionVO(discount/100,start,end,id);
+			promotion.deleteWebPromotion(vo);
 		
-		promotion.deleteWebPromotion(vo);
-		
-		this.showTable();
+			this.showTable();
+			
+		}else{
+			
+			AlertBox alt = new AlertBox();
+			alt.display("请先在表格中选择！");
+			
+		}
 	}
 
 

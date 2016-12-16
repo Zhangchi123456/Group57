@@ -2,6 +2,7 @@ package BusinessLogicService.Service;
 
 import java.util.ArrayList;
 
+import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import vo.*;
@@ -29,7 +30,7 @@ public interface UserLogicService {
 	public void addHotelStaff(HotelStaffVO vo);
 	//add hotel strategy
 	public void addHotelStrategy(HotelPromotionVO vo);
-	
+	public HotelStaffVO findByHotelStaff(String name); 
 	
 		
 
