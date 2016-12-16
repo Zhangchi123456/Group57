@@ -24,7 +24,7 @@ import presentation.userui.AlertBox;
 import vo.HotelVO;
 
 public class HotelInfouiController implements Initializable{
-	private String hotelstar,hoteldescription,hoteladdress;
+	String hotelstar,hoteldescription,hoteladdress;
 	@FXML
 	private Button ReturnButton;//返回按钮
 	@FXML
@@ -38,6 +38,7 @@ public class HotelInfouiController implements Initializable{
 	//界面跳转
 	
 	HotelStaffLogicService hser;
+	HotelVO vo = HotelmanageController.getHotelVO();
 
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
@@ -49,7 +50,6 @@ public class HotelInfouiController implements Initializable{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不全");
 		}else{
-			HotelVO vo = HotelmanageController.getHotelVO();
 			
 			int instar=0;
 			hotelstar=HotelStar.getValue().toString();
@@ -77,7 +77,8 @@ public class HotelInfouiController implements Initializable{
 			
 			
 			try {
-				if(hser.changeHotelInfo(vo)==true){
+				if(hser.changeHotelInfo(
+						vo)){
 					AlertBox alt2 = new AlertBox();
 					alt2.display("保存成功！");
 				}
@@ -99,7 +100,7 @@ public class HotelInfouiController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		String star = "";
-		HotelVO vo = HotelmanageController.getHotelVO();
+		
 		
 		HotelnameLabel.setText(vo.getName());
 		HotelDescription.setText(vo.getIntroduction());
