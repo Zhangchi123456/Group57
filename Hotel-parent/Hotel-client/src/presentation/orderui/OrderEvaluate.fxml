@@ -10,46 +10,46 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderEvaluateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderEvaluateController">
    <top>
-      <Label prefHeight="130.0" prefWidth="300.0" text="          订单评价" BorderPane.alignment="CENTER">
+      <Label prefHeight="114.0" prefWidth="300.0" text="       订单评价" BorderPane.alignment="CENTER">
          <font>
-            <Font size="26.0" />
+            <Font size="32.0" />
          </font>
       </Label>
    </top>
-   <bottom>
+   <center>
       <VBox prefHeight="458.0" prefWidth="715.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="56.0" prefWidth="800.0">
+            <HBox prefHeight="88.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="37.0" prefWidth="179.0" text="          订单号 ：">
+                  <Label prefHeight="43.0" prefWidth="179.0" text="          订单号 ：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="OrderId" prefHeight="37.0" prefWidth="143.0" text="1234567">
+                  <Label fx:id="OrderId" prefHeight="46.0" prefWidth="143.0" text="1234567">
                      <font>
                         <Font size="23.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="60.0" prefWidth="800.0">
+            <HBox prefHeight="95.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="33.0" prefWidth="178.0" text="       酒店名称 ：">
+                  <Label prefHeight="43.0" prefWidth="178.0" text="       酒店名称 ：">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="HotelName" prefHeight="37.0" prefWidth="143.0" text="如家">
+                  <Label fx:id="HotelName" prefHeight="46.0" prefWidth="143.0" text="如家">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="23.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="60.0" prefWidth="800.0">
+            <HBox prefHeight="80.0" prefWidth="1000.0">
                <children>
                   <Label text="           评分   ：">
                      <font>
@@ -76,7 +76,7 @@
             </HBox>
             <HBox prefHeight="60.0" prefWidth="800.0" spacing="10.0">
                <children>
-                  <Label prefHeight="60.0" prefWidth="509.0" />
+                  <Label prefHeight="60.0" prefWidth="716.0" />
                   <Button id="Return" fx:id="Return" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="45.0" prefWidth="93.0" text="返 回">
                      <font>
                         <Font size="24.0" />
@@ -94,5 +94,5 @@
             </HBox>
          </children>
       </VBox>
-   </bottom>
+   </center>
 </BorderPane>

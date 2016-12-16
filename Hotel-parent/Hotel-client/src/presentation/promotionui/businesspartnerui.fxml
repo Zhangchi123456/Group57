@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesspartneruiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../userui/promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.businesspartneruiController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0">
          <padding>
@@ -47,7 +47,7 @@
                </padding>
                <children>
                   <Label prefHeight="19.0" prefWidth="97.0" />
-                  <Button fx:id="confirm" mnemonicParsing="false" onAction="#SureClicked" text="确认">
+                  <Button fx:id="confirm" mnemonicParsing="false" onAction="#SureClicked" prefHeight="50.0" prefWidth="82.0" text="确认">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -56,7 +56,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutY="120.0" prefHeight="397.0" prefWidth="253.0" spacing="40.0">
+      <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="397.0" prefWidth="253.0" spacing="40.0">
          <children>
             <Button fx:id="button_birthday" mnemonicParsing="false" onAction="#toBirthday" prefHeight="50.0" prefWidth="200.0" text="会员生日特惠">
                <font>
@@ -86,7 +86,7 @@
             <Insets bottom="30.0" left="20.0" right="10.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="back" layoutX="585.0" layoutY="507.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="95.0" text="返回">
+      <Button fx:id="back" blendMode="MULTIPLY" layoutX="585.0" layoutY="507.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="95.0" text="返回">
          <font>
             <Font size="20.0" />
          </font>

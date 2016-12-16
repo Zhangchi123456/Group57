@@ -18,7 +18,7 @@
                   <Font size="40.0" />
                </font>
             </Label>
-            <Button fx:id="Return" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="59.0" prefWidth="88.0" styleClass="buttonlogout">
+            <Button fx:id="Return" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="59.0" prefWidth="88.0" styleClass="buttonlogout">
                <font>
                   <Font size="20.0" />
                </font>
@@ -27,7 +27,7 @@
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox blendMode="MULTIPLY" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>

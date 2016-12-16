@@ -45,7 +45,7 @@ public class RemoteHelper {
 			ConnectionDataService ConnectionDataImpl = new ConnectionDataImpl();
 			HotelDataService HotelDataImpl=new HotelDataImpl();
 			MemberDataService MemberDataImpl=new MemberDataImpl();
-		OrderDataService OrderDataImpl=new OrderDataImpl();
+			OrderDataService OrderDataImpl=new OrderDataImpl();
 			UserDataService UserDataImpl=new UserDataImpl();
 			PromotionDataService PromotionDataImpl=new PromotionDataImpl();
 	
@@ -54,7 +54,7 @@ public class RemoteHelper {
 			Naming.rebind("rmi://"+IP+":"+PORT+"/HotelDataService", HotelDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/UserDataService", UserDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/MemberDataService", MemberDataImpl);
-		Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
+			Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/PromotionDataService", PromotionDataImpl);
 			
 			System.out.println("Ready");
