@@ -74,7 +74,7 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		}
 		return false;
 	}
-	@Override
+	
 	public void removeCurrentUser(String name) {
 		try {
 			userservice.removeCurrentUser(name);

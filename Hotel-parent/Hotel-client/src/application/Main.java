@@ -14,7 +14,10 @@ import org.Hotel.common.po.OrderPO;
 
 import presentation.presentationController.RMIConnection;
 import vo.OrderVO;
+import BusinessLogicService.Service.LoginLogicService;
+import BusinessLogicService.impl.LoginLogicServiceImpl;
 import BusinessLogicService.impl.RMIHelper;
+import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -159,6 +162,10 @@ public class Main extends Application {
 	    //璺宠浆鍒扮櫥褰曠晫闈�
 	    public void goto_Loginui(){
 	    	try {
+	    		if(LoginHelper.getLogVO()!=null){
+	    			LoginLogicService lsi=new LoginLogicServiceImpl();
+	    			lsi.removeCurrentUser(LoginHelper.getLogVO().getUsername());
+	    		}
 				replaceSceneContent("/presentation/userui/Login.fxml");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
