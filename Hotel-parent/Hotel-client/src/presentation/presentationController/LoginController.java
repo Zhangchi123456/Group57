@@ -33,15 +33,19 @@ import vo.LogVO;
 
 
 public class LoginController implements Initializable{
-    public static String UserName;
+    //界面项
 	@FXML
 	private TextField UserId;
 	@FXML
 	private PasswordField PassWord;
+
+	//事件监听
+	//按钮的监听
 	@FXML
 	private void RegisterClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Registerui();
 	}
+	public static String UserName;
 	@FXML
 	private void SureClicked(ActionEvent event)throws Exception{
 	
@@ -57,13 +61,7 @@ public class LoginController implements Initializable{
 		else	{
 			String LogId=UserId.getText().toString();
 			String Logpassword=PassWord.getText().toString();
-//			LogVO logvo=new LogVO(LogId,Logpassword);
-//			LoginHelper.setLogVO(logvo);
-			/*===================================================
-			 * author Jerry
-			 */
 			LoginLogicService lcs=new LoginLogicServiceImpl();
-			//precondition
 			if(lcs.findUser(LogId, Logpassword)==null){
 			
 				AlertBox alt = new AlertBox();
@@ -101,14 +99,11 @@ public class LoginController implements Initializable{
 			     	LoginHelper.setLogVO(vo);
 			     	UserName=UserId.getText();
 					UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-					
-				}
-				
+				}		
 			}
-		}
-			
+		}			
 	}
-	    
+	//界面初始化    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

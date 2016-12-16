@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: Azure;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsermainuiController">
+<BorderPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: Azure;" styleClass="background" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsermainuiController">
    <top>
       <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -80,7 +80,7 @@
             <HBox prefHeight="70.0" prefWidth="730.0" spacing="15.0">
                <children>
                   <Label />
-                  <Label prefHeight="38.0" prefWidth="76.0" text="城市  :">
+                  <Label prefHeight="38.0" prefWidth="76.0" text="城市  :" textFill="#462121">
                      <font>
                         <Font size="21.0" />
                      </font></Label>
@@ -120,7 +120,7 @@
                   </items>
                   </ChoiceBox>
                   
-                  <Label prefHeight="32.0" prefWidth="92.0" text="房间数量:">
+                  <Label prefHeight="32.0" prefWidth="92.0" text="房间数量:" textFill="#070202">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
@@ -172,7 +172,7 @@
                   </FXCollections>
                   </items>
                   </ChoiceBox>
-                  <Label prefHeight="35.0" prefWidth="82.0" text=" 价格:   ">
+                  <Label prefHeight="35.0" prefWidth="82.0" text=" 价格:   " textFill="#140202">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
@@ -194,12 +194,12 @@
             </HBox>
             <HBox prefHeight="79.0" prefWidth="730.0">
                <children>
-                  <Label prefHeight="36.0" prefWidth="100.0" text="入住日期:  ">
+                  <Label prefHeight="36.0" prefWidth="100.0" text="入住日期:  " textFill="#1b0202">
                      <font>
                         <Font size="18.0" />
                      </font></Label>
                   <DatePicker fx:id="CheckindateDatepicked" prefHeight="37.0" prefWidth="175.0" />
-                  <Label prefHeight="35.0" prefWidth="130.0" text="       离开日期:  ">
+                  <Label prefHeight="35.0" prefWidth="130.0" text="       离开日期:  " textFill="#1b0202">
                      <font>
                         <Font size="18.0" />
                      </font></Label>

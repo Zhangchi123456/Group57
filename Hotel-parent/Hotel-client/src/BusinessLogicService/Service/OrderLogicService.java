@@ -16,7 +16,7 @@ public interface OrderLogicService {
     public boolean changeOrderStation(String OrderId,String OrderStation);//更改订单状态
     public ArrayList<OrderVO> findUserOrderListHotelandName(String UserName,String Hotel);//通过用户名和酒店查找订单   
     public ArrayList<OrderVO> findUserOrderListHotel(String Hotel);//通过酒店名查找订单   
-    public ArrayList<OrderVO> showALl();
-    public OrderVO orderShowAll(int order_id);
-	public ArrayList<OrderVO> orderShowAllByStation(String station);
+    public ArrayList<OrderVO> showALl();//显示所有订单;
+    public OrderVO orderShowAll(int order_id);//通过订单号查找订单
+	public ArrayList<OrderVO> orderShowAllByStation(String station);//通过订单状态查找订单
 }

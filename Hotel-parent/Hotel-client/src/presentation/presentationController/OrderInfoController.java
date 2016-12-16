@@ -44,7 +44,7 @@ public class OrderInfoController implements Initializable {
 		credit.membername=ReservationController.getMembervo().getMembername();
 		try {
 			if(memberservice.addCreditRecord(credit)){
-				System.out.println("succeed");
+//				System.out.println("succeed");
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -65,32 +65,32 @@ public class OrderInfoController implements Initializable {
 	
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-	ReservationLogicService res = new ReservationLogicServiceImpl();
+		ReservationLogicService res = new ReservationLogicServiceImpl();
 	
-    vo.setHotelid(ReservationController.getCurrentHotelvo().getName());
-	HotelName.setText(vo.getHotelid());
-	UserNum.setText(String.valueOf(vo.getPeoplenum()));
-	Child.setText(vo.isHavekids());
-	if(Integer.parseInt(vo.getFamilyRoom())!=0){
-		RoomType.setText("家庭房");	
-		RoomnumLabel.setText(vo.getFamilyRoom());
-	}
-	if(Integer.parseInt(vo.getSingleRoom())!=0){
-		RoomType.setText("单人房");	
-		RoomnumLabel.setText(vo.getSingleRoom());
-	}
-	if(Integer.parseInt(vo.getStandardRoom())!=0){
-		RoomType.setText("标准间");		
-		RoomnumLabel.setText(vo.getStandardRoom());
-	}
-	if(Integer.parseInt(vo.getSuiteRoom())!=0){
-		RoomType.setText("套间");	
-		RoomnumLabel.setText(vo.getSuiteRoom());
-	}
-	OrderId.setText(vo.getId());
-	TimeBegin.setText(vo.getStarttime());
-	TimeEnd.setText(vo.getLeavetime());
-	TotalpriceLabel.setText(vo.getPrice());
+		vo.setHotelid(ReservationController.getCurrentHotelvo().getName());
+		HotelName.setText(vo.getHotelid());
+		UserNum.setText(String.valueOf(vo.getPeoplenum()));
+		Child.setText(vo.isHavekids());
+		if(Integer.parseInt(vo.getFamilyRoom())!=0){
+			RoomType.setText("家庭房");	
+			RoomnumLabel.setText(vo.getFamilyRoom());
+		}
+		if(Integer.parseInt(vo.getSingleRoom())!=0){
+			RoomType.setText("单人房");	
+			RoomnumLabel.setText(vo.getSingleRoom());
+		}
+		if(Integer.parseInt(vo.getStandardRoom())!=0){
+			RoomType.setText("标准间");		
+			RoomnumLabel.setText(vo.getStandardRoom());
+		}
+		if(Integer.parseInt(vo.getSuiteRoom())!=0){
+			RoomType.setText("套间");	
+			RoomnumLabel.setText(vo.getSuiteRoom());
+		}
+		OrderId.setText(vo.getId());
+		TimeBegin.setText(vo.getStarttime());
+		TimeEnd.setText(vo.getLeavetime());
+		TotalpriceLabel.setText(vo.getPrice());
 	}
 	
 }

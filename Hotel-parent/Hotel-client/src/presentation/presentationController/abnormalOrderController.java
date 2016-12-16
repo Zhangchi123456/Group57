@@ -35,12 +35,16 @@ import vo.MemberVO;
 import vo.OrderVO;
 
 public class abnormalOrderController implements Initializable{
-	public ObservableList<SimpleOrder> temp;
+	
+	//类需要的对象和引用
+	  public ObservableList<SimpleOrder> temp;
 	  OrderLogicService am = new OrderLogicServiceImpl();
 	  AlertBox alt = new AlertBox();
 	  MemberLogicService memberlogic = new MemberLogicServiceImpl();
 	  ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
 	  MemberVO membervo = new MemberVO(0, 0, null, null, null);
+	  
+	//界面项
     @FXML
     private TableView<SimpleOrder> Table;//异常订单表
     @FXML
@@ -49,14 +53,16 @@ public class abnormalOrderController implements Initializable{
     private RadioButton  halfcredit,allcredit;
  
     //界面跳转
+    //返回按钮的监听
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 	}
+	//撤销按钮的监听
 	@FXML
 	private void DeleteClicked(ActionEvent event){
 	
-		 int selectnumber=Table.getSelectionModel().getSelectedIndex();
+		int selectnumber=Table.getSelectionModel().getSelectedIndex();
 		if(halfcredit.isSelected()&&allcredit.isSelected()){
 			alt.display("选择错误");
 		}
@@ -131,11 +137,9 @@ public class abnormalOrderController implements Initializable{
 	}
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
     	 temp =FXCollections.observableArrayList();
-    	for(int i=0;i<orderlist.size();i++){
-    		System.out.println(orderlist.get(i).getPrice());
-    	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getName(),orderlist.get(i).getPrice()));
-   	
-   
+    	 for(int i=0;i<orderlist.size();i++){
+    		 temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),
+    				 orderlist.get(i).getName(),orderlist.get(i).getPrice()));   		 
     	}
 		  HotelName.setCellValueFactory(
 		            new PropertyValueFactory<>("hotel"));		 
@@ -203,11 +207,8 @@ public class abnormalOrderController implements Initializable{
 		       }
 		       public String getOrder(){
 		    	   return order.get();
-		       }
-		       
-
-				
-				public void setPrice(String hotelName) {
+		       }		       
+			   public void setPrice(String hotelName) {
 					// TODO Auto-generated method stub
 					price.set(hotelName);
 				}
@@ -222,13 +223,7 @@ public class abnormalOrderController implements Initializable{
 
 				public String getPrice() {
 					return price.get();
-				}
-
-	
-
-			
-		 
-		    
+				}		    
 		  }
 	}
 

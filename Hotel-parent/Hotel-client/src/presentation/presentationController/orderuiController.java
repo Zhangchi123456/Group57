@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class orderuiController implements Initializable{
+	//界面中的项
     @FXML
     private Button ReturnButton;
     @FXML
@@ -19,12 +20,13 @@ public class orderuiController implements Initializable{
     @FXML
     private TableView table;//订单列表
     //界面跳转
+    //返回按钮的监听
     @FXML
     private void ReturnClicked(ActionEvent event){
-    	UiswitchHelper.getApplication().goto_HotelMainui();
+    	UiswitchHelper.getApplication().goto_HotelMainui();//界面跳转
     }
-    @FXML
-    
+    //check按钮的监听
+    @FXML    
     private void CheckClicked(ActionEvent event){
     	UiswitchHelper.getApplication().goto_ordeinfoui();
     }

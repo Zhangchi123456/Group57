@@ -19,13 +19,13 @@ import vo.HotelVO;
 import vo.OrderVO;
 
 public class OrderEvaluateController  implements Initializable {
+	//界面中的项目
 	    @FXML
 	    private Label OrderId;//订单号
 	    @FXML
 	    private Label HotelName;
 	    @FXML
-	    private TextField Score;
-	    
+	    private TextField Score;	    
 	    @FXML
 	    private TextArea EvaluateInfo;
 	    @FXML
@@ -33,13 +33,11 @@ public class OrderEvaluateController  implements Initializable {
 	    @FXML
 	    private Button Return;
 	    
-	    
-		OrderLogicService ser = new OrderLogicServiceImpl();
-	    
-	    
+	//对象引用    
+		OrderLogicService ser = new OrderLogicServiceImpl();   
 	 //界面跳转
 	  @FXML
-	  private void  ReturnClicked(ActionEvent event){
+	   private void  ReturnClicked(ActionEvent event){
 		  UiswitchHelper.getApplication().goto_Usermainui();
 		 
 	  }
@@ -65,11 +63,8 @@ public class OrderEvaluateController  implements Initializable {
 	 //初始化界面   
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-	//	OrderId.setText(String.valueOf(MemberActController.getOrdervo().getId()));
-      //  HotelName.setText(String.valueOf(MemberActController.getOrdervo().getHotelid()));	  
-		OrderlistuiController a = new OrderlistuiController();
-		
+		// TODO Auto-generated method stub 
+		OrderlistuiController a = new OrderlistuiController();		
 		OrderId.setText(a.Orderid);
 		HotelName.setText(a.Hotelname);
 	}

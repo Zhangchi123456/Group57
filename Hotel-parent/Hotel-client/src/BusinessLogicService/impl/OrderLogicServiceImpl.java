@@ -14,107 +14,97 @@ import Controller.MemberActController;
 import vo.OrderVO;
 
 public class OrderLogicServiceImpl implements OrderLogicService {
-     OrderDataService ser= (OrderDataService)RMIHelper.find("OrderDataService");
-   
+     OrderDataService ser= (OrderDataService)RMIHelper.find("OrderDataService");//Rmi的查找
      
      //评价信息的更新
 	@Override
 	public boolean evaluate(String OrderId, String score, String EvaluateInfo) {		
 		// TODO Auto-generated method stub
 		boolean tem = false;
-	  try {
-		OrderVO vo =new OrderVO();  
-		OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));		
-		vo.SetbyOrderPO(po);
-		vo.setComment(EvaluateInfo);
-		vo.setGrade(score);		
-		po=vo.toOrderPO(vo);	
-		 tem =ser.update(po);	
-	} catch (RemoteException e) {
+		try {
+			OrderVO vo =new OrderVO();  
+			OrderPO po =  ser.orderShowAll(Integer.parseInt(OrderId));		
+			vo.SetbyOrderPO(po);
+			vo.setComment(EvaluateInfo);
+			vo.setGrade(score);		
+			po=vo.toOrderPO(vo);	
+			tem =ser.update(po);	
+		} catch (RemoteException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}		
+		}		
 		return tem;
-	}
+		}
 
 	
 	//订单的生成
 	@Override
 	public boolean input(OrderVO VO) {
 		// TODO Auto-generated method stub
-		boolean tem = false;
-		  try {
-			 tem =ser.insert(VO.toOrderPO(VO));
+			boolean tem = false;
+			try {
+				tem =ser.insert(VO.toOrderPO(VO));
 		
-		} catch (RemoteException e) {
+			} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+			}		
 			return tem;
-		}
-		
-	
+	}
 	
 
 //撤销订单
 	@Override
 	public boolean revokeUserOrder(String UserName, String OrderId) {
 		// TODO Auto-generated method stub
-		OrderVO temp =null;
-		temp.setName(UserName);
-		temp.setId(OrderId);
-		boolean bool = false;
-		try {
-			 bool = ser.delete(temp.toOrderPO(temp));
-		} catch (RemoteException e) {
+			OrderVO temp =null;
+			temp.setName(UserName);
+			temp.setId(OrderId);
+			boolean bool = false;
+			try {
+				bool = ser.delete(temp.toOrderPO(temp));
+			} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-	
-		return bool;
+			}
+			return bool;
 	}
-	
 	
 	//更改订单状态
 	@Override
 	public boolean changeOrderStation(String OrderId,String OrderStation) {
-		boolean tem = false;
-		  try {
-			  OrderPO po=ser.orderShowAll(Integer.parseInt(OrderId));
-			  OrderVO vo=new OrderVO();
-			  vo.SetbyOrderPO(po);
-			  vo.setState(OrderStation);
-			  tem =ser.update(vo.toOrderPO(vo));
-		} catch (RemoteException e) {
+			boolean tem = false;
+			try {
+				OrderPO po=ser.orderShowAll(Integer.parseInt(OrderId));
+				OrderVO vo=new OrderVO();
+				vo.SetbyOrderPO(po);
+				vo.setState(OrderStation);
+				tem =ser.update(vo.toOrderPO(vo));
+			} catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-			return tem;
+				e.printStackTrace();
+			}		
+				return tem;
 		}
+	
 	//查找用户订单
 	@Override
 	public ArrayList<OrderVO> findUserOrderListAll(String UserName) {
 		// TODO Auto-generated method stub
-		ArrayList<OrderPO> a = new ArrayList<OrderPO>();
-		ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
-		try {
-			a=ser.orderShowAllByName(UserName);
-		
-			for(int i=0;i<a.size();i++){
-				OrderVO temp=new OrderVO(UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName) ;
-		//		System.out.println(a.get(i).getName());
-				temp.SetbyOrderPO(a.get(i));
-				
-				tem.add(temp);
-		//		System.out.println(tem.get(i).getName());
-			}
-		} catch (RemoteException e) {
+			ArrayList<OrderPO> a = new ArrayList<OrderPO>();
+			ArrayList<OrderVO> tem = new ArrayList<OrderVO>();
+			try {
+				a=ser.orderShowAllByName(UserName);
+				for(int i=0;i<a.size();i++){
+					OrderVO temp=new OrderVO(UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName, UserName) ;
+					temp.SetbyOrderPO(a.get(i));
+					tem.add(temp);
+				}
+			}	 catch (RemoteException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+				e.printStackTrace();
 		}
-
-		return tem;
+			return tem;
 	}
 
 	
@@ -169,10 +159,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 	}
 
-
-	
-
-
+   //通过酒店名查找该酒店所有订单
 	@Override
 	public ArrayList<OrderVO> findUserOrderListHotel(String Hotel) {
 		// TODO Auto-generated method stub
@@ -196,7 +183,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 
 		return tem;
 	}
-
+    //显示所有订单
 	@Override
 	public ArrayList<OrderVO> showALl() {
 		// TODO Auto-generated method stub
@@ -221,7 +208,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		return tem;
 	}
 
-
+   //通过订单号返回订单信息
 	@Override
 	public OrderVO orderShowAll(int order_id) {
 		// TODO Auto-generated method stub
@@ -238,7 +225,7 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		return tem;
 	}
 
-
+    //通过订单状态查找订单列表
 	@Override
 	public ArrayList<OrderVO> orderShowAllByStation(String station) {
 		// TODO Auto-generated method stub
@@ -249,11 +236,8 @@ public class OrderLogicServiceImpl implements OrderLogicService {
 		
 			for(int i=0;i<a.size();i++){
 				OrderVO temp=new OrderVO() ;
-		//		System.out.println(a.get(i).getName());
 				temp.SetbyOrderPO(a.get(i));
-				
 				tem.add(temp);
-		//		System.out.println(tem.get(i).getName());
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

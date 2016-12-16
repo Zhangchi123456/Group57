@@ -21,13 +21,15 @@ import presentation.userui.AlertBox;
 import vo.MemberVO;
 
 public class CreditChargeController implements Initializable{
+	//界面所需要的引用和对象
 	MemberLogicService memberlogic = new MemberLogicServiceImpl();
 	private String Username,Chargenum;
-	
+	//列表项目
     @FXML
     private TextField UsernameText,ChargenumText;
     
-    
+    //事件监听
+    //确认按钮的监听
     @FXML
     private void ConfirmClicked(ActionEvent event){
     	if(!AllIsfilled()){
@@ -52,29 +54,29 @@ public class CreditChargeController implements Initializable{
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-    		
-    	}
-    	
+			}	
+    	}    	
     }
-    
+    //返回按钮的监听
+  	@FXML
+  	private void ReturnButtonClicked(ActionEvent event){
+  		UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
+  	}
+    //判断信息填写是否完整
     private boolean AllIsfilled(){
     	if(UsernameText.getText().toString().equals(null)||ChargenumText.getText().isEmpty()){
     		return false;
     	}
     	return true;
     }
-    
+    //判断输入的充值金额是否合法
     private boolean Ischargereasonable(){
     	if(Integer.parseInt(ChargenumText.getText().toString())<=0){
     		return false;
     	}
     	return true;
     }
-	@FXML
-	private void ReturnButtonClicked(ActionEvent event){
-		UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
-	}
+    //初始化界面
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

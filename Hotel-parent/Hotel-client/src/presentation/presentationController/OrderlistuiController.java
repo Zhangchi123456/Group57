@@ -38,11 +38,10 @@ public class OrderlistuiController implements Initializable{
    private TableColumn<SimpleOrder,String> HotelName,OrderId,Time,Price,Room,Evaluate,OrderStation;
    @FXML
    private ChoiceBox OrderStationChoiceBox;
-   
+   //类需要的引用和对象
    public ObservableList<SimpleOrder> temp;
    public  static String Orderid;
-   public static String Hotelname;
-  
+   public static String Hotelname; 
    LoginController a = new LoginController();
    String UserName =a.UserName;
    OrderLogicService am = new OrderLogicServiceImpl();
@@ -55,41 +54,37 @@ public class OrderlistuiController implements Initializable{
    private void ReturnButtonClicked(ActionEvent event){
 	   UiswitchHelper.getApplication().goto_Usermainui();
    }
-   
+   //评价按钮的监听
    @FXML 
-   private void EvaluateClicked(ActionEvent event){
-	   
+   private void EvaluateClicked(ActionEvent event){	   
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	  if(temp.get(selectnumber).getOrderstation().equals("已执行订单")){
-	    Orderid=  temp.get(selectnumber).getOrder();
-	    Hotelname  = temp.get(selectnumber).getHotel();}
-	  else{
-		 alt.display("未完成订单不能评价");
-	  }
-	    
-	
+	   if(temp.get(selectnumber).getOrderstation().equals("已执行订单")){
+		   Orderid=  temp.get(selectnumber).getOrder();
+		   Hotelname  = temp.get(selectnumber).getHotel();}
+	   else{
+		   alt.display("未完成订单不能评价");
+	   }
 	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
    }
-
+   //撤销按钮的监听
    @FXML 
-   private void  DeleteOrderClicked(ActionEvent event){
-	        
+   private void  DeleteOrderClicked(ActionEvent event){        
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	 if(!temp.get(selectnumber).getOrderstation().equals("未执行订单")){
-		 alt.display("不能撤销该订单");
-	 }
-	 else{
-	    Orderid=  temp.get(selectnumber).getOrder();
-	  boolean bool= am.changeOrderStation(Orderid, "已撤销订单");
-	  if(bool){ 
-		  alt.display("订单已撤销");
-		  orderlist =am.findUserOrderListAll(UserName);
-	    	 if(orderlist!=null);
-	    	 Orderlist(orderlist);
-	  }
-	  
-	 }
+	   if(!temp.get(selectnumber).getOrderstation().equals("未执行订单")){
+		   alt.display("不能撤销该订单");
+	   }
+	   else{
+		   Orderid=  temp.get(selectnumber).getOrder();
+		   boolean bool= am.changeOrderStation(Orderid, "已撤销订单");
+		   if(bool){ 
+			   alt.display("订单已撤销");
+			   orderlist =am.findUserOrderListAll(UserName);
+			   if(orderlist!=null);
+			   Orderlist(orderlist);
+		   }
+	   }
    }
+   //订单查询的监听
    @FXML 
    private void ChoiceBoxClicked(ActionEvent event){
 	  if(OrderStationChoiceBox.getValue().equals("已执行订单")){
@@ -115,14 +110,14 @@ public class OrderlistuiController implements Initializable{
 	  if(OrderStationChoiceBox.getValue().equals("已撤销订单")){
 			  orderlist = am.findUserOrderListStation(UserName,"已撤销订单");
 			  if(orderlist!=null);
-			  Orderlist(orderlist);
-	  
+			  Orderlist(orderlist);	  
+	  }
    }
-   }
+   //界面初始化
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		OrderStationChoiceBox.setValue("所有订单");
+		 OrderStationChoiceBox.setValue("所有订单");
     	 orderlist =am.findUserOrderListAll(UserName);
     	 if(orderlist!=null);
     	 Orderlist(orderlist);
@@ -133,7 +128,7 @@ public class OrderlistuiController implements Initializable{
 	
 //orderlist在表中显示的方法	
 	 public void  Orderlist(ArrayList<OrderVO > orderlist){
-    	 temp =FXCollections.observableArrayList();
+        temp =FXCollections.observableArrayList();
     	for(int i=0;i<orderlist.size();i++){
     	temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),orderlist.get(i).getStarttime()+"——"
    		+orderlist.get(i).getLeavetime(),orderlist.get(i).getPrice(),
@@ -211,7 +206,7 @@ public class OrderlistuiController implements Initializable{
 		                        ).setOrderStation(t.getNewValue());
 		        });
 	
-		       OrderList.setItems(temp);
+		   OrderList.setItems(temp);//将list加入列表中
 
 
 	}
@@ -269,14 +264,7 @@ public class OrderlistuiController implements Initializable{
 			public void setTime(String hotelName) {
 				// TODO Auto-generated method stub
 				time.set(hotelName);
-			}
-
-			
-	
-
-	     
-
-			
+			}		
 
 			public String getTime() {
 				return time.get();
