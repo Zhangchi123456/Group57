@@ -50,25 +50,33 @@ public class UserWebManagementController implements Initializable{
 	private void modifyButtonClicked(ActionEvent event){
 		staffSelected = FXCollections.observableArrayList();
     	staffSelected=table.getSelectionModel().getSelectedItems();
+    	//precondition:clear phone text and date picker
+    	PhonenumberText.clear();
+    	BirthdayDatepicker.setValue(null);
     	//set member info
     	if(!staffSelected.isEmpty()){
+    		//set member info
     		NameText.setText(staffSelected.get(0).getname());
     		MemberlevelText.setText(staffSelected.get(0).getlevel());
+    		membertype.setText(String.valueOf(staffSelected.get(0).getproperty()));
     		CreditValueText.setText(String.valueOf(staffSelected.get(0).getcredit()));
-    		//phone number exist
+    		//phone number and birthday exist
     		if(staffSelected.get(0).getphonenumber()!=null){
     			PhonenumberText.setText(String.valueOf(staffSelected.get(0).getphonenumber()));
     		}
-    		membertype.setText(String.valueOf(staffSelected.get(0).getproperty()));
-    		BirthdayDatepicker.setValue(staffSelected.get(0).getbirthday());
+    		if(staffSelected.get(0).getBirthday()!=null){
+    			BirthdayDatepicker.setValue(staffSelected.get(0).getbirthday());
+    		}
+    		
     	}
 	}
 	@FXML
 	private void SaveButtonClicked(ActionEvent event){
+		String name=NameText.getText().trim();
 		String phoneNum =PhonenumberText.getText().trim();
 		LocalDate birthday=BirthdayDatepicker.getValue();
 		
-		if(staffSelected.isEmpty())
+		if(name.length()==0)
 		{
 			return;
 		}

@@ -136,6 +136,10 @@ public class UserLogicServiceImpl implements UserLogicService{
 	public ArrayList<MemberVO> findMember() {
 		try {
 			ArrayList<MemberPO> list=memberdata.showAll();
+			for(MemberPO po:list){
+				System.out.println("PO:name: "+po.getName()+" birthday: "+po.getBirthday());
+				
+			}
 			ArrayList<MemberVO> listvo=new ArrayList<>();
 			for(MemberPO po:list){
 				if(po!=null){
@@ -150,6 +154,11 @@ public class UserLogicServiceImpl implements UserLogicService{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public static void main(String[] args){
+		UserLogicServiceImpl us=new UserLogicServiceImpl();
+		ArrayList<MemberVO> list=new ArrayList<>();
+		list=us.findMember();
 	}
 
 

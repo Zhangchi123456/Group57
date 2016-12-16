@@ -11,4 +11,6 @@ public interface LoginLogicService {
 	public UserType findUser(String name,String password);
 	
 	public void addCurrentUser(String name);
+	
+	public boolean currentUser(String name);
 }

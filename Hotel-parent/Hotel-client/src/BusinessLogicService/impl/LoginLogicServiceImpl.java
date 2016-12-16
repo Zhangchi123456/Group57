@@ -64,5 +64,12 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public boolean currentUser(String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

@@ -1,10 +1,7 @@
 package presentation.presentationController;
 
-
 import util.UserType;
-
 import java.net.URL;
-
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.LoginLogicService;
@@ -58,7 +55,7 @@ public class LoginController implements Initializable{
 			alt.display("密码为空");
 		}
 		
-		else	{
+		else{
 			String LogId=UserId.getText().toString();
 			String Logpassword=PassWord.getText().toString();
 			LoginLogicService lcs=new LoginLogicServiceImpl();
@@ -77,7 +74,6 @@ public class LoginController implements Initializable{
 			     	LoginHelper.setLogVO(vo);
 					UserName=UserId.getText();
 					UiswitchHelper.getApplication().goto_Usermainui();
-				
 				}
 				else if(UserType.hotelStaff.equals(usertype)){
 					LogVO vo=new LogVO(UserId.getText(),PassWord.getText());//store name
