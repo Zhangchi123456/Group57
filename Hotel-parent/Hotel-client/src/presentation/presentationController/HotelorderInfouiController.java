@@ -40,7 +40,7 @@ public class HotelorderInfouiController implements Initializable{
 	@FXML
 	private Button refresh,back;
 	@FXML
-	private TextField INtimetx,OutTimetx,OrderUser;//入住时间，离开时间
+	private Label INtimetx,OutTimetx;//入住时间，离开时间，订单持有者
 	
 	@FXML
 	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State,SingleRoom,StandardRoom,FamilyRoom,SuiteRoom,singlenumber,standardnumber,familynumber,suitenumber;//订单持有者
@@ -103,10 +103,10 @@ public class HotelorderInfouiController implements Initializable{
 						break;
 					}
 				}
-                tempcredit = Integer.parseInt(ordervo.getPrice());
+                tempcredit = (int)Double.parseDouble(ordervo.getPrice());
 				creditvo.setCreditchange("-"+ordervo.getPrice());
 				creditvo.setAction("异常");
-				creditvo.setCreditlast(String.valueOf(membervo.getcredit() - Integer.parseInt(ordervo.getPrice())));
+				creditvo.setCreditlast(String.valueOf(membervo.getcredit() - (int)Double.parseDouble(ordervo.getPrice())));
 				creditvo.setTime(lasttime);
 				membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
 				mser.updateMemberinfo(membervo);
@@ -123,7 +123,7 @@ public class HotelorderInfouiController implements Initializable{
 		
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
-		Person.setText(ordervo.getId());
+		OrderId.setText(ordervo.getId());
 		CurrentState.setText(ordervo.getState());
 		singlenumber.setText(ordervo.getSingleRoom());
 		standardnumber.setText(ordervo.getStandardRoom());
@@ -143,7 +143,7 @@ public class HotelorderInfouiController implements Initializable{
 			
 			creditvo.setCreditchange(ordervo.getPrice()+tempcredit);
 			creditvo.setAction("已执行");
-			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + Integer.parseInt(ordervo.getPrice())));
+			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + (int)Double.parseDouble(ordervo.getPrice())));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
 			try {
@@ -218,7 +218,7 @@ public class HotelorderInfouiController implements Initializable{
 				tempcredit =(int) Double.parseDouble(ordervo.getPrice());
 				creditvo.setCreditchange("-"+ordervo.getPrice());
 				creditvo.setAction("异常");
-				creditvo.setCreditlast(String.valueOf(tempcredit - Integer.parseInt(ordervo.getPrice())));
+				creditvo.setCreditlast(String.valueOf(tempcredit - (int)Double.parseDouble(ordervo.getPrice())));
 				creditvo.setTime(lasttime);
 				membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
 				mser.updateMemberinfo(membervo);
@@ -235,7 +235,7 @@ public class HotelorderInfouiController implements Initializable{
 		
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
-		Person.setText(ordervo.getId());
+		OrderId.setText(ordervo.getId());
 		CurrentState.setText(ordervo.getState());
 		singlenumber.setText(ordervo.getSingleRoom());
 		standardnumber.setText(ordervo.getStandardRoom());
@@ -255,7 +255,7 @@ public class HotelorderInfouiController implements Initializable{
 			
 			creditvo.setCreditchange(ordervo.getPrice()+tempcredit);
 			creditvo.setAction("已执行");
-			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + Integer.parseInt(ordervo.getPrice())));
+			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + (int)Double.parseDouble(ordervo.getPrice())));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
 			try {
