@@ -153,23 +153,19 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	}
 	
 	public boolean deleteRoom(RoomPO roompo)throws RemoteException{
-		int room_id = roompo.getId();
-		if(map_room.get(room_id) != null){
-			map_room.remove(room_id, roompo);
-			roomDataHelper.deleteRoomData(roompo);
-			return true;
-		}else
-		return false;
+		map_room.remove(roompo.getId());
+		roomDataHelper.deleteRoomData(roompo);
+		return true;
 		
 	}
 	public boolean insertRoom(RoomPO roompo)throws RemoteException{
-		int room_id = roompo.getId();
-		if(map_room.get(room_id) == null){
-			map_room.put(room_id, roompo);
+		if(roompo!=null){
 			roomDataHelper.insertRoomData(roompo);
-			return true;
+			map_room=roomDataHelper.getRoomData();
+				return true;
+			
 		}else
-        return false;
+		    return false;
 		
 	}
 	
