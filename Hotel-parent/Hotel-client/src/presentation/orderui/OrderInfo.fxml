@@ -147,9 +147,8 @@
                   <Label prefHeight="30.0" prefWidth="274.0" text="订单最晚入住时间为入住日期当晚的18时" textFill="#bf1616" />
                </children>
             </HBox>
-            <HBox prefHeight="60.0" prefWidth="800.0" spacing="10.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="800.0" spacing="50.0">
                <children>
-                  <Label prefHeight="60.0" prefWidth="681.0" />
                   <Button mnemonicParsing="false" onAction="#ReturnClicked" styleClass="bton1" text="返 回">
                      <font>
                         <Font size="24.0" />
@@ -186,6 +185,9 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

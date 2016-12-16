@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelmainuiController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelmainuiController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="828.0" spacing="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,17 +46,17 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="153.0" prefWidth="1000.0" spacing="60.0">
                <children>
-                  <Button fx:id="RoomInfo" mnemonicParsing="false" onAction="#RoomInfoButtonClicked" prefHeight="68.0" prefWidth="200.0" text="客房列表">
+                  <Button fx:id="RoomInfo" mnemonicParsing="false" onAction="#RoomInfoButtonClicked" prefHeight="68.0" prefWidth="200.0" styleClass="bton1" text="客房列表">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Update" mnemonicParsing="false" onAction="#UpdateButtonClicked" prefHeight="69.0" prefWidth="200.0" text="更新入住信息">
+                  <Button fx:id="Update" mnemonicParsing="false" onAction="#UpdateButtonClicked" prefHeight="69.0" prefWidth="200.0" styleClass="bton1" text="更新入住信息">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="Order" mnemonicParsing="false" onAction="#OrderButtonClicked" prefHeight="68.0" prefWidth="200.0" text="订单列表">
+                  <Button fx:id="Order" mnemonicParsing="false" onAction="#OrderButtonClicked" prefHeight="68.0" prefWidth="200.0" styleClass="bton1" text="订单列表">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -65,12 +65,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="137.0" prefWidth="1000.0" spacing="60.0">
                <children>
-                  <Button fx:id="HotelPromotion" mnemonicParsing="false" onAction="#HotelPromotionClicked" prefHeight="67.0" prefWidth="200.0" text="酒店促销策略">
+                  <Button fx:id="HotelPromotion" mnemonicParsing="false" onAction="#HotelPromotionClicked" prefHeight="67.0" prefWidth="200.0" styleClass="bton1" text="酒店促销策略">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="HotelInfo" mnemonicParsing="false" onAction="#HotelInfoButtonClicked" prefHeight="68.0" prefWidth="200.0" text="酒店基本信息">
+                  <Button fx:id="HotelInfo" mnemonicParsing="false" onAction="#HotelInfoButtonClicked" prefHeight="68.0" prefWidth="200.0" styleClass="bton1" text="酒店基本信息">
                      <font>
                         <Font size="20.0" />
                      </font>
