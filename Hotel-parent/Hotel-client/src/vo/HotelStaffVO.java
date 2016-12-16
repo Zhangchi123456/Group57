@@ -1,5 +1,7 @@
 package vo;
 
+import org.Hotel.common.po.HotelStaffPO;
+
 public class HotelStaffVO {
 	private String name;
 	private String password;
@@ -10,7 +12,11 @@ public class HotelStaffVO {
 		this.password=password;
 		this.hotelname=hotelname;
 	}
-
+     public void setbypo(HotelStaffPO po){
+    	 this.name = po.getName();
+    	 this.hotelname=po.getHotelName();
+    	 this.password=po.getPassword();
+     }
 	public String getName() {
 		return name;
 	}

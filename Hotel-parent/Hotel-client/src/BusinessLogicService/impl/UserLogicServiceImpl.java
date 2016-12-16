@@ -148,90 +148,90 @@ public class UserLogicServiceImpl implements UserLogicService{
 		return null;
 	}
 
-	@Override
-	public void saveMember(MemberVO vo){
-		MemberPO po;
-		try {
-			po = vo.topo();
-			memberdata.update(po);
-			
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-	}
+//	@Override
+//	public void saveMember(MemberVO vo){
+//		MemberPO po;
+//		try {
+//			po = vo.topo();
+//			memberdata.u
+//			
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		} catch (ParseException e1) {
+//			e1.printStackTrace();
+//		}
+//	}
 
 	
 	@Override
-	public ArrayList<String> showCity() {
-		try {
-			return hoteldata.
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public ArrayList<String> showCity() {
+//		try {
+//			return hoteldata.
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 
-	@Override
-	public ArrayList<String> showCircle(String city) {
-		ArrayList<CirclePO> list;
-		ArrayList<String> circleList=new ArrayList<>();
-		try{
-			list = hoteldata.circleShowAll(city);
-			for(CirclePO po:list){
-				circleList.add(po.getName());
-			}
-			return circleList;
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	@Override
+//	public ArrayList<String> showCircle(String city) {
+//		ArrayList<CirclePO> list;
+//		ArrayList<String> circleList=new ArrayList<>();
+//		try{
+//			list = hoteldata.circleShowAll(city);
+//			for(CirclePO po:list){
+//				circleList.add(po.getName());
+//			}
+//			return circleList;
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 
-	@Override
-	public boolean findHotel(String name) {
-		HotelPO po=null;
-		try {
-			po=hoteldata.Findhotelbyname(name);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if(po==null){
-			return false;
-		}
-		return true;
-	}//if a hotel is exist by name
+//	@Override
+//	public boolean findHotel(String name) {
+//		HotelPO po=null;
+//		try {
+//			po=hoteldata.Findhotelbyname(name);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		if(po==null){
+//			return false;
+//		}
+//		return true;
+//	}//if a hotel is exist by name
 
 
-	@Override
-	public void addHotel(HotelVO vo) {
-		HotelPO po=vo.Tohotelpo(vo);
-		try {
-			hoteldata.insert(po);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}//end add hotel 
+//	@Override
+//	public void addHotel(HotelVO vo) {
+//		HotelPO po=vo.Tohotelpo(vo);
+//		try {
+//			hoteldata.insert(po);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//	}//end add hotel 
 
 
-	@Override
-	public void addRoom(RoomVO vo) {
-		RoomPO po=vo.toRoomPO(vo);
-		try {
-			hoteldata.insertRoom(po);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-	}//end add room
+//	@Override
+//	public void addRoom(RoomVO vo) {
+//		RoomPO po=vo.toRoomPO(vo);
+//		try {
+//			hoteldata.insertRoom(po);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}//end add room
 
 	//add hotel staff 
-	@Override
+//	@Override
 	public void addHotelStaff(HotelStaffVO vo) {
 		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getHotelname(),vo.getPassword());
 		try {
@@ -242,24 +242,34 @@ public class UserLogicServiceImpl implements UserLogicService{
 	}//end hotel staff
 
 	//add hotel promotion strategy
-	@Override
-	public void addHotelStrategy(HotelPromotionVO vo) {
-		HotelPromotionPO po=vo.toPO();
-		try{
-			promotiondata.insert(po);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	}//end add hotel promotion strategy
+//	@Override
+//	public void addHotelStrategy(HotelPromotionVO vo) {
+//		HotelPromotionPO po=vo.toPO();
+//		try{
+//			promotiondata.insert(po);
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
+//		
+//	}//end add hotel promotion strategy
 
 
 	@Override
 	public HotelStaffVO findByHotelStaff(String name) {
 		// TODO Auto-generated method stub
-		HotelStaffPO po =userdata.findByHotelStaff(name);
-		HotelStaffVO vo =new HotelStaffVO();
-		vo.s
+		HotelStaffPO po;
+		try {
+			po = userdata.findByHotelStaff(name);
+			HotelStaffVO vo =new HotelStaffVO(name, name, name);
+			vo.setbypo(po);
+			return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+		
 	}
 	
 

@@ -33,6 +33,8 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	
 	HotelVO hotelvo = new HotelVO();
 	
+	
+	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException {
 		
@@ -165,6 +167,14 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		CreditRecordVO Vo = mds.findCreditRecord(orderid);
 		
 		return Vo;
+	}
+
+	//生成一个新的酒店
+	@Override
+	public boolean insert(HotelVO hotelvo) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		return false;
 	}
 
 	
