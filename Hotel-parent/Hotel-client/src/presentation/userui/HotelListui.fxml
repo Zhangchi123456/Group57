@@ -9,26 +9,36 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelListuiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background2" stylesheets="@user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelListuiController">
    <top>
-      <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="酒店列表">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Yuanti SC Bold" size="40.0" />
                </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="WHITE" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
             </Label>
          </children>
       </HBox>
    </top>
    <center>
-      <VBox prefHeight="450.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="450.0" prefWidth="874.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="77.0" prefWidth="1000.0" spacing="20.0">
+            <HBox prefHeight="77.0" prefWidth="1000.0" spacing="20.0" stylesheets="@user.css">
                <children>
-                  <CheckBox fx:id="ReservationCheckbox" mnemonicParsing="false" onMouseClicked="#ReservationCheckboxClicked" prefHeight="56.0" prefWidth="135.0" text="曾经预定">
+                  <CheckBox fx:id="ReservationCheckbox" mnemonicParsing="false" onMouseClicked="#ReservationCheckboxClicked" prefHeight="56.0" prefWidth="135.0" text="曾经预定" textFill="#f5efef">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -38,7 +48,7 @@
                   <Insets bottom="5.0" left="20.0" right="10.0" />
                </padding>
             </HBox>
-            <TableView fx:id="HotelTable" prefHeight="400.0" prefWidth="800.0">
+            <TableView fx:id="HotelTable" blendMode="SCREEN" prefHeight="431.0" prefWidth="800.0">
               <columns>
                 <TableColumn fx:id="HotelName" minWidth="-1.0" prefWidth="250.0" sortable="false" text="酒店名" />
                   <TableColumn fx:id="HotelScore" minWidth="100.0" prefWidth="172.0" text="评分(点击按评分排序)" />
@@ -53,7 +63,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="ReturnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="返回">
+            <Button fx:id="ReturnButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" styleClass="bton1" text="返回">
                <font>
                   <Font size="20.0" />
                </font>
