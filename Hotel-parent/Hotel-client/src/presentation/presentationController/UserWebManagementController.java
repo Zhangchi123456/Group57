@@ -34,6 +34,7 @@ import presentation.userui.AlertBox;
 public class UserWebManagementController implements Initializable{
 	ObservableList<MemberVO> MemberVOs,staffSelected;
 	UserLogicService userblservice =new UserLogicServiceImpl();
+	MemberVO currentMember=null;
 	@FXML
     private Label user;
     @FXML
@@ -55,17 +56,21 @@ public class UserWebManagementController implements Initializable{
     	BirthdayDatepicker.setValue(null);
     	//set member info
     	if(!staffSelected.isEmpty()){
+    		currentMember=staffSelected.get(0);
     		//set member info
-    		NameText.setText(staffSelected.get(0).getname());
-    		MemberlevelText.setText(staffSelected.get(0).getlevel());
-    		membertype.setText(String.valueOf(staffSelected.get(0).getproperty()));
-    		CreditValueText.setText(String.valueOf(staffSelected.get(0).getcredit()));
+    		NameText.setText(currentMember.getname());
+    		MemberlevelText.setText(currentMember.getlevel());
+    		membertype.setText(String.valueOf(currentMember.getproperty()));
+    		CreditValueText.setText(String.valueOf(currentMember.getcredit()));
     		//phone number and birthday exist
     		if(staffSelected.get(0).getphonenumber()!=null){
-    			PhonenumberText.setText(String.valueOf(staffSelected.get(0).getphonenumber()));
+    			PhonenumberText.setText(String.valueOf(currentMember.getphonenumber()));
+    		}
+    		else{
+    			PhonenumberText.setText("");
     		}
     		if(staffSelected.get(0).getBirthday()!=null){
-    			BirthdayDatepicker.setValue(staffSelected.get(0).getbirthday());
+    			BirthdayDatepicker.setValue(currentMember.getbirthday());
     		}
     		
     	}
@@ -80,35 +85,21 @@ public class UserWebManagementController implements Initializable{
 		{
 			return;
 		}
-		MemberVO vo=staffSelected.get(0);
+		//pass modifyed info by vo
+		MemberVO vo=currentMember;
+		vo.setPhonenumber(PhonenumberText.getText().trim());
+		vo.setBirthday(phoneNum);
+		vo.setbirthday(birthday);
+		
     	//edit phonenum and birthday
 		
 		//can't delete phone numbers
     	if(phoneNum.length()==0&&birthday==null){
     		return;
-    	}else if(birthday==null&&phoneNum.length()!=0){
-    		if(!phoneNum.equals(vo.getPhonenumber())){
-    			vo.setPhonenumber(phoneNum);
-    			userblservice.saveMember(vo);
-    			AlertBox alt = new AlertBox();
-    			alt.display("会员信息已保存");
-    		}
-    	}else if(birthday!=null&&phoneNum.length()==0){
-    		if(!birthday.equals(vo.getbirthday())){
-    			vo.setMemberbirthday(birthday);
-    			userblservice.saveMember(vo);
-    			AlertBox alt = new AlertBox();
-    			alt.display("会员信息已保存");
-    		}
     	}else{
-    		if(!phoneNum.equals(vo.getPhonenumber())||!birthday.equals(vo.getbirthday())){
-    			vo.setPhonenumber(phoneNum);
-    			vo.setMemberbirthday(birthday);
-    			userblservice.saveMember(vo);
-    			AlertBox alt = new AlertBox();
-    			alt.display("会员信息已保存");
-    		}
-
+    		userblservice.saveMember(vo);
+    		AlertBox alt = new AlertBox();
+    		alt.display("会员信息已保存");
     	}
     	
 	}
