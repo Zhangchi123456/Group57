@@ -31,10 +31,10 @@ public class HotelupdateuiController implements Initializable{
 	private Button ok,back;
 	
 	@FXML
-	private TextField roomNumtx,INtimetx,orderNumtx,OutTimetx;
+	private TextField roomNumtx,orderNumtx;
 	
 	@FXML
-	private Label Update,roomNum,INtime,OutTime,orderNum;
+	private Label Update,roomNum,INtime,OutTime,orderNum,INtimetx,OutTimetx;
      
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
@@ -51,13 +51,22 @@ public class HotelupdateuiController implements Initializable{
 		}
 		int orderid = Integer.parseInt(orderNumtx.getText());
 		OrderVO ordervo = oser.orderShowAll(orderid);
+		try {
+		if(ordervo==null||ordervo.getState()=="已撤销"){
+			AlertBox alt3 = new AlertBox();
+			alt3.display("请填写正确订单号！");
+		}
+		else if(!isRight(roomNumtx.getText().toString())){
+			AlertBox alt4 = new AlertBox();
+			alt4.display("请填写可用房间号！");
+		}else{
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
-		try {
-			
-			if(hser.changeCheckInInfo(Integer.parseInt(roomNumtx.getText()), orderid, Integer.parseInt(ordervo.getSingleRoom()), Integer.parseInt(ordervo.getStandardRoom()), Integer.parseInt(ordervo.getFamilyRoom()), Integer.parseInt(ordervo.getSuiteRoom()), ordervo.getStarttime(), ordervo.getLeavetime())==true){
-				AlertBox alt = new AlertBox();
-				alt.display("更新成功！");
+		
+		if(hser.changeCheckInInfo(Integer.parseInt(roomNumtx.getText()), orderid, Integer.parseInt(ordervo.getSingleRoom()), Integer.parseInt(ordervo.getStandardRoom()), Integer.parseInt(ordervo.getFamilyRoom()), Integer.parseInt(ordervo.getSuiteRoom()), ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			AlertBox alt = new AlertBox();
+			alt.display("更新成功！");
+			}
 			}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
@@ -66,6 +75,7 @@ public class HotelupdateuiController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -73,8 +83,14 @@ public class HotelupdateuiController implements Initializable{
 		OutTimetx.setText(null);
 		orderNumtx.setText(null);
 		roomNumtx.setText(null);
-		AlertBox alt = new AlertBox();
-		alt.display("请先填写订单号和房间号！");
+	}
+	
+	public boolean isRight(String inroomid) throws NumberFormatException, RemoteException{
+			if(hser.FindRoomByID(Integer.parseInt(inroomid)).getRoomstate().equals("可用")){
+			    return true;
+			}else{
+				return false;
+			}
 	}
 
 }
