@@ -1,7 +1,4 @@
 package application;
-
-
-
 import java.io.InputStream;
 import java.rmi.RemoteException;
 
