@@ -17,6 +17,7 @@ import vo.MemberLevelVO;
 import vo.MemberVO;
 import vo.OrderVO;
 import vo.WebPromotionVO;
+import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
@@ -25,12 +26,10 @@ import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
-    HotelDataService hotelservice=(HotelDataService) RMIHelper.find("HotelDataService");
+    HotelInfo hotelservice=new HotelStaffLogicServiceImpl();
     PromotionLogicService promotionService=new PromotionLogicServiceImpl();
     OrderLogicService orderService=new OrderLogicServiceImpl();
-    public ArrayList<String> getallcity() throws RemoteException{
-    	return hotelservice.cityShowAll();
-    }
+    
 	
 
 
