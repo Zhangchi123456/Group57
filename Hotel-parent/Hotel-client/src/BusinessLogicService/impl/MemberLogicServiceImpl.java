@@ -11,6 +11,7 @@ import org.Hotel.common.po.MemberPO;
 import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.MemberLogicService;
 import vo.CreditRecordVO;
+import vo.MemberLevelVO;
 import vo.MemberVO;
 
 public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
@@ -98,4 +99,43 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		}	
 		
 	}
+	public MemberLevelVO getMemberLevel(int lv) {
+		//获取会员级别对应信息
+			MemberLevelVO vo = new MemberLevelVO();
+			try {
+				vo.setByPO(memberService.findLV(lv));
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			return vo;
+		}
+	
+	public boolean updateMemberLevel(MemberLevelVO vo) {
+		//更新会员级别信息	
+			try{
+				int lv = vo.getLevel();
+				if(lv==1){
+					if(vo.getCredit()<memberService.findLV(2).getCredit()){
+						memberService.update(vo.toPO());
+						return true;
+					}
+				}else if(lv==6){
+					if(vo.getCredit()>memberService.findLV(5).getCredit()){
+						memberService.update(vo.toPO());
+						return true;
+					}
+				}else{
+					if(vo.getCredit()>memberService.findLV(lv-1).getCredit()
+							&&vo.getCredit()<memberService.findLV(lv+1).getCredit()){
+						memberService.update(vo.toPO());
+						return true;
+					}
+				}
+			}catch(RemoteException e){
+				e.printStackTrace();
+			}
+			return false;
+		}
+	
+	
 }

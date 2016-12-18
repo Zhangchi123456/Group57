@@ -19,6 +19,7 @@ import vo.OrderVO;
 import vo.WebPromotionVO;
 import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
 
@@ -27,14 +28,14 @@ import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelInfo hotelservice=new HotelStaffLogicServiceImpl();
-    PromotionLogicService promotionService=new PromotionLogicServiceImpl();
+    PromotionInfo promotionService=new PromotionLogicServiceImpl();
     OrderLogicService orderService=new OrderLogicServiceImpl();
     
 	
 
 
 	
-	
+	//计算订单价格方法的实现
 	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
              double finalprice=0.0;
              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -102,6 +103,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		
 	}
 	
+	//判断是否曾预定过这个酒店方法的实现
 	 public String Ifreservationed(String name,HotelVO vo){
 		 ArrayList<OrderVO> orderlist=orderService.findUserOrderListAll(name);
 		 String hotelname=vo.getName();
@@ -113,6 +115,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 }
 		 return "否";
 	 }
+	 //通过商圈名字找酒店的方法实现
 	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
 		 ArrayList<HotelPO> hotellist = hotelservice.FindhotelByCircle(circle);
 		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();
@@ -220,22 +223,22 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			}
 			switch(roomtype){
 			case"单人房":
-				if(num>leftsingle){
+				if(num>leftsingle||num>Integer.parseInt(vo.getSingleRoom())){
 					return false;
 				}
 				break;
 			case"标准间":
-				if(num>leftstandard){
+				if(num>leftstandard||num>Integer.parseInt(vo.getStandardRoom())){
 					return false;
 				}
 				break;
 			case"家庭房":
-				if(num>leftfamily){
+				if(num>leftfamily||num>Integer.parseInt(vo.getFamilyRoom())){
 					return false;
 				}
 				break;
 			case"套间":
-				if(num>leftsuite){
+				if(num>leftsuite||num>Integer.parseInt(vo.getSuiteRoom())){
 					return false;
 				}
 				
@@ -243,15 +246,15 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			}
 		 }
 		 
+		 
 		 return true;
 	 }
 	 
 	 public HotelVO findbyname(String name) throws RemoteException {
 		  
-		 HotelVO vo=new HotelVO();
+		 HotelVO vo=hotelservice.findbyname(name);
 	
-		
-			vo.setbuHotelPO(hotelservice.Findhotelbyname(name));
+	
 		
 		 return vo;
 		 
