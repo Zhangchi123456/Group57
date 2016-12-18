@@ -18,6 +18,7 @@ import org.Hotel.common.po.WebManagerPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.HotelInfo;
+import BusinessLogicService.Service.LogoutLogicService;
 import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.UserInfo;
@@ -30,7 +31,7 @@ import vo.MemberVO;
 import vo.RoomVO;
 import vo.WebStaffVO;
 
-public class UserLogicServiceImpl implements UserLogicService,UserInfo{
+public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLogicService{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
 	MemberInfo memberInfo=null;
 	HotelInfo hotelInfo=null;
@@ -282,9 +283,16 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 	@Override
 	public void addCurrentUser(String name) {
 		try {
-			userdata.removeCurrentUser(name);
+			userdata.addCurrentUser(name);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeCurrentUser(String name){
+		try{
+			userdata.removeCurrentUser(name);
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}

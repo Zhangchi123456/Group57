@@ -72,8 +72,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 	
 	public void removeCurrentUser(String name) {
 		
-			
-		
 	}
 	
 }

@@ -16,8 +16,11 @@ import presentation.presentationController.RMIConnection;
 import presentation.userui.ComfirmBox;
 import vo.OrderVO;
 import BusinessLogicService.Service.LoginLogicService;
+import BusinessLogicService.Service.LogoutLogicService;
+import BusinessLogicService.Service.UserLogicService;
 import BusinessLogicService.impl.LoginLogicServiceImpl;
 import BusinessLogicService.impl.RMIHelper;
+import BusinessLogicService.impl.UserLogicServiceImpl;
 import Helper.LoginHelper;
 import Helper.UiswitchHelper;
 import javafx.application.Application;
@@ -42,9 +45,21 @@ public class Main extends Application {
 		public void start(Stage primaryStage) throws Exception {
 			
 			init(primaryStage);
-			mainStage.setOnCloseRequest(e_-> {
-				
+			mainStage.setOnCloseRequest(e-> {
+				e.consume();
 				boolean result=ComfirmBox.display("是否退出？");
+				if(result){
+					//log out current user if has login
+					try {
+			    		if(LoginHelper.getLogVO()!=null){
+			    			LogoutLogicService logout=new UserLogicServiceImpl();
+			    			logout.removeCurrentUser(LoginHelper.getLogVO().getUsername());
+			    		}
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					mainStage.close();
+				}
 			});
 			primaryStage.show();
 			
@@ -171,8 +186,8 @@ public class Main extends Application {
 	    public void goto_Loginui(){
 	    	try {
 	    		if(LoginHelper.getLogVO()!=null){
-	    			LoginLogicService lsi=new LoginLogicServiceImpl();
-	    			lsi.removeCurrentUser(LoginHelper.getLogVO().getUsername());
+	    			LogoutLogicService logout=new UserLogicServiceImpl();
+	    			logout.removeCurrentUser(LoginHelper.getLogVO().getUsername());
 	    		}
 				replaceSceneContent("/presentation/userui/Login.fxml");
 			} catch (Exception e) {
