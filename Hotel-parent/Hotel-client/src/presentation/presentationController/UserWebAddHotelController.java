@@ -41,12 +41,13 @@ public class UserWebAddHotelController implements Initializable{
 	
 	@FXML
 	private void SaveButtonClicked(ActionEvent event){
-		if(HotelnameText.getText().trim().length()==0||AddressText.getText().trim().length()==0||
-				single1.getText().trim().length()==0||single2.getText().trim().length()==0||
-				double1.getText().trim().length()==0||double2.getText().trim().length()==0||
-				triple1.getText().trim().length()==0||triple2.getText().trim().length()==0||
-				square1.getText().trim().length()==0||square2.getText().trim().length()==0||
-				introduction.getText().trim()==null){
+		if(HotelnameText.getText().isEmpty()||
+				AddressText.getText().isEmpty()||
+				single1.getText().isEmpty()||single2.getText().isEmpty()||
+				double1.getText().isEmpty()||double2.getText().isEmpty()||
+				triple1.getText().isEmpty()||triple2.getText().isEmpty()||
+				square1.getText().isEmpty()||square2.getText().isEmpty()||
+				introduction.getText().isEmpty()){
 			AlertBox alt = new AlertBox();
 			alt.display("还有未填项！");
 			return;

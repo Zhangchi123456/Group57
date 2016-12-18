@@ -64,6 +64,7 @@ public class UserWebManagementController implements Initializable{
     		CreditValueText.setText(String.valueOf(currentMember.getcredit()));
     		//phone number and birthday exist
     		if(staffSelected.get(0).getphonenumber()!=null){
+    			PhonenumberText.setText("");
     			PhonenumberText.setText(String.valueOf(currentMember.getphonenumber()));
     		}
     		else{

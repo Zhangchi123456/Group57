@@ -40,7 +40,7 @@
                      <font>
                         <Font size="27.0" />
                      </font></Label>
-                  <TextField fx:id="NameText" prefHeight="47.0" prefWidth="194.0">
+                  <TextField fx:id="nameText" prefHeight="47.0" prefWidth="194.0">
                      <HBox.margin>
                         <Insets left="35.0" />
                      </HBox.margin>
@@ -59,7 +59,7 @@
                      <font>
                         <Font size="27.0" />
                      </font></Label>
-                  <PasswordField fx:id="PasswordText" prefHeight="47.0" prefWidth="202.0">
+                  <PasswordField fx:id="password" prefHeight="47.0" prefWidth="202.0">
                      <HBox.margin>
                         <Insets left="36.0" />
                      </HBox.margin>
@@ -79,11 +79,11 @@
                <children>
                   <HBox>
                      <children>
-                        <Label prefHeight="52.0" prefWidth="142.0" text="联系方式：">
+                        <Label prefHeight="52.0" prefWidth="142.0" text="酒店名：">
                            <font>
                               <Font size="27.0" />
                            </font></Label>
-                        <TextField fx:id="PhonenumberText" prefHeight="47.0" prefWidth="202.0">
+                        <TextField fx:id="hotelName" editable="false" prefHeight="47.0" prefWidth="202.0">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -101,7 +101,7 @@
                      <font>
                         <Font size="27.0" />
                      </font></Label>
-                  <PasswordField fx:id="ConfirmpasswordText" prefHeight="47.0" prefWidth="202.0">
+                  <PasswordField fx:id="ensurePassword" prefHeight="47.0" prefWidth="202.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

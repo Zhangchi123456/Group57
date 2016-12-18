@@ -123,7 +123,7 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="HotelnameText" editable="false" prefHeight="30.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                              <TextField fx:id="HotelnameText" prefHeight="30.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -141,7 +141,7 @@
                               </Label>
                               <ChoiceBox fx:id="StarChoicebox" layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ChoiceBox fx:id="BusinessChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="AdressText" prefHeight="30.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="AddressText" prefHeight="30.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label prefHeight="30.0" prefWidth="149.0" text="城市 ：" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="17.0" />
@@ -176,7 +176,7 @@
                               <TextField fx:id="single2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" />
                               <TextField fx:id="triple1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <TextField fx:id="double1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="dobule2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField fx:id="double2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <TextField fx:id="triple2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <TextField fx:id="square1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <TextField fx:id="square2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="3" />
