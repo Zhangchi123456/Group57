@@ -206,12 +206,31 @@ public class UserLogicServiceImpl implements UserLogicService{
 	@Override
 	public boolean findWebStaffBYName(String name) {
 		// TODO Auto-generated method stub
+		 try {
+				WebStaffPO po =  userdata.findByWebStaff(name);
+			if(po != null){
+				return true;
+			}
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return false;
 	}
 
 	@Override
 	public HotelStaffVO findByHotelStaff(String name) {
 		// TODO Auto-generated method stub
+	     try {
+			HotelStaffPO po =  userdata.findByHotelStaff(name);
+			HotelStaffVO vo = new HotelStaffVO(name, name, name);
+			vo.setbypo(po);
+			return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
