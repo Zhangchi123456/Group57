@@ -117,13 +117,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 }
 	 //通过商圈名字找酒店的方法实现
 	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
-		 ArrayList<HotelPO> hotellist = hotelservice.FindhotelByCircle(circle);
-		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();
-		 for(int i=0;i<hotellist.size();i++){
-			 HotelVO vo = new HotelVO();
-					vo.setbuHotelPO(hotellist.get(i));
-					list.add(vo);
-		 }
+		
+		 ArrayList<HotelVO> list=hotelservice.findbycircle(circle);
+		 
 		 return list;
 	 }
 	 
@@ -261,15 +257,10 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 }
 	 
 	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
-		 PromotionDataService promotionservice=(PromotionDataService)RMIHelper.find("PromotionDataService");
-		 ArrayList<HotelPromotionPO> hotelprolist=promotionservice.findByHotelProID(name);
-		 ArrayList<HotelPromotionVO> hotelprolist2 = new ArrayList<HotelPromotionVO>();
-		 for(int i=0;i<hotelprolist.size();i++){
-			 HotelPromotionVO vo=new HotelPromotionVO();
-			 vo.setByPO(hotelprolist.get(i));
-			 hotelprolist2.add(vo);
-		 }
-		 return hotelprolist2;
+		
+		 ArrayList<HotelPromotionVO> hotelprolist=promotionService.findhotelpro(name);
+		
+		 return hotelprolist;
 	 }
 	 
 	 public ArrayList<WebPromotionVO> showall(){

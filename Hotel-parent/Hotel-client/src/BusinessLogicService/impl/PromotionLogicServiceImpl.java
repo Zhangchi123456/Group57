@@ -181,15 +181,4 @@ public class PromotionLogicServiceImpl implements PromotionLogicService,Promotio
 		
 	}
 
-	//add hotel promotion strategy
-	@Override
-	public void addHotelStrategy(HotelPromotionVO vo) {
-		HotelPromotionPO po=vo.toPO();
-		try{
-			promotiondataservice.insert(po);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
 }
