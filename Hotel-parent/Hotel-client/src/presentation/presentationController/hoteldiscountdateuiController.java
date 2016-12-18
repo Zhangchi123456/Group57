@@ -1,15 +1,8 @@
 package presentation.presentationController;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.PromotionLogicService;
@@ -17,8 +10,6 @@ import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,10 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.presentationController.webdiscountdateuiController.DateInfo;
 import presentation.userui.AlertBox;
 import vo.HotelPromotionVO;
-import vo.WebPromotionVO;
 
 public class hoteldiscountdateuiController implements Initializable{
 	
@@ -145,7 +134,7 @@ public class hoteldiscountdateuiController implements Initializable{
 			String input = newDiscount.getText();
 			
 			String start_date = start.toString();
-			String end_date = start.toString();
+			String end_date = end.toString();
 			double discount = Double.parseDouble(input);
 			
 			if(discount<=0||discount>=100){

@@ -1,16 +1,12 @@
 package presentation.presentationController;
 
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.PromotionLogicService;
 import BusinessLogicService.impl.PromotionLogicServiceImpl;
-import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -26,10 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.presentationController.HotelListuiController.SimpleHotel;
-import presentation.presentationController.hoteldiscountdateuiController.DateInfo;
 import presentation.userui.AlertBox;
-import vo.HotelPromotionVO;
 import vo.WebPromotionVO;
 
 public class webdiscountdateuiController implements Initializable{
