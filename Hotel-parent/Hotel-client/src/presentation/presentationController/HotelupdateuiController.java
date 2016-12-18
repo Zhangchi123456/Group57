@@ -33,6 +33,7 @@ public class HotelupdateuiController implements Initializable{
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
 
+	AlertBox alt;
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -41,8 +42,8 @@ public class HotelupdateuiController implements Initializable{
 	@FXML
 	private void SureClicked(ActionEvent event){
 		if(roomNum.getText()==null||orderNumtx.getText()==null){
-			AlertBox alt2 = new AlertBox();
-			alt2.display("请填写订单号和房间号！");
+			alt = new AlertBox();
+			alt.display("请填写订单号和房间号！");
 		}
 		int orderid = Integer.parseInt(orderNumtx.getText());
 		OrderVO ordervo = oser.orderShowAll(orderid);
@@ -50,12 +51,12 @@ public class HotelupdateuiController implements Initializable{
 		RoomVO roomvo;
 		try {
 		if(ordervo==null||ordervo.getState()=="已撤销"){
-			AlertBox alt3 = new AlertBox();
-			alt3.display("请填写正确订单号！");
+			alt = new AlertBox();
+			alt.display("请填写正确订单号！");
 		}
 		else if(!isRight(room_id)){
-			AlertBox alt4 = new AlertBox();
-			alt4.display("请填写可用房间号！");
+			alt = new AlertBox();
+			alt.display("请填写可用房间号！");
 		}else{
 		INtimetx.setText(ordervo.getStarttime());
 		OutTimetx.setText(ordervo.getLeavetime());
@@ -66,28 +67,28 @@ public class HotelupdateuiController implements Initializable{
 		case "单人间":
 			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 1, 0, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
 			
-				AlertBox alt = new AlertBox();			
+				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "标准间":
 			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 1, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
 				
-				AlertBox alt = new AlertBox();			
+				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "家庭房":
 			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 1, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
 				
-				AlertBox alt = new AlertBox();			
+				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "套间":
 			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 0, 1, ordervo.getStarttime(), ordervo.getLeavetime())==true){
 				
-				AlertBox alt = new AlertBox();			
+				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;

@@ -53,6 +53,7 @@ public class CreatorderController implements Initializable{
     private void ConfirmButtonClicked(ActionEvent event) throws NumberFormatException, ParseException{    	
     	if(!Allisfilled()){    		
 			alt2.display("信息填写不全");
+			
     	}else if(!Isdateright()){
 			alt2.display("日期选择错误");
     	}else if(TimeBegin.getValue().getDayOfYear()==TimeEnd.getValue().getDayOfYear()){

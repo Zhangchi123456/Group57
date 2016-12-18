@@ -28,6 +28,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
 import vo.HotelVO;
 import vo.MemberVO;
 
@@ -36,6 +37,7 @@ public class UsermainuiController implements Initializable{
 	private ObservableList<String> circlelist;
 	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	private MemberLogicService memberservice=new MemberLogicServiceImpl();
+	private AlertBox alt2 = new AlertBox();
 	@FXML
 	private Label membernamelabel;
 	//显示会员名的label
@@ -114,8 +116,12 @@ public class UsermainuiController implements Initializable{
     	}
 		ArrayList<HotelVO> hotellist=reservationService.findbycircle(Businessname);
 		hotellist=reservationService.filtbysearch(hotellist, roomtype, roomnum, hotelstar, hotelgrade, hotelprice, hotelname);
+		if(hotellist.size()==0){
+			alt2.display("没有符合条件的酒店");
+		}else {
 		ReservationController.setHotelvoList(hotellist);
 		UiswitchHelper.getApplication().goto_HotelListui();
+		}
 	}
 
 	@FXML
@@ -138,45 +144,13 @@ public class UsermainuiController implements Initializable{
     	return true;
     }
     
-    private String getOtherSearchText(){
-    	String roomtype;
-    	String roomnum;
-    	String hotelstar;
-    	String hotelgrade;
-    	String hotelprice;
-    	String allresult;
-    	if(RoomTypeChoicebox.getValue()!=null){
-    		roomtype=RoomTypeChoicebox.getValue().toString();
-    	}else{
-    		roomtype="null";
-    	}
-    	if(RoomnumChoicebox.getValue()!=null){
-    		roomnum=RoomnumChoicebox.getValue().toString();
-    	}else{
-    		roomnum="null";
-    	}
-    	if(HotelstarChoicebox.getValue()!=null){
-    		hotelstar=HotelstarChoicebox.getValue().toString();
-    	}else{
-    		hotelstar="null";
-    	}
-    	if(HotelgradeChoicebox.getValue()!=null){
-    		hotelgrade=HotelgradeChoicebox.getValue().toString();
-    	}else{
-    		hotelgrade="null";
-    	}
-    	if(HotelpriceChoicebox.getValue()!=null){
-    		hotelprice=HotelpriceChoicebox.getValue().toString();
-    	}else{
-    		hotelprice="null";
-    	}
-    	allresult=roomtype+"/"+roomnum+"/"+hotelstar+"/"+hotelgrade+"/"+hotelprice;
-    	return allresult;
-    }
+    
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
+			memberservice.updatelevel(member);
 			ReservationController.setMembervo(member);
 			MemberActController.setMembervo(member);
 		} catch (RemoteException e) {
@@ -200,8 +174,8 @@ public class UsermainuiController implements Initializable{
 		Citylist.add("北京");
 		citylist=FXCollections.observableArrayList(Citylist);
 			
-			CityChoicebox.setItems(citylist);
-		     CityChoicebox.getSelectionModel()
+		CityChoicebox.setItems(citylist);
+		CityChoicebox.getSelectionModel()
 		     .selectedItemProperty()
 		     .addListener((ov,oldv,newv)->{
 		    	 if(newv=="南京"){

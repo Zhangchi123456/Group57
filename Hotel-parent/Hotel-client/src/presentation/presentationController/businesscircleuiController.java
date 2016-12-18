@@ -14,10 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import presentation.userui.AlertBox;
 import vo.CircleVO;
-import vo.MemberLevelVO;
 
 public class businesscircleuiController implements Initializable{
 	
@@ -28,10 +26,10 @@ public class businesscircleuiController implements Initializable{
 	private Button button_memberlevel;
 	
 	@FXML
-	private ChoiceBox city;
+	private ChoiceBox<String> city;
 	
 	@FXML
-	private ChoiceBox businesscircle;
+	private ChoiceBox<String> businesscircle;
 	
 	@FXML
 	private TextField discount;

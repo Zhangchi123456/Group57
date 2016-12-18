@@ -1,6 +1,5 @@
 package presentation.presentationController;
 
-import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
@@ -10,18 +9,12 @@ import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.LoginHelper;
 import Helper.UiswitchHelper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import vo.HotelVO;
 import vo.LogVO;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 public class HotelmainuiController implements Initializable{

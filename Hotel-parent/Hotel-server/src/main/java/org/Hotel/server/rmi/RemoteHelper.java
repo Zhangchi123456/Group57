@@ -1,12 +1,9 @@
 package org.Hotel.server.rmi;
 
 import java.net.MalformedURLException;
-import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-
 import org.Hotel.server.dataImpl.ConnectionDataImpl;
 import org.Hotel.server.dataImpl.HotelDataImpl;
 import org.Hotel.server.dataImpl.MemberDataImpl;
@@ -24,9 +21,7 @@ import org.Hotel.common.dataService.UserDataService;;
 public class RemoteHelper {
 	
 	private static final int PORT=XMLReader.loadipconfig("src/main/resources/config.xml").getPORT();
-	
-	private static final String IP=XMLReader.loadipconfig("src/main/resources/config.xml").getIP();
-
+	private static final String IP=XMLReader.loadipconfig("src/main/resources/config.xml").getIP();	
 	
 	public static void init(){
 
@@ -57,10 +52,7 @@ public class RemoteHelper {
 			Naming.rebind("rmi://"+IP+":"+PORT+"/OrderDataService", OrderDataImpl);
 			Naming.rebind("rmi://"+IP+":"+PORT+"/PromotionDataService", PromotionDataImpl);
 			
-			System.out.println("Ready");
-			
-			
-			
+			System.out.println("Ready");			
 		} catch (RemoteException e) {
 			
 			e.printStackTrace();

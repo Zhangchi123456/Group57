@@ -1,15 +1,8 @@
 package presentation.presentationController;
 
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.PromotionLogicService;
@@ -17,8 +10,6 @@ import BusinessLogicService.impl.PromotionLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,10 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.presentationController.webdiscountdateuiController.DateInfo;
 import presentation.userui.AlertBox;
 import vo.HotelPromotionVO;
-import vo.WebPromotionVO;
 
 public class hoteldiscountdateuiController implements Initializable{
 	
@@ -138,33 +127,37 @@ public class hoteldiscountdateuiController implements Initializable{
 	@FXML
 	public void add(ActionEvent event){
 	//新增折扣日期
-		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && !newDiscount.getText().isEmpty()){
 			
-			LocalDate start = TimeBegin.getValue();
-			LocalDate end = TimeEnd.getValue();
-			String input = newDiscount.getText();
+			if(TimeBegin.getValue().isBefore(TimeEnd.getValue())){
+				LocalDate start = TimeBegin.getValue();
+				LocalDate end = TimeEnd.getValue();
+				String input = newDiscount.getText();
 			
-			String start_date = start.toString();
-			String end_date = start.toString();
-			double discount = Double.parseDouble(input);
+				String start_date = start.toString();
+				String end_date = end.toString();
+				double discount = Double.parseDouble(input);
 			
-			if(discount<=0||discount>=100){
-				AlertBox alt = new AlertBox();
-				alt.display("超出输入范围！");
-			}else if(discount==0){
-				AlertBox alt = new AlertBox();
-				alt.display("不可为0！");
-			}else{
+				if(discount<=0||discount>=100){
+					AlertBox alt = new AlertBox();
+					alt.display("超出输入范围！");
+				}else if(discount==0){
+					AlertBox alt = new AlertBox();
+					alt.display("不可为0！");
+				}else{
 		
-				HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date, end_date, 0);
+					HotelPromotionVO vo = new HotelPromotionVO(hotel_name, name, 0, 0, 0, discount/100, start_date, end_date, 0);
 				
-				PromotionLogicService promotion = new PromotionLogicServiceImpl();
-				promotion.addHotelPromotion(vo);
+					PromotionLogicService promotion = new PromotionLogicServiceImpl();
+					promotion.addHotelPromotion(vo);
 				
-				this.showTable(name,hotel_name);
+					this.showTable(name,hotel_name);
 			
+				}
+			}else{
+				AlertBox alt = new AlertBox();
+				alt.display("结束日期须在开始日期之后！");
 			}
-			
 		}else{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不完整！");

@@ -56,8 +56,8 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	
 	public boolean insert(WebPromotionPO po) throws RemoteException{
 		if(po!=null){
-		webproDataHelper.insertWebPromotionData(po);
-		map_web=webproDataHelper.getWebPromotionData();
+			webproDataHelper.insertWebPromotionData(po);
+			map_web=webproDataHelper.getWebPromotionData();
 			return true;
 		}
 		else
