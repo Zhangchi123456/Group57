@@ -19,5 +19,5 @@ public interface MemberLogicService {
     	public CreditRecordVO findCreditRecord(int orderid) throws RemoteException;
         public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException;
        
-        
+        public ArrayList<String> getnamelist() throws RemoteException;
 }

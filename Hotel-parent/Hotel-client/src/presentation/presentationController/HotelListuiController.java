@@ -113,7 +113,7 @@ public class HotelListuiController implements Initializable{
 		ArrayList<WebPromotionVO> weblist=reservationService.showall();
 		ReservationController.setWebpromotionvolist(weblist);
 		ArrayList<HotelVO> hotellist1=ReservationController.getHotelvolist();
-		System.out.println("family"+hotellist1.get(0).getFamilyRoomPrice());
+
 		try {
 			HotelVO testhotel=reservationService.findbyname("南行酒店");
 			System.out.println(testhotel.getFamilyRoomPrice());

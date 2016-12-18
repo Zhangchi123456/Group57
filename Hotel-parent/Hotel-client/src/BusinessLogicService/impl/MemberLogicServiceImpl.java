@@ -46,12 +46,25 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		// TODO Auto-generated method stub
 		ArrayList<MemberPO> allmember = memberService.showAll();
 		ArrayList<MemberVO> member = new ArrayList<MemberVO>();
+		System.out.println(allmember.size());
 		for(int i=0;i<allmember.size();i++){
-			MemberVO  vo =new MemberVO(0, 0, null, null, null);
-			vo.setbypo(allmember.get(i));
+			MemberVO  vo =new MemberVO(0, 0, "non","non", "non");
+            vo.setbypo(allmember.get(i));
 			member.add(vo);
 		}
 		return member;
+	}
+	
+	public ArrayList<String> getnamelist() throws RemoteException{
+		ArrayList<String> namelist=new ArrayList<String>();
+		ArrayList<MemberPO> allmember = memberService.showAll();
+		for(int i=0;i<allmember.size();i++){
+			String name;
+			name=allmember.get(i).getName();
+			namelist.add(name);
+		}
+		return namelist;
+		
 	}
 	
 	public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException{
