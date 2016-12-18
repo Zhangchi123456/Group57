@@ -227,8 +227,10 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	     try {
 			HotelStaffPO po =  userdata.findByHotelStaff(name);
 			HotelStaffVO vo = new HotelStaffVO(name, name, name);
-			vo.setbypo(po);
-			return vo;
+			if(po!=null){
+				vo.setbypo(po);
+				return vo;
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
