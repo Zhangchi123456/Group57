@@ -16,6 +16,7 @@ import org.Hotel.server.datahelp.DataFactory;
 import org.Hotel.server.datahelp.UserDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
+@SuppressWarnings("serial")
 public class UserDataImpl extends UnicastRemoteObject implements UserDataService,Serializable{
 	private ArrayList<String> currentUser=new ArrayList<String>(); 
 	
@@ -59,6 +60,10 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		}
 	}
 
+	/*
+	 *DickChou
+	 * 增删改查
+	 */
 	public boolean insert(HotelStaffPO po) throws RemoteException{
 		String name = po.getName();
 		if(map_hotels.get(name) == null){
@@ -148,7 +153,10 @@ public class UserDataImpl extends UnicastRemoteObject implements UserDataService
 		}else
 		return false;
 	}
-	
+	/*
+	 *DickChou
+	 * 各种方法找用户
+	 */
 	public HotelStaffPO findByHotelStaff(String name) throws RemoteException{
 		HotelStaffPO po = new HotelStaffPO();
 		Iterator<Entry<String, HotelStaffPO>> iterator = map_hotels.entrySet().iterator();

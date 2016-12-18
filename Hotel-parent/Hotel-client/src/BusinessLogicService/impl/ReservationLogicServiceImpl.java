@@ -32,7 +32,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
     OrderLogicService orderService=new OrderLogicServiceImpl();
     
 	
-
+ 
 
 	
 	//计算订单价格方法的实现
@@ -117,13 +117,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 }
 	 //通过商圈名字找酒店的方法实现
 	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
-		 ArrayList<HotelPO> hotellist = hotelservice.FindhotelByCircle(circle);
-		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();
-		 for(int i=0;i<hotellist.size();i++){
-			 HotelVO vo = new HotelVO();
-					vo.setbuHotelPO(hotellist.get(i));
-					list.add(vo);
-		 }
+		
+		 ArrayList<HotelVO> list=hotelservice.findbycircle(circle);
+		 
 		 return list;
 	 }
 	 
@@ -197,6 +193,8 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return filtedlist;
 	 }
 	 
+	 
+	 //检查是否有房间剩余
 	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype) throws ParseException{
 		int leftsingle=hotel.getSingleRoom();
 		int leftstandard=hotel.getStandardRoom();
@@ -249,7 +247,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 
 		 return true;
 	 }
-	 
+	 //通过酒店名找到酒店的实现
 	 public HotelVO findbyname(String name) throws RemoteException {
 		  
 		 HotelVO vo=hotelservice.findbyname(name);
@@ -259,19 +257,14 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return vo;
 		 
 	 }
-	 
+	 //通过名字找到酒店营销策略方法的实现
 	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
-		 PromotionDataService promotionservice=(PromotionDataService)RMIHelper.find("PromotionDataService");
-		 ArrayList<HotelPromotionPO> hotelprolist=promotionservice.findByHotelProID(name);
-		 ArrayList<HotelPromotionVO> hotelprolist2 = new ArrayList<HotelPromotionVO>();
-		 for(int i=0;i<hotelprolist.size();i++){
-			 HotelPromotionVO vo=new HotelPromotionVO();
-			 vo.setByPO(hotelprolist.get(i));
-			 hotelprolist2.add(vo);
-		 }
-		 return hotelprolist2;
+		
+		 ArrayList<HotelPromotionVO> hotelprolist=promotionService.findhotelpro(name);
+		
+		 return hotelprolist;
 	 }
-	 
+	 //通过名字找到网站营销策略的实现
 	 public ArrayList<WebPromotionVO> showall(){
 		 ArrayList<WebPromotionVO> LIST=promotionService.getWebPromotionList();
 		 return LIST;

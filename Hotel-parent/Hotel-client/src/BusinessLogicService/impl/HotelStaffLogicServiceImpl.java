@@ -4,31 +4,17 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.MemberDataService;
-import org.Hotel.common.dataService.OrderDataService;
-import org.Hotel.common.dataService.PromotionDataService;
-import org.Hotel.common.dataService.UserDataService;
 import org.Hotel.common.po.CirclePO;
-import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.HotelPO;
-import org.Hotel.common.po.HotelPromotionPO;
-import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
-
 import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.HotelStaffLogicService;
 import BusinessLogicService.Service.MemberLogicService;
-import BusinessLogicService.Service.OrderLogicService;
-import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.Service.UserLogicService;
-import Controller.HotelmanageController;
-import Controller.MemberActController;
 import vo.CircleVO;
 import vo.CreditRecordVO;
-import vo.HotelPromotionVO;
 import vo.HotelStaffVO;
 import vo.HotelVO;
-import vo.OrderVO;
 import vo.RoomVO;
 
 public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , HotelInfo{
@@ -284,6 +270,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		}
 	}
 
+	//根据商圈返回酒店
 	public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
 		 ArrayList<HotelPO> hotellist = hds.FindhotelByCircle(circle);
 		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();

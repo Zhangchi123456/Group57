@@ -9,17 +9,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.Hotel.common.dataService.MemberDataService;
-import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.CreditPO;
-import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
-import org.Hotel.common.po.RoomPO;
 import org.Hotel.server.datahelp.DataFactory;
-import org.Hotel.server.datahelp.HotelDataHelper;
 import org.Hotel.server.datahelp.MemberDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
+@SuppressWarnings("serial")
 public class MemberDataImpl extends UnicastRemoteObject implements MemberDataService,Serializable{
 	
 
@@ -63,6 +60,10 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		
 	}
 
+	/*
+	 * DickChou
+	 * 增删改查
+	 */
 	public boolean insert(MemberPO po) throws RemoteException{
 		int member_id = po.getId();
 		if(map.get(member_id) == null){
@@ -128,7 +129,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 
 	}
 
-	
+	//找用户
 	public MemberPO find(String name) throws RemoteException{
 		MemberPO po = new MemberPO();
 		Iterator<Entry<Integer, MemberPO>> iterator = map.entrySet().iterator();
@@ -141,7 +142,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 			return null;
 	
 	}
-	
+	//找信用记录
 	public ArrayList<CreditPO> findCreditByName(String name) throws RemoteException{
 		ArrayList<CreditPO> list = new ArrayList<CreditPO>();
 		Iterator<Entry<Integer, CreditPO>> iterator = map_cre.entrySet().iterator();
@@ -153,7 +154,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		}
 			return list;
 	}
-	
+	//找会员
 	public MemberLevelPO findLV(int level) throws RemoteException{
 		MemberLevelPO po = new MemberLevelPO();
 		Iterator<Entry<Integer, MemberLevelPO>> iterator = map_lv.entrySet().iterator();
@@ -166,7 +167,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		}
 			return null;
 	}
-	
+	//找订单的信用记录
 	public CreditPO findCreditRecord(int orderid) throws RemoteException{
 		CreditPO po = new CreditPO();
 		Iterator<Entry<Integer, CreditPO>> iterator = map_cre.entrySet().iterator();
@@ -178,7 +179,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		}
 			return null;
 	}
-	
+	//显示所有用户
 	public ArrayList<MemberPO> showAll() throws RemoteException{
 		ArrayList<MemberPO> memberlist = new ArrayList<MemberPO>();
 		Iterator<Map.Entry<Integer,MemberPO>> iterator = map.entrySet().iterator();
@@ -189,15 +190,7 @@ public class MemberDataImpl extends UnicastRemoteObject implements MemberDataSer
 		}
 		return memberlist;
 	}
-	public static void main(String[] args) throws RemoteException{
-		MemberDataImpl data=MemberDataImpl.getInstance();
-		ArrayList<MemberPO> list=new ArrayList<MemberPO>();
-		list=data.showAll();
-		for(MemberPO po: list){
-			System.out.println("id "+po.getId()+" name "+po.getName()+ " birthday "+ po.getBirthday().toString());
-		}
-	}
-	
+	//显示所有会员
 	public ArrayList<MemberLevelPO> showAllLV() throws RemoteException{
 		ArrayList<MemberLevelPO> memberlvlist = new ArrayList<MemberLevelPO>();
 		Iterator<Map.Entry<Integer,MemberLevelPO>> iterator = map_lv.entrySet().iterator();

@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import org.Hotel.common.dataService.ConnectionDataService;
 
+@SuppressWarnings("serial")
 public class ConnectionDataImpl extends UnicastRemoteObject implements ConnectionDataService,Serializable {
 
 	public ConnectionDataImpl() throws RemoteException {

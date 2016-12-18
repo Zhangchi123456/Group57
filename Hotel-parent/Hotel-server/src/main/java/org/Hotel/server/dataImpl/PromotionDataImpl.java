@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,6 +15,7 @@ import org.Hotel.server.datahelp.DataFactory;
 import org.Hotel.server.datahelp.PromotionDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
+@SuppressWarnings("serial")
 public class PromotionDataImpl extends UnicastRemoteObject implements PromotionDataService,Serializable{
 	
 
@@ -49,6 +49,10 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 			map_hotel = hotelproDataHelper.getHotelPromotionData();
 		}
 	}
+	/*
+	 *DickChou
+	 * 增删改查
+	 */
 	
 	public boolean insert(WebPromotionPO po) throws RemoteException{
 		if(po!=null){
@@ -99,7 +103,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		return false;
 	}
 
-	
+	//显示所有网站促销
 	public ArrayList<WebPromotionPO> showAllWebPro() throws RemoteException{
 		ArrayList<WebPromotionPO> webprolist = new ArrayList<WebPromotionPO>();
 		Iterator<Entry<Integer, WebPromotionPO>> iterator = map_web.entrySet().iterator();
@@ -110,7 +114,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 	}
 		return webprolist;
 	}
-	
+	//根据酒店名找促销
 	public ArrayList<HotelPromotionPO> findByHotelProID(String hotel_id) throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
 		Iterator<Entry<Integer, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
@@ -122,7 +126,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		}
 		return hotelprolist;
 	}
-	
+	//根据酒店名和类型找促销
 	public HotelPromotionPO findByHotelProType(String type, String hotel_id) throws RemoteException{
 		HotelPromotionPO hotelpropo = new HotelPromotionPO();
 		Iterator<Entry<Integer, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();
@@ -135,7 +139,7 @@ public class PromotionDataImpl extends UnicastRemoteObject implements PromotionD
 		}
 		return null;
 		}
-	
+	//找所有酒店促销
 	public ArrayList<HotelPromotionPO> showAllHotelPro() throws RemoteException{
 		ArrayList<HotelPromotionPO> hotelprolist = new ArrayList<HotelPromotionPO>();
 		Iterator<Entry<Integer, HotelPromotionPO>> iterator = map_hotel.entrySet().iterator();

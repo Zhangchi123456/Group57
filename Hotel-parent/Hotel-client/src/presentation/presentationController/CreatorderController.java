@@ -61,7 +61,7 @@ public class CreatorderController implements Initializable{
 			alt2.display("信用值为负无法预订，请先充值");
     	}else if(!reservationService.roomleft(ReservationController.getCurrentHotelvo(), 
     orderService.findUserOrderListHotel(ReservationController.getCurrentHotelvo().getName()),TimeBegin.getValue(),TimeEnd.getValue(),Integer.parseInt(RoomnumText.getText().toString()), RoomType.getValue().toString())){
-			alt2.display("抱歉，无房间剩余");
+			alt2.display("抱歉，剩余房间数量不足");
     	}else if(TimeBegin.getValue().isBefore(LocalDate.now())){
 			alt2.display("抱歉，无法预订今天之前的房间");
     	}
