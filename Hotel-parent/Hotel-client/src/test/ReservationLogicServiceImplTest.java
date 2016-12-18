@@ -21,12 +21,7 @@ public class ReservationLogicServiceImplTest extends TestCase {
     	 String city2="北京";
     	 
      }
-     @Test
-     public void testgetallcity() throws RemoteException{
-    	 ArrayList<String> city=reservation.getallcity();
-    	 boolean result=(city.contains("南京")&&city.contains("北京"));
-    	 assertTrue(result);
-     }
+    
      
      @Test
      public void testfindbyname() throws RemoteException{

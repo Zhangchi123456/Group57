@@ -32,7 +32,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
     OrderLogicService orderService=new OrderLogicServiceImpl();
     
 	
-
+ 
 
 	
 	//计算订单价格方法的实现
@@ -193,6 +193,8 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return filtedlist;
 	 }
 	 
+	 
+	 //检查是否有房间剩余
 	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype) throws ParseException{
 		int leftsingle=hotel.getSingleRoom();
 		int leftstandard=hotel.getStandardRoom();
@@ -245,7 +247,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 
 		 return true;
 	 }
-	 
+	 //通过酒店名找到酒店的实现
 	 public HotelVO findbyname(String name) throws RemoteException {
 		  
 		 HotelVO vo=hotelservice.findbyname(name);
@@ -255,14 +257,14 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return vo;
 		 
 	 }
-	 
+	 //通过名字找到酒店营销策略方法的实现
 	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
 		
 		 ArrayList<HotelPromotionVO> hotelprolist=promotionService.findhotelpro(name);
 		
 		 return hotelprolist;
 	 }
-	 
+	 //通过名字找到网站营销策略的实现
 	 public ArrayList<WebPromotionVO> showall(){
 		 ArrayList<WebPromotionVO> LIST=promotionService.getWebPromotionList();
 		 return LIST;
