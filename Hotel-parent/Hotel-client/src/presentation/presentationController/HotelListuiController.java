@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.UsercreditrecorduiController.CreditRecord;
+import presentation.userui.AlertBox;
 import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.WebPromotionVO;
@@ -34,6 +35,7 @@ public class HotelListuiController implements Initializable{
 	private ObservableList<SimpleHotel> finallist;
 	private ObservableList<SimpleHotel> reservationedlist;
 	private ArrayList<SimpleHotel> hotellist3;
+	private AlertBox alt = new AlertBox();
 	@FXML
 	private CheckBox ReservationCheckbox;//是否预定过该酒店
 	@FXML
@@ -51,7 +53,11 @@ public class HotelListuiController implements Initializable{
     }
     @FXML
     private void CreatOrderClicked(ActionEvent event) throws RemoteException{
-    	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
+      	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
+    	if(selectnumber==-1){
+    		alt.display("未选中酒店");
+    	}
+    	else{
     	if(ReservationCheckbox.isSelected()){
     		ObservableList<SimpleHotel> list=Hoteltable.getItems();
     		String name=list.get(selectnumber).getHotel();
@@ -67,23 +73,17 @@ public class HotelListuiController implements Initializable{
     		ReservationController.setHotelproList(hotelprolist);
     	}
         UiswitchHelper.getApplication().goto_OrderinputUi();
+    	}
     }
   @FXML
   private void ReservationClicked(ActionEvent event){
 	  
 	  if(ReservationCheckbox.isSelected()){
-		  ArrayList<SimpleHotel> hotellist4=new ArrayList<SimpleHotel>();
-		 
-		  		 
-		  for(int i=0;i<hotellist3.size();i++){
-			 
-			  
+		  ArrayList<SimpleHotel> hotellist4=new ArrayList<SimpleHotel>();		  		 
+		  for(int i=0;i<hotellist3.size();i++){		 		  
 			if(hotellist3.get(i).getIfreservationed().equals("是")){
 					  hotellist4.add(hotellist3.get(i));
-				  }
-				
-				  
-			  
+				  }		  
 		  }
 		 
 		  ObservableList<SimpleHotel> finallist2=FXCollections.observableArrayList(hotellist4);
@@ -97,6 +97,11 @@ public class HotelListuiController implements Initializable{
     @FXML
     private void CheckButtonClicked(ActionEvent event) throws RemoteException{
     	int selectnumber=Hoteltable.getSelectionModel().getSelectedIndex();
+    	if(selectnumber==-1){
+    		alt.display("未选中酒店");
+    	}
+    	else{
+    	
     	if(ReservationCheckbox.isSelected()){
     		ObservableList<SimpleHotel> list=Hoteltable.getItems();
     		String name=list.get(selectnumber).getHotel();
@@ -107,6 +112,7 @@ public class HotelListuiController implements Initializable{
     		ReservationController.setHotelvo(currenthotel);
     	}
         UiswitchHelper.getApplication().goto_hotelInfoBrowseui();
+    	}
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -116,17 +122,11 @@ public class HotelListuiController implements Initializable{
 
 		try {
 			HotelVO testhotel=reservationService.findbyname("南行酒店");
-			System.out.println(testhotel.getFamilyRoomPrice());
+		
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*HotelVO vo1=new HotelVO();
-		vo1.setName("123");vo1.setStar(5);
-		HotelVO vo2=new HotelVO();
-		vo2.setName("456");vo2.setStar(3);
-		hotellist1.add(vo1);
-		hotellist1.add(vo2);*/
 		ArrayList<SimpleHotel> hotellist2=new ArrayList<SimpleHotel>();
 		for(int i=0;i<hotellist1.size();i++){
 			HotelVO vo=hotellist1.get(i);
@@ -196,11 +196,7 @@ public class HotelListuiController implements Initializable{
 		
 	}
 	
-	public static class SimpleHotel {
-		 
-        
-       
-      
+	public static class SimpleHotel {            
         private final SimpleStringProperty hotelprice;
         private final SimpleStringProperty Ifreservationed;
         private final SimpleStringProperty hotel;
