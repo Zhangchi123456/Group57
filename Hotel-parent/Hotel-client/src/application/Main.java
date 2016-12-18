@@ -87,7 +87,8 @@ public class Main extends Application {
 			}finally {
 				in.close();
 			} 
-			mainStage.centerOnScreen();
+			mainStage.setX(140);
+			mainStage.setY(50);
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -109,7 +110,8 @@ public class Main extends Application {
 			}finally {
 				in.close();
 			} 
-			mainStage.centerOnScreen();
+			mainStage.setX(140);
+			mainStage.setY(50);
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -130,7 +132,8 @@ public class Main extends Application {
 			}finally {
 				in.close();
 			} 
-			mainStage.centerOnScreen();
+			mainStage.setX(140);
+			mainStage.setY(50);
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -151,7 +154,8 @@ public class Main extends Application {
 			}finally {
 				in.close();
 			} 
-			mainStage.centerOnScreen();
+			mainStage.setX(140);
+			mainStage.setY(50);
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.po.CreditPO;
+import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 
 import BusinessLogicService.Service.MemberInfo;
@@ -149,6 +150,30 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 			}
 			return false;
 		}
-	
-	
+	public void updatelevel(MemberVO member){
+		try {
+			
+			
+			ArrayList<MemberLevelPO> levellist=memberService.showAllLV();
+			int currentlow=1;
+			for(int i=0;i<levellist.size();i++){
+				if(member.getcredit()>levellist.get(i).getCredit()){
+				if(levellist.get(i).getLevel()>=currentlow){
+					currentlow=levellist.get(i).getLevel();
+				}
+				}
+			}
+			
+			member.setMemberlevel(String.valueOf(currentlow));
+			try {
+				updateMemberinfo(member);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
