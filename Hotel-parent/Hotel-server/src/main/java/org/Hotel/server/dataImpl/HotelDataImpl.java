@@ -16,6 +16,7 @@ import org.Hotel.server.datahelp.DataFactory;
 import org.Hotel.server.datahelp.HotelDataHelper;
 import org.Hotel.server.datahelp.impl.DataFactoryImpl;
 
+@SuppressWarnings("serial")
 public class HotelDataImpl extends UnicastRemoteObject implements HotelDataService,Serializable{
 
 	private Map<String, HotelPO> map;
@@ -140,7 +141,10 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		return roomlist;
 	}//显示所有客房信息
 	
-	
+	/*房间信息增删改查
+	 * DickChou
+	 * 
+	 */
 	public boolean updateRoom(RoomPO roompo)throws RemoteException{
 		int room_id = roompo.getId();
 		if(map_room.get(room_id) != null){
@@ -168,7 +172,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		    return false;
 		
 	}
-	
+	//显示一个城市所有商圈
 	public ArrayList<CirclePO> circleShowAll(String city)throws RemoteException{
 		ArrayList<CirclePO> list=new ArrayList<CirclePO>();
 		Iterator<Map.Entry<String,CirclePO>> iterator = map_circle.entrySet().iterator();
@@ -182,7 +186,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 
 		return list;
 	}
-	
+	//找商圈
 	public CirclePO circleFind(String city, String circle)throws RemoteException{
 		CirclePO po = new CirclePO();
 		Iterator<Map.Entry<String,CirclePO>> iterator = map_circle.entrySet().iterator();
@@ -195,7 +199,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			return null;
 	
 	}
-	
+	//找酒店
 	public HotelPO Findhotelbyname(String hotelname)throws RemoteException{
 		HotelPO po=new HotelPO();
 		Iterator<Map.Entry<String, HotelPO>> iterator=map.entrySet().iterator();
@@ -209,7 +213,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		}
 		return null;
 	}
-	
+	//找房间
 	public RoomPO FindroombyID(int roomid)throws RemoteException{
 		RoomPO po=new RoomPO();
 		Iterator<Entry<Integer, RoomPO>> iterator=map_room.entrySet().iterator();
@@ -223,7 +227,7 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 		}
 		return null;
 	}
-	
+	//显示城市里的所有商圈
 	public ArrayList<String> cityShowAll()throws RemoteException{
 		ArrayList<String> citylist = new ArrayList<String>();
 		CirclePO po = new CirclePO();
