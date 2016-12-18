@@ -83,10 +83,11 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	
 	
 	//酒店基本信息更新
-	public boolean changeHotelInfo(int star, String introduction, String address)throws RemoteException {
+	public boolean changeHotelInfo(String name, int star, String introduction, String address)throws RemoteException {
 		
 		boolean info = false;
 		
+		hotelvo.setName(name);
 		hotelvo.setStar(star);
 		hotelvo.setIntroduction(introduction);
 		hotelvo.setAdsress(address);

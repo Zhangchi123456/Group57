@@ -55,7 +55,7 @@ public class ComfirmBox {
 		
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
-		window.show();	
+		window.showAndWait();;	
 		
 		return result;
     }

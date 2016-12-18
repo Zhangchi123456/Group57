@@ -3,11 +3,8 @@ package BusinessLogicService.Service;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import org.Hotel.common.po.HotelPO;
-
 import vo.CreditRecordVO;
 import vo.HotelVO;
-import vo.OrderVO;
 import vo.RoomVO;
 
 public interface HotelStaffLogicService {
@@ -22,7 +19,7 @@ public interface HotelStaffLogicService {
 	public boolean changeRoomInfo(String roomid, String type) throws RemoteException;
 	
 	//酒店基本信息更新
-	public boolean changeHotelInfo(int star, String introduction, String address)throws RemoteException;
+	public boolean changeHotelInfo(String name, int star, String introduction, String address)throws RemoteException;
 	
 	//入住信息更新
 	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;

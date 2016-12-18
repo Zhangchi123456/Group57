@@ -9,22 +9,18 @@ import BusinessLogicService.Service.HotelStaffLogicService;
 import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
 import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
 import vo.HotelVO;
 
 public class HotelInfouiController implements Initializable{
-	String hotelstar,hoteldescription,hoteladdress;
+	String hotelstar;
 	@FXML
 	private Button ReturnButton;//返回按钮
 	@FXML
@@ -34,12 +30,13 @@ public class HotelInfouiController implements Initializable{
 	@FXML
 	private TextArea HotelAddress;//酒店地址
 	@FXML
-	private ChoiceBox HotelStar;//酒店星级
+	private ChoiceBox<String> HotelStar;//酒店星级
 	//界面跳转
 	
-	HotelStaffLogicService hser;
+	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	HotelVO vo = HotelmanageController.getHotelVO();
 
+	AlertBox alt;
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -47,14 +44,12 @@ public class HotelInfouiController implements Initializable{
 	@FXML
 	private void SaveClicked(ActionEvent event){
 		if(!Allisfilled()){
-			AlertBox alt = new AlertBox();
-			alt.display("信息填写不全");
+			alt = new AlertBox();
+			alt.display("信息填写不全!");
 		}else{
 			
 			int instar=0;
 			hotelstar=HotelStar.getValue().toString();
-			hoteldescription=HotelDescription.getText();
-			hoteladdress=HotelAddress.getText();
 			
 			if(hotelstar.equals("一星")){
 				instar=1;
@@ -72,9 +67,12 @@ public class HotelInfouiController implements Initializable{
 				instar=5;
 			}		
 			try {
-				if(hser.changeHotelInfo(instar, hoteldescription, hoteladdress)){
-					AlertBox alt2 = new AlertBox();
-					alt2.display("保存成功！");
+				if(hser.changeHotelInfo(HotelnameLabel.getText(), instar, HotelDescription.getText(), HotelAddress.getText())){
+					alt = new AlertBox();
+					alt.display("保存成功！");
+				}else{
+					alt = new AlertBox();
+					alt.display("保存失败！");
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
@@ -84,7 +82,7 @@ public class HotelInfouiController implements Initializable{
 	}
 	
 	private boolean Allisfilled(){
-		if(HotelDescription.getText().isEmpty()||HotelAddress.getText().isEmpty()||HotelStar.getValue().toString().equals(null)){
+		if(HotelDescription.getText().equals("")||HotelAddress.getText().equals("")||HotelStar.getSelectionModel().getSelectedIndex()==-1){
 			return false;
 		}else
 		return true;
