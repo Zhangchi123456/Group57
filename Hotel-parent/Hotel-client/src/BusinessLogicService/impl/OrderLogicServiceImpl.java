@@ -2,18 +2,14 @@ package BusinessLogicService.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
-import org.Hotel.common.dataService.PromotionDataService;
 import org.Hotel.common.po.OrderPO;
 
+import BusinessLogicService.Service.OrderInfo;
 import BusinessLogicService.Service.OrderLogicService;
-import Controller.MemberActController;
 import vo.OrderVO;
 
-public class OrderLogicServiceImpl implements OrderLogicService {
+public class OrderLogicServiceImpl implements OrderLogicService,OrderInfo {
      OrderDataService ser= (OrderDataService)RMIHelper.find("OrderDataService");//Rmi的查找
      
      //评价信息的更新
