@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.Hotel.common.po.CreditPO;
 
 import vo.CreditRecordVO;
+import vo.MemberLevelVO;
 import vo.MemberVO;
 
 public interface MemberLogicService {
@@ -17,4 +18,6 @@ public interface MemberLogicService {
         public ArrayList<CreditRecordVO> FindCreditbyname(String name) throws RemoteException, ParseException;
     	public CreditRecordVO findCreditRecord(int orderid) throws RemoteException;
         public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException;
+        public boolean updateMemberLevel(MemberLevelVO vo);
+        
 }
