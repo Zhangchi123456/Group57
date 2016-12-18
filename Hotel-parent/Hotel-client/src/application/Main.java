@@ -43,8 +43,8 @@ public class Main extends Application {
 		}
 		@Override
 		public void start(Stage primaryStage) throws Exception {
-			
 			init(primaryStage);
+			
 			mainStage.setOnCloseRequest(e-> {
 				e.consume();
 				boolean result=ComfirmBox.display("是否退出？");
@@ -62,7 +62,6 @@ public class Main extends Application {
 				}
 			});
 			primaryStage.show();
-			
 		}
 		
 		//stage的初始化

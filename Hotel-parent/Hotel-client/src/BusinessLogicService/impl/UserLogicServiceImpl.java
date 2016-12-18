@@ -87,7 +87,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
 		try {
 			userdata.update(po);
-			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -151,11 +150,9 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	public ArrayList<MemberVO> findMember() {
 		ArrayList<MemberVO> listvo=new ArrayList<>();
 		memberInfo=new MemberLogicServiceImpl();
-		
 		try {
 			listvo=memberInfo.showall();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -208,23 +205,20 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 
 	@Override
 	public boolean findWebStaffBYName(String name) {
-		// TODO Auto-generated method stub
-		 try {
-				WebStaffPO po =  userdata.findByWebStaff(name);
+		try{
+			WebStaffPO po =  userdata.findByWebStaff(name);
 			if(po != null){
 				return true;
 			}
-				
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public HotelStaffVO findByHotelStaff(String name) {
-	     try {
+		try {
 			HotelStaffPO po =  userdata.findByHotelStaff(name);
 			HotelStaffVO vo = new HotelStaffVO(name, name, name);
 			if(po!=null){
@@ -232,7 +226,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 				return vo;
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
