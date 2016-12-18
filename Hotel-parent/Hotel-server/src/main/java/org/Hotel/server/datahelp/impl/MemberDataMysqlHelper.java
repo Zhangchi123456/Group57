@@ -262,7 +262,7 @@ public class MemberDataMysqlHelper implements MemberDataHelper{
 	private int getMemberID(Database db,String name){
 		return 0;
 	}
-	//System have no such feature
+	
 	public void deleteCreditData(CreditPO creditpo) {
 		// TODO Auto-generated method stub
 		
