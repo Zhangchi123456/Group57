@@ -3,13 +3,12 @@ package BusinessLogicService.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.PromotionDataService;
-import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPromotionPO;
 import org.Hotel.common.po.WebPromotionPO;
 
+import BusinessLogicService.Service.HotelInfo;
+import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.PromotionLogicService;
 import vo.CircleVO;
@@ -20,13 +19,13 @@ import vo.WebPromotionVO;
 public class PromotionLogicServiceImpl implements PromotionLogicService,PromotionInfo{
 	
 	PromotionDataService promotiondataservice = null;
-	HotelDataService hoteldataservice = null;
-	MemberDataService memberdataservice = null;
+	HotelInfo hotelinfo = null;
+	MemberInfo memberinfo = null;
 	
 	public PromotionLogicServiceImpl(){
 		this.promotiondataservice = (PromotionDataService)RMIHelper.find("PromotionDataService");
-		this.hoteldataservice = (HotelDataService)RMIHelper.find("HotelDataService");
-		this.memberdataservice = (MemberDataService)RMIHelper.find("MemberDataService");
+		this.hotelinfo = new HotelStaffLogicServiceImpl();
+		this.memberinfo = new MemberLogicServiceImpl();
 	}
 
 	@Override
@@ -38,6 +37,24 @@ public class PromotionLogicServiceImpl implements PromotionLogicService,Promotio
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public ArrayList<HotelPromotionVO> findhotelpro(String name){
+		//根据酒店名返回促销策略列表
+		ArrayList<HotelPromotionVO> hotelprolist2 = new ArrayList<HotelPromotionVO>();
+		try{
+			ArrayList<HotelPromotionPO> hotelprolist=promotiondataservice.findByHotelProID(name);
+			for(int i=0;i<hotelprolist.size();i++){
+				HotelPromotionVO vo=new HotelPromotionVO();
+				vo.setByPO(hotelprolist.get(i));
+				hotelprolist2.add(vo);
+			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return hotelprolist2;
+	 }
+
 
 	@Override
 	public HotelPromotionVO getHotelPromotion(String hotel_name, String name) {
@@ -114,82 +131,31 @@ public class PromotionLogicServiceImpl implements PromotionLogicService,Promotio
 	@Override
 	public MemberLevelVO getMemberLevel(int lv) {
 	//获取会员级别对应信息
-		MemberLevelVO vo = new MemberLevelVO();
-		try {
-			vo.setByPO(memberdataservice.findLV(lv));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return vo;
+		return memberinfo.getMemberLevel(lv);
 	}
 
 	@Override
 	public boolean updateMemberLevel(MemberLevelVO vo) {
 	//更新会员级别信息	
-		try{
-			int lv = vo.getLevel();
-			if(lv==1){
-				if(vo.getCredit()<memberdataservice.findLV(2).getCredit()){
-					memberdataservice.update(vo.toPO());
-					return true;
-				}
-			}else if(lv==6){
-				if(vo.getCredit()>memberdataservice.findLV(5).getCredit()){
-					memberdataservice.update(vo.toPO());
-					return true;
-				}
-			}else{
-				if(vo.getCredit()>memberdataservice.findLV(lv-1).getCredit()
-						&&vo.getCredit()<memberdataservice.findLV(lv+1).getCredit()){
-					memberdataservice.update(vo.toPO());
-					return true;
-				}
-			}
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
-		return false;
+		return memberinfo.updateMemberLevel(vo);
 	}
 
 	@Override
 	public ArrayList<CircleVO> getCircle(String city_name) {
 	//根据城市名获取商圈列表	
-		ArrayList<CircleVO> voList = new ArrayList<CircleVO>();
-		
-		try{
-			ArrayList<CirclePO> poList = hoteldataservice.circleShowAll(city_name);
-			for(int i=0;i<poList.size();i++){
-				CircleVO vo = new CircleVO();
-				vo.setByPO(poList.get(i));
-				voList.add(vo);
-			}
-			return voList;
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
-		return null;
+		return hotelinfo.getCircle(city_name);
 	}
 
 	@Override
 	public CircleVO getCircle(String city_name, String circle) {
 	//获取商圈的折扣信息
-		CircleVO vo = new CircleVO();
-		try {
-			vo.setByPO(hoteldataservice.circleFind(city_name, circle));
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return vo;
+		return hotelinfo.getCircle(city_name, circle);
 	}
 
 	@Override
 	public void updateCircle(CircleVO vo) {
 	//更新商圈折扣信息
-		try{
-			hoteldataservice.update(vo.toPO());
-		}catch(RemoteException e){
-			e.printStackTrace();
-		}
+		hotelinfo.updateCircle(vo);
 	}
 
 	@Override
