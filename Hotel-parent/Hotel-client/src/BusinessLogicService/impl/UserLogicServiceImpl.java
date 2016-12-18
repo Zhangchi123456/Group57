@@ -274,7 +274,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		try {
 			return userdata.isCurrentUser(name);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class ComfirmBox {
 	
-	public static boolean result =false;
+	public static boolean result;
 	
     public static boolean display(String message){
     	Stage window = new Stage();
