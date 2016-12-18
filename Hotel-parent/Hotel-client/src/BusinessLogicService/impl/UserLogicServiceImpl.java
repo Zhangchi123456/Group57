@@ -17,9 +17,9 @@ import org.Hotel.common.po.RoomPO;
 import org.Hotel.common.po.WebManagerPO;
 import org.Hotel.common.po.WebStaffPO;
 
-import BusinessLogicService.Service.HotelStaffLogicService;
-import BusinessLogicService.Service.MemberLogicService;
-import BusinessLogicService.Service.PromotionLogicService;
+import BusinessLogicService.Service.HotelInfo;
+import BusinessLogicService.Service.MemberInfo;
+import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.UserLogicService;
 import vo.HotelPromotionVO;
 import vo.HotelStaffVO;
@@ -30,11 +30,36 @@ import vo.WebStaffVO;
 
 public class UserLogicServiceImpl implements UserLogicService{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
-	HotelStaffLogicService hoteldata=new HotelStaffLogicServiceImpl();
-	MemberLogicService memberdata=new MemberLogicServiceImpl();
-	PromotionLogicService promotiondata=new PromotionLogicServiceImpl();
+	MemberInfo memberInfo=null;
+	HotelInfo hotelInfo=null;
+	PromotionInfo promotionInfo=null;
 	
-	
+	//
+	@Override
+	public boolean findUserBYName(String name) {
+		
+		memberInfo=new MemberLogicServiceImpl();
+		
+		WebStaffPO po1=null;
+		HotelStaffPO po2=null;
+		WebManagerPO po3=null;
+		MemberPO po4=null;
+		try {
+			po1=userdata.findByWebStaff(name);
+			po2=userdata.findByHotelStaff(name);
+			po3=userdata.findByWebManager(name);
+			po4=memberInfo.findMemberByName(name);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if(po1==null&&po2==null&&po3==null&&po4==null){
+			return false;
+		}else 
+			return true;
+		
+	}
+
+	//Web staff operation
 	@Override
 	public ArrayList<WebStaffVO> findWebStaff() {
 		try {
@@ -54,7 +79,6 @@ public class UserLogicServiceImpl implements UserLogicService{
 		return null;
 	}
 
-
 	@Override
 	public void saveWebStaff(WebStaffVO vo) {
 		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
@@ -66,30 +90,6 @@ public class UserLogicServiceImpl implements UserLogicService{
 		}
 		
 	}
-
-
-	@Override
-	public boolean findWebStaffBYName(String name) {
-		WebStaffPO po1=null;
-		HotelStaffPO po2=null;
-		WebManagerPO po3=null;
-		MemberVO vo4=null;
-		try {
-			po1=userdata.findByWebStaff(name);
-			po2=userdata.findByHotelStaff(name);
-			po3=userdata.findByWebManager(name);
-			vo4=memberdata.Findmemberbyname(name);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		if(po1==null&&po2==null&&po3==null&&vo4==null){
-			return false;
-		}else 
-			return true;
-		
-	}
-
-
 	@Override
 	public boolean addWebStaff(WebStaffVO vo) {
 		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
@@ -101,8 +101,8 @@ public class UserLogicServiceImpl implements UserLogicService{
 		return false;
 		
 	}
-
-
+	
+	//hotel staff operation
 	@Override
 	public ArrayList<HotelStaffVO> findHotelStaff() {
 		try {
@@ -119,9 +119,19 @@ public class UserLogicServiceImpl implements UserLogicService{
 			
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<HotelStaffVO>();
 	}
 
+	//add hotel staff 
+	@Override
+	public void addHotelStaff(HotelStaffVO vo) {
+		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getHotelname(),vo.getPassword());
+		try {
+			userdata.insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}//end hotel staff
 
 	@Override
 	public void saveHotelStaff(HotelStaffVO vo) {
@@ -133,144 +143,76 @@ public class UserLogicServiceImpl implements UserLogicService{
 		}
 		
 	}
-
-
+	//return member vo array list
 	@Override
 	public ArrayList<MemberVO> findMember() {
+		ArrayList<MemberVO> listvo=new ArrayList<>();
+		memberInfo=new MemberLogicServiceImpl();
+		
 		try {
-			ArrayList<MemberVO> list=memberdata.showall();
-			
-			return list;
-		} catch (RemoteException e) {
-			
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-//	@Override
-//	public void saveMember(MemberVO vo){
-//		MemberPO po;
-//		try {
-//			po = vo.topo();
-//			memberdata.u
-//			
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		} catch (ParseException e1) {
-//			e1.printStackTrace();
-//		}
-//	}
-
-	
-	@Override
-//	public ArrayList<String> showCity() {
-//		try {
-//			return hoteldata.
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
-
-//	@Override
-//	public ArrayList<String> showCircle(String city) {
-//		ArrayList<CirclePO> list;
-//		ArrayList<String> circleList=new ArrayList<>();
-//		try{
-//			list = hoteldata.circleShowAll(city);
-//			for(CirclePO po:list){
-//				circleList.add(po.getName());
-//			}
-//			return circleList;
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
-
-
-//	@Override
-//	public boolean findHotel(String name) {
-//		HotelPO po=null;
-//		try {
-//			po=hoteldata.Findhotelbyname(name);
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		if(po==null){
-//			return false;
-//		}
-//		return true;
-//	}//if a hotel is exist by name
-
-
-//	@Override
-//	public void addHotel(HotelVO vo) {
-//		HotelPO po=vo.Tohotelpo(vo);
-//		try {
-//			hoteldata.insert(po);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//	}//end add hotel 
-
-
-//	@Override
-//	public void addRoom(RoomVO vo) {
-//		RoomPO po=vo.toRoomPO(vo);
-//		try {
-//			hoteldata.insertRoom(po);
-//		} catch (RemoteException e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}//end add room
-
-	//add hotel staff 
-//	@Override
-	public void addHotelStaff(HotelStaffVO vo) {
-		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getHotelname(),vo.getPassword());
-		try {
-			userdata.insert(po);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}//end hotel staff
-
-	//add hotel promotion strategy
-//	@Override
-//	public void addHotelStrategy(HotelPromotionVO vo) {
-//		HotelPromotionPO po=vo.toPO();
-//		try{
-//			promotiondata.insert(po);
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
-//		
-//	}//end add hotel promotion strategy
-
-
-	@Override
-	public HotelStaffVO findByHotelStaff(String name) {
-		// TODO Auto-generated method stub
-		HotelStaffPO po;
-		try {
-			po = userdata.findByHotelStaff(name);
-			HotelStaffVO vo =new HotelStaffVO(name, name, name);
-			vo.setbypo(po);
-			return vo;
+			listvo=memberInfo.showall();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
 		
-		
+		return listvo;
+	}
+	//save member vo
+	@Override
+	public void saveMember(MemberVO vo){
+		memberInfo=new MemberLogicServiceImpl();
+		memberInfo.saveMember(vo);
 	}
 	
+	//hotel operation
+	@Override
+	public ArrayList<String> showCity() {
+		hotelInfo=new HotelStaffLogicServiceImpl();
+		return hotelInfo.showCitys();
+	}
+
+	@Override
+	public ArrayList<String> showCircle(String city) {
+		hotelInfo=new HotelStaffLogicServiceImpl();
+		return hotelInfo.showCircle(city);
+	}
+
+	@Override
+	public boolean findHotel(String name) {
+		hotelInfo=new HotelStaffLogicServiceImpl();
+		return hotelInfo.isHotel(name);
+	}//if a hotel is exist by name
+
+	@Override
+	public void addHotel(HotelVO vo) {
+		hotelInfo=new HotelStaffLogicServiceImpl();
+		hotelInfo.addHotel(vo);
+	}//end add hotel 
+
+	@Override
+	public void addRoom(RoomVO vo) {
+		hotelInfo=new HotelStaffLogicServiceImpl();
+		hotelInfo.addRoom(vo);
+	}//end add room
+
+	//add hotel promotion strategy
+	@Override
+	public void addHotelStrategy(HotelPromotionVO vo) {
+		promotionInfo=new PromotionLogicServiceImpl();
+		promotionInfo.addHotelStrategy(vo);
+	}//end add hotel promotion strategy
+
+	@Override
+	public boolean findWebStaffBYName(String name) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public HotelStaffVO findByHotelStaff(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

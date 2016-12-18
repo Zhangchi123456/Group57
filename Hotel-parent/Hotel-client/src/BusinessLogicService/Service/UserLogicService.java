@@ -23,7 +23,12 @@ public interface UserLogicService {
 	public ArrayList<String> showCity();
 	public ArrayList<String> showCircle(String city);			
 	public HotelStaffVO findByHotelStaff(String name);
-	void addHotelStaff(HotelStaffVO vo); 
+	void addHotelStaff(HotelStaffVO vo);
+	boolean findHotel(String name);
+	void addHotel(HotelVO vo);
+	void addRoom(RoomVO vo);
+	void addHotelStrategy(HotelPromotionVO vo);
+	boolean findUserBYName(String name); 
 	
 		
 

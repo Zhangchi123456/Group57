@@ -8,11 +8,12 @@ import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberPO;
 
+import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.MemberLogicService;
 import vo.CreditRecordVO;
 import vo.MemberVO;
 
-public class MemberLogicServiceImpl implements MemberLogicService{
+public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 	MemberDataService memberService =(MemberDataService)RMIHelper.find("MemberDataService");
 	 public boolean updateMemberinfo(MemberVO vo) throws ParseException, RemoteException{
 		 MemberPO po=vo.topo();	
@@ -67,5 +68,34 @@ public class MemberLogicServiceImpl implements MemberLogicService{
 		 vo.setbyCreditPO(po);
 		return vo;
 	}
-	 
+	//method for interface memberinfo
+	//pass member po to other bl
+	@Override
+	public MemberPO findMemberByName(String name) {
+		MemberPO po=null;
+		try {
+			po=memberService.find(name);
+			if(po!=null)
+				return po;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	
+	@Override
+	public void saveMember(MemberVO vo) {
+		 MemberPO po=null;
+		 try {
+			po=vo.topo();
+			memberService.update(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}	
+		
+	}
 }

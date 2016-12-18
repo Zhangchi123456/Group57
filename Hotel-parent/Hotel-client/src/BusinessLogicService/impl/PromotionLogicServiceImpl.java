@@ -10,13 +10,14 @@ import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.HotelPromotionPO;
 import org.Hotel.common.po.WebPromotionPO;
 
+import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.PromotionLogicService;
 import vo.CircleVO;
 import vo.HotelPromotionVO;
 import vo.MemberLevelVO;
 import vo.WebPromotionVO;
 
-public class PromotionLogicServiceImpl implements PromotionLogicService{
+public class PromotionLogicServiceImpl implements PromotionLogicService,PromotionInfo{
 	
 	PromotionDataService promotiondataservice = null;
 	HotelDataService hoteldataservice = null;
@@ -212,6 +213,17 @@ public class PromotionLogicServiceImpl implements PromotionLogicService{
 		}
 		
 		
+	}
+
+	//add hotel promotion strategy
+	@Override
+	public void addHotelStrategy(HotelPromotionVO vo) {
+		HotelPromotionPO po=vo.toPO();
+		try{
+			promotiondataservice.insert(po);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

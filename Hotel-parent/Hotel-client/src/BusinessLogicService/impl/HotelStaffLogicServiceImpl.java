@@ -7,11 +7,13 @@ import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.dataService.MemberDataService;
 import org.Hotel.common.dataService.OrderDataService;
 import org.Hotel.common.dataService.UserDataService;
+import org.Hotel.common.po.CirclePO;
 import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.HotelPO;
 import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
 
+import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.HotelStaffLogicService;
 import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.OrderLogicService;
@@ -25,7 +27,7 @@ import vo.HotelVO;
 import vo.OrderVO;
 import vo.RoomVO;
 
-public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
+public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , HotelInfo{
 
 	HotelDataService hds = (HotelDataService) RMIHelper.find("HotelDataService");
 	UserLogicService uds = new UserLogicServiceImpl();
@@ -176,6 +178,67 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 		
 		return false;
 	}
+	//hotel info method
+	@Override
+	public ArrayList<String> showCitys() {
+		try {
+			return hds.cityShowAll();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<String>();
+	}
 
+	@Override
+	public ArrayList<String> showCircle(String city) {
+		ArrayList<CirclePO> list;
+		ArrayList<String> circleList=new ArrayList<>();
+		try{
+			list = hds.circleShowAll(city);
+			for(CirclePO po:list){
+				circleList.add(po.getName());
+			}
+			return circleList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return new ArrayList<String>();
+	}
+
+	@Override
+	public void addHotel(HotelVO vo) {
+		HotelPO po=vo.Tohotelpo(vo);
+		try {
+			hds.insert(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public boolean isHotel(String name) {
+		HotelPO po=null;
+		try {
+			po=hds.Findhotelbyname(name);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		if(po==null){
+			return false;
+		}
+		return true;
+	}//if a hotel is exist by name
+
+
+	@Override
+	public void addRoom(RoomVO vo) {
+		RoomPO po=vo.toRoomPO(vo);
+		try {
+			hds.insertRoom(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
