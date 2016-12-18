@@ -25,4 +25,6 @@ public interface HotelInfo {
 	void updateCircle(CircleVO vo);
 	
 	public HotelVO findbyname(String name) throws RemoteException;
+	
+	public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException;
 }
