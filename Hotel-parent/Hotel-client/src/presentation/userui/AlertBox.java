@@ -20,16 +20,16 @@ public class AlertBox {
 		    window.setMinWidth(300);
 		    window.setMinHeight(200);
 
-		    Button button = new Button("确认");
+		 	Button button = new Button("确认");
 		    button.setMinWidth(105);
 		    button.setMinHeight(40);
 		    button.setOnAction(new EventHandler<ActionEvent>(){
 				public void handle(ActionEvent event) {
 					window.close();			
 				}	        		
-       	});
+		    });
 		    Label label = new Label(message);			    
-           label.setFont(new Font(20));
+		    label.setFont(new Font(20));
 		    VBox layout = new VBox(10);
 		    layout.getChildren().addAll(label , button);
 		    layout.setSpacing(20);

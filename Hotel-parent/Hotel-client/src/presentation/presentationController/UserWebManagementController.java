@@ -122,6 +122,8 @@ public class UserWebManagementController implements Initializable{
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		
 		user.setText(LoginHelper.getLogVO().getUsername());
 		
 		table.setItems(getMember());

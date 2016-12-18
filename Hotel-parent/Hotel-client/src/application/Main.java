@@ -13,6 +13,7 @@ import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.OrderPO;
 
 import presentation.presentationController.RMIConnection;
+import presentation.userui.ComfirmBox;
 import vo.OrderVO;
 import BusinessLogicService.Service.LoginLogicService;
 import BusinessLogicService.impl.LoginLogicServiceImpl;
@@ -39,7 +40,12 @@ public class Main extends Application {
 		}
 		@Override
 		public void start(Stage primaryStage) throws Exception {
+			
 			init(primaryStage);
+			mainStage.setOnCloseRequest(e_-> {
+				
+				boolean result=ComfirmBox.display("是否退出？");
+			});
 			primaryStage.show();
 			
 		}

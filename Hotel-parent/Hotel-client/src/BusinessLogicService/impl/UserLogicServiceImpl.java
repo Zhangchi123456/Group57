@@ -20,7 +20,9 @@ import org.Hotel.common.po.WebStaffPO;
 import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.PromotionInfo;
+import BusinessLogicService.Service.UserInfo;
 import BusinessLogicService.Service.UserLogicService;
+import BusinessLogicService.Service.WebManagerVO;
 import vo.HotelPromotionVO;
 import vo.HotelStaffVO;
 import vo.HotelVO;
@@ -28,7 +30,7 @@ import vo.MemberVO;
 import vo.RoomVO;
 import vo.WebStaffVO;
 
-public class UserLogicServiceImpl implements UserLogicService{
+public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
 	MemberInfo memberInfo=null;
 	HotelInfo hotelInfo=null;
@@ -200,7 +202,7 @@ public class UserLogicServiceImpl implements UserLogicService{
 	@Override
 	public void addHotelStrategy(HotelPromotionVO vo) {
 		promotionInfo=new PromotionLogicServiceImpl();
-		promotionInfo.addHotelStrategy(vo);
+		promotionInfo.addHotelPromotion(vo);
 	}//end add hotel promotion strategy
 
 	@Override
@@ -221,7 +223,6 @@ public class UserLogicServiceImpl implements UserLogicService{
 
 	@Override
 	public HotelStaffVO findByHotelStaff(String name) {
-		// TODO Auto-generated method stub
 	     try {
 			HotelStaffPO po =  userdata.findByHotelStaff(name);
 			HotelStaffVO vo = new HotelStaffVO(name, name, name);
@@ -232,6 +233,60 @@ public class UserLogicServiceImpl implements UserLogicService{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public WebStaffVO findWebStaffByName(String name) {
+		 try {
+			WebStaffPO po =  userdata.findByWebStaff(name);
+			if(po != null){
+				WebStaffVO vo=new WebStaffVO(po.getName(),po.getPassword());
+				return vo;
+			}
+		}catch (RemoteException e) {
+				e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public HotelStaffVO findHotelStaffByName(String name) {
+		return findByHotelStaff(name);
+	}
+
+	@Override
+	public WebManagerVO findWebManagerByName(String name) {
+		try {
+			WebManagerPO po =  userdata.findByWebManager(name);
+			if(po != null){
+				WebManagerVO vo=new WebManagerVO(po.getName(),po.getPassword());
+				return vo;
+			}
+		}catch (RemoteException e) {
+				e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean isCurrentUser(String name) {
+		try {
+			return userdata.isCurrentUser(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public void addCurrentUser(String name) {
+		try {
+			userdata.removeCurrentUser(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
