@@ -58,8 +58,10 @@ public class UserinformationuiController implements Initializable{
     		 membervo.updateInfo(membername, birthday, phonenumber);
     		 try {
 				if(memberService.updateMemberinfo(membervo)){
+					 UiswitchHelper.getApplication().goto_Loginui();
 					 AlertBox alt = new AlertBox();
 						alt.display("保存成功,请退出系统重新登录");
+						
 				 }else{
 					 AlertBox alt = new AlertBox();
 						alt.display("保存失败，请重试");
