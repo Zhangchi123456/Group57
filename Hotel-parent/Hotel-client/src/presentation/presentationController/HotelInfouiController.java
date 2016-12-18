@@ -36,6 +36,7 @@ public class HotelInfouiController implements Initializable{
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	HotelVO vo = HotelmanageController.getHotelVO();
 
+	AlertBox alt;
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -43,7 +44,7 @@ public class HotelInfouiController implements Initializable{
 	@FXML
 	private void SaveClicked(ActionEvent event){
 		if(!Allisfilled()){
-			AlertBox alt = new AlertBox();
+			alt = new AlertBox();
 			alt.display("信息填写不全!");
 		}else{
 			
@@ -67,11 +68,11 @@ public class HotelInfouiController implements Initializable{
 			}		
 			try {
 				if(hser.changeHotelInfo(HotelnameLabel.getText(), instar, HotelDescription.getText(), HotelAddress.getText())){
-					AlertBox alt2 = new AlertBox();
-					alt2.display("保存成功！");
+					alt = new AlertBox();
+					alt.display("保存成功！");
 				}else{
-					AlertBox alt3 = new AlertBox();
-					alt3.display("保存失败！");
+					alt = new AlertBox();
+					alt.display("保存失败！");
 				}
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
