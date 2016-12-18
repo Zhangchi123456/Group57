@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.userui.AlertBox;
 import vo.OrderVO;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
@@ -44,6 +45,7 @@ public class HotelorderuiController implements Initializable{
 	OrderLogicService am = new OrderLogicServiceImpl();
 	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
+	AlertBox alt;
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -51,11 +53,17 @@ public class HotelorderuiController implements Initializable{
 	}
 	@FXML
 	private void CheckClicked(ActionEvent event) throws IOException{
+		if(!table.getSelectionModel().isEmpty()){
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
 		temp=table.getItems();
 	    Orderid = temp.get(selectnumber).getOrdernum();
 	    
 		UiswitchHelper.getApplication().goto_ordeinfoui();
+		}
+		else{
+			alt = new AlertBox();
+			alt.display("请先选择！");
+		}
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

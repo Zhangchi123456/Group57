@@ -17,19 +17,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.presentationController.HotelorderuiController.SimpleHotelOrder;
-import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import presentation.userui.AlertBox;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -56,6 +49,7 @@ public class HotelroomInfouiController implements Initializable{
 	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
      
+	AlertBox alt;
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -63,6 +57,7 @@ public class HotelroomInfouiController implements Initializable{
 	}
 	@FXML
 	private void okButtonClicked(ActionEvent event){
+		if(!table.getSelectionModel().isEmpty()){
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
 		temp=table.getItems();
 		String room_id = temp.get(selectnumber).getRoomnum();
@@ -100,7 +95,10 @@ public class HotelroomInfouiController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+		}else{
+			alt = new AlertBox();
+			alt.display("请先选择！");
+		}
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
