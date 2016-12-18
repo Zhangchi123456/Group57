@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import presentation.userui.AlertBox;
 import vo.MemberLevelVO;
 
@@ -26,7 +25,7 @@ public class memberleveluiController implements Initializable{
 	private Button button_businesscircle;
 	
 	@FXML
-	private ChoiceBox level;
+	private ChoiceBox<String> level;
 	
 	@FXML
 	private TextField credit;
