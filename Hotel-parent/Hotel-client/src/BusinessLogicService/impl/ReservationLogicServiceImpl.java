@@ -18,6 +18,7 @@ import vo.MemberVO;
 import vo.OrderVO;
 import vo.WebPromotionVO;
 import BusinessLogicService.Service.HotelInfo;
+import BusinessLogicService.Service.OrderInfo;
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.PromotionLogicService;
@@ -29,7 +30,7 @@ import org.Hotel.common.dataService.PromotionDataService;
 public class ReservationLogicServiceImpl implements ReservationLogicService{
     HotelInfo hotelservice=new HotelStaffLogicServiceImpl();
     PromotionInfo promotionService=new PromotionLogicServiceImpl();
-    OrderLogicService orderService=new OrderLogicServiceImpl();
+    OrderInfo orderService=new OrderLogicServiceImpl();
     
 	
  

@@ -25,6 +25,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.presentationController.UsercreditrecorduiController.CreditRecord;
+import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.WebPromotionVO;
 
@@ -55,10 +56,15 @@ public class HotelListuiController implements Initializable{
     		ObservableList<SimpleHotel> list=Hoteltable.getItems();
     		String name=list.get(selectnumber).getHotel();
     		HotelVO hotelVO=reservationService.findbyname(name);
+    		ArrayList<HotelPromotionVO> hotelprolist=reservationService.findhotelpro(name);
+    		ReservationController.setHotelproList(hotelprolist);
     		ReservationController.setHotelvo(hotelVO);
     	}else{
     		HotelVO currenthotel=ReservationController.getHotelvolist().get(selectnumber);
     		ReservationController.setHotelvo(currenthotel);
+    		String name=currenthotel.getName();
+    		ArrayList<HotelPromotionVO> hotelprolist=reservationService.findhotelpro(name);
+    		ReservationController.setHotelproList(hotelprolist);
     	}
         UiswitchHelper.getApplication().goto_OrderinputUi();
     }

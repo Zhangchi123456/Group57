@@ -60,7 +60,7 @@ public class UserinformationuiController implements Initializable{
 				if(memberService.updateMemberinfo(membervo)){
 					 UiswitchHelper.getApplication().goto_Loginui();
 					 AlertBox alt = new AlertBox();
-						alt.display("保存成功,请退出系统重新登录");
+						alt.display("保存成功,请重新登录");
 						
 				 }else{
 					 AlertBox alt = new AlertBox();
