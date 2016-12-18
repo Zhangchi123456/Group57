@@ -80,7 +80,7 @@ public class businesscircleuiController implements Initializable{
 	//确认更新	
 		String city_name = city.getValue().toString();
 		String circle = businesscircle.getValue().toString();
-		if(discount.getText()!=null){
+		if(!discount.getText().isEmpty()){
 			double dis = Double.parseDouble(discount.getText());
 			if(dis>0&&dis<100){
 				CircleVO vo = new CircleVO(dis/100,city_name, circle);
@@ -95,6 +95,9 @@ public class businesscircleuiController implements Initializable{
 				AlertBox alt = new AlertBox();
 				alt.display("不可为0！");
 			}
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("不可为空！");
 		}
 	}
 	

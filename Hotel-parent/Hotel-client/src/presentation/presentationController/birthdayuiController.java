@@ -55,10 +55,10 @@ public class birthdayuiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
-		String input = birthdaydiscount.getText();
-		
-		if(input!=null){
+		if(!birthdaydiscount.getText().isEmpty()){
 			
+			String input =birthdaydiscount.getText();
+					
 			double discount = Double.parseDouble(input);
 			
 			if(discount<0||discount>100){
@@ -78,6 +78,9 @@ public class birthdayuiController implements Initializable{
 				AlertBox alt = new AlertBox();
 				alt.display("更新成功！");
 			}
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("不可为空！");
 		}
 		
 	}
