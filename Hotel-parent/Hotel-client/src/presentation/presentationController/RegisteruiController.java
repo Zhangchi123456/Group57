@@ -142,17 +142,19 @@ public class RegisteruiController implements Initializable {
     	 return false;
      }
      private boolean testname(String name){
-    	 ArrayList<MemberVO> member = new ArrayList<MemberVO>();
-    	 try {
-			member = memberlogic.showall();
-			for(int i=0;i<member.size();i++){
-				if(name.equals(member.get(i).getname()))
-					return true;						
-			}
+    	 ArrayList<String> member;
+		try {
+			member = memberlogic.getnamelist();
+			 for(int i=0;i<member.size();i++){
+	    		 if(name==member.get(i)){
+	    			 return true;
+	    		 }
+	    	 }
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
 		return false;
     	 
      }

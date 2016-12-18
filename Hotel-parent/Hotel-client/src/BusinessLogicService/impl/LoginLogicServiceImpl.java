@@ -2,50 +2,51 @@ package BusinessLogicService.impl;
 
 import java.rmi.RemoteException;
 
-import org.Hotel.common.dataService.MemberDataService;
-import org.Hotel.common.dataService.UserDataService;
-import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.MemberPO;
-import org.Hotel.common.po.WebManagerPO;
-import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.LoginLogicService;
+import BusinessLogicService.Service.MemberInfo;
+import BusinessLogicService.Service.UserInfo;
 import util.UserType;
+import vo.HotelStaffVO;
+import vo.MemberVO;
+import vo.WebManagerVO;
+import vo.WebStaffVO;
 
 public class LoginLogicServiceImpl implements LoginLogicService {
 
-	UserDataService userservice=(UserDataService) RMIHelper.find("UserDataService");
-	MemberDataService memberservice=(MemberDataService) RMIHelper.find("MemberDataService");
+	UserInfo userservice=new UserLogicServiceImpl();
+	MemberInfo memberservice=new MemberLogicServiceImpl();
 	
 	@Override
 	public UserType findUser(String name, String password) {
 		try{
-			HotelStaffPO hotelstaffpo=userservice.findByHotelStaff(name);
-			WebStaffPO webstaffpo=userservice.findByWebStaff(name);
-			WebManagerPO webmanagerpo=userservice.findByWebManager(name);
-			MemberPO memberpo=memberservice.find(name);
+			HotelStaffVO hotelstaffvo=userservice.findHotelStaffByName(name);
+			WebStaffVO webstaffvo=userservice.findWebStaffByName(name);
+			WebManagerVO webmanagervo=userservice.findWebManagerByName(name);
+			MemberPO memberpo=memberservice.findMemberByName(name);
 			
-			if(hotelstaffpo!=null){
-				if(hotelstaffpo.getPassword().equals(password))
+			if(hotelstaffvo!=null){
+				if(hotelstaffvo.getPassword().equals(password))
 					
 					return UserType.hotelStaff;
 			}
-			if(webstaffpo!=null){
-				if(webstaffpo.getPassword().equals(password))
+			if(webstaffvo!=null){
+				if(webstaffvo.getPassword().equals(password))
 				return UserType.webStaff;
 			}
 			if(memberpo!=null){
 				if(memberpo.getPassword().equals(password))
 				return UserType.Member;
 			}
-			if(webmanagerpo!=null){
-				if(webmanagerpo.getPassword().equals(password))
+			if(webmanagervo!=null){
+				if(webmanagervo.getPassword().equals(password))
 				return UserType.webManager;
 			}
 			
-			hotelstaffpo=null;
-			webstaffpo =null;
-			webmanagerpo=null;
+			hotelstaffvo=null;
+			webstaffvo =null;
+			webmanagervo=null;
 			memberpo=null;
 		}catch (Exception e){
 			e.printStackTrace();
@@ -57,31 +58,20 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 	 */
 	@Override
 	public void addCurrentUser(String name) {
-		try {
+		
 			userservice.addCurrentUser(name);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	@Override
 	public boolean isCurrentUser(String name) {
-		try {
+	
 			return userservice.isCurrentUser(name);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+		
+	
 	}
 	
 	public void removeCurrentUser(String name) {
-		try {
-			userservice.removeCurrentUser(name);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 }

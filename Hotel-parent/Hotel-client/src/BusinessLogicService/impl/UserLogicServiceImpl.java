@@ -18,11 +18,12 @@ import org.Hotel.common.po.WebManagerPO;
 import org.Hotel.common.po.WebStaffPO;
 
 import BusinessLogicService.Service.HotelInfo;
+import BusinessLogicService.Service.LogoutLogicService;
 import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.UserInfo;
 import BusinessLogicService.Service.UserLogicService;
-import BusinessLogicService.Service.WebManagerVO;
+import vo.WebManagerVO;
 import vo.HotelPromotionVO;
 import vo.HotelStaffVO;
 import vo.HotelVO;
@@ -30,7 +31,7 @@ import vo.MemberVO;
 import vo.RoomVO;
 import vo.WebStaffVO;
 
-public class UserLogicServiceImpl implements UserLogicService,UserInfo{
+public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLogicService{
 	UserDataService userdata=(UserDataService) RMIHelper.find("UserDataService");
 	MemberInfo memberInfo=null;
 	HotelInfo hotelInfo=null;
@@ -86,7 +87,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
 		try {
 			userdata.update(po);
-			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -150,11 +150,9 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 	public ArrayList<MemberVO> findMember() {
 		ArrayList<MemberVO> listvo=new ArrayList<>();
 		memberInfo=new MemberLogicServiceImpl();
-		
 		try {
 			listvo=memberInfo.showall();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -207,29 +205,27 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 
 	@Override
 	public boolean findWebStaffBYName(String name) {
-		// TODO Auto-generated method stub
-		 try {
-				WebStaffPO po =  userdata.findByWebStaff(name);
+		try{
+			WebStaffPO po =  userdata.findByWebStaff(name);
 			if(po != null){
 				return true;
 			}
-				
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public HotelStaffVO findByHotelStaff(String name) {
-	     try {
+		try {
 			HotelStaffPO po =  userdata.findByHotelStaff(name);
 			HotelStaffVO vo = new HotelStaffVO(name, name, name);
-			vo.setbypo(po);
-			return vo;
+			if(po!=null){
+				vo.setbypo(po);
+				return vo;
+			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -273,7 +269,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 		try {
 			return userdata.isCurrentUser(name);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -282,9 +277,16 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo{
 	@Override
 	public void addCurrentUser(String name) {
 		try {
-			userdata.removeCurrentUser(name);
+			userdata.addCurrentUser(name);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeCurrentUser(String name){
+		try{
+			userdata.removeCurrentUser(name);
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
