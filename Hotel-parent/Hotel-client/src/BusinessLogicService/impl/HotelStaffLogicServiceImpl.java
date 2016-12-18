@@ -141,7 +141,6 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		hotelvo.setLeftSuiteRoom(new_suiteRoom);		
 		roomvo.setRoomstate(roomstate);
 		roomvo.setLeavetime(leavetime);
-		roomvo.setRoomstate("可用");
 		
 		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
 		
