@@ -15,20 +15,14 @@ public interface HotelStaffLogicService {
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException;
 	
-	//生成一个新的酒店
-	public boolean insert(HotelVO hotelvo)throws RemoteException;
-	
 	//显示所有客房
 	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException;
 	
 	//房间信息更新
 	public boolean changeRoomInfo(String roomid, String type) throws RemoteException;
 	
-	//酒店基本信息生成
-	public boolean formHotelInfo(HotelVO vo)throws RemoteException;
-	
 	//酒店基本信息更新
-	public boolean changeHotelInfo(HotelVO vo)throws RemoteException;
+	public boolean changeHotelInfo(int star, String introduction, String address)throws RemoteException;
 	
 	//入住信息更新
 	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;
