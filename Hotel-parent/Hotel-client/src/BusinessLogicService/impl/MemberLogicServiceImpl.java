@@ -47,7 +47,6 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		// TODO Auto-generated method stub
 		ArrayList<MemberPO> allmember = memberService.showAll();
 		ArrayList<MemberVO> member = new ArrayList<MemberVO>();
-		System.out.println(allmember.size());
 		for(int i=0;i<allmember.size();i++){
 			MemberVO  vo =new MemberVO(0, 0, "non","non", "non");
             vo.setbypo(allmember.get(i));
