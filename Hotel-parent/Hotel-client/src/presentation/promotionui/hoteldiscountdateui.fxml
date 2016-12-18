@@ -37,7 +37,7 @@
             </Label>
          </children>
       </HBox>
-      <VBox blendMode="MULTIPLY" layoutX="7.0" layoutY="120.0" prefHeight="430.0" prefWidth="300.0" spacing="30.0">
+      <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="430.0" prefWidth="300.0" spacing="40.0">
          <children>
             <Button fx:id="button_birthday" mnemonicParsing="false" onAction="#toBirthday" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="会员生日特惠">
                <font>

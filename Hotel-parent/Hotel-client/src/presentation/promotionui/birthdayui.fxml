@@ -19,7 +19,7 @@
             <Insets bottom="30.0" left="10.0" right="30.0" top="20.0" />
          </padding>
          <children>
-            <Label text="制定酒店营销策略">
+            <Label alignment="CENTER" prefHeight="118.0" prefWidth="360.0" text="制定酒店营销策略">
                <font>
                   <Font name="Yuanti SC Regular" size="40.0" />
                </font>
