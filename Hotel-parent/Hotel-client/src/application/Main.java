@@ -44,7 +44,7 @@ public class Main extends Application {
 			
 		}
 		
-		//stage鐨勫垵濮嬪寲
+		//stage的初始化
 	    public void init(Stage stage){
 	    	this.mainStage=stage;
 	    	RMIHelper.init();
@@ -54,7 +54,7 @@ public class Main extends Application {
 	    }
 	    
 	    
-	    //鍒囨崲绐楀彛鐨勪竴涓疄鐜版柟娉曪紝鐢╢xmlloader鍔犺浇fxml鏂囦欢璺緞鍐嶈繘琛岃烦杞�
+	    //切换窗口的一个实现方法，用fxmlloader加载fxml文件路径再进行跳转
 	    private Initializable replaceSceneContent(String fxml) throws Exception {
 			FXMLLoader loader = new FXMLLoader();
 			InputStream in = Main.class.getResourceAsStream(fxml);
@@ -76,6 +76,7 @@ public class Main extends Application {
 			return (Initializable) loader.getController();
 		}
 	    
+	    //切换窗口的一个实现方法，用fxmlloader加载fxml文件路径再进行跳转（针对anchorpane的方法）
 	    private Initializable AreplaceSceneContent(String fxml) throws Exception {
 			FXMLLoader loader = new FXMLLoader();
 			InputStream in = Main.class.getResourceAsStream(fxml);
@@ -96,7 +97,7 @@ public class Main extends Application {
 
 			return (Initializable) loader.getController();
 		}
-	    
+	    //切换窗口的一个实现方法，用fxmlloader加载fxml文件路径再进行跳转（针对gridpane的方法）
 	    private Initializable GreplaceSceneContent(String fxml) throws Exception {
 			FXMLLoader loader = new FXMLLoader();
 			InputStream in = Main.class.getResourceAsStream(fxml);
@@ -117,7 +118,7 @@ public class Main extends Application {
 
 			return (Initializable) loader.getController();
 		}
-	    
+	    //切换窗口的一个实现方法，用fxmlloader加载fxml文件路径再进行跳转（针对pane的方法）
 	    private Initializable PreplaceSceneContent(String fxml) throws Exception {
 			FXMLLoader loader = new FXMLLoader();
 			InputStream in = Main.class.getResourceAsStream(fxml);
@@ -138,6 +139,7 @@ public class Main extends Application {
 
 			return (Initializable) loader.getController();
 		}
+	    //切换窗口的一个实现方法，用fxmlloader加载fxml文件路径再进行跳转（针对vbox的方法）
 	    private Initializable VreplaceSceneContent(String fxml) throws Exception {
 			FXMLLoader loader = new FXMLLoader();
 			InputStream in = Main.class.getResourceAsStream(fxml);
@@ -159,7 +161,7 @@ public class Main extends Application {
 			return (Initializable) loader.getController();
 		}
 	    
-	    //璺宠浆鍒扮櫥褰曠晫闈�
+	  //跳转到登录界面
 	    public void goto_Loginui(){
 	    	try {
 	    		if(LoginHelper.getLogVO()!=null){
@@ -173,7 +175,7 @@ public class Main extends Application {
 			}
 	    }
 	    
-	    //璺宠浆鍒版敞鍐岀晫闈�
+	    //跳转到注册界面
 	    public void goto_Registerui(){
 	    	try {
 				replaceSceneContent("/presentation/userui/Registerui.fxml");
@@ -183,9 +185,9 @@ public class Main extends Application {
 			}
 	    }
 	    
-	    //浠ヤ笅鏄鎴锋祦绋嬬殑璺宠浆鐣岄潰鏂规硶
+        //以下是客户流程的跳转界面方法
 	    
-	    //璺宠浆鍒扮敤鎴蜂富鐣岄潰
+	    //跳转到用户主界面
 	    public void goto_Usermainui(){
 	    	try {
 				replaceSceneContent("/presentation/userui/Usermainui.fxml");
@@ -196,7 +198,7 @@ public class Main extends Application {
 	    }
 	    
 	   
-	   //璺宠浆鍒扮敤鎴蜂釜浜轰俊鎭晫闈� 
+	  //跳转到用户个人信息界面 
 	    public void goto_Userinformationui(){
 	    	try {
 				replaceSceneContent("/presentation/userui/Userinformationui.fxml");
@@ -205,7 +207,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	    //璺宠浆鍒扮敤鎴蜂俊鐢ㄨ褰曠晫闈�
+	    //跳转到用户信用记录界面
 	    public void goto_Usercreditrecordui(){
 	    	try {
 				replaceSceneContent("/presentation/userui/Usercreditrecordui.fxml");
@@ -214,7 +216,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	    //鐢ㄦ埛鐐规悳绱互鍚庤烦杞埌閰掑簵鍒楄〃鐣岄潰
+	  //用户点搜索以后跳转到酒店列表界面
 	    public void goto_HotelListui(){
 	    	try {
 				replaceSceneContent("/presentation/hotelui/HotelListui.fxml");
@@ -223,7 +225,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	    //鐢ㄦ埛鐐瑰嚮鈥滄垜鐨勮鍗曗�濇寜閽烦杞埌璁㈠崟鍒楄〃鐣岄潰
+	  //用户点击“我的订单”按钮跳转到订单列表界面
 	    public void goto_OrderListUi(){
 	    	try {
 				replaceSceneContent("/presentation/orderui/OrderListUi.fxml");
@@ -234,7 +236,7 @@ public class Main extends Application {
 	    }
 	    
 	    
-	    //鐢ㄦ埛鍦ㄩ厭搴楀垪琛ㄤ腑閫変腑閰掑簵鍚庤烦鍒拌閰掑簵鐨勪俊鎭〉闈�  搴忓彿1.0
+	  //用户在酒店列表中选中酒店后跳到该酒店的信息页面  序号1.0
 	    public void goto_hotelInfoBrowseui(){
 	    	try {
 				GreplaceSceneContent("/presentation/hotelui/hotelInfoBrowseui.fxml");
@@ -244,7 +246,7 @@ public class Main extends Application {
 			}
 	    }
 	    
-	    //鐢ㄦ埛鍦ㄩ厭搴楀叿浣撲俊鎭〉闈腑閫変腑鐢熸垚璁㈠崟鎸夐挳璺宠浆鍒扮敓鎴愯鍗曠晫闈� 1.0.1
+	  //用户在酒店具体信息页面中选中生成订单按钮跳转到生成订单界面 1.0.1
 	    public void goto_OrderinputUi(){
 	    	try {
 				replaceSceneContent("/presentation/orderui/Creatorderui.fxml");
@@ -253,7 +255,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	  //鐢ㄦ埛鍦ㄩ厭搴楀叿浣撲俊鎭〉闈腑閫変腑鏇惧畾閰掑簵鎸夐挳璺宠浆鍒版浘棰勫畾閰掑簵鐣岄潰 1.0.2
+	  //用户在酒店具体信息页面中选中曾定酒店按钮跳转到曾预定酒店界面 1.0.2
 	    public void goto_reservationedhotelUi(){
 	    	try {
 					GreplaceSceneContent("/presentation/hotelui/MyhotelOrderui.fxml");
@@ -263,7 +265,7 @@ public class Main extends Application {
 			}
 	    }
 	    
-	  //鐢ㄦ埛璺冲埌纭璁㈠崟鐣岄潰 1.0.1.1
+	  //用户跳到确认订单界面 1.0.1.1
 	    public void goto_confirmUi(){
 	    	try {
 					replaceSceneContent("/presentation/orderui/OrderInfo.fxml");
@@ -272,7 +274,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	    //鐢ㄦ埛鎯冲宸叉墽琛岃鍗曡繘琛岃瘎浠锋椂璺宠浆鍒拌瘎浠风晫闈�
+	  //用户想对已执行订单进行评价时跳转到评价界面
 	    public void goto_OrderEvaluateui(){
 	    	try {
 				replaceSceneContent("/presentation/orderui/OrderEvaluate.fxml");
@@ -282,9 +284,10 @@ public class Main extends Application {
 			}
 	    }
 	    
-	    //浠ヤ笅鏄綉绔欑鐞嗕汉鍛樿繘琛岀晫闈㈣烦杞殑鏂规硶
+        //以下是网站管理人员进行界面跳转的方法
 	    
-	    //璺宠浆鑷崇綉绔欑鐞嗕汉鍛樹富鐣岄潰 num2.0
+	    //跳转至网站管理人员主界面 num2.0
+
 	    public void goto_UserWebManagementui(){
 	    	try {
 				AreplaceSceneContent("/presentation/userui/UserWebManagement.fxml");
@@ -294,7 +297,7 @@ public class Main extends Application {
 			}
 	    }
 	    
-	    //浠庣鐞嗕汉鍛樹富鐣岄潰璺宠浆鑷抽厭搴楀伐浣滀汉鍛樼鐞嗙晫闈� num2.0.1
+	  //从管理人员主界面跳转至酒店工作人员管理界面 num2.0.1
 	    public  void goto_UserWebManagementHotelui(){
 	    	try {
 				AreplaceSceneContent("/presentation/userui/UserWebManagementHotel.fxml");
@@ -303,7 +306,7 @@ public class Main extends Application {
 				e.printStackTrace();
 			}
 	    }
-	    //浠庣鐞嗕汉鍛樹富鐣岄潰璺宠浆鍒扮綉绔欒惀閿�浜哄憳绠＄悊鐣岄潰  num2.0.2
+	  //从管理人员主界面跳转到网站营销人员管理界面  num2.0.2
 	    
 	     public void goto_UserWebManagermentWebui(){
 	    	 try {
@@ -314,7 +317,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //缃戠珯钀ラ攢浜哄憳绠＄悊鐣岄潰璺宠浆鍒版坊鍔犵綉绔欒惀閿�浜哄憳鐣岄潰num2.0.2.1
+	     //网站营销人员管理界面跳转到添加网站营销人员界面num2.0.2.1
 	     public void goto_AddWebStuffui(){
 	    	 try {
 					VreplaceSceneContent("/presentation/userui/AddWebStuff.fxml");
@@ -324,7 +327,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	    //浠庣鐞嗕汉鍛樹富鐣岄潰璺宠浆鍒版坊鍔犻厭搴楅〉闈�   num2.0.3
+	     //从管理人员主界面跳转到添加酒店页面   num2.0.3
 	     public void goto_UserWebAddHotelui(){
 	    	 try {
 					AreplaceSceneContent("/presentation/userui/UserWebAddHotel.fxml");
@@ -334,9 +337,9 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庣鐞嗕汉鍛樹富鐣岄潰璺宠浆鍒颁細鍛樼鐞嗙晫闈� num2.0.4(鐩稿綋浜庤烦鍥炵鐞嗕汉鍛樹富鐣岄潰锛�
+          //从管理人员主界面跳转到会员管理界面 num2.0.4(相当于跳回管理人员主界面）
 	     
-	     //浠庢坊鍔犻厭搴楅〉闈㈣烦杞埌娣诲姞鎴块棿椤甸潰 num2.0.3.1
+	     //从添加酒店页面跳转到添加房间页面 num2.0.3.1
 	     public void goto_UserWebAddRoomui(){
 	    	 try {
 					AreplaceSceneContent("/presentation/userui/UserWebAddRoom.fxml");
@@ -346,7 +349,7 @@ public class Main extends Application {
 				}
 	     }
 	      
-	     //浠庢坊鍔犻厭搴楅〉闈㈣烦杞埌娣诲姞绠�浠嬮〉闈� num2.0.3.2
+	     //从添加酒店页面跳转到添加简介页面 num2.0.3.2
 	     public void goto_UserWebAddDescriptionui(){
 	    	 try {
 					AreplaceSceneContent("/presentation/userui/UserWebAddDescription.fxml");
@@ -355,7 +358,7 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 	     }
-	    //浠庢坊鍔犻厭搴楅〉闈㈣烦杞埌娣诲姞閰掑簵浜哄憳椤甸潰 num2.0.3.3
+	   //从添加酒店页面跳转到添加酒店人员页面 num2.0.3.3
 	     public void goto_AddHotelStuffui(){
 	    	 try {
 					VreplaceSceneContent("/presentation/userui/AddHotelStuff.fxml");
@@ -366,9 +369,9 @@ public class Main extends Application {
 	     }
 	     
 	     
-	     //浠ヤ笅鏄厭搴楀伐浣滀汉鍛樼櫥褰曚箣鍚庣殑鐣岄潰璺宠浆
+         //以下是酒店工作人员登录之后的界面跳转
 	     
-	     //璺宠浆鍒伴厭搴楀伐浣滀汉鍛樹富鐣岄潰  num3.0
+	     //跳转到酒店工作人员主界面  num3.0
 	     public void goto_HotelMainui(){
 	    	 try {
 					replaceSceneContent("/presentation/hotelui/HotelmanagerMain.fxml");
@@ -378,7 +381,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒板鎴垮垪琛ㄧ晫闈� num3.0.1 
+	     //从酒店工作人员主界面跳转到客房列表界面 num3.0.1 
 	     public void goto_roomInfoui(){
 	    	 try {
 					GreplaceSceneContent("/presentation/hotelui/roomInfoui.fxml");
@@ -388,7 +391,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒拌鍗曞垪琛ㄧ晫闈� num3.0.2 
+	   //从酒店工作人员主界面跳转到订单列表界面 num3.0.2 
 	     public void goto_orderui(){
 	    	 try {
 					GreplaceSceneContent("/presentation/hotelui/orderui.fxml");
@@ -399,7 +402,7 @@ public class Main extends Application {
 	     }
 	     
 	     
-	    //浠庤鍗曞垪琛ㄧ晫闈㈣烦杞埌璁㈠崟璇︾粏淇℃伅鐣岄潰 num3.0.2.1
+	   //从订单列表界面跳转到订单详细信息界面 num3.0.2.1
 	     public void goto_ordeinfoui(){
 	    	 try {
 					GreplaceSceneContent("/presentation/hotelui/orderinfoui.fxml");
@@ -408,7 +411,7 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 	     }
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒板叆浣忎俊鎭洿鏂扮晫闈� num3.0.3
+	   //从酒店工作人员主界面跳转到入住信息更新界面 num3.0.3
 	     public void goto_updateui(){
 	    	 try {
 					 GreplaceSceneContent("/presentation/hotelui/updateui.fxml");
@@ -418,7 +421,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒伴厭搴椾俊鎭淮鎶ょ晫闈� num3.0.4
+	   //从酒店工作人员主界面跳转到酒店信息维护界面 num3.0.4
 	     public void goto_hotelInfoui(){
 	    	 try {
 					replaceSceneContent("/presentation/hotelui/hotelInfoui.fxml");
@@ -428,7 +431,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒伴厭搴楄惀閿�绛栫暐鍒跺畾鐣岄潰(鐗瑰畾鏃ユ湡锛� num3.0.5.1
+	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(特定日期） num3.0.5.1
 	     public void goto_hoteldiscountdateui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/hoteldiscountdateui.fxml");
@@ -439,7 +442,7 @@ public class Main extends Application {
 	     }
 	     
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒伴厭搴楄惀閿�绛栫暐鍒跺畾鐣岄潰(浼氬憳鐢熸棩锛� num3.0.5.2
+	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(会员生日） num3.0.5.2
 	     public void goto_birthdayui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/birthdayui.fxml");
@@ -449,7 +452,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	   //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒伴厭搴楄惀閿�绛栫暐鍒跺畾鐣岄潰(鍟嗕笟鍚堜綔鎶樻墸锛� num3.0.5.3
+	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(商业合作折扣） num3.0.5.3
 	     public void goto_businesspartnerui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/businesspartnerui.fxml");
@@ -459,7 +462,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庨厭搴楀伐浣滀汉鍛樹富鐣岄潰璺宠浆鍒伴厭搴楄惀閿�绛栫暐鍒跺畾鐣岄潰(涓夐棿浠ヤ笂鎶樻墸锛� num3.0.5.4
+	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(三间以上折扣） num3.0.5.4
 	     public void goto_roomnumberui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/roomnumberui.fxml");
@@ -473,9 +476,9 @@ public class Main extends Application {
 	     
 	   
 	     
-	     //浠ヤ笅鏄綉绔欒惀閿�浜哄憳杩涜鐣岄潰璺宠浆鐨勮烦杞柟娉�
+	     //以下是网站营销人员进行界面跳转的跳转方法
 	     
-	      //璺宠浆鍒扮綉绔欒惀閿�浜哄憳涓荤晫闈� num4.0
+	      //跳转到网站营销人员主界面 num4.0
 	     public void goto_UserWebPromotionMainui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/userui/UserWebPromotionMainui.fxml");
@@ -487,7 +490,7 @@ public class Main extends Application {
 	     
 	     
 	     
-	     //浠庣綉绔欒惀閿�浜哄憳涓荤晫闈㈣烦杞埌缃戠珯淇冮攢绛栫暐(鐗瑰畾鏈熼棿鎶樻墸锛夌晫闈� num4.0.1
+	     //从网站营销人员主界面跳转到网站促销策略(特定期间折扣）界面 num4.0.1
 	     public void goto_webdiscoutdatenui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/webdiscountdateui.fxml");
@@ -497,7 +500,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庣綉绔欒惀閿�浜哄憳涓荤晫闈㈣烦杞埌缃戠珯淇冮攢绛栫暐(鐗瑰畾鍟嗗湀鎶樻墸锛夌晫闈� num4.0.2
+	     //从网站营销人员主界面跳转到网站促销策略(特定商圈折扣）界面 num4.0.2
 	     public void goto_businesscircleui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/businesscircleui.fxml");
@@ -507,7 +510,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庣綉绔欒惀閿�浜哄憳涓荤晫闈㈣烦杞埌缃戠珯淇冮攢绛栫暐(浼氬憳绛夌骇鎶樻墸锛夌晫闈� num4.0.3
+	   //从网站营销人员主界面跳转到网站促销策略(会员等级折扣）界面 num4.0.3
 	     public void goto_memberlevelui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/promotionui/memberlevelui.fxml");
@@ -517,7 +520,7 @@ public class Main extends Application {
 				}
 	     }
 	     
-	     //浠庣綉绔欒惀閿�浜哄憳涓荤晫闈㈣烦杞埌淇＄敤鍏呭�肩晫闈� num4.0.4
+	     //从网站营销人员主界面跳转到信用充值界面 num4.0.4
 	     public void goto_Creditchargeui(){
 	    	 try {
 					replaceSceneContent("/presentation/userui/Creditchargeui.fxml");
@@ -526,7 +529,7 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 	     }
-	     //浠庣綉绔欒惀閿�浜哄憳涓荤晫闈㈣烦杞埌寮傚父璁㈠崟鍒楄〃鐣岄潰 num4.0.5
+	     //从网站营销人员主界面跳转到异常订单列表界面 num4.0.5
 	     public void goto_abnormalorderui(){
 	    	 try {
 					PreplaceSceneContent("/presentation/orderui/abnormalorder.fxml");
