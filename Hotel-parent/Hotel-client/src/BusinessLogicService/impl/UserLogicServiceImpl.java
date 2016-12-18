@@ -22,7 +22,7 @@ import BusinessLogicService.Service.MemberInfo;
 import BusinessLogicService.Service.PromotionInfo;
 import BusinessLogicService.Service.UserInfo;
 import BusinessLogicService.Service.UserLogicService;
-import BusinessLogicService.Service.WebManagerVO;
+import vo.WebManagerVO;
 import vo.HotelPromotionVO;
 import vo.HotelStaffVO;
 import vo.HotelVO;
