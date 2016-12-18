@@ -3,6 +3,8 @@ package BusinessLogicService.Service;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import org.Hotel.common.po.HotelPO;
+
 import vo.CreditRecordVO;
 import vo.HotelVO;
 import vo.OrderVO;
@@ -12,6 +14,9 @@ public interface HotelStaffLogicService {
 	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException;
+	
+	//生成一个新的酒店
+	public boolean insert(HotelVO hotelvo)throws RemoteException;
 	
 	//显示所有客房
 	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException;

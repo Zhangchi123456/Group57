@@ -13,11 +13,14 @@ import org.Hotel.common.po.HotelStaffPO;
 import org.Hotel.common.po.RoomPO;
 
 import BusinessLogicService.Service.HotelStaffLogicService;
+import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.Service.ReservationLogicService;
+import BusinessLogicService.Service.UserLogicService;
 import Controller.HotelmanageController;
 import Controller.MemberActController;
 import vo.CreditRecordVO;
+import vo.HotelStaffVO;
 import vo.HotelVO;
 import vo.OrderVO;
 import vo.RoomVO;
@@ -25,16 +28,18 @@ import vo.RoomVO;
 public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 
 	HotelDataService hds = (HotelDataService) RMIHelper.find("HotelDataService");
-	UserDataService uds = (UserDataService) RMIHelper.find("UserDataService");
-	MemberDataService mds = (MemberDataService) RMIHelper.find("MemberDataService");
+	UserLogicService uds = new UserLogicServiceImpl();
+	MemberLogicService mds = new MemberLogicServiceImpl();
 	
 	HotelVO hotelvo = new HotelVO();
+	
+	
 	
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name)throws RemoteException {
 		
-		HotelStaffPO po = uds.findByHotelStaff(name);
-		String hotelname = po.getHotelName();
+		HotelStaffVO vo = uds.findByHotelStaff(name);
+		String hotelname = vo.getHotelname();
 		HotelPO hotelpo = new HotelPO();
 		hotelpo = hds.Findhotelbyname(hotelname);
 		hotelvo.setbuHotelPO(hotelpo);
@@ -159,13 +164,17 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService {
 	
 	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException {
 		
-		CreditPO po = mds.findCreditRecord(orderid);
+		CreditRecordVO Vo = mds.findCreditRecord(orderid);
 		
-		CreditRecordVO vo = new CreditRecordVO();
+		return Vo;
+	}
+
+	//生成一个新的酒店
+	@Override
+	public boolean insert(HotelVO hotelvo) throws RemoteException {
+		// TODO Auto-generated method stub
 		
-		vo.setbyCreditPO(po);
-		
-		return vo;
+		return false;
 	}
 
 	
