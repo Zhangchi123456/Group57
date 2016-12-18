@@ -61,7 +61,7 @@ public class HotelInfoBrowseuiController implements Initializable{
 		address.setText(hotelvo.getAddress());
 		SingleLabel.setText(String.valueOf(hotelvo.getSingleRoomPrice()));
 		
-		System.out.println(hotelvo.getFamilyRoomPrice());
+		
 		StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
 	    FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
 	    SuiteLabel.setText(String.valueOf(hotelvo.getSuiteRoomPrice()));

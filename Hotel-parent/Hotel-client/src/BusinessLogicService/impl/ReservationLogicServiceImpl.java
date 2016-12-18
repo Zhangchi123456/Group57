@@ -207,6 +207,29 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
          String strout=checkoutdate.toString();
          Date Datein=sdf.parse(strin);
          Date Dateout=sdf.parse(strout);
+         switch(roomtype){
+			case"单人房":
+				if(num>hotel.getSingleRoom()){
+					return false;
+				}
+				break;
+			case"标准间":
+				if(num>hotel.getStandardRoom()){
+					return false;
+				}
+				break;
+			case"家庭房":
+				if(num>hotel.getFamilyRoom()){
+					return false;
+				}
+				break;
+			case"套间":
+				if(num>hotel.getSuiteRoom()){
+					return false;
+				}
+				
+				break;
+			}
 		 for(int i=0;i<orderlist.size();i++){
 			 OrderVO vo=orderlist.get(i);
 			Date startdate=sdf.parse(vo.getStarttime());
@@ -222,22 +245,22 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			}
 			switch(roomtype){
 			case"单人房":
-				if(num>leftsingle||num>Integer.parseInt(vo.getSingleRoom())){
+				if(num>leftsingle){
 					return false;
 				}
 				break;
 			case"标准间":
-				if(num>leftstandard||num>Integer.parseInt(vo.getStandardRoom())){
+				if(num>leftstandard){
 					return false;
 				}
 				break;
 			case"家庭房":
-				if(num>leftfamily||num>Integer.parseInt(vo.getFamilyRoom())){
+				if(num>leftfamily){
 					return false;
 				}
 				break;
 			case"套间":
-				if(num>leftsuite||num>Integer.parseInt(vo.getSuiteRoom())){
+				if(num>leftsuite){
 					return false;
 				}
 				

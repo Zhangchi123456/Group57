@@ -73,48 +73,53 @@ public class webdiscountdateuiController implements Initializable{
 	public void MemberClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_memberlevelui();
 	}
+	
 	//调到商圈折扣
 	@FXML
 	public void BusinessClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_businesscircleui();
 	}
+	
 	//返回网站营销人员主界面
 	@FXML
 	public void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_UserWebPromotionMainui();
 	}
+	
 	//添加策略确认按钮
 	@FXML
 	public void SureClicked(ActionEvent event){
 		
+		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && !newDiscount.getText().isEmpty()){
+			
+			if(TimeBegin.getValue().isBefore(TimeEnd.getValue())){
+				LocalDate start = TimeBegin.getValue();
+				LocalDate end = TimeEnd.getValue();
+				String input = newDiscount.getText();
+			
+				String start_date = start.toString();
+				String end_date = end.toString();
+				double discount = Double.parseDouble(input);
+			
+				if(discount<=0||discount>=100){
+					AlertBox alt = new AlertBox();
+					alt.display("超出输入范围！");
+				}else if(discount==0){
+					AlertBox alt = new AlertBox();
+					alt.display("不可为0！");
+				}else{
 		
-		
-		if(TimeBegin.getValue()!=null && TimeEnd.getValue()!=null && newDiscount.getText()!=null){
-			
-			LocalDate start = TimeBegin.getValue();
-			LocalDate end = TimeEnd.getValue();
-			String input = newDiscount.getText();
-			
-			String start_date = start.toString();
-			String end_date = end.toString();
-			double discount = Double.parseDouble(input);
-			
-			if(discount<=0||discount>=100){
-				AlertBox alt = new AlertBox();
-				alt.display("超出输入范围！");
-			}else if(discount==0){
-				AlertBox alt = new AlertBox();
-				alt.display("不可为0！");
+					WebPromotionVO vo = new WebPromotionVO(discount/100, start_date, end_date, 0);
+				
+					PromotionLogicService promotion = new PromotionLogicServiceImpl();
+					promotion.addWebPromotion(vo);
+				
+					this.showTable();
+				}
 			}else{
-		
-				WebPromotionVO vo = new WebPromotionVO(discount/100, start_date, end_date, 0);
-				
-				PromotionLogicService promotion = new PromotionLogicServiceImpl();
-				promotion.addWebPromotion(vo);
-				
-				this.showTable();
+				AlertBox alt = new AlertBox();
+				alt.display("结束日期须在开始日期之后！");
 			}
-			
 		}else{
 			AlertBox alt = new AlertBox();
 			alt.display("信息填写不完整！");

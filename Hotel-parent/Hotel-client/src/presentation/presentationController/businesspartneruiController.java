@@ -55,8 +55,10 @@ public class businesspartneruiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 	//确认更新
-		String input = businesspartnerdiscount.getText();
-		if(input != null){
+		if(!businesspartnerdiscount.getText().isEmpty()){
+			
+			String input = businesspartnerdiscount.getText();
+			
 			double discount = Double.parseDouble(input);
 				if(discount<0||discount>100){
 					AlertBox alt = new AlertBox();
@@ -75,6 +77,9 @@ public class businesspartneruiController implements Initializable{
 					AlertBox alt = new AlertBox();
 					alt.display("更新成功！");
 				}
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("不可为空！");
 		}
 		
 	}

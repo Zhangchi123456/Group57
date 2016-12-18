@@ -35,7 +35,6 @@ public class AddWebStuffController implements Initializable{
     	String name=NameText.getText().trim();
     	String newPass=password.getText().trim();
     	String ensurePass=ensurepassword.getText().trim();
-//    	System.out.println("this is insane");
     	//pre condition
     	if(name.length()==0){
     		AlertBox alt = new AlertBox();
@@ -56,7 +55,6 @@ public class AddWebStuffController implements Initializable{
     		AlertBox alt = new AlertBox();
 			alt.display("姓名已存在");
     	}else{
-    		System.out.println(name+newPass+"what");
     		WebStaffVO vo =new WebStaffVO(name,newPass);
     		userblservice.addWebStaff(vo);
     		//reminder
@@ -66,8 +64,6 @@ public class AddWebStuffController implements Initializable{
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

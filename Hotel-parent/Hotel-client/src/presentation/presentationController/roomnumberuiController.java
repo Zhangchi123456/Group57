@@ -62,8 +62,10 @@ public class roomnumberuiController implements Initializable{
 	@FXML
 	public void update(ActionEvent event){
 	//确认更新
-		String input = roomnumberdiscount.getText();
-		if(input != null){
+		if(!roomnumberdiscount.getText().isEmpty()){
+			
+			String input = roomnumberdiscount.getText();
+			
 			double discount = Double.parseDouble(input);
 				if(discount<0||discount>100){
 					AlertBox alt = new AlertBox();
@@ -82,6 +84,10 @@ public class roomnumberuiController implements Initializable{
 					AlertBox alt = new AlertBox();
 					alt.display("更新成功！");
 				}
+				
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("不可为空！");
 		}
 	}
 	

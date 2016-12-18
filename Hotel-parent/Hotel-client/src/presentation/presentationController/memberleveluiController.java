@@ -65,7 +65,7 @@ public class memberleveluiController implements Initializable{
 	//确认更新	
 		int lv = Integer.parseInt(level.getValue().toString());
 		int cre = Integer.parseInt(credit.getText());
-		if(discount.getText()!=null){
+		if(!discount.getText().isEmpty()){
 			double dis = Double.parseDouble(discount.getText());
 			if(dis>0&&dis<=100){
 				MemberLevelVO vo = new MemberLevelVO(lv,cre,dis/100);
@@ -85,6 +85,9 @@ public class memberleveluiController implements Initializable{
 				AlertBox alt = new AlertBox();
 				alt.display("不可为0！");
 			}
+		}else{
+			AlertBox alt = new AlertBox();
+			alt.display("不可为空！");
 		}
 		
 	}
