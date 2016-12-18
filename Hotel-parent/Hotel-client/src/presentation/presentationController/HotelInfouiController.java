@@ -70,15 +70,9 @@ public class HotelInfouiController implements Initializable{
 			}
 			if(hotelstar.equals("五星")){
 				instar=5;
-			}
-			vo.setStar(instar);
-			vo.setAdsress(hoteladdress);
-			vo.setIntroduction(hoteldescription);
-			
-			
+			}		
 			try {
-				if(hser.changeHotelInfo(
-						vo)){
+				if(hser.changeHotelInfo(instar, hoteldescription, hoteladdress)){
 					AlertBox alt2 = new AlertBox();
 					alt2.display("保存成功！");
 				}
