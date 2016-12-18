@@ -147,7 +147,7 @@ public class RegisteruiController implements Initializable {
 			member = memberlogic.getnamelist();
 			 for(int i=0;i<member.size();i++){
 	    		 if(name==member.get(i)){
-	    			 return false;
+	    			 return true;
 	    		 }
 	    	 }
 		} catch (RemoteException e) {
@@ -155,7 +155,7 @@ public class RegisteruiController implements Initializable {
 			e.printStackTrace();
 		}
     	
-		return true;
+		return false;
     	 
      }
      @FXML
