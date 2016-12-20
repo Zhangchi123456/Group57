@@ -3,7 +3,9 @@ package presentation.presentationController;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.HotelStaffLogicService;
@@ -50,6 +52,7 @@ public class HotelroomInfouiController implements Initializable{
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
      
 	AlertBox alt;
+	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -64,33 +67,37 @@ public class HotelroomInfouiController implements Initializable{
 		int roomid = Integer.parseInt(room_id);
 		RoomVO vo;
 		OrderVO ordervo;
+		String realleavetime;
 		try {
 			vo = hser.FindRoomByID(roomid);
 			vo.setRoomstate("可用");
 			int orderid = vo.getOrderid();
 			ordervo = oser.orderShowAll(orderid);
+			realleavetime = nowtime.format(new Date());
+			vo.setLeavetime(realleavetime);
+			ordervo.setLeavetime(realleavetime);
 			if(vo.getRoomtype().equals("单人房"))
-			    if(hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime())==true){
+			    if(hser.changeCheckOutInfo(roomid, Integer.parseInt(ordervo.getSingleRoom()), 0,0,0, "可用", vo.getLeavetime())){
 			    	AlertBox alt1 = new AlertBox();
 					alt1.display("退房成功！");
 			    }
 			if(vo.getRoomtype().equals("标准间"))
-				if(hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime())==true){
+				if(hser.changeCheckOutInfo(roomid, 0, Integer.parseInt(ordervo.getStandardRoom()), 0, 0, "可用", vo.getLeavetime())){
 					AlertBox alt2 = new AlertBox();
 					alt2.display("退房成功！");
 				}
 			if(vo.getRoomtype().equals("家庭房"))
-				if(hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime())==true){
+				if(hser.changeCheckOutInfo(roomid, 0,0, Integer.parseInt(ordervo.getFamilyRoom()), 0, "可用", vo.getLeavetime())){
 					AlertBox alt3 = new AlertBox();
 					alt3.display("退房成功！");
 				}
 			if(vo.getRoomtype().equals("套间"))
-				if(hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime())==true){
+				if(hser.changeCheckOutInfo(roomid, 0,0,0, Integer.parseInt(ordervo.getSuiteRoom()), "可用", vo.getLeavetime())){
 					AlertBox alt4 = new AlertBox();
 					alt4.display("退房成功！");
 				}
 			temp.get(selectnumber).setState(vo.getRoomstate());
-			temp.get(selectnumber).setLast(vo.getLeavetime());
+			temp.get(selectnumber).setLast(realleavetime);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,6 +3,8 @@ package presentation.presentationController;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.HotelStaffLogicService;
@@ -34,6 +36,7 @@ public class HotelupdateuiController implements Initializable{
 	OrderLogicService oser = new OrderLogicServiceImpl();
 
 	AlertBox alt;
+	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	@FXML
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -49,6 +52,7 @@ public class HotelupdateuiController implements Initializable{
 		OrderVO ordervo = oser.orderShowAll(orderid);
 		String room_id = roomNumtx.getText().toString();
 		RoomVO roomvo;
+		String realstarttime;
 		try {
 		if(ordervo==null||ordervo.getState()=="已撤销"){
 			alt = new AlertBox();
@@ -58,35 +62,37 @@ public class HotelupdateuiController implements Initializable{
 			alt = new AlertBox();
 			alt.display("请填写可用房间号！");
 		}else{
-		INtimetx.setText(ordervo.getStarttime());
+		realstarttime = nowtime.format(new Date());
+		ordervo.setStarttime(realstarttime);
+		INtimetx.setText(realstarttime);
 		OutTimetx.setText(ordervo.getLeavetime());
 		roomvo = hser.FindRoomByID(Integer.parseInt(room_id));
 		
 		switch(roomvo.getRoomtype()){
 		
 		case "单人间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 1, 0, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 1, 0, 0, 0, realstarttime, ordervo.getLeavetime())==true){
 			
 				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "标准间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 1, 0, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 1, 0, 0, realstarttime, ordervo.getLeavetime())==true){
 				
 				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "家庭房":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 1, 0, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 1, 0, realstarttime, ordervo.getLeavetime())==true){
 				
 				alt = new AlertBox();			
 				alt.display("更新成功！");
 		    }
 			break;
 		case "套间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 0, 1, ordervo.getStarttime(), ordervo.getLeavetime())==true){
+			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 0, 1, realstarttime, ordervo.getLeavetime())==true){
 				
 				alt = new AlertBox();			
 				alt.display("更新成功！");
