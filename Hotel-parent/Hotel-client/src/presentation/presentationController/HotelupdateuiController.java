@@ -67,38 +67,36 @@ public class HotelupdateuiController implements Initializable{
 		INtimetx.setText(realstarttime);
 		OutTimetx.setText(ordervo.getLeavetime());
 		roomvo = hser.FindRoomByID(Integer.parseInt(room_id));
+		roomvo.setRoomstate("不可用");
+		roomvo.setStarttime(realstarttime);
 		
+		int singleroom = 0;
+		int standardroom = 0;
+		int familyroom = 0;
+		int suiteroom = 0;
 		switch(roomvo.getRoomtype()){
 		
 		case "单人间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 1, 0, 0, 0, realstarttime, ordervo.getLeavetime())==true){
-			
-				alt = new AlertBox();			
-				alt.display("更新成功！");
-		    }
+			singleroom = 1;
 			break;
 		case "标准间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 1, 0, 0, realstarttime, ordervo.getLeavetime())==true){
-				
-				alt = new AlertBox();			
-				alt.display("更新成功！");
-		    }
+			standardroom = 1;
 			break;
 		case "家庭房":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 1, 0, realstarttime, ordervo.getLeavetime())==true){
-				
-				alt = new AlertBox();			
-				alt.display("更新成功！");
-		    }
+			familyroom = 1;
 			break;
 		case "套间":
-			if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, 0, 0, 0, 1, realstarttime, ordervo.getLeavetime())==true){
-				
-				alt = new AlertBox();			
-				alt.display("更新成功！");
-		    }
+			suiteroom = 1;
 			break;
 		    }
+		if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, singleroom, standardroom, familyroom, suiteroom, realstarttime, ordervo.getLeavetime())){
+			
+			alt = new AlertBox();			
+			alt.display("更新成功！");
+	    }else{
+	    	alt = new AlertBox();
+	    	alt.display("更新失败！");
+	    }
 		}
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
