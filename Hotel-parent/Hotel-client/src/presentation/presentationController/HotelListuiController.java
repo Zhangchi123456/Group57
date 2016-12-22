@@ -119,14 +119,7 @@ public class HotelListuiController implements Initializable{
 		ArrayList<WebPromotionVO> weblist=reservationService.showall();
 		ReservationController.setWebpromotionvolist(weblist);
 		ArrayList<HotelVO> hotellist1=ReservationController.getHotelvolist();
-
-		try {
-			HotelVO testhotel=reservationService.findbyname("南行酒店");
-		
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		HotelVO testhotel=reservationService.findbyname("南行酒店");
 		ArrayList<SimpleHotel> hotellist2=new ArrayList<SimpleHotel>();
 		for(int i=0;i<hotellist1.size();i++){
 			HotelVO vo=hotellist1.get(i);
@@ -159,43 +152,40 @@ public class HotelListuiController implements Initializable{
 	                        ).setStar(((t.getNewValue())));
 	        });
 		
-		
-		    HotelScore.setCellValueFactory(
+		HotelScore.setCellValueFactory(
 		            new PropertyValueFactory<>("grade"));
 	   	 
-			HotelScore.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
-			HotelScore.setOnEditCommit(
+	    HotelScore.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
+	    HotelScore.setOnEditCommit(
 		            (CellEditEvent<SimpleHotel, String> t) -> {
 		                ((SimpleHotel) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
 		                        ).setGrade(((t.getNewValue())));
 		        });
 			
-			HotelPrice.setCellValueFactory(
+		HotelPrice.setCellValueFactory(
 		            new PropertyValueFactory<>("hotelprice"));
-	   	 
-			HotelPrice.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
-			HotelPrice.setOnEditCommit(
+		HotelPrice.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
+		HotelPrice.setOnEditCommit(
 		            (CellEditEvent<SimpleHotel, String> t) -> {
 		                ((SimpleHotel) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
 		                        ).setHotelprice(((t.getNewValue())));
 		        });
 
-			Reservation.setCellValueFactory(
+		Reservation.setCellValueFactory(
 		            new PropertyValueFactory<>("Ifreservationed"));
-		 
-			Reservation.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
-			Reservation.setOnEditCommit(
+		Reservation.setCellFactory(TextFieldTableCell.<SimpleHotel>forTableColumn());
+		Reservation.setOnEditCommit(
 		            (CellEditEvent<SimpleHotel, String> t) -> {
 		                ((SimpleHotel) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
 		                        ).setIfReservation((((t.getNewValue()))));
 		        });
-		  Hoteltable.setItems(finallist);
+		Hoteltable.setItems(finallist);
 		
 	}
-	
+	//用以在表中显示内容的辅助类
 	public static class SimpleHotel {            
         private final SimpleStringProperty hotelprice;
         private final SimpleStringProperty Ifreservationed;
@@ -240,9 +230,7 @@ public class HotelListuiController implements Initializable{
 		public String getStar(){
 			return star.get();
 		}
-     
-
-		
+    
        public String getGrade(){
     	   return grade.get();
        }

@@ -41,10 +41,10 @@ public class RegisteruiController implements Initializable {
      
      @FXML
      private RadioButton Member,Company;
-                        
+     //       企业和个人会员         
      @FXML
      private Label NameLabel,BirthdayLabel;
-     
+     //          姓名           
   
      @FXML
      private DatePicker BirthdayDatepicker;
@@ -141,27 +141,24 @@ public class RegisteruiController implements Initializable {
     	 }
     	 return false;
      }
+     //检查是否存在同名用户
      private boolean testname(String name){
     	 ArrayList<String> member;
-		try {
-			member = memberlogic.getnamelist();
+		 member = memberlogic.getnamelist();
 			 for(int i=0;i<member.size();i++){
 	    		 if(name==member.get(i)){
 	    			 return true;
 	    		 }
-	    	 }
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+			 }
 		return false;
     	 
      }
+     
      @FXML
      private void ReturnbuttonClicked(ActionEvent event){
     	 UiswitchHelper.getApplication().goto_Loginui();
      }
+     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

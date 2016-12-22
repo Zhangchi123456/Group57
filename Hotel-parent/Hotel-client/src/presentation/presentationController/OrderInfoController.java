@@ -29,10 +29,11 @@ import vo.OrderVO;
 public class OrderInfoController implements Initializable {
 	@FXML
 	private Label HotelName,UserNum,Child,RoomType,TimeBegin,TimeEnd,RoomnumLabel,TotalpriceLabel,OrderId;
-	
+	// 持有的显示订单信息的label
     OrderVO vo =	ReservationController.getOrdervo();
     OrderLogicService orderlogic = new OrderLogicServiceImpl();
     
+    //确认按钮的监听事件
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
@@ -42,17 +43,11 @@ public class OrderInfoController implements Initializable {
 	    CreditRecordVO credit=new CreditRecordVO();
 		credit.setOrderid(vo.getId());
 		credit.membername=ReservationController.getMembervo().getMembername();
-		try {
+		
 			if(memberservice.addCreditRecord(credit)){
 //				System.out.println("succeed");
 			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		UiswitchHelper.getApplication().goto_Usermainui();
 		AlertBox alt = new AlertBox();

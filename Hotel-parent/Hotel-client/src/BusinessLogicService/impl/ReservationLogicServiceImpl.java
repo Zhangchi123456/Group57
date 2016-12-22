@@ -28,33 +28,32 @@ import org.Hotel.common.dataService.HotelDataService;
 import org.Hotel.common.dataService.PromotionDataService;
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
+	//持有hotelservice。promotionservice。orderservice接口
     HotelInfo hotelservice=new HotelStaffLogicServiceImpl();
     PromotionInfo promotionService=new PromotionLogicServiceImpl();
     OrderInfo orderService=new OrderLogicServiceImpl();
     
 	
- 
-
 	
 	//计算订单价格方法的实现
-	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate) throws ParseException{
-             double finalprice=0.0;
-             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-              
-            
-             
+	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate){
+            try{
+		    double finalprice=0.0;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String strin=checkindate.toString();
             String strout=checkoutdate.toString();
-            long m=sdf.parse(strout).getTime()-sdf.parse(strin).getTime();
-            int day=(int)(m/(1000 * 60 * 60 * 24));
-            
+            long m;
+			
+				m = sdf.parse(strout).getTime()-sdf.parse(strin).getTime();
+		
+            int day=(int)(m/(1000 * 60 * 60 * 24)); 
             Date Datein=sdf.parse(strin);
             Date Dateout=sdf.parse(strout);
-             MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
-             //根据会员等级和商圈折扣计算价格
-             finalprice=day*num*price*level.getDiscount();
-             //根据网站营销策略优惠计算价格
-             for(int i=0;i<webprolist.size();i++){
+            MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
+          //根据会员等级和商圈折扣计算价格
+            finalprice=day*num*price*level.getDiscount();
+          //根据网站营销策略优惠计算价格
+            for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
             	 Date start=sdf.parse(webpro.getStartDate());
             	 Date end=sdf.parse(webpro.getEndDate());
@@ -65,7 +64,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 }
             	
              }
-             //根据酒店促销策略计算优惠
+           //根据酒店促销策略计算优惠
              for(int j=0;j<hotelprolist.size();j++){
             	 HotelPromotionVO hotelpro=hotelprolist.get(j);
             	 switch(hotelpro.getName()){
@@ -96,15 +95,15 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
                 		 finalprice=finalprice*hotelpro.getDateDiscount();
                 		 }
                 	 }
-                	
             		 break;
             	 }
-             }
-             
-            		 
+             }		 
 			return finalprice;
-             
-		
+            }
+            catch(ParseException e){
+            	e.printStackTrace();
+            }
+            return price*num;
 	}
 	
 	//判断是否曾预定过这个酒店方法的实现
@@ -115,15 +114,18 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			 if(orderlist.get(i).getHotelid().equals(hotelname)){
 				 return "是";
 			 }
-			 
 		 }
 		 return "否";
 	 }
 	 //通过商圈名字找酒店的方法实现
-	 public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
-		
-		 ArrayList<HotelVO> list=hotelservice.findbycircle(circle);
-		 
+	 public ArrayList<HotelVO> findbycircle(String circle) {
+		ArrayList<HotelVO> list=new ArrayList<HotelVO>();
+		try {
+			list = hotelservice.findbycircle(circle);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 return list;
 	 }
 	 
@@ -134,8 +136,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 double highprice=20000;
 		 String rotype;
 		 int Roomnum=0;
-		 
-		 
 		 if(Hotelname=="null"){
 			 Hotelname="";
 		 }
@@ -146,7 +146,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 case"双人房":
 			 rotype="双人房";
 			 break;
-		 
 		 }
 		switch(roomnum){
 		case"1间":
@@ -180,7 +179,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			grade=5;
 		
 		}
-		
 		switch(hotelprice){
 		case"300元以下":
 			highprice=300;
@@ -195,7 +193,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 ArrayList<HotelVO> filtedlist=new ArrayList<HotelVO>();
 		 for(int i=0;i<hotellist.size();i++){
 			HotelVO vo=hotellist.get(i);
-			
 			if(vo.getName().contains(Hotelname)&&vo.getGrade()>=grade&&vo.getSingleRoomPrice()>=lowprice&&vo.getSingleRoomPrice()<=highprice&&vo.getStar()>=star){
 				filtedlist.add(vo);
 			}
@@ -205,18 +202,19 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 
 	 
 	 //检查是否有房间剩余的方法实现
-	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype) throws ParseException{
+	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype){
+		try{
 		int leftsingle=hotel.getSingleRoom();
 		int leftstandard=hotel.getStandardRoom();
 		int leftfamily=hotel.getFamilyRoom();
 		int leftsuite=hotel.getSuiteRoom();
-		 ArrayList<HotelVO> hotellist=new ArrayList<HotelVO>();
-		 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
-         String strin=checkindate.toString();
-         String strout=checkoutdate.toString();
-         Date Datein=sdf.parse(strin);
-         Date Dateout=sdf.parse(strout);
-         switch(roomtype){
+		ArrayList<HotelVO> hotellist=new ArrayList<HotelVO>();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
+        String strin=checkindate.toString();
+        String strout=checkoutdate.toString();
+        Date Datein=sdf.parse(strin);
+        Date Dateout=sdf.parse(strout);
+        switch(roomtype){
 			case"单人房":
 				if(num>hotel.getSingleRoom()){
 					return false;
@@ -242,16 +240,13 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
          //调用该酒店历史订单判断房间是否剩余
 		 for(int i=0;i<orderlist.size();i++){
 			 OrderVO vo=orderlist.get(i);
-			Date startdate=sdf.parse(vo.getStarttime());
+			 Date startdate=sdf.parse(vo.getStarttime());
 			 Date enddate=sdf.parse(vo.getLeavetime());
-			if(startdate.before(Datein)||startdate.equals(Datein)||enddate.after(Dateout)||enddate.equals(Dateout)){
-				
-				
+			 if(startdate.before(Datein)||startdate.equals(Datein)||enddate.after(Dateout)||enddate.equals(Dateout)){
 				leftsingle=leftsingle-Integer.parseInt(vo.getSingleRoom());
 				leftstandard=leftstandard-Integer.parseInt(vo.getStandardRoom());
 				leftfamily=leftfamily-Integer.parseInt(vo.getFamilyRoom());
 				leftsuite=leftsuite-Integer.parseInt(vo.getSuiteRoom());
-				
 			}
 			//判断预订房间数量是否超过酒店持有最大房间数。
 			switch(roomtype){
@@ -278,25 +273,27 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 				break;
 			}
 		 }
-		 
-		 
 		 return true;
+		}catch(ParseException e){
+			e.printStackTrace();
+		}
+		return true;
 	 }
 	 //通过酒店名找到酒店的实现
-	 public HotelVO findbyname(String name) throws RemoteException {
-		  
-		 HotelVO vo=hotelservice.findbyname(name);
-	
-	
-		
-		 return vo;
-		 
+	 public HotelVO findbyname(String name) { 
+		HotelVO vo=new HotelVO();
+		try {
+			vo = hotelservice.findbyname(name);
+			 return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return vo;
 	 }
 	 //通过名字找到酒店营销策略方法的实现
-	 public ArrayList<HotelPromotionVO> findhotelpro(String name) throws RemoteException{
-		
+	 public ArrayList<HotelPromotionVO> findhotelpro(String name){
 		 ArrayList<HotelPromotionVO> hotelprolist=promotionService.findhotelpro(name);
-		
 		 return hotelprolist;
 	 }
 	 //通过名字找到网站营销策略的实现
@@ -304,10 +301,6 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 ArrayList<WebPromotionVO> LIST=promotionService.getWebPromotionList();
 		 return LIST;
 	 }
-
-
-
-
 
 	
 }
