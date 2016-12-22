@@ -78,26 +78,31 @@ public class HotelroomInfouiController implements Initializable{
 			ordervo.setLeavetime(realleavetime);
 			if(vo.getRoomtype().equals("单人房"))
 			    if(hser.changeCheckOutInfo(roomid, 1, 0,0,0, "可用", vo.getLeavetime())){
+			    	UiswitchHelper.getApplication().goto_roomInfoui();
 			    	AlertBox alt1 = new AlertBox();
 					alt1.display("退房成功！");
 			    }
 			if(vo.getRoomtype().equals("标准间"))
 				if(hser.changeCheckOutInfo(roomid, 0, 1, 0, 0, "可用", vo.getLeavetime())){
+					UiswitchHelper.getApplication().goto_roomInfoui();
 					AlertBox alt2 = new AlertBox();
 					alt2.display("退房成功！");
 				}
 			if(vo.getRoomtype().equals("家庭房"))
 				if(hser.changeCheckOutInfo(roomid, 0,0, 1, 0, "可用", vo.getLeavetime())){
+					UiswitchHelper.getApplication().goto_roomInfoui();
 					AlertBox alt3 = new AlertBox();
 					alt3.display("退房成功！");
 				}
 			if(vo.getRoomtype().equals("套间"))
 				if(hser.changeCheckOutInfo(roomid, 0,0,0, 1, "可用", vo.getLeavetime())){
+					UiswitchHelper.getApplication().goto_roomInfoui();
 					AlertBox alt4 = new AlertBox();
 					alt4.display("退房成功！");
 				}
 			temp.get(selectnumber).setState(vo.getRoomstate());
 			temp.get(selectnumber).setLast(realleavetime);
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
