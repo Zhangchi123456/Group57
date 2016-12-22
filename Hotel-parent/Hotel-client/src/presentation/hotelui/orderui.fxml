@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -61,8 +63,8 @@
          <GridPane.margin>
             <Insets right="30.0" />
          </GridPane.margin></Button>
-      <ChoiceBox fx:id="stateFind" prefHeight="33.0" prefWidth="119.0" GridPane.rowIndex="1" />
-   <items>         
+      <ChoiceBox fx:id="stateFind" onAction="#ChoiceBoxClicked" prefHeight="33.0" prefWidth="119.0" GridPane.rowIndex="1" >
+          <items>         
                  <FXCollections fx:factory="observableArrayList">
                     <String fx:value="所有订单" />
                     <String fx:value="未执行订单" />
@@ -71,6 +73,7 @@
                     <String fx:value="已撤销订单" />
                   </FXCollections>
                   </items>
+                  </ChoiceBox>
    </children>
    <padding>
       <Insets bottom="50.0" />
