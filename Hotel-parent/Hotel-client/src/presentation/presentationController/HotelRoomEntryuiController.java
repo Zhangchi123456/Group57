@@ -3,12 +3,17 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import BusinessLogicService.Service.HotelStaffLogicService;
+import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
+import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import presentation.userui.AlertBox;
+import vo.HotelVO;
 
 public class HotelRoomEntryuiController implements Initializable {
 
@@ -17,6 +22,11 @@ public class HotelRoomEntryuiController implements Initializable {
 	
 	@FXML
 	private Button save,back;
+	
+	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
+	HotelVO vo = HotelmanageController.getHotelVO();
+
+	AlertBox alt;
 	
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
