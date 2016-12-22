@@ -67,7 +67,10 @@ public class HotelInfouiController implements Initializable{
 				instar=5;
 			}		
 			try {
-				if(hser.changeHotelInfo(HotelnameLabel.getText(), instar, HotelDescription.getText(), HotelAddress.getText())){
+				vo.setAdsress(HotelAddress.getText());
+				vo.setIntroduction(HotelDescription.getText());
+				vo.setStar(instar);
+				if(hser.changeHotelInfo(vo)){
 					alt = new AlertBox();
 					alt.display("保存成功！");
 				}else{

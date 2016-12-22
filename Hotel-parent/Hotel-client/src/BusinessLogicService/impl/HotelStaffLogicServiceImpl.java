@@ -29,22 +29,32 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	
 	
 	//根据工作人员显示所在酒店
-	public HotelVO findHotel(String name)throws RemoteException {
+	public HotelVO findHotel(String name) {
 		
 		HotelStaffVO vo = uds.findByHotelStaff(name);
 		String hotelname = vo.getHotelname();
 		HotelPO hotelpo = new HotelPO();
-		hotelpo = hds.Findhotelbyname(hotelname);
+		try {
+			hotelpo = hds.Findhotelbyname(hotelname);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		hotelvo.setbuHotelPO(hotelpo);
 		return hotelvo;
 		
 	}
 	
 	//根据酒店名查找酒店
-	public HotelVO findbyname(String name) throws RemoteException {
+	public HotelVO findbyname(String name) {
 		  
 		 HotelVO vo=new HotelVO();
-		 vo.setbuHotelPO(hds.Findhotelbyname(name));
+		 try {
+			vo.setbuHotelPO(hds.Findhotelbyname(name));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		 return vo;
 		 
@@ -52,10 +62,16 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 
 	
 	//显示所有客房
-	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException {
+	public ArrayList<RoomVO> roomShowAll(String hotelid) {
 
 		ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
-		ArrayList<RoomPO> list = hds.roomShowAll(hotelid);
+		ArrayList<RoomPO> list = new ArrayList<RoomPO>();
+		try {
+			list = hds.roomShowAll(hotelid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for(int i=0;i<list.size();i++){
 		RoomVO roomvo = new RoomVO();
 		
@@ -67,39 +83,38 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String hotelname, String roomid, String type) throws RemoteException {
+	public boolean changeRoomInfo(RoomVO roomvo) {
 	
 		boolean info = false;
 		
-		RoomVO roomvo = new RoomVO();
-		RoomPO roompo = hds.FindroombyID(hotelname, Integer.parseInt(roomid));
-		
-		roomvo.setRoomPO(roompo);
-		roomvo.setRoomtype(type);
-		
-		info = hds.insertRoom(roomvo.toRoomPO(roomvo));
+		try {
+			info = hds.insertRoom(roomvo.toRoomPO(roomvo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return info;
 	}
 	
 	
 	//酒店基本信息更新
-	public boolean changeHotelInfo(String name, int star, String introduction, String address)throws RemoteException {
+	public boolean changeHotelInfo(HotelVO vo) {
 		
 		boolean info = false;
 		
-		hotelvo.setName(name);
-		hotelvo.setStar(star);
-		hotelvo.setIntroduction(introduction);
-		hotelvo.setAdsress(address);
-		
-		info = hds.update(hotelvo.Tohotelpo(hotelvo));
+		try {
+			info = hds.update(vo.Tohotelpo(vo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return info;
 	}
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(String hotelname, int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
+	public boolean changeCheckInInfo(String hotelname, int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime) {
 		
 		boolean info = false;
 		
@@ -108,7 +123,8 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		int new_familyRoom = hotelvo.getLeftFamilyRoom()-familyRoom;
 		int new_suiteRoom = hotelvo.getLeftSuiteRoom()-suiteRoom;
 		
-		RoomVO roomvo = FindRoomByID(hotelname,roomid);
+		RoomVO roomvo = new RoomVO();
+		roomvo = FindRoomByID(hotelname,roomid);
 		
 		hotelvo.setLeftSingleRoom(new_singleRoom);
 		hotelvo.setLeftStandardRoom(new_standardRoom);
@@ -119,13 +135,18 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		roomvo.setOrderid(orderid);
 		roomvo.setRoomstate("不可用");
 		
-		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
+		try {
+			info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return info;
 	}
 	
 	//退房信息更新
-	public boolean changeCheckOutInfo(String hotelname, int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException {
+	public boolean changeCheckOutInfo(String hotelname, int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime) {
 		
 		boolean info = false;
 		
@@ -134,7 +155,8 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		int new_familyRoom = hotelvo.getLeftFamilyRoom()+familyRoom;
 		int new_suiteRoom = hotelvo.getLeftSuiteRoom()+suiteRoom;
 		
-		RoomVO roomvo = FindRoomByID(hotelname,roomid);
+		RoomVO roomvo = new RoomVO();
+		roomvo = FindRoomByID(hotelname,roomid);
 		
 		hotelvo.setLeftSingleRoom(new_singleRoom);
 		hotelvo.setLeftStandardRoom(new_standardRoom);
@@ -143,15 +165,26 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		roomvo.setRoomstate(roomstate);
 		roomvo.setLeavetime(leavetime);
 		
-		info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
+		try {
+			info = hds.update(hotelvo.Tohotelpo(hotelvo))&&hds.updateRoom(roomvo.toRoomPO(roomvo));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return info;
 		
 	}
 	
-	public RoomVO FindRoomByID(String hotelname, int roomid)throws RemoteException {
+	public RoomVO FindRoomByID(String hotelname, int roomid) {
 		
-		RoomPO po = hds.FindroombyID(hotelname, roomid);
+		RoomPO po = new RoomPO();
+		try {
+			po = hds.FindroombyID(hotelname, roomid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		RoomVO vo = new RoomVO();
 		
@@ -160,9 +193,15 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		return vo;
 	}
 	
-	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException {
+	public CreditRecordVO CreditFindByorder(int orderid) {
 		
-		CreditRecordVO Vo = mds.findCreditRecord(orderid);
+		CreditRecordVO Vo = new CreditRecordVO();
+		try {
+			Vo = mds.findCreditRecord(orderid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return Vo;
 	}
@@ -272,8 +311,14 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 
 	//根据商圈返回酒店
-	public ArrayList<HotelVO> findbycircle(String circle) throws RemoteException{
-		 ArrayList<HotelPO> hotellist = hds.FindhotelByCircle(circle);
+	public ArrayList<HotelVO> findbycircle(String circle){
+		 ArrayList<HotelPO> hotellist = new ArrayList<HotelPO>();
+		try {
+			hotellist = hds.FindhotelByCircle(circle);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 ArrayList<HotelVO> list=new ArrayList<HotelVO>();
 		 for(int i=0;i<hotellist.size();i++){
 			 HotelVO vo = new HotelVO();

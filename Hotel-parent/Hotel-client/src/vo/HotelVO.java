@@ -265,7 +265,7 @@ public class HotelVO {
 		return singleRoomPrice;
 	}
 
-	public void setSingleRoomPrice(int singleRoomPrice) {
+	public void setSingleRoomPrice(double singleRoomPrice) {
 				
 		this.singleRoomPrice = singleRoomPrice;
 	}
@@ -275,7 +275,7 @@ public class HotelVO {
 		return standardRoomPrice;
 	}
 
-	public void setStandardRoomPrice(int standardRoomPrice) {
+	public void setStandardRoomPrice(double standardRoomPrice) {
 					
 		this.standardRoomPrice = standardRoomPrice;
 	}
@@ -285,7 +285,7 @@ public class HotelVO {
 		return familyRoomPrice;
 	}
 
-	public void setFamilyRoomPrice(int familyRoomPrice) {
+	public void setFamilyRoomPrice(double familyRoomPrice) {
 				
 		this.familyRoomPrice = familyRoomPrice;
 	}
@@ -295,7 +295,7 @@ public class HotelVO {
 		return suiteRoomPrice;
 	}
 
-	public void setSuiteRoomPrice(int suiteRoomPrice) {
+	public void setSuiteRoomPrice(double suiteRoomPrice) {
 					
 		this.suiteRoomPrice = suiteRoomPrice;
 	}
