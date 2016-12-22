@@ -63,9 +63,10 @@ public class memberleveluiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 	//确认更新	
-		int lv = Integer.parseInt(level.getValue().toString());
-		int cre = Integer.parseInt(credit.getText());
-		if(!discount.getText().isEmpty()){
+		if(!discount.getText().isEmpty() && !level.getValue().isEmpty() && 
+				!credit.getText().isEmpty()){
+			int lv = Integer.parseInt(level.getValue().toString());
+			int cre = Integer.parseInt(credit.getText());
 			double dis = Double.parseDouble(discount.getText());
 			if(dis>0&&dis<=100){
 				MemberLevelVO vo = new MemberLevelVO(lv,cre,dis/100);
