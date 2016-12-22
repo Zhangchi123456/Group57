@@ -191,6 +191,8 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				//room info
 				int id=roomrs.getInt("id");
 				int orderid=roomrs.getInt("order_id");
+				//房间号
+				int roomid=roomrs.getInt("room_id");
 				String roomtype=roomrs.getString("type");
 				String roomstate=roomrs.getString("state");
 				String hotelname=roomrs.getString("hotel_name");
@@ -198,7 +200,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				String starttime=roomrs.getString("start_time");
 				String leavetime=roomrs.getString("leave_time");
 				
-				RoomPO po=new RoomPO(roomtype,id, hotelname, roomstate,starttime, leavetime, orderid);
+				RoomPO po=new RoomPO(roomtype,id, hotelname, roomstate,starttime, leavetime, orderid,roomid);
 				map.put(id, po);
 			}//end while
 			return map;
@@ -236,13 +238,16 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 
 	public void insertRoomData(RoomPO po) {
 		db=Database.getInstance();
+		
+		int roomid=po.getRoomid();
 		String hotelName=po.getHotelid();
 		String type=po.getRoomtype();
 		
-		String query="INSERT INTO room(hotel_name,type,state) VALUE("
+		String query="INSERT INTO room(hotel_name,type,state,room_id) VALUE("
 				+"'"+ hotelName+"',"
 				+"'"+ type+"',"
-				+"'可用'"
+				+"'可用',"
+				+"'"+ roomid+"'"
 				+")";
 		try{
 			db.update(query);
@@ -251,7 +256,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		}finally{
 			db.close();
 		}
-	}
+	}//end insert a room
 	
 	//room don't have to delete
 	public void deleteRoomData(RoomPO roompo) {
