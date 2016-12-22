@@ -125,7 +125,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="   确认密码：" GridPane.rowIndex="4">
+                              <Label text="   确认密码：" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
@@ -133,7 +133,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label text="  新密码：" GridPane.rowIndex="3">
+                              <Label text="  新密码：" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
@@ -173,8 +173,8 @@
                                     <Font size="20.0" />
                                  </font>
                               </Button>
-                              <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <PasswordField fx:id="ensurePassword" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <PasswordField fx:id="ensurePassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="   姓名：" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="20.0" />
@@ -191,15 +191,7 @@
                                     <Font size="26.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="20.0" layoutY="322.0" text="  原密码：" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets left="10.0" />
-                                 </GridPane.margin>
-                              </Label>
-                              <TextField fx:id="oldPassword" editable="false" layoutX="186.0" layoutY="133.0" prefHeight="30.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="oldPassword" editable="false" layoutX="186.0" layoutY="133.0" prefHeight="30.0" prefWidth="196.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>
