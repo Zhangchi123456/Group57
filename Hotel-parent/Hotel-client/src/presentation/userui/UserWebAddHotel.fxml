@@ -93,24 +93,23 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="642.0">
                      <children>
-                        <GridPane alignment="CENTER_RIGHT" hgap="8.0" layoutX="7.0" prefHeight="546.0" prefWidth="643.0" vgap="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="0.0">
+                        <GridPane alignment="CENTER_RIGHT" hgap="8.0" layoutX="30.0" prefHeight="546.0" prefWidth="643.0" vgap="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="95.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="196.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="101.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="10.0" prefWidth="191.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="187.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="96.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="323.0" minWidth="10.0" prefWidth="251.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="117.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="324.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="124.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="84.0" text="酒店名称：">
+                              <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="27.0" prefWidth="84.0" text="酒店名称：" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -123,72 +122,50 @@
                                     <Insets left="10.0" top="10.0" />
                                  </GridPane.margin>
                               </Label>
-                              <TextField fx:id="HotelnameText" prefHeight="30.0" prefWidth="176.0" GridPane.columnIndex="1" GridPane.hgrow="NEVER">
+                              <HBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="64.0" prefWidth="247.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                                  <GridPane.margin>
-                                    <Insets />
+                                    <Insets right="60.0" />
                                  </GridPane.margin>
-                              </TextField>
+                                 <children>
+                                    <TextField fx:id="HotelnameText" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
                               <ChoiceBox fx:id="CityChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" prefWidth="149.0" text="商圈  ：" GridPane.rowIndex="2">
+                              <Label layoutX="20.0" layoutY="147.0" prefHeight="30.0" text="商圈 ：" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="229.0" layoutY="147.0" prefHeight="19.0" prefWidth="90.0" text="星级：" GridPane.rowIndex="3">
+                              <Label layoutX="229.0" layoutY="147.0" prefHeight="19.0" text="星级：" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
                               <ChoiceBox fx:id="StarChoicebox" layoutX="95.0" layoutY="142.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <ChoiceBox fx:id="BusinessChoicebox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="AddressText" prefHeight="30.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label prefHeight="30.0" prefWidth="149.0" text="城市 ：" GridPane.rowIndex="1">
+                              <TextField fx:id="AddressText" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label prefHeight="30.0" text="城市：" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="19.0" prefWidth="90.0" text="具体地址：" GridPane.rowIndex="4">
+                              <Label prefHeight="19.0" text="具体地址：" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="30.0" prefWidth="149.0" text="单人房 ：" GridPane.columnIndex="2">
+                              <Label prefHeight="30.0" text="简介：" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="30.0" prefWidth="149.0" text="家庭房 ：" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="30.0" prefWidth="149.0" text="标准间 ：" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="30.0" prefWidth="149.0" text="套间 ：" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="single1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" />
-                              <TextField fx:id="single2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" />
-                              <TextField fx:id="triple1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <TextField fx:id="double1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="double2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <TextField fx:id="triple2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                              <TextField fx:id="square1" prefHeight="30.0" prefWidth="163.0" promptText="数量" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <TextField fx:id="square2" prefHeight="30.0" prefWidth="163.0" promptText="价格" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                              <Label prefHeight="30.0" prefWidth="149.0" text="简介 ：" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                 <font>
-                                    <Font size="17.0" />
-                                 </font>
-                              </Label>
-                              <AnchorPane prefHeight="92.0" prefWidth="155.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                              <AnchorPane prefHeight="120.0" prefWidth="251.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
-                                    <TextArea fx:id="introduction" layoutY="85.0" prefHeight="143.0" prefWidth="390.0" AnchorPane.bottomAnchor="-70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-197.0" AnchorPane.topAnchor="0.0" />
+                                    <TextArea fx:id="introduction" nodeOrientation="LEFT_TO_RIGHT" prefHeight="110.0" prefWidth="252.0" AnchorPane.topAnchor="0.0" />
                                  </children>
+                                 <GridPane.margin>
+                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                 </GridPane.margin>
                               </AnchorPane>
                            </children>
                         </GridPane>

@@ -191,6 +191,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				//room info
 				int id=roomrs.getInt("id");
 				int orderid=roomrs.getInt("order_id");
+				int roomid=roomrs.getInt("room_id");
 				String roomtype=roomrs.getString("type");
 				String roomstate=roomrs.getString("state");
 				String hotelname=roomrs.getString("hotel_name");
