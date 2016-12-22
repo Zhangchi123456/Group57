@@ -78,9 +78,10 @@ public class businesscircleuiController implements Initializable{
 	@FXML
 	public void SureClicked(ActionEvent event){
 	//确认更新	
-		String city_name = city.getValue().toString();
-		String circle = businesscircle.getValue().toString();
-		if(!discount.getText().isEmpty()){
+		if(!discount.getText().isEmpty() && !city.getValue().isEmpty() 
+				&& !businesscircle.getValue().isEmpty()){
+			String city_name = city.getValue().toString();
+			String circle = businesscircle.getValue().toString();
 			double dis = Double.parseDouble(discount.getText());
 			if(dis>0&&dis<100){
 				CircleVO vo = new CircleVO(dis/100,city_name, circle);

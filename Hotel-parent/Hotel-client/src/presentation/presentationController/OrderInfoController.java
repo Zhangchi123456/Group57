@@ -36,7 +36,7 @@ public class OrderInfoController implements Initializable {
 	@FXML
 	private void ConfirmClicked(ActionEvent event){
 		vo.setLasttime(vo.getLeavetime()+" 18:00:00");
-		vo.setState("未执行订单");
+		vo.setState("未执行");
 	    orderlogic.input(vo);
 	    MemberLogicService memberservice=new MemberLogicServiceImpl();
 	    CreditRecordVO credit=new CreditRecordVO();

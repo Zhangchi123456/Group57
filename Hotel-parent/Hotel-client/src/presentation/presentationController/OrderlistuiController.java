@@ -3,14 +3,10 @@ package presentation.presentationController;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
-import vo.LogVO;
-import vo.MemberVO ;
 import vo.OrderVO;
 import Helper.UiswitchHelper;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,8 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.userui.AlertBox;
-import Controller.MemberActController;
-import Controller.ReservationController;
+
 
 import javafx.scene.control.TableColumn.CellEditEvent;
 public class OrderlistuiController implements Initializable{
@@ -42,9 +37,9 @@ public class OrderlistuiController implements Initializable{
    public ObservableList<SimpleOrder> temp;
    public  static String Orderid;
    public static String Hotelname; 
-   LoginController a = new LoginController();
-   String UserName =a.UserName;
-   OrderLogicService am = new OrderLogicServiceImpl();
+   LoginController login = new LoginController();
+   String UserName =login.UserName;
+   OrderLogicService order = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    AlertBox alt = new AlertBox();	
    
@@ -58,7 +53,7 @@ public class OrderlistuiController implements Initializable{
    @FXML 
    private void EvaluateClicked(ActionEvent event){	   
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	   if(temp.get(selectnumber).getOrderstation().equals("已执行订单")){
+	   if(temp.get(selectnumber).getOrderstation().equals("已执行")){
 		   Orderid=  temp.get(selectnumber).getOrder();
 		   Hotelname  = temp.get(selectnumber).getHotel();}
 	   else{
@@ -70,15 +65,21 @@ public class OrderlistuiController implements Initializable{
    @FXML 
    private void  DeleteOrderClicked(ActionEvent event){        
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
-	   if(!temp.get(selectnumber).getOrderstation().equals("未执行订单")){
+	   if(!temp.get(selectnumber).getOrderstation().equals("未执行")){
 		   alt.display("不能撤销该订单");
 	   }
 	   else{
 		   Orderid=  temp.get(selectnumber).getOrder();
-		   boolean bool= am.changeOrderStation(Orderid, "已撤销订单");
+		   boolean bool= order.changeOrderStation(Orderid, "已撤销");
 		   if(bool){ 
 			   alt.display("订单已撤销");
-			   orderlist =am.findUserOrderListAll(UserName);
+			   String tem = (String) OrderStationChoiceBox.getValue();
+			   if(tem.equals("未执行订单")){
+				   orderlist = order.findUserOrderListStation(UserName, "未执行");
+			   }
+			   else{
+			   orderlist =order.findUserOrderListAll(UserName);
+			   }
 			   if(orderlist!=null);
 			   Orderlist(orderlist);
 		   }
@@ -88,27 +89,27 @@ public class OrderlistuiController implements Initializable{
    @FXML 
    private void ChoiceBoxClicked(ActionEvent event){
 	  if(OrderStationChoiceBox.getValue().equals("已执行订单")){
-		  orderlist = am.findUserOrderListStation(UserName, "已执行订单");
+		  orderlist = order.findUserOrderListStation(UserName, "已执行");
 		  if(orderlist!=null);
 		  Orderlist(orderlist);
 	  }
 	  if(OrderStationChoiceBox.getValue().equals("未执行订单")){
-		  orderlist = am.findUserOrderListStation(UserName, "未执行订单");
+		  orderlist = order.findUserOrderListStation(UserName, "未执行");
 		  if(orderlist!=null);
 		  Orderlist(orderlist);
 	  }
 	  if(OrderStationChoiceBox.getValue().equals("异常订单")){
-		  orderlist = am.findUserOrderListStation(UserName, "异常订单");
+		  orderlist = order.findUserOrderListStation(UserName, "异常");
 		  if(orderlist!=null);
 		  Orderlist(orderlist);
 	  }
 	  if(OrderStationChoiceBox.getValue().equals("所有订单")){
-		  orderlist = am.findUserOrderListAll(UserName);
+		  orderlist = order.findUserOrderListAll(UserName);
 		  if(orderlist!=null);
 		  Orderlist(orderlist);}
 	  
 	  if(OrderStationChoiceBox.getValue().equals("已撤销订单")){
-			  orderlist = am.findUserOrderListStation(UserName,"已撤销订单");
+			  orderlist = order.findUserOrderListStation(UserName,"已撤销");
 			  if(orderlist!=null);
 			  Orderlist(orderlist);	  
 	  }
@@ -118,7 +119,7 @@ public class OrderlistuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		 OrderStationChoiceBox.setValue("所有订单");
-    	 orderlist =am.findUserOrderListAll(UserName);
+    	 orderlist =order.findUserOrderListAll(UserName);
     	 if(orderlist!=null);
     	 Orderlist(orderlist);
 	}
