@@ -30,31 +30,31 @@ public class hoteldiscountdateuiController implements Initializable{
 	
 	@FXML
 	private Button button_birthday;
-	
+	//       生日按钮
 	@FXML
 	private Button button_businesspartner;
-	
+	//       合作企业按钮
 	@FXML
 	private Button button_roomnumber;
-	
+	//       房间数量按钮
 	@FXML
 	private TextField hoteldiscountdatediscount;
-	
+	//         酒店日期折扣按钮
 	@FXML
 	private TableView<DateInfo> hoteldiscountdateTable;
-	
+	//                       折扣表
 	@FXML
 	private TableColumn<DateInfo,String> hoteldiscountdateTable_start;
-	
+	//                   开始日期表项
 	@FXML
 	private TableColumn<DateInfo,String> hoteldiscountdateTable_end;
-	
+	//                    结束日期表项
 	@FXML
 	private TableColumn<DateInfo,String> hoteldiscountdateTable_discount;
-	
+	//                       日期折扣表项
 	@FXML
 	private TableColumn<DateInfo,String> id;
-	
+	//             id表项
 	@FXML
 	private Button delete;
 	

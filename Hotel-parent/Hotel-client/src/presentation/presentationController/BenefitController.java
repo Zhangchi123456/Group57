@@ -21,6 +21,7 @@ public class BenefitController implements Initializable{
      private void ReturnClicked(ActionEvent event){
     	 UiswitchHelper.getApplication().goto_hotelInfoBrowseui();
      }
+     //初始化方法
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ArrayList<WebPromotionVO> weblist=ReservationController.getWebPromotionvolist();//得到网站营销策略列表

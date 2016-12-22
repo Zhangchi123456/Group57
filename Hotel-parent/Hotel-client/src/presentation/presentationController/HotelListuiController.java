@@ -35,7 +35,7 @@ public class HotelListuiController implements Initializable{
 	private ObservableList<SimpleHotel> finallist;
 	private ObservableList<SimpleHotel> reservationedlist;
 	private ArrayList<SimpleHotel> hotellist3;
-	private AlertBox alt = new AlertBox();
+	private AlertBox alt = new AlertBox();//提示框
 	@FXML
 	private CheckBox ReservationCheckbox;//是否预定过该酒店
 	@FXML
