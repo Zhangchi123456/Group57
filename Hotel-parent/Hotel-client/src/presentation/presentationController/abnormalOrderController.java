@@ -1,7 +1,5 @@
 package presentation.presentationController;
 import java.net.URL;
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,18 +15,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.presentationController.OrderlistuiController.SimpleOrder;
 import presentation.userui.AlertBox;
 import vo.CreditRecordVO;
 import vo.MemberVO;
@@ -70,57 +62,42 @@ public class abnormalOrderController implements Initializable{
 			alt.display("未选择处理方法");
 		}
 		else if(halfcredit.isSelected()){
-			try {
-				membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-				int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*5+membervo.getMembercreditvalue();
-				membervo.setMembercreditvalue(credit);
-				CreditRecordVO creditvo=new CreditRecordVO();
-				creditvo.action="异常订单撤销";
-				creditvo.creditchange=String.valueOf(credit);
-				creditvo.time=LocalDate.now().toString();
-				creditvo.membername=membervo.getname();
-				creditvo.creditlast=String.valueOf(membervo.getcredit());
-				creditvo.orderid=orderlist.get(selectnumber).getId();
-				memberlogic.addCreditRecord(creditvo);					
-				memberlogic.updateMemberinfo(membervo);
-				alt.display("更改成功");
-				orderlist=am.orderShowAllByStation("异常订单");
-				 if(orderlist!=null);
-		    	 Orderlist(orderlist);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
+			int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*5+membervo.getMembercreditvalue();
+			membervo.setMembercreditvalue(credit);
+			CreditRecordVO creditvo=new CreditRecordVO();
+			creditvo.action="异常订单撤销";
+			creditvo.creditchange=String.valueOf(credit);
+			creditvo.time=LocalDate.now().toString();
+			creditvo.membername=membervo.getname();
+			creditvo.creditlast=String.valueOf(membervo.getcredit());
+			creditvo.orderid=orderlist.get(selectnumber).getId();
+			memberlogic.addCreditRecord(creditvo);					
+			memberlogic.updateMemberinfo(membervo);
+			alt.display("更改成功");
+			orderlist=am.orderShowAllByStation("异常订单");
+			 if(orderlist!=null);
+			 Orderlist(orderlist);
 		}
 		else if(allcredit.isSelected()){
-			try {
-				membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-				int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*10+membervo.getMembercreditvalue();
-				membervo.setMembercreditvalue(credit);
-				CreditRecordVO creditvo=new CreditRecordVO();
-				creditvo.action="异常订单撤销";
-				creditvo.creditchange=String.valueOf(credit);
-				creditvo.time=LocalDate.now().toString();
-				creditvo.membername=membervo.getname();
-				creditvo.creditlast=String.valueOf(membervo.getcredit());
-				creditvo.orderid=orderlist.get(selectnumber).getId();
-				memberlogic.addCreditRecord(creditvo);
-				memberlogic.updateMemberinfo(membervo);
-				boolean a =am.changeOrderStation(orderlist.get(selectnumber).getId(),"已撤销订单");
-				alt.display("更改成功");
-				orderlist=am.orderShowAllByStation("异常订单");
-				 if(orderlist!=null);
-		    	 Orderlist(orderlist);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
+			int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*10+membervo.getMembercreditvalue();
+			membervo.setMembercreditvalue(credit);
+			CreditRecordVO creditvo=new CreditRecordVO();
+			creditvo.action="异常订单撤销";
+			creditvo.creditchange=String.valueOf(credit);
+			creditvo.time=LocalDate.now().toString();
+			creditvo.membername=membervo.getname();
+			creditvo.creditlast=String.valueOf(membervo.getcredit());
+			creditvo.orderid=orderlist.get(selectnumber).getId();
+			memberlogic.addCreditRecord(creditvo);
+			memberlogic.updateMemberinfo(membervo);
+			boolean a =am.changeOrderStation(orderlist.get(selectnumber).getId(),"已撤销订单");
+			if(a)
+			alt.display("更改成功");
+			orderlist=am.orderShowAllByStation("异常订单");
+			 if(orderlist!=null);
+			 Orderlist(orderlist);
 		}
 		
 	}
