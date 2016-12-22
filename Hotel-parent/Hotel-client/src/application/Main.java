@@ -452,7 +452,7 @@ public class Main extends Application {
 	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(会员生日） num3.0.5.2
 	     public void goto_birthdayui(){
 	    	 try {
-					PreplaceSceneContent("/presentation/promotionui/birthdayui.fxml");
+					GreplaceSceneContent("/presentation/promotionui/birthdayui.fxml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
