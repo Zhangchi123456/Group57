@@ -18,11 +18,13 @@ public class RoomVO {
 	
 	private int orderid;
 	
+	private int id;
+	
 	public RoomVO() {
 		
 	}
 	
-	public RoomVO(String roomtype, int roomid, String hotelid, String roomstate, String starttime, String leavetime, int orderid) {
+	public RoomVO(String roomtype, int roomid, String hotelid, String roomstate, String starttime, String leavetime, int orderid, int id) {
 		super();
 		
 		this.roomtype = roomtype;
@@ -38,6 +40,8 @@ public class RoomVO {
 		this.leavetime = leavetime;
 		
 		this.orderid = orderid;
+		
+		this.id = id;
 	}
 
 	/**
@@ -112,12 +116,12 @@ public class RoomVO {
 
 	public int getId() {
 		// TODO Auto-generated method stub
-		return roomid;
+		return id;
 	}
 	
-	public void setId(int roomid) {
+	public void setId(int id) {
 		
-		this.roomid = roomid;
+		this.id = id;
 	}
 
 	public String getRoomtype() {
@@ -142,7 +146,7 @@ public class RoomVO {
 
 	public void setRoomPO(RoomPO roompo) {
 		this.hotelid = roompo.getHotelid();
-		this.roomid = roompo.getId();
+		this.roomid = roompo.getRoomid();
 		this.roomtype = roompo.getRoomtype();
         this.roomstate = roompo.getRoomstate();
 		this.starttime = roompo.getStarttime();
@@ -155,7 +159,7 @@ public class RoomVO {
 		RoomPO po = new RoomPO();
 		
 		po.setHotelid(hotelid);
-		po.setId(roomid);
+		po.setRoomid(roomid);
 		po.setRoomtype(roomtype);
 		po.setRoomstate(roomstate);
 		po.setStarttime(starttime);

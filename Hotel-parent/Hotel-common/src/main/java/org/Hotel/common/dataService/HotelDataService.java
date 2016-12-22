@@ -33,5 +33,5 @@ public interface HotelDataService extends Remote{
 	
 	public ArrayList<CirclePO> circleShowAll(String city)throws RemoteException;
 	
-	public RoomPO FindroombyID(int roomid)throws RemoteException;
+	public RoomPO FindroombyID(String hotelname, int roomid)throws RemoteException;
 }

@@ -2,6 +2,7 @@ package org.Hotel.common.po;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class RoomPO implements Serializable{
 
 	private String hotelid;
@@ -18,10 +19,12 @@ public class RoomPO implements Serializable{
 	
 	private int orderid;
 	
+	private int id;
+	
 	public RoomPO() {
 	}
 	
-	public RoomPO(String roomtype, int roomid, String hotelid, String roomstate, String starttime, String leavetime, int orderid) {
+	public RoomPO(String roomtype, int roomid, String hotelid, String roomstate, String starttime, String leavetime, int orderid, int id) {
 		super();
 		
 		this.roomtype = roomtype;
@@ -37,6 +40,8 @@ public class RoomPO implements Serializable{
 		this.leavetime = leavetime;
 		
 		this.orderid = orderid;
+		
+		this.id = id;
 	}
 	/**
 	 * @return the roomid
@@ -107,16 +112,6 @@ public class RoomPO implements Serializable{
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
 	}
-	
-	public int getId() {
-		// TODO Auto-generated method stub
-		return roomid;
-	}
-	
-	public void setId(int roomid) {
-		
-		this.roomid = roomid;
-	}
 
 	public String getRoomtype() {
 		// TODO Auto-generated method stub
@@ -136,6 +131,20 @@ public class RoomPO implements Serializable{
 	public void setHotelid(String hotelid) {
 		
 		this.hotelid = hotelid;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

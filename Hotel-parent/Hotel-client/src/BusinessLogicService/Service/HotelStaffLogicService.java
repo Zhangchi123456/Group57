@@ -16,19 +16,19 @@ public interface HotelStaffLogicService {
 	public ArrayList<RoomVO> roomShowAll(String hotelid)throws RemoteException;
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String roomid, String type) throws RemoteException;
+	public boolean changeRoomInfo(String hotelname, String roomid, String type) throws RemoteException;
 	
 	//酒店基本信息更新
 	public boolean changeHotelInfo(String name, int star, String introduction, String address)throws RemoteException;
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;
+	public boolean changeCheckInInfo(String hotelname, int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException;
 	
 	//退房信息更新
-	public boolean changeCheckOutInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException;
+	public boolean changeCheckOutInfo(String hotelname, int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException;
 	
 	//根据房间号查找房间
-	public RoomVO FindRoomByID(int roomid)throws RemoteException;
+	public RoomVO FindRoomByID(String hotelname, int roomid)throws RemoteException;
 	
 	//根据订单号查找信用记录
 	public CreditRecordVO CreditFindByorder(int orderid)throws RemoteException;
