@@ -11,7 +11,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.OrderInfoController">
    <top>
       <Label prefHeight="102.0" prefWidth="300.0" text=" 订单信息确认" BorderPane.alignment="CENTER">
          <font>
@@ -149,7 +149,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="800.0" spacing="50.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#ReturnClicked" text="返 回">
+                  <Button mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="46.0" prefWidth="96.0" text="返 回">
                      <font>
                         <Font size="24.0" />
                      </font>
