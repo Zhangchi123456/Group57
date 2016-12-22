@@ -37,10 +37,9 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	HotelInfo hotelInfo=null;
 	PromotionInfo promotionInfo=null;
 	
-	//
+	//find if there is a user of 4 exist
 	@Override
 	public boolean findUserBYName(String name) {
-		
 		memberInfo=new MemberLogicServiceImpl();
 		
 		WebStaffPO po1=null;
@@ -59,8 +58,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			return false;
 		}else 
 			return true;
-		
-	}
+	}//end find user by name
 
 	//Web staff operation
 	@Override
@@ -79,7 +77,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<WebStaffVO>();
 	}
 
 	@Override
@@ -122,7 +120,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			e.printStackTrace();
 		}
 		return new ArrayList<HotelStaffVO>();
-	}
+	}//end find hotels
 
 	//add hotel staff 
 	@Override
@@ -134,7 +132,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			e.printStackTrace();
 		}
 	}//end hotel staff
-
+	//update hotel staff
 	@Override
 	public void saveHotelStaff(HotelStaffVO vo) {
 		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getPassword(),vo.getHotelname());
@@ -143,8 +141,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
-	}
+	}//end update hotel staff
 	//return member vo array list
 	@Override
 	public ArrayList<MemberVO> findMember() {
@@ -157,13 +154,13 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		}
 		
 		return listvo;
-	}
+	}//end show members
 	//save member vo
 	@Override
 	public void saveMember(MemberVO vo){
 		memberInfo=new MemberLogicServiceImpl();
 		memberInfo.saveMember(vo);
-	}
+	}//update member info
 	
 	//hotel operation
 	@Override
@@ -190,12 +187,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		hotelInfo.addHotel(vo);
 	}//end add hotel 
 
-	@Override
-	public void addRoom(RoomVO vo) {
-		hotelInfo=new HotelStaffLogicServiceImpl();
-		hotelInfo.addRoom(vo);
-	}//end add room
-
 	//add hotel promotion strategy
 	@Override
 	public void addHotelStrategy(HotelPromotionVO vo) {
@@ -217,7 +208,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	}
 
 	@Override
-	public HotelStaffVO findByHotelStaff(String name) {
+	public HotelStaffVO findHotelStaffByName(String name) {
 		try {
 			HotelStaffPO po =  userdata.findByHotelStaff(name);
 			HotelStaffVO vo = new HotelStaffVO(name, name, name);
@@ -243,11 +234,6 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 				e.printStackTrace();
 		}
 		return null;
-	}
-
-	@Override
-	public HotelStaffVO findHotelStaffByName(String name) {
-		return findByHotelStaff(name);
 	}
 
 	@Override
@@ -282,7 +268,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			e.printStackTrace();
 		}
 	}
-	
+	@Override
 	public void removeCurrentUser(String name){
 		try{
 			userdata.removeCurrentUser(name);

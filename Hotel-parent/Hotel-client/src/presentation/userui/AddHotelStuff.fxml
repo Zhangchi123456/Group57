@@ -83,7 +83,7 @@
                            <font>
                               <Font size="27.0" />
                            </font></Label>
-                        <TextField fx:id="hotelName" editable="false" prefHeight="47.0" prefWidth="202.0">
+                        <TextField fx:id="hotelName" prefHeight="47.0" prefWidth="202.0">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

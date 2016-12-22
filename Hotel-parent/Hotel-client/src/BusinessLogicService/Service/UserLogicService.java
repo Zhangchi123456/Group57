@@ -8,27 +8,28 @@ import org.Hotel.common.po.WebStaffPO;
 import vo.*;
 
 public interface UserLogicService {
-	//web staff
+	//web staff info
 	public ArrayList<WebStaffVO> findWebStaff();
 	public void saveWebStaff(WebStaffVO vo);
 	public boolean findWebStaffBYName(String name);
 	public boolean addWebStaff(WebStaffVO vo);
-	//hotel staff
+	//hotel staff info
 	public ArrayList<HotelStaffVO> findHotelStaff();
 	public void saveHotelStaff(HotelStaffVO vo);
-	//member
+	public void addHotelStaff(HotelStaffVO vo);
+	public HotelStaffVO findHotelStaffByName(String name);
+	//member info
 	public ArrayList<MemberVO> findMember();
 	public void saveMember(MemberVO vo);
-	//hotel related
+	//hotel attributes:city and circle
 	public ArrayList<String> showCity();
-	public ArrayList<String> showCircle(String city);			
-	public HotelStaffVO findByHotelStaff(String name);
-	void addHotelStaff(HotelStaffVO vo);
-	boolean findHotel(String name);
-	void addHotel(HotelVO vo);
-	void addRoom(RoomVO vo);
-	void addHotelStrategy(HotelPromotionVO vo);
-	boolean findUserBYName(String name); 
+	public ArrayList<String> showCircle(String city);	
+	//hotel info
+	public boolean findHotel(String name);
+	public void addHotel(HotelVO vo);
+	public void addHotelStrategy(HotelPromotionVO vo);
+	//whether is a user 
+	public boolean findUserBYName(String name); 
 	
 		
 
