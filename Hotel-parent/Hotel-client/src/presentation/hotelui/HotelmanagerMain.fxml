@@ -75,6 +75,11 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <Button fx:id="RoomEntry" mnemonicParsing="false" onAction="#RoomEntryButtonClicked" prefHeight="70.0" prefWidth="203.0" styleClass="bton1" text="录入可用客房">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="102.0" prefWidth="800.0">

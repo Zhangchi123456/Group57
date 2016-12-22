@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -37,6 +38,9 @@ public class HotelorderuiController implements Initializable{
 	
 	@FXML
 	private Label OrderList;
+	
+	@FXML
+	private ChoiceBox<String> stateFind;
 	
     public ObservableList<SimpleHotelOrder> temp;
 	public static String Orderid;
@@ -65,11 +69,84 @@ public class HotelorderuiController implements Initializable{
 			alt.display("请先选择！");
 		}
 	}
+	
+	 @SuppressWarnings("unused")
+	@FXML 
+	private void ChoiceBoxClicked(ActionEvent event){
+		 orderlist = am.findUserOrderListHotel(Name);
+		 ArrayList<OrderVO> templist = new ArrayList<OrderVO>();
+		 
+		 if(stateFind.getValue().equals("所有订单")){
+			 if(orderlist!=null){
+	    	 HotelOrderlist(orderlist); 
+			 }
+		 }
+		 
+		 if(stateFind.getValue().equals("未执行订单")){
+			 for(int i=0;i<orderlist.size();i++){
+				 if(orderlist.get(i).getState().equals("未执行")){
+					 templist.add(orderlist.get(i));
+				 }
+			 }
+			 if(templist!=null){
+	    	 HotelOrderlist(templist); 
+			 }else{
+				 alt = new AlertBox();
+				 alt.display("无订单！");
+			 }
+		 }
+		 
+		 if(stateFind.getValue().equals("已执行订单")){
+			 for(int i=0;i<orderlist.size();i++){
+				 if(orderlist.get(i).getState().equals("已执行")){
+					 templist.add(orderlist.get(i));
+				 }
+			 }
+			 if(templist!=null){
+	    	 HotelOrderlist(templist); 
+			 }else{
+				 alt = new AlertBox();
+				 alt.display("无订单！");
+			 }
+		 }
+		 
+		 if(stateFind.getValue().equals("异常订单")){
+			 for(int i=0;i<orderlist.size();i++){
+				 if(orderlist.get(i).getState().equals("异常")){
+					 templist.add(orderlist.get(i));
+				 }
+			 }
+			 if(templist!=null){
+	    	 HotelOrderlist(templist); 
+			 }else{
+				 alt = new AlertBox();
+				 alt.display("无订单！");
+			 }
+		 }
+		 
+		 if(stateFind.getValue().equals("已撤销订单")){
+			 for(int i=0;i<orderlist.size();i++){
+				 if(orderlist.get(i).getState().equals("已撤销")){
+					 templist.add(orderlist.get(i));
+				 }
+			 }
+			 if(templist!=null){
+	    	 HotelOrderlist(templist); 
+			 }else{
+				 alt = new AlertBox();
+				 alt.display("无订单！");
+			 } 
+		 }
+	 
+	 }
+	 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		 orderlist = am.findUserOrderListHotel(Name);
-    	 if(orderlist!=null);
+		stateFind.setValue("所有订单"); 
+		orderlist = am.findUserOrderListHotel(Name);
+    	 if(orderlist!=null){
     	 HotelOrderlist(orderlist);
+    	 }
 	}
 	
 	public static class SimpleHotelOrder {		 		         

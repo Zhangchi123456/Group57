@@ -143,9 +143,9 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	 * 
 	 */
 	public boolean updateRoom(RoomPO roompo)throws RemoteException{
-			int room_id = roompo.getId();
-			if(map_room.get(room_id) != null){
-				map_room.put(room_id, roompo);
+			int id = roompo.getId();
+			if(map_room.get(id) != null){
+				map_room.put(id, roompo);
 				roomDataHelper.updateRoomData(roompo);
 				return true;
 			}else
@@ -210,13 +210,13 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 	}
 	
 	//找房间
-	public RoomPO FindroombyID(int roomid)throws RemoteException{
+	public RoomPO FindroombyID(String hotelname, int roomid)throws RemoteException{
 			RoomPO po=new RoomPO();
 			Iterator<Entry<Integer, RoomPO>> iterator=map_room.entrySet().iterator();
 			while(iterator.hasNext()){
 				Entry<Integer, RoomPO> entry=iterator.next();
 				po=entry.getValue();
-				if(roomid == po.getRoomid()){
+				if(roomid == po.getRoomid()&&hotelname == po.getHotelid()){
 					return po;
 				}
 			}

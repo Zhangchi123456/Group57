@@ -11,6 +11,7 @@ import BusinessLogicService.Service.HotelStaffLogicService;
 import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.HotelStaffLogicServiceImpl;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.HotelmanageController;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ public class HotelupdateuiController implements Initializable{
      
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
+	String Name = HotelmanageController.getHotelVO().getName();
 
 	AlertBox alt;
 	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -66,7 +68,7 @@ public class HotelupdateuiController implements Initializable{
 		ordervo.setStarttime(realstarttime);
 		INtimetx.setText(realstarttime);
 		OutTimetx.setText(ordervo.getLeavetime());
-		roomvo = hser.FindRoomByID(Integer.parseInt(room_id));
+		roomvo = hser.FindRoomByID(Name, Integer.parseInt(room_id));
 		roomvo.setRoomstate("不可用");
 		roomvo.setStarttime(realstarttime);
 		
@@ -89,7 +91,7 @@ public class HotelupdateuiController implements Initializable{
 			suiteroom = 1;
 			break;
 		    }
-		if(hser.changeCheckInInfo(Integer.parseInt(room_id), orderid, singleroom, standardroom, familyroom, suiteroom, realstarttime, ordervo.getLeavetime())){
+		if(hser.changeCheckInInfo(Name, Integer.parseInt(room_id), orderid, singleroom, standardroom, familyroom, suiteroom, realstarttime, ordervo.getLeavetime())){
 			
 			alt = new AlertBox();			
 			alt.display("更新成功！");
@@ -116,7 +118,7 @@ public class HotelupdateuiController implements Initializable{
 	}
 	
 	public boolean isRight(String inroomid) throws NumberFormatException, RemoteException{
-			if(hser.FindRoomByID(Integer.parseInt(inroomid)).getRoomstate().equals("可用")){
+			if(hser.FindRoomByID(Name, Integer.parseInt(inroomid)).getRoomstate().equals("可用")){
 			    return true;
 			}else{
 				return false;

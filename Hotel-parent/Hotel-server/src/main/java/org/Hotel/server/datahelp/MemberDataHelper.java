@@ -6,6 +6,7 @@ import org.Hotel.common.po.CreditPO;
 import org.Hotel.common.po.MemberLevelPO;
 import org.Hotel.common.po.MemberPO;
 
+
 public interface MemberDataHelper {
 	/**
 	 * @return	从数据文件读入会员信息

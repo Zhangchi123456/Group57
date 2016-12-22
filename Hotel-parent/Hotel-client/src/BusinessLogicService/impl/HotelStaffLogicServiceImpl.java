@@ -67,17 +67,17 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//房间信息更新
-	public boolean changeRoomInfo(String roomid, String type) throws RemoteException {
+	public boolean changeRoomInfo(String hotelname, String roomid, String type) throws RemoteException {
 	
 		boolean info = false;
 		
 		RoomVO roomvo = new RoomVO();
-		RoomPO roompo = hds.FindroombyID(Integer.parseInt(roomid));
+		RoomPO roompo = hds.FindroombyID(hotelname, Integer.parseInt(roomid));
 		
 		roomvo.setRoomPO(roompo);
 		roomvo.setRoomtype(type);
 		
-		info = hds.updateRoom(roomvo.toRoomPO(roomvo));
+		info = hds.insertRoom(roomvo.toRoomPO(roomvo));
 		
 		return info;
 	}
@@ -99,7 +99,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//入住信息更新
-	public boolean changeCheckInInfo(int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
+	public boolean changeCheckInInfo(String hotelname, int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime)throws RemoteException {
 		
 		boolean info = false;
 		
@@ -108,7 +108,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		int new_familyRoom = hotelvo.getLeftFamilyRoom()-familyRoom;
 		int new_suiteRoom = hotelvo.getLeftSuiteRoom()-suiteRoom;
 		
-		RoomVO roomvo = FindRoomByID(roomid);
+		RoomVO roomvo = FindRoomByID(hotelname,roomid);
 		
 		hotelvo.setLeftSingleRoom(new_singleRoom);
 		hotelvo.setLeftStandardRoom(new_standardRoom);
@@ -125,7 +125,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//退房信息更新
-	public boolean changeCheckOutInfo(int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException {
+	public boolean changeCheckOutInfo(String hotelname, int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime)throws RemoteException {
 		
 		boolean info = false;
 		
@@ -134,7 +134,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		int new_familyRoom = hotelvo.getLeftFamilyRoom()+familyRoom;
 		int new_suiteRoom = hotelvo.getLeftSuiteRoom()+suiteRoom;
 		
-		RoomVO roomvo = FindRoomByID(roomid);
+		RoomVO roomvo = FindRoomByID(hotelname,roomid);
 		
 		hotelvo.setLeftSingleRoom(new_singleRoom);
 		hotelvo.setLeftStandardRoom(new_standardRoom);
@@ -149,9 +149,9 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		
 	}
 	
-	public RoomVO FindRoomByID(int roomid)throws RemoteException {
+	public RoomVO FindRoomByID(String hotelname, int roomid)throws RemoteException {
 		
-		RoomPO po = hds.FindroombyID(roomid);
+		RoomPO po = hds.FindroombyID(hotelname, roomid);
 		
 		RoomVO vo = new RoomVO();
 		
