@@ -47,7 +47,8 @@ public class MemberVO {
     	this.password=Password;
     }
     //该方法用于在个人信息界面更新信息
-    public void updateInfo(String name,LocalDate Date,String phonenumber){
+    public void updateInfo(String name,LocalDate Date,String phonenumber,String Password){
+    	this.password=Password;
     	this.memberbirthday=Date;
     	this.membername=name;
     	this.phonenumber=phonenumber;

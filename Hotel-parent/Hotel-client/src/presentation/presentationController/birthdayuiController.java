@@ -19,22 +19,22 @@ public class birthdayuiController implements Initializable{
 	
 	@FXML
 	private Button button_businesspartner;
-	
+	//             合作伙伴按钮
 	@FXML
 	private Button button_roomnumber;
-	
+	//             房间数量按钮
 	@FXML
 	private Button button_hoteldiscountdate;
-	
+	//             日期折扣按钮
 	@FXML
 	private TextField birthdaydiscount;
-	
+	//               生日折扣文本框
 	@FXML
 	private Button confirm;
-	
+	//            确认按钮
 	@FXML
 	private Button back;
-	
+	//       返回按钮
 	private int id = 0;
 	
 	@FXML

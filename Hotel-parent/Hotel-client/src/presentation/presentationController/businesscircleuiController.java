@@ -21,22 +21,22 @@ public class businesscircleuiController implements Initializable{
 	
 	@FXML
 	private Button button_webdiscountdate;
-	
+	//             日期折扣按钮
 	@FXML
 	private Button button_memberlevel;
-	
+	//              会员等级按钮
 	@FXML
 	private ChoiceBox<String> city;
-	
+	//           城市选择框
 	@FXML
 	private ChoiceBox<String> businesscircle;
-	
+	//          商圈选择框
 	@FXML
 	private TextField discount;
-	
+	//        折扣文本框
 	@FXML
 	private Button confirm;
-	
+	//         确认按钮
 	@FXML
 	private Button back;
 	//调到日期折扣界面
