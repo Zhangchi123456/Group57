@@ -51,7 +51,9 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             Date Datein=sdf.parse(strin);
             Date Dateout=sdf.parse(strout);
              MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
+             //根据会员等级和商圈折扣计算价格
              finalprice=day*num*price*level.getDiscount();
+             //根据网站营销策略优惠计算价格
              for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
             	 Date start=sdf.parse(webpro.getStartDate());
@@ -63,6 +65,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 }
             	
              }
+             //根据酒店促销策略计算优惠
              for(int j=0;j<hotelprolist.size();j++){
             	 HotelPromotionVO hotelpro=hotelprolist.get(j);
             	 switch(hotelpro.getName()){
@@ -129,6 +132,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 double grade=-1;
 		 double lowprice=-1; 
 		 double highprice=20000;
+		 String rotype;
 		 int Roomnum=0;
 		 
 		 
@@ -137,6 +141,10 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 }
 		 switch(roomtype){
 		 case"单人房":
+			 rotype="单人房";
+			 break;
+		 case"双人房":
+			 rotype="双人房";
 			 break;
 		 
 		 }
@@ -183,6 +191,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		case"600元以上":
 		     lowprice=600;
 		}
+		//通过各种条件过滤酒店列表；
 		 ArrayList<HotelVO> filtedlist=new ArrayList<HotelVO>();
 		 for(int i=0;i<hotellist.size();i++){
 			HotelVO vo=hotellist.get(i);
@@ -195,7 +204,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 }
 	 
 	 
-	 //检查是否有房间剩余
+	 //检查是否有房间剩余的方法实现
 	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype) throws ParseException{
 		int leftsingle=hotel.getSingleRoom();
 		int leftstandard=hotel.getStandardRoom();
@@ -230,6 +239,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 				
 				break;
 			}
+         //调用该酒店历史订单判断房间是否剩余
 		 for(int i=0;i<orderlist.size();i++){
 			 OrderVO vo=orderlist.get(i);
 			Date startdate=sdf.parse(vo.getStarttime());
@@ -243,6 +253,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 				leftsuite=leftsuite-Integer.parseInt(vo.getSuiteRoom());
 				
 			}
+			//判断预订房间数量是否超过酒店持有最大房间数。
 			switch(roomtype){
 			case"单人房":
 				if(num>leftsingle){

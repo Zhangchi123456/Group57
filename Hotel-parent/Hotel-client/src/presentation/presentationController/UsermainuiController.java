@@ -49,7 +49,7 @@ public class UsermainuiController implements Initializable{
     //                 入住日期                离开日期
 	@FXML
 	private TextField HotelnameText;
-	
+	//                酒店名文本框
 	
 	
 	@FXML
@@ -74,6 +74,9 @@ public class UsermainuiController implements Initializable{
 	
 	@FXML
 	private void SearchButtonClicked(ActionEvent event) throws RemoteException{
+		if(CityChoicebox.getSelectionModel().getSelectedIndex()==-1||BusinessChoicebox.getSelectionModel().getSelectedIndex()==-1){
+			alt2.display("请务必输入城市和商圈");
+		}else{
 		String roomtype;
     	String roomnum;
     	String hotelstar;
@@ -116,11 +119,13 @@ public class UsermainuiController implements Initializable{
     	}
 		ArrayList<HotelVO> hotellist=reservationService.findbycircle(Businessname);
 		hotellist=reservationService.filtbysearch(hotellist, roomtype, roomnum, hotelstar, hotelgrade, hotelprice, hotelname);
+		
 		if(hotellist.size()==0){
 			alt2.display("没有符合条件的酒店");
 		}else {
 		ReservationController.setHotelvoList(hotellist);
 		UiswitchHelper.getApplication().goto_HotelListui();
+		}
 		}
 	}
 
@@ -146,6 +151,7 @@ public class UsermainuiController implements Initializable{
     
     
     
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		try {

@@ -73,7 +73,7 @@
       </Label>
       <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#CreatorderButtonClicked" prefHeight="50.0" prefWidth="200.0" text="生成订单" GridPane.columnIndex="3" GridPane.rowIndex="8">
          <font>
-            <Font size="20.0" />
+            <Font name="Yuanti SC Bold" size="20.0" />
          </font>
          <effect>
             <InnerShadow />
