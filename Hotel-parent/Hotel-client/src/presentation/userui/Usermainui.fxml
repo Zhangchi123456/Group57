@@ -75,7 +75,7 @@
                   </Lighting>
                </effect>
             </Button>
-            <Button mnemonicParsing="false" onAction="#MyorderButtonClicked" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: #dcdcdc;" text="我的订单" textFill="DARKORANGE">
+            <Button mnemonicParsing="false" onAction="#MyorderButtonClicked" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: #dcdcdc;" text="我的订单" textFill="#ff7600">
                <font>
                   <Font name="Yuanti SC Bold" size="20.0" />
                </font>
@@ -137,13 +137,13 @@
                   <Label />
                   <Label prefHeight="38.0" prefWidth="76.0" text="城市  :" textFill="WHITE">
                      <font>
-                        <Font name="Yuanti SC Regular" size="21.0" />
+                        <Font name="Yuanti SC Bold" size="21.0" />
                      </font></Label>
                   <ChoiceBox fx:id="CityChoicebox" prefHeight="36.0" prefWidth="110.0" />
                   <Label prefHeight="19.0" prefWidth="117.0" />
                   <Label prefHeight="37.0" prefWidth="76.0" text="商圈  :" textFill="#ebebeb">
                      <font>
-                        <Font name="Yuanti SC Bold" size="18.0" />
+                        <Font name="Yuanti SC Bold" size="20.0" />
                      </font></Label>
                   <ChoiceBox fx:id="BusinessChoicebox" prefHeight="36.0" prefWidth="110.0" />
                </children>
@@ -201,7 +201,7 @@
                <children>
                   <Label prefHeight="39.0" prefWidth="86.0" text="酒店星级:" textFill="WHITE">
                      <font>
-                        <Font name="Yuanti SC Regular" size="18.0" />
+                        <Font name="Yuanti SC Bold" size="18.0" />
                      </font></Label>
                   <ChoiceBox fx:id="HotelstarChoicebox" prefHeight="35.0" prefWidth="105.0">
                   <items>
@@ -271,7 +271,7 @@
                <children>
                   <Button fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonClicked" prefHeight="53.0" prefWidth="120.0" text="开始搜索" textFill="#ee8013">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Yuanti SC Bold" size="19.0" />
                      </font>
                      <effect>
                         <Reflection />

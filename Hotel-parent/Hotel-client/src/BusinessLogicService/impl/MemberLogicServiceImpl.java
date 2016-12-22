@@ -17,6 +17,7 @@ import vo.MemberVO;
 
 public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 	MemberDataService memberService =(MemberDataService)RMIHelper.find("MemberDataService");
+	//更新会员信息的方法实现
 	 public boolean updateMemberinfo(MemberVO vo) throws ParseException, RemoteException{
 		 MemberPO po=vo.topo();	
 		 if(memberService.update(po)){
@@ -24,13 +25,14 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		 }
 		 return false;
 	 }
+	 //通过名字查找会员
 	 public MemberVO Findmemberbyname(String name) throws RemoteException{		
 		 MemberPO po=memberService.find(name);
 		 MemberVO vo=new MemberVO(0, 0, name, name, name);
 		 vo.setbypo(po);
 		 return vo;
 	 }
-	 
+	 //通过名字查找信用纪录的方法实现
 	 public ArrayList<CreditRecordVO> FindCreditbyname(String name) throws RemoteException, ParseException{		
 		 ArrayList<CreditPO> creditpolist=memberService.findCreditByName(name);		
 		 ArrayList<CreditRecordVO> creditvolist=new ArrayList<CreditRecordVO>();
@@ -42,7 +44,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		 
 		 return creditvolist;
 	 }
-	
+	//展示所有会员的方法实现
 	public ArrayList<MemberVO> showall() throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<MemberPO> allmember = memberService.showAll();
@@ -54,7 +56,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		}
 		return member;
 	}
-	
+	//获得所有会员名的方法实现
 	public ArrayList<String> getnamelist() throws RemoteException{
 		ArrayList<String> namelist=new ArrayList<String>();
 		ArrayList<MemberPO> allmember = memberService.showAll();
@@ -66,7 +68,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		return namelist;
 		
 	}
-	
+	//生成一个新的信用纪录的方法实现
 	public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException{
 		CreditPO po=vo.ToCreditpo();
 		if(memberService.insert(po)){
@@ -74,6 +76,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		}
 		return false;
 	}
+	//通过订单号找到信用记录的方法
 	@Override
 	public CreditRecordVO findCreditRecord(int orderid) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -98,7 +101,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 		return null;
 	}
 
-	
+	//保存会员信息的方法实现
 	@Override
 	public void saveMember(MemberVO vo) {
 		 MemberPO po=null;
@@ -149,6 +152,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 			}
 			return false;
 		}
+	//更新会员等级的方法实现
 	public void updatelevel(MemberVO member){
 		try {
 			

@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 
 public class HotelmainuiController implements Initializable{
 	@FXML
-	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion,Return;
+	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion,Return,RoomEntry;
 	
 	@FXML
 	private Label title,welcome;
@@ -48,6 +48,10 @@ public class HotelmainuiController implements Initializable{
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Loginui();
+	}
+	@FXML
+	private void RoomEntryButtonClicked(ActionEvent event){
+		UiswitchHelper.getApplication().goto_HotelRoomEntryui();
 	}
 	
 	

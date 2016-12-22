@@ -1,21 +1,8 @@
 package application;
 import java.io.InputStream;
-import java.rmi.RemoteException;
-
-import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.OrderDataService;
-import org.Hotel.common.dataService.PromotionDataService;
-import org.Hotel.common.dataService.UserDataService;
-import org.Hotel.common.po.HotelStaffPO;
-import org.Hotel.common.po.OrderPO;
-
 import presentation.presentationController.RMIConnection;
 import presentation.userui.ComfirmBox;
-import vo.OrderVO;
-import BusinessLogicService.Service.LoginLogicService;
 import BusinessLogicService.Service.LogoutLogicService;
-import BusinessLogicService.Service.UserLogicService;
-import BusinessLogicService.impl.LoginLogicServiceImpl;
 import BusinessLogicService.impl.RMIHelper;
 import BusinessLogicService.impl.UserLogicServiceImpl;
 import Helper.LoginHelper;
@@ -31,7 +18,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import Helper.UiswitchHelper;
 
 public class Main extends Application {
 	 private Stage mainStage;
@@ -493,6 +479,17 @@ public class Main extends Application {
 				}
 	     }
 	     
+	     //从酒店工作人员主界面跳转到录入可用客房界面  num3.0.5.5
+	     public void goto_HotelRoomEntryui() {
+	    	 try {
+					PreplaceSceneContent("/presentation/promotionui/HotelRoomEntryui.fxml");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+	     
 	     
 	     
 	   
@@ -569,6 +566,7 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 	     }
+		
 	     
 	     
 	     
