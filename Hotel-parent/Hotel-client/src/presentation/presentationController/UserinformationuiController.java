@@ -35,6 +35,7 @@ public class UserinformationuiController implements Initializable{
 	 private LocalDate birthday;
 	 private MemberLogicService memberService=new MemberLogicServiceImpl();
 	 private PromotionLogicService promotionService=new PromotionLogicServiceImpl();
+	 
      @FXML
      private Label MembercharacterLabel,MemberlevelLabel,MembercreditvalueLabel,DiscountLabel;
      //             会员性质              会员等级          会员信用值               会员折扣
@@ -59,24 +60,19 @@ public class UserinformationuiController implements Initializable{
     		 memberpassword=PasswordText.getText();
     		 membervo=ReservationController.getMembervo();
     		 membervo.updateInfo(membername, birthday, phonenumber,memberpassword);
-    		 try {
-				if(memberService.updateMemberinfo(membervo)){
+    		
+			if(memberService.updateMemberinfo(membervo)){
 					// UiswitchHelper.getApplication().goto_Loginui();
 					ReservationController.setMembervo(membervo);
 					 AlertBox alt = new AlertBox();
 						alt.display("保存成功");
 						
-				 }else{
-					 AlertBox alt = new AlertBox();
-						alt.display("保存失败，请重试");
-				 }
-				
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		 
-    	 }
+		    }else{
+					AlertBox alt = new AlertBox();
+				    alt.display("保存失败，请重试");
+				}
+    	 }	
+			
      }
      
      @FXML

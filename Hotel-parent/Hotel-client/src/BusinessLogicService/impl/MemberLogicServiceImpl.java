@@ -18,72 +18,134 @@ import vo.MemberVO;
 public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 	MemberDataService memberService =(MemberDataService)RMIHelper.find("MemberDataService");
 	//更新会员信息的方法实现
-	 public boolean updateMemberinfo(MemberVO vo) throws ParseException, RemoteException{
-		 MemberPO po=vo.topo();	
-		 if(memberService.update(po)){
-			 return true;
-		 }
-		 return false;
+	 public boolean updateMemberinfo(MemberVO vo){
+		 MemberPO po;
+		try {
+			po = vo.topo();
+			 try {
+				if(memberService.update(po)){
+					 return true;
+				 }
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 return false;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		return false;
 	 }
 	 //通过名字查找会员
-	 public MemberVO Findmemberbyname(String name) throws RemoteException{		
-		 MemberPO po=memberService.find(name);
-		 MemberVO vo=new MemberVO(0, 0, name, name, name);
-		 vo.setbypo(po);
-		 return vo;
+	 public MemberVO Findmemberbyname(String name){		
+		 MemberPO po;
+		try {
+			po = memberService.find(name);
+			MemberVO vo=new MemberVO(0, 0, name, name, name);
+			 vo.setbypo(po);
+			 return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		 return null;
 	 }
 	 //通过名字查找信用纪录的方法实现
-	 public ArrayList<CreditRecordVO> FindCreditbyname(String name) throws RemoteException, ParseException{		
-		 ArrayList<CreditPO> creditpolist=memberService.findCreditByName(name);		
-		 ArrayList<CreditRecordVO> creditvolist=new ArrayList<CreditRecordVO>();
-		 for(int i=0;i<creditpolist.size();i++){
-			 CreditRecordVO vo=new CreditRecordVO();
-			 vo.setbyCreditPO(creditpolist.get(i));
-			 creditvolist.add(vo);
-		 }
+	 public ArrayList<CreditRecordVO> FindCreditbyname(String name){		
+		 ArrayList<CreditPO> creditpolist;
+		try {
+			creditpolist = memberService.findCreditByName(name);
+			ArrayList<CreditRecordVO> creditvolist=new ArrayList<CreditRecordVO>();
+			 for(int i=0;i<creditpolist.size();i++){
+				 CreditRecordVO vo=new CreditRecordVO();
+				 vo.setbyCreditPO(creditpolist.get(i));
+				 creditvolist.add(vo);
+			 }
+			 
+			 return creditvolist;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;		
 		 
-		 return creditvolist;
 	 }
 	//展示所有会员的方法实现
-	public ArrayList<MemberVO> showall() throws RemoteException {
+	public ArrayList<MemberVO> showall() {
 		// TODO Auto-generated method stub
-		ArrayList<MemberPO> allmember = memberService.showAll();
-		ArrayList<MemberVO> member = new ArrayList<MemberVO>();
-		for(int i=0;i<allmember.size();i++){
-			MemberVO  vo =new MemberVO(0, 0, "non","non", "non");
-            vo.setbypo(allmember.get(i));
-			member.add(vo);
+		ArrayList<MemberPO> allmember;
+		try {
+			allmember = memberService.showAll();
+			ArrayList<MemberVO> member = new ArrayList<MemberVO>();
+			for(int i=0;i<allmember.size();i++){
+				MemberVO  vo =new MemberVO(0, 0, "non","non", "non");
+	            vo.setbypo(allmember.get(i));
+				member.add(vo);
+			}
+			return member;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return member;
+		return null;
+		
 	}
 	//获得所有会员名的方法实现
-	public ArrayList<String> getnamelist() throws RemoteException{
+	public ArrayList<String> getnamelist(){
 		ArrayList<String> namelist=new ArrayList<String>();
-		ArrayList<MemberPO> allmember = memberService.showAll();
-		for(int i=0;i<allmember.size();i++){
-			String name;
-			name=allmember.get(i).getName();
-			namelist.add(name);
+		ArrayList<MemberPO> allmember;
+		try {
+			allmember = memberService.showAll();
+			for(int i=0;i<allmember.size();i++){
+				String name;
+				name=allmember.get(i).getName();
+				namelist.add(name);
+			}
+			return namelist;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return namelist;
+		return null;
 		
 	}
 	//生成一个新的信用纪录的方法实现
-	public boolean addCreditRecord(CreditRecordVO vo) throws ParseException, RemoteException{
-		CreditPO po=vo.ToCreditpo();
-		if(memberService.insert(po)){
-			return true;
+	public boolean addCreditRecord(CreditRecordVO vo){
+		CreditPO po;
+		try {
+			po = vo.ToCreditpo();
+			try {
+				if(memberService.insert(po)){
+					return true;
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return false;
 	}
 	//通过订单号找到信用记录的方法
 	@Override
-	public CreditRecordVO findCreditRecord(int orderid) throws RemoteException {
-		// TODO Auto-generated method stub
-		CreditPO po =memberService.findCreditRecord(orderid);
-		CreditRecordVO vo = new CreditRecordVO();
-		 vo.setbyCreditPO(po);
-		return vo;
+	public CreditRecordVO findCreditRecord(int orderid){
+		
+		CreditPO po;
+		try {
+			po = memberService.findCreditRecord(orderid);
+			CreditRecordVO vo = new CreditRecordVO();
+			vo.setbyCreditPO(po);
+			return vo;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	//method for interface memberinfo
 	//pass member po to other bl
@@ -168,12 +230,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 			}
 			
 			member.setMemberlevel(String.valueOf(currentlow));
-			try {
-				updateMemberinfo(member);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			updateMemberinfo(member);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

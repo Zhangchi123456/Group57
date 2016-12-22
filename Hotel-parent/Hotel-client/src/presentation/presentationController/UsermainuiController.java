@@ -154,15 +154,12 @@ public class UsermainuiController implements Initializable{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		try {
-			MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
-			memberservice.updatelevel(member);
-			ReservationController.setMembervo(member);
-			MemberActController.setMembervo(member);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+	    MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
+	    memberservice.updatelevel(member);
+	    ReservationController.setMembervo(member);
+		MemberActController.setMembervo(member);
+		
 		ArrayList<String> Citylist=new ArrayList<String>();
 		ArrayList<String> PekingList=new ArrayList<String>();
 		ArrayList<String> NanjingList=new ArrayList<String>();

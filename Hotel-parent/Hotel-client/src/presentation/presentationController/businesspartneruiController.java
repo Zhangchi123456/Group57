@@ -19,22 +19,22 @@ public class businesspartneruiController implements Initializable{
 	
 	@FXML
 	private Button button_birthday;
-	
+	//          生日按钮
 	@FXML
 	private Button button_roomnumber;
-	
+    //           房间数量按钮
 	@FXML
 	private Button button_hoteldiscountdate;
-	
+	//             酒店折扣按钮
 	@FXML
 	private TextField businesspartnerdiscount;
-	
+	//                合作伙伴折扣文本框
 	@FXML
 	private Button confirm;
-	
+	//        确认按钮
 	@FXML
 	private Button back;
-	
+	//      返回按钮
 	private int id = 0;
 	
 	@FXML

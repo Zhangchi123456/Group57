@@ -1,11 +1,11 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.UserLogicService;
 import BusinessLogicService.impl.UserLogicServiceImpl;
-import Helper.AddHotelHelper;
 import Helper.UiswitchHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,6 +39,9 @@ public class AddHotelStuffController implements Initializable{
 	    	if(name.length()==0){
 	    		AlertBox alt = new AlertBox();
 				alt.display("姓名为空");
+	    	}else if(hotelname.length()==0){
+	    		AlertBox alt = new AlertBox();
+				alt.display("酒店名为空");
 	    	}else if(newPass.length()==0){
 	    		AlertBox alt = new AlertBox();
 				alt.display("密码为空");
@@ -55,7 +58,20 @@ public class AddHotelStuffController implements Initializable{
 	    	else if(userblservice.findWebStaffBYName(name)){
 	    		AlertBox alt = new AlertBox();
 				alt.display("姓名已存在");
+	    	}else if(!userblservice.findHotel(hotelname)){
+	    		AlertBox alt = new AlertBox();
+				alt.display("酒店不存在");
 	    	}else{
+	    		//pre condition
+	    		ArrayList<HotelStaffVO> HSList=userblservice.findHotelStaff();
+	    		for(HotelStaffVO vo:HSList){
+	    			if(vo.getHotelname().equals(hotelname)){
+	    				AlertBox alt = new AlertBox();
+	    				alt.display("酒店已存在工作人员");
+	    				return;
+	    				//end add button cliked
+	    			}
+	    		}
 	    		HotelStaffVO vo =new HotelStaffVO(name,newPass,hotelname);
 	    		userblservice.addHotelStaff(vo);
 	    		//reminder
@@ -67,7 +83,5 @@ public class AddHotelStuffController implements Initializable{
 	    }
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			hotelName.setText(AddHotelHelper.getName());
-			
 		}
 }

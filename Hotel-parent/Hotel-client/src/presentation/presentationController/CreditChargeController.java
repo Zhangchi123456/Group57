@@ -42,19 +42,12 @@ public class CreditChargeController implements Initializable{
     		MemberVO vo = new MemberVO(0, 0, Chargenum, Chargenum, Chargenum);
     		Username=UsernameText.getText().toString();
     		Chargenum=ChargenumText.getText().toString();
-    		try {
-				vo=memberlogic.Findmemberbyname(Username);
-				vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum)*100);
-				memberlogic.updateMemberinfo(vo);
-				AlertBox alt = new AlertBox();
-				alt.display("充值成功");
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+            vo=memberlogic.Findmemberbyname(Username);
+            vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum)*100);
+			memberlogic.updateMemberinfo(vo);
+			AlertBox alt = new AlertBox();
+			alt.display("充值成功");
+			
     	}    	
     }
     //返回按钮的监听

@@ -20,22 +20,22 @@ public class memberleveluiController implements Initializable{
 	
 	@FXML
 	private Button button_webdiscountdate;
-	
+	//               日期折扣按钮
 	@FXML
 	private Button button_businesscircle;
-	
+	//            商圈折扣按钮
 	@FXML
 	private ChoiceBox<String> level;
-	
+	//           等级选择框
 	@FXML
 	private TextField credit;
-	
+	//        信用文本框
 	@FXML
 	private TextField discount;
-	
+	//        折扣文本框
 	@FXML
 	private Button confirm;
-	
+	//         确认文本框
 	@FXML
 	private Button back;
 	//调到商圈折扣

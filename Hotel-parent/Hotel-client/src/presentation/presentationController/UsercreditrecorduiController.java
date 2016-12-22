@@ -30,15 +30,17 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class UsercreditrecorduiController implements Initializable{
 	private ObservableList<CreditRecord> finallist;
-	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	private MemberLogicService memberService=new MemberLogicServiceImpl();
 	private ArrayList<CreditRecordVO> creditlist0=new ArrayList<CreditRecordVO>();
+	
+	
   @FXML
   private TableView<CreditRecord> CreditrecordTable;
-  
+  //         信用记录表
   @FXML
   private TableColumn<CreditRecord,String> timecol,orderid,action,creditchange,creditlast;
-  
+  //     信用记录的表项
+  private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
   
   
   @FXML
@@ -46,30 +48,24 @@ public class UsercreditrecorduiController implements Initializable{
 	 
 	  UiswitchHelper.getApplication().goto_Usermainui();
   }
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		try {
-			creditlist0=memberService.FindCreditbyname(LoginController.UserName);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//ArrayList<CreditRecordVO> creditlist=MemberActController.getCreditRecordVOList();
+  
+  //初始化方法
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
 		
+	    creditlist0=memberService.FindCreditbyname(LoginController.UserName);
 		ArrayList<CreditRecord> creditlist2=new ArrayList<CreditRecord>();
 		for(int i=0;i<creditlist0.size();i++){
 			creditlist2.add(new CreditRecord(creditlist0.get(i).action,creditlist0.get(i).orderid
 					,creditlist0.get(i).time,creditlist0.get(i).creditchange,creditlist0.get(i).creditlast));
 		}
 		 finallist =FXCollections.observableArrayList(creditlist2);
+		 
 		 timecol.setCellValueFactory(
 		            new PropertyValueFactory<>("time"));
 		 
-			timecol.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
-			timecol.setOnEditCommit(
+		 timecol.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
+	     timecol.setOnEditCommit(
 		            (CellEditEvent<CreditRecord, String> t) -> {
 		                ((CreditRecord) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
@@ -77,20 +73,19 @@ public class UsercreditrecorduiController implements Initializable{
 		        });
 
 			
-			orderid.setCellValueFactory(
+		orderid.setCellValueFactory(
 			            new PropertyValueFactory<>("ordernumber"));
-			 
-				orderid.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
-				orderid.setOnEditCommit(
+		orderid.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
+	    orderid.setOnEditCommit(
 			            (CellEditEvent<CreditRecord, String> t) -> {
 			                ((CreditRecord) t.getTableView().getItems().get(
 			                        t.getTablePosition().getRow())
 			                        ).setOrdernumber(t.getNewValue());
 			        });
+	    
 		// show action info
 		action.setCellValueFactory(
 	            new PropertyValueFactory<>("action"));
-	 
 		action.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
 		action.setOnEditCommit(
 	            (CellEditEvent<CreditRecord, String> t) -> {
@@ -98,10 +93,10 @@ public class UsercreditrecorduiController implements Initializable{
 	                        t.getTablePosition().getRow())
 	                        ).setAction(t.getNewValue());
 	        });
+		
 		// show creditchange info 
 		creditchange.setCellValueFactory(
 	            new PropertyValueFactory<>("creditchange"));
-	 
 		creditchange.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
 		creditchange.setOnEditCommit(
 	            (CellEditEvent<CreditRecord, String> t) -> {
@@ -110,62 +105,49 @@ public class UsercreditrecorduiController implements Initializable{
 	                        ).setCreditchange(t.getNewValue());
 	        });
 		// show creditlast info 
-				creditlast.setCellValueFactory(
+		creditlast.setCellValueFactory(
 			            new PropertyValueFactory<>("creditlast"));
-			 
-				creditlast.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
-				creditlast.setOnEditCommit(
+		creditlast.setCellFactory(TextFieldTableCell.<CreditRecord>forTableColumn());
+		creditlast.setOnEditCommit(
 			            (CellEditEvent<CreditRecord, String> t) -> {
 			                ((CreditRecord) t.getTableView().getItems().get(
 			                        t.getTablePosition().getRow())
 			                        ).setCreditlast(t.getNewValue());
 			        });
-				
-				
-				CreditrecordTable.setItems(finallist);
+		CreditrecordTable.setItems(finallist);
 				
 	}
 	
 	
 	
 	
-	
+	//用以在表中显示的辅助类
 	public static class CreditRecord {
 		 
         private final SimpleStringProperty action;
-        
-   
         private final SimpleStringProperty creditchange;
         private final SimpleStringProperty creditlast;
-       
         private final SimpleStringProperty ordernumber;
         private final SimpleStringProperty time;
-
-       
- 
+        
         private CreditRecord(String Action,String Orderid,String Time,String Creditchange,String Creditlast){
         	  this.action = new SimpleStringProperty(Action);
-        	  
         	  this.creditchange = new SimpleStringProperty(String.valueOf(Creditchange));
         	  this.creditlast = new SimpleStringProperty(Creditlast);
               this.ordernumber=new SimpleStringProperty(Orderid);
               this.time=new SimpleStringProperty(Time);
-        	
         }  
  
         public void setAction(String Action) {
-			
         	this.action.set(Action);
 		}
 
-		public void setCreditchange(String Creditchange) {
-			
+		public void setCreditchange(String Creditchange) {	
 			creditchange.set(Creditchange);
 		}
 
 		
 		public void setCreditlast(String Creditlast) {
-			
 			creditlast.set(Creditlast);
 		}
         
@@ -184,14 +166,10 @@ public class UsercreditrecorduiController implements Initializable{
 			return time.get();
 		}
 
-
 		public String getAction() {
             return action.get();
         }
  
-     
-	
-
 		public String getCreditchange() {
 			return creditchange.get();
 		}
@@ -199,8 +177,6 @@ public class UsercreditrecorduiController implements Initializable{
 		public String getCreditlast() {
 			return creditlast.get();
 		}
-
-	
     
   }
 }
