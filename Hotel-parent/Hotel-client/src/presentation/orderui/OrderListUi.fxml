@@ -32,6 +32,9 @@
                <children>
                   <ChoiceBox fx:id="OrderStationChoiceBox" onAction="#ChoiceBoxClicked" prefWidth="150.0">
                   <items>
+                   <font>
+                  <Font size="25.0" />
+                  </font>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="所有订单" />
                     <String fx:value="已执行订单" />

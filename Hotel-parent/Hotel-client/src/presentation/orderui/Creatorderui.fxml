@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreatorderController">
+<BorderPane prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.CreatorderController">
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,9 +39,9 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="458.0" prefWidth="715.0">
+            <VBox prefHeight="552.0" prefWidth="1000.0">
                <children>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
+                  <HBox prefHeight="69.0" prefWidth="1000.0">
                      <children>
                         <Label text="             用户名：">
                            <font>
@@ -55,34 +55,34 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
+                  <HBox prefHeight="69.0" prefWidth="1000.0">
                      <children>
                         <Label text="             人数   ：">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="UserNum" prefHeight="29.0" prefWidth="173.0" />
+                        <TextField fx:id="UserNum" prefHeight="34.0" prefWidth="173.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
+                  <HBox prefHeight="67.0" prefWidth="1000.0">
                      <children>
                         <Label prefHeight="25.0" prefWidth="178.0" text="           房间数量： ">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="RoomnumText" prefHeight="29.0" prefWidth="173.0" />
+                        <TextField fx:id="RoomnumText" prefHeight="34.0" prefWidth="173.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
+                  <HBox prefHeight="65.0" prefWidth="1000.0">
                      <children>
                         <Label text="          房间类型：">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="RoomType" prefWidth="150.0">
+                        <ChoiceBox fx:id="RoomType" prefHeight="37.0" prefWidth="173.0">
                         <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="单人房" />
@@ -95,14 +95,14 @@
                   </ChoiceBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="55.0" prefWidth="800.0">
+                  <HBox prefHeight="65.0" prefWidth="1000.0">
                      <children>
                         <Label text="          有无儿童：">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="Child" prefWidth="150.0">
+                        <ChoiceBox fx:id="Child" prefHeight="37.0" prefWidth="173.0">
                          <items>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="有" />
@@ -113,21 +113,21 @@
                   </ChoiceBox>
                      </children>
                   </HBox>
-                  <HBox prefHeight="60.0" prefWidth="800.0">
+                  <HBox prefHeight="75.0" prefWidth="1000.0">
                      <children>
                         <Label text="            日期    ：">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="TimeBegin" />
+                        <DatePicker fx:id="TimeBegin" prefHeight="36.0" prefWidth="221.0" />
                         <Label prefHeight="28.0" prefWidth="64.0" text="   ——" />
-                        <DatePicker fx:id="TimeEnd" />
+                        <DatePicker fx:id="TimeEnd" prefHeight="40.0" prefWidth="221.0" />
                      </children>
                   </HBox>
-                  <HBox prefHeight="60.0" prefWidth="800.0" spacing="10.0">
+                  <HBox prefHeight="54.0" prefWidth="1000.0" spacing="20.0">
                      <children>
-                        <Label prefHeight="67.0" prefWidth="463.0" />
+                        <Label prefHeight="54.0" prefWidth="685.0" />
                         <Button id="Return" fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="45.0" prefWidth="94.0" styleClass="bton1" text="返 回">
                            <font>
                               <Font size="24.0" />
