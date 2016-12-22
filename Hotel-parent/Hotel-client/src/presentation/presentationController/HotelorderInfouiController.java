@@ -2,7 +2,6 @@ package presentation.presentationController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,22 +68,9 @@ public class HotelorderInfouiController implements Initializable{
 		int judge;
 		CreditRecordVO creditvo = null;
 		MemberVO membervo = null;
-		try {
-			membervo = mser.Findmemberbyname(ordervo.getName());
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		};
+		membervo = mser.Findmemberbyname(ordervo.getName());;
 		ArrayList<CreditRecordVO> creditlist = new ArrayList<CreditRecordVO>();
-		try {
-			creditlist = mser.FindCreditbyname(ordervo.getName());
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		creditlist = mser.FindCreditbyname(ordervo.getName());
 		int tempcredit = 0;
 		try {
 			judge = nowtime.parse(nowtime.format(new Date())).compareTo(nowtime.parse(lasttime));
@@ -110,9 +96,6 @@ public class HotelorderInfouiController implements Initializable{
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
 	}
 		
 		MemberActController.setcurrentOrdervo(ordervo);
@@ -142,12 +125,7 @@ public class HotelorderInfouiController implements Initializable{
 			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + (int)Double.parseDouble(ordervo.getPrice())));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
-			try {
-				mser.updateMemberinfo(membervo);
-			} catch (RemoteException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mser.updateMemberinfo(membervo);
 		}
 		
 		if(CurrentState.getText().toString().equals("已撤销")){
@@ -165,12 +143,7 @@ public class HotelorderInfouiController implements Initializable{
 			creditvo.setCreditlast(String.valueOf(membervo.getcredit()));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
-			try {
-				mser.updateMemberinfo(membervo);
-			} catch (RemoteException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mser.updateMemberinfo(membervo);
 		}
 	}
 	@SuppressWarnings("unchecked")
@@ -182,22 +155,9 @@ public class HotelorderInfouiController implements Initializable{
 		int judge;
 		CreditRecordVO creditvo = null;
 		MemberVO membervo = null;
-		try {
-			membervo = mser.Findmemberbyname(ordervo.getName());
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		};
+		membervo = mser.Findmemberbyname(ordervo.getName());;
 		ArrayList<CreditRecordVO> creditlist = new ArrayList<CreditRecordVO>();
-		try {
-			creditlist = mser.FindCreditbyname(ordervo.getName());
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		creditlist = mser.FindCreditbyname(ordervo.getName());
 		int tempcredit = 0;
 		try {
 			judge = nowtime.parse(nowtime.format(new Date())).compareTo(nowtime.parse(lasttime));
@@ -222,9 +182,6 @@ public class HotelorderInfouiController implements Initializable{
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
 	}
 		
 		MemberActController.setcurrentOrdervo(ordervo);
@@ -254,12 +211,7 @@ public class HotelorderInfouiController implements Initializable{
 			creditvo.setCreditlast(String.valueOf(tempcredit + membervo.getMembercreditvalue() + (int)Double.parseDouble(ordervo.getPrice())));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
-			try {
-				mser.updateMemberinfo(membervo);
-			} catch (RemoteException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mser.updateMemberinfo(membervo);
 		}
 		
 		if(CurrentState.getText().toString().equals("已撤销")){
@@ -277,12 +229,7 @@ public class HotelorderInfouiController implements Initializable{
 			creditvo.setCreditlast(String.valueOf(membervo.getcredit()));
 			creditvo.setTime(nowtime.format(new Date()).toString());
 			membervo.setMembercreditvalue(Integer.parseInt(creditvo.getCreditlast()));
-			try {
-				mser.updateMemberinfo(membervo);
-			} catch (RemoteException | ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mser.updateMemberinfo(membervo);
 		}
 		
 		ArrayList<String> statelist = new ArrayList<String>();

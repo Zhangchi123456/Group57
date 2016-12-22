@@ -1,7 +1,6 @@
 package presentation.presentationController;
 
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -9,22 +8,17 @@ import BusinessLogicService.Service.ReservationLogicService;
 import BusinessLogicService.impl.ReservationLogicServiceImpl;
 import Controller.ReservationController;
 import Helper.UiswitchHelper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import vo.HotelPromotionVO;
 import vo.HotelVO;
-import vo.WebPromotionVO;
 
 public class HotelInfoBrowseuiController implements Initializable{
 	private HotelVO hotelvo;
+	@SuppressWarnings("unused")
 	private HotelPromotionVO hotelpromotion;
 	private ReservationLogicService reservationService=new ReservationLogicServiceImpl();
 	@FXML
@@ -53,25 +47,18 @@ public class HotelInfoBrowseuiController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 	hotelvo=ReservationController.getCurrentHotelvo();
 	
-	try {
-		ArrayList<HotelPromotionVO> prolist=reservationService.findhotelpro(hotelvo.getName());
-		ReservationController.setHotelproList(prolist);
-		
-		hotelName.setText(hotelvo.getName());
-		Star.setText(String.valueOf(hotelvo.getStar()));
-		address.setText(hotelvo.getAddress());
-		SingleLabel.setText(String.valueOf(hotelvo.getSingleRoomPrice()));
-		
-		
-		StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
-	    FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
-	    SuiteLabel.setText(String.valueOf(hotelvo.getSuiteRoomPrice()));
-	    
+	ArrayList<HotelPromotionVO> prolist=reservationService.findhotelpro(hotelvo.getName());
+	ReservationController.setHotelproList(prolist);
 	
-	} catch (RemoteException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+	hotelName.setText(hotelvo.getName());
+	Star.setText(String.valueOf(hotelvo.getStar()));
+	address.setText(hotelvo.getAddress());
+	SingleLabel.setText(String.valueOf(hotelvo.getSingleRoomPrice()));
+	
+	
+	StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
+	FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
+	SuiteLabel.setText(String.valueOf(hotelvo.getSuiteRoomPrice()));
 		
 
 }

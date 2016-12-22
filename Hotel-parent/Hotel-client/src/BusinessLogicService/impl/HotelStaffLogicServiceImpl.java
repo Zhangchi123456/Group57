@@ -31,7 +31,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	//根据工作人员显示所在酒店
 	public HotelVO findHotel(String name) {
 		
-		HotelStaffVO vo = uds.findByHotelStaff(name);
+		HotelStaffVO vo = uds.findHotelStaffByName(name);
 		String hotelname = vo.getHotelname();
 		HotelPO hotelpo = new HotelPO();
 		try {
@@ -196,12 +196,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	public CreditRecordVO CreditFindByorder(int orderid) {
 		
 		CreditRecordVO Vo = new CreditRecordVO();
-		try {
-			Vo = mds.findCreditRecord(orderid);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Vo = mds.findCreditRecord(orderid);
 		
 		return Vo;
 	}
