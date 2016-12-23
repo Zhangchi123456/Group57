@@ -128,7 +128,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		}
 		 return list;
 	 }
-	 
+	 //根据搜索条件过滤酒店的方法实现
 	 public ArrayList<HotelVO> filtbysearch(ArrayList<HotelVO> hotellist,String roomtype,String roomnum,String hotelstar,String hotelgrade,String hotelprice,String Hotelname){
 		 int star=-1;
 		 double grade=-1;
@@ -139,14 +139,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 if(Hotelname=="null"){
 			 Hotelname="";
 		 }
-		 switch(roomtype){
-		 case"单人房":
-			 rotype="单人房";
-			 break;
-		 case"双人房":
-			 rotype="双人房";
-			 break;
-		 }
+		 
 		switch(roomnum){
 		case"1间":
 			Roomnum=1;
@@ -194,7 +187,31 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 for(int i=0;i<hotellist.size();i++){
 			HotelVO vo=hotellist.get(i);
 			if(vo.getName().contains(Hotelname)&&vo.getGrade()>=grade&&vo.getSingleRoomPrice()>=lowprice&&vo.getSingleRoomPrice()<=highprice&&vo.getStar()>=star){
-				filtedlist.add(vo);
+				switch(roomtype){
+				 case"单人房":
+					 if(vo.getSingleRoom()>=Roomnum){
+						 filtedlist.add(vo);
+					 }
+					 break;
+				 case"标准间":
+					 if(vo.getStandardRoom()>=Roomnum){
+						 filtedlist.add(vo);
+					 }
+					 break;
+				 case"套间":
+					 if(vo.getSuiteRoom()>=Roomnum){
+						 filtedlist.add(vo);
+					 }
+					 break;
+				 case"家庭房":
+					 if(vo.getSuiteRoom()>=Roomnum){
+						 filtedlist.add(vo);
+					 }
+					 break;
+				 default:
+					 filtedlist.add(vo);
+				 }
+				
 			}
 		 }
 		 return filtedlist;
@@ -286,7 +303,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			vo = hotelservice.findbyname(name);
 			 return vo;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
         return vo;

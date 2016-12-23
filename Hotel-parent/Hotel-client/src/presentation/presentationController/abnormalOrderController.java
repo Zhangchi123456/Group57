@@ -63,7 +63,7 @@ public class abnormalOrderController implements Initializable{
 		}
 		else if(halfcredit.isSelected()){
 			membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-			int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*5+membervo.getMembercreditvalue();
+			int credit = (int) Double.parseDouble(orderlist.get(selectnumber).getPrice())/2+membervo.getMembercreditvalue();
 			membervo.setMembercreditvalue(credit);
 			CreditRecordVO creditvo=new CreditRecordVO();
 			creditvo.action="异常订单撤销";
@@ -81,7 +81,7 @@ public class abnormalOrderController implements Initializable{
 		}
 		else if(allcredit.isSelected()){
 			membervo=memberlogic.Findmemberbyname(orderlist.get(selectnumber).getName());
-			int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*10+membervo.getMembercreditvalue();
+			int credit =(int) Double.parseDouble(orderlist.get(selectnumber).getPrice())*1+membervo.getMembercreditvalue();
 			membervo.setMembercreditvalue(credit);
 			CreditRecordVO creditvo=new CreditRecordVO();
 			creditvo.action="异常订单撤销";
