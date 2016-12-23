@@ -52,7 +52,7 @@ public class UserinformationuiController implements Initializable{
      private void SaveButtonClicked(ActionEvent event) throws ParseException{
     	 if(!Allisfilled()){
     		 AlertBox alt = new AlertBox();
-				alt.display("请务必将用户名和联系方式填写完全");
+				alt.display("请务必将用户名和联系方式填写完全，且密码无法为空");
     	 }else{
     		 membername=MembernameText.getText().toString();
     		 phonenumber=PhonenumberText.getText().toString();
@@ -81,7 +81,7 @@ public class UserinformationuiController implements Initializable{
      }
      
      private boolean Allisfilled(){
-    	 if(MembernameText.getText().isEmpty()||PhonenumberText.getText().isEmpty()){
+    	 if(MembernameText.getText().isEmpty()||PhonenumberText.getText().isEmpty()||PasswordText.getText().isEmpty()){
     		 return false;
     	 }
     	 return true;
