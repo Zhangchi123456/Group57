@@ -72,6 +72,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -95,6 +96,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -117,6 +119,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -139,6 +142,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -452,7 +456,7 @@ public class Main extends Application {
 	     //从酒店工作人员主界面跳转到酒店营销策略制定界面(会员生日） num3.0.5.2
 	     public void goto_birthdayui(){
 	    	 try {
-					GreplaceSceneContent("/presentation/promotionui/birthdayui.fxml");
+					PreplaceSceneContent("/presentation/promotionui/birthdayui.fxml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -482,7 +486,7 @@ public class Main extends Application {
 	     //从酒店工作人员主界面跳转到录入可用客房界面  num3.0.5.5
 	     public void goto_HotelRoomEntryui() {
 	    	 try {
-					PreplaceSceneContent("/presentation/promotionui/HotelRoomEntryui.fxml");
+					GreplaceSceneContent("/presentation/hotelui/HotelRoomEntryui.fxml");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

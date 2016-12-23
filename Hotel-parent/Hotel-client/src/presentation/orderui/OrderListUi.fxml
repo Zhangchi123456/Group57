@@ -32,9 +32,6 @@
                <children>
                   <ChoiceBox fx:id="OrderStationChoiceBox" onAction="#ChoiceBoxClicked" prefWidth="150.0">
                   <items>
-                   <font>
-                  <Font size="25.0" />
-                  </font>
                   <FXCollections fx:factory="observableArrayList">
                     <String fx:value="所有订单" />
                     <String fx:value="已执行订单" />
@@ -44,6 +41,7 @@
                   </FXCollections>
                   </items>
                   </ChoiceBox>
+                  <Label text="注意:撤销订单时如果撤销时间距离最晚入住时间小于6小时,系统将在撤销的同时自动扣除用户等值于该订单价值一半的信用值" textFill="RED" />
                </children>
             </HBox>
             <TableView fx:id="OrderList" prefHeight="466.0" prefWidth="970.0">

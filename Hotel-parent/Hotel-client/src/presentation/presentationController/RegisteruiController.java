@@ -94,7 +94,7 @@ public class RegisteruiController implements Initializable {
     		 phonenumber=PhonenumberText.getText();
     		 birthday=BirthdayDatepicker.getValue();
     		 
-    		 membervo.setbyString("Personalmember", name, password, birthday);
+    		 membervo.setbyString("个人会员", name, password, birthday,phonenumber);
     		 try {
 				helper.insertMember(membervo);
 			} catch (RemoteException e) {
@@ -110,7 +110,7 @@ public class RegisteruiController implements Initializable {
     		 confirmpassword=PasswordconfirmText.getText();
     		 phonenumber=PhonenumberText.getText();
     		 birthday=null;
-    		 membervo.setbyString("Compaanymember", name, password, birthday);
+    		 membervo.setbyString("企业会员", name, password, birthday,phonenumber);
     		 try {
 				helper.insertMember(membervo);
 			} catch (RemoteException e) {

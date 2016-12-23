@@ -1,10 +1,19 @@
 package presentation.presentationController;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+
+import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.Service.OrderLogicService;
+import BusinessLogicService.impl.MemberLogicServiceImpl;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
+import Controller.MemberActController;
+import vo.MemberVO;
 import vo.OrderVO;
 import Helper.UiswitchHelper;
 import javafx.beans.property.SimpleStringProperty;
@@ -42,7 +51,7 @@ public class OrderlistuiController implements Initializable{
    OrderLogicService order = new OrderLogicServiceImpl();
    ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
    AlertBox alt = new AlertBox();	
-   
+   MemberLogicService memberservice=new MemberLogicServiceImpl();
    
    //监听
    @FXML
@@ -55,15 +64,16 @@ public class OrderlistuiController implements Initializable{
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
 	   if(temp.get(selectnumber).getOrderstation().equals("已执行")){
 		   Orderid=  temp.get(selectnumber).getOrder();
-		   Hotelname  = temp.get(selectnumber).getHotel();}
+		   Hotelname  = temp.get(selectnumber).getHotel();
+		   UiswitchHelper.getApplication().goto_OrderEvaluateui();}
 	   else{
 		   alt.display("未完成订单不能评价");
 	   }
-	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
+	   
    }
    //撤销按钮的监听
    @FXML 
-   private void  DeleteOrderClicked(ActionEvent event){        
+   private void  DeleteOrderClicked(ActionEvent event) throws ParseException{        
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
 	   if(!temp.get(selectnumber).getOrderstation().equals("未执行")){
 		   alt.display("不能撤销该订单");
@@ -71,6 +81,29 @@ public class OrderlistuiController implements Initializable{
 	   else{
 		   Orderid=  temp.get(selectnumber).getOrder();
 		   boolean bool= order.changeOrderStation(Orderid, "已撤销");
+		   double price=Double.parseDouble(temp.get(selectnumber).getPrice());
+		   String starttime = null;
+		   int cutcredit=0;
+		   for(int i=0;i<orderlist.size();i++){
+			   
+			   if(Orderid==orderlist.get(i).getId()){
+				   starttime=orderlist.get(i).getStarttime();
+				   cutcredit=(int)Double.parseDouble(orderlist.get(i).getPrice());
+			   }
+		   }
+		   starttime=starttime+" 18:00:00";
+		   SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
+		   SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		   Date startdate=sdf.parse(starttime);
+		   String nowdate=sdf2.format(System.currentTimeMillis());
+		   Date today=sdf2.parse(nowdate);
+		   if((startdate.getTime()-today.getTime())/1000<21600){
+			   MemberVO member=MemberActController.getmemberVo();
+			   member.setMembercreditvalue(member.getcredit()-cutcredit);
+			   memberservice.updateMemberinfo(member);
+			   MemberActController.setMembervo(member);
+			    
+		   }
 		   if(bool){ 
 			   alt.display("订单已撤销");
 			   String tem = (String) OrderStationChoiceBox.getValue();

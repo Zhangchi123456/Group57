@@ -24,7 +24,7 @@
    <children>
       <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="656.0" prefWidth="999.0">
          <left>
-            <VBox prefHeight="557.0" prefWidth="153.0" spacing="60.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="556.0" prefWidth="170.0" spacing="60.0" BorderPane.alignment="CENTER">
                <children>
                   <Button blendMode="MULTIPLY" mnemonicParsing="false" onAction="#MemberMangementClicked" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
@@ -86,7 +86,7 @@
                      <children>
                         <VBox prefHeight="548.0" prefWidth="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TableView fx:id="table" editable="true" prefHeight="500.0" prefWidth="166.0">
+                              <TableView fx:id="table" editable="true" prefHeight="500.0" prefWidth="205.0">
                                 <columns>
                                   <TableColumn fx:id="nameColumn" prefWidth="180.0" text="姓名" />
                                 </columns>
@@ -168,7 +168,7 @@
                                     <HBox prefHeight="126.0" prefWidth="196.0" spacing="20.0" />
                                  </children>
                               </VBox>
-                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="45.0" prefWidth="90.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="48.0" prefWidth="96.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
