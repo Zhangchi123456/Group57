@@ -74,7 +74,6 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 	 }
 	//展示所有会员的方法实现
 	public ArrayList<MemberVO> showall() {
-		// TODO Auto-generated method stub
 		ArrayList<MemberPO> allmember;
 		try {
 			allmember = memberService.showAll();
@@ -101,6 +100,7 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 			for(int i=0;i<allmember.size();i++){
 				String name;
 				name=allmember.get(i).getName();
+				
 				namelist.add(name);
 			}
 			return namelist;

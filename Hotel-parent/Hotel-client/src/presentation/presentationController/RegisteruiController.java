@@ -135,14 +135,10 @@ public class RegisteruiController implements Initializable {
     	 return false;
      }
      //检查是否存在同名用户
-     private boolean testname(String name){
-    	 ArrayList<String> member;
-		 member = memberlogic.getnamelist();
-			 for(int i=0;i<member.size();i++){
-	    		 if(name==member.get(i)){
-	    			 return true;
-	    		 }
-			 }
+     private boolean testname(String name1){
+    	 if(memberlogic.getnamelist().contains(name1)){
+    		 return true;
+    	 }
 		return false;
     	 
      }
