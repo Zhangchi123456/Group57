@@ -46,7 +46,7 @@ public class UserinformationuiController implements Initializable{
      private DatePicker BirthdayDatepicker;
      //                 会员生日
     @FXML
-    private PasswordField PasswordText;
+     private PasswordField PasswordText;
      //                   密码框
      @FXML
      private void SaveButtonClicked(ActionEvent event) throws ParseException{

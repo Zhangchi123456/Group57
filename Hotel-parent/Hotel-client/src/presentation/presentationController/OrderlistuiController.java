@@ -88,7 +88,7 @@ public class OrderlistuiController implements Initializable{
 			   
 			   if(Orderid==orderlist.get(i).getId()){
 				   starttime=orderlist.get(i).getStarttime();
-				   cutcredit=Integer.parseInt(orderlist.get(i).getPrice());
+				   cutcredit=(int)Double.parseDouble(orderlist.get(i).getPrice());
 			   }
 		   }
 		   starttime=starttime+" 18:00:00";
@@ -102,7 +102,7 @@ public class OrderlistuiController implements Initializable{
 			   member.setMembercreditvalue(member.getcredit()-cutcredit);
 			   memberservice.updateMemberinfo(member);
 			   MemberActController.setMembervo(member);
-			   
+			    
 		   }
 		   if(bool){ 
 			   alt.display("订单已撤销");

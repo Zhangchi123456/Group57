@@ -40,11 +40,12 @@ public class MemberVO {
     	this.memberid=num;
     }
     //该方法用于在注册界面构造membervo
-    public void setbyString(String memberProperty,String memberName,String Password,LocalDate birthday){
+    public void setbyString(String memberProperty,String memberName,String Password,LocalDate birthday,String phonenumber){
     	this.memberbirthday=birthday;
     	this.membername=memberName;
     	this.memberproperty=memberProperty;
     	this.password=Password;
+    	this.setPhonenumber(phonenumber);
     }
     //该方法用于在个人信息界面更新信息
     public void updateInfo(String name,LocalDate Date,String phonenumber,String Password){
@@ -66,6 +67,14 @@ public class MemberVO {
     	po.setLevel(1);
     	po.setName(membername);
     	po.setConnection(phonenumber);
+    	switch(this.memberproperty){
+    	case"个人会员":
+    		po.setEnterprise(false);
+    		break;
+    	case"企业会员":
+    		po.setEnterprise(true);
+    		break;
+    	}
     	return po;
     }
     public void setbypo(MemberPO po){
