@@ -82,7 +82,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 
 	@Override
 	public void saveWebStaff(WebStaffVO vo) {
-		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
+		WebStaffPO po=vo.settopo(vo);
 		try {
 			userdata.update(po);
 		} catch (RemoteException e) {
@@ -92,7 +92,7 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	}
 	@Override
 	public boolean addWebStaff(WebStaffVO vo) {
-		WebStaffPO po=new WebStaffPO(vo.getName(),vo.getPassword());
+		WebStaffPO po=vo.settopo(vo);
 		try {
 			return userdata.insert(po);
 		} catch (RemoteException e) {
@@ -110,7 +110,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 			ArrayList<HotelStaffVO> listvo=new ArrayList<>();
 			for(HotelStaffPO po:list){
 				if(po!=null){
-					HotelStaffVO vo=new HotelStaffVO(po.getName(),po.getPassword(),po.getHotelName());
+					HotelStaffVO vo=new HotelStaffVO();
+					vo.setbypo(po);
 					listvo.add(vo);
 				}
 			}
@@ -125,7 +126,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	//add hotel staff 
 	@Override
 	public void addHotelStaff(HotelStaffVO vo) {
-		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getHotelname(),vo.getPassword());
+		HotelStaffPO po=new HotelStaffPO();
+		po=vo.settopo(vo);
 		try {
 			userdata.insert(po);
 		} catch (RemoteException e) {
@@ -135,7 +137,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	//update hotel staff
 	@Override
 	public void saveHotelStaff(HotelStaffVO vo) {
-		HotelStaffPO po=new HotelStaffPO(vo.getName(),vo.getPassword(),vo.getHotelname());
+		HotelStaffPO po=new HotelStaffPO();
+		vo.settopo(vo);
 		try {
 			userdata.update(po);
 		} catch (RemoteException e) {
@@ -227,7 +230,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		 try {
 			WebStaffPO po =  userdata.findByWebStaff(name);
 			if(po != null){
-				WebStaffVO vo=new WebStaffVO(po.getName(),po.getPassword());
+				WebStaffVO vo=new WebStaffVO();
+				vo.setbypo(po);
 				return vo;
 			}
 		}catch (RemoteException e) {
@@ -241,7 +245,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		try {
 			WebManagerPO po =  userdata.findByWebManager(name);
 			if(po != null){
-				WebManagerVO vo=new WebManagerVO(po.getName(),po.getPassword());
+				WebManagerVO vo=new WebManagerVO();
+				vo.setbypo(po);
 				return vo;
 			}
 		}catch (RemoteException e) {

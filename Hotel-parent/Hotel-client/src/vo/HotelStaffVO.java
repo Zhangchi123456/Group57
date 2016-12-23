@@ -2,6 +2,8 @@ package vo;
 
 import org.Hotel.common.po.HotelStaffPO;
 
+import security.DES;
+
 public class HotelStaffVO {
 	private String name;
 	private String password;
@@ -12,11 +14,32 @@ public class HotelStaffVO {
 		this.password=password;
 		this.hotelname=hotelname;
 	}
-     public void setbypo(HotelStaffPO po){
+     public HotelStaffVO() {
+		// TODO Auto-generated constructor stub
+	}
+	public void setbypo(HotelStaffPO po){
     	 this.name = po.getName();
-    	 this.hotelname=po.getHotelName();
+    	 try {
+			this.hotelname=DES.decrypt(po.getHotelName());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	 this.password=po.getPassword();
      }
+     
+    public HotelStaffPO  settopo(HotelStaffVO vo){
+    	HotelStaffPO po = new HotelStaffPO();
+    	po.setHotelName(vo.getHotelname());
+    	po.setName(vo.getName());
+    	try {
+			po.setPassword(DES.encrypt(vo.getPassword()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return po;
+    }
 	public String getName() {
 		return name;
 	}

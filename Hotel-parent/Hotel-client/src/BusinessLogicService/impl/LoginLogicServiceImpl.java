@@ -25,7 +25,9 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			WebStaffVO webstaffvo=userservice.findWebStaffByName(name);
 			WebManagerVO webmanagervo=userservice.findWebManagerByName(name);
 			MemberPO memberpo=memberservice.findMemberByName(name);
-			
+			MemberVO membervo = null;
+			if(memberpo!=null)
+			membervo.setbypo(memberpo);
 			if(hotelstaffvo!=null){
 				if(hotelstaffvo.getPassword().equals(password))
 					
@@ -35,19 +37,21 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 				if(webstaffvo.getPassword().equals(password))
 				return UserType.webStaff;
 			}
-			if(memberpo!=null){
-				if(memberpo.getPassword().equals(password))
-				return UserType.Member;
-			}
 			if(webmanagervo!=null){
 				if(webmanagervo.getPassword().equals(password))
 				return UserType.webManager;
 			}
+			if(membervo!=null){
+				if(membervo.getPassword().equals(password))
+				return UserType.Member;
+			}
+			
 			
 			hotelstaffvo=null;
 			webstaffvo =null;
 			webmanagervo=null;
 			memberpo=null;
+			membervo=null;
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -58,16 +62,11 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 	 */
 	@Override
 	public void addCurrentUser(String name) {
-		
-			userservice.addCurrentUser(name);
-		
-	}
+		userservice.addCurrentUser(name);
+		}
 	@Override
 	public boolean isCurrentUser(String name) {
-	
-			return userservice.isCurrentUser(name);
-		
-	
+		return userservice.isCurrentUser(name);		
 	}
 	
 	public void removeCurrentUser(String name) {

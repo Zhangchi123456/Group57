@@ -1,5 +1,6 @@
 package vo;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -9,7 +10,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
+import security.DES;
 import org.Hotel.common.po.MemberPO;
 
 public class MemberVO {
@@ -35,7 +36,11 @@ public class MemberVO {
    	 this.memberproperty=property;
     }
     
-    //测试用方法,实际不能有setid
+    public MemberVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	//测试用方法,实际不能有setid
     public void setid(int num){
     	this.memberid=num;
     }
@@ -58,15 +63,21 @@ public class MemberVO {
     public MemberPO topo() throws ParseException{
     	MemberPO po=new MemberPO();
     	if(memberbirthday!=null){
-    	po.setBirthday(memberbirthday.toString());
-    	
+    	po.setBirthday(memberbirthday.toString()); 	
     	}
-    	po.setPassword(password);
+    	po.setName(membername);
+    	try {
+			po.setPassword(DES.encrypt(password));			
+			po.setConnection(DES.encrypt(phonenumber));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	po.setCredit(membercreditvalue);
     	po.setId(memberid);
     	po.setLevel(1);
-    	po.setName(membername);
-    	po.setConnection(phonenumber);
+    	
+    	
     	switch(this.memberproperty){
     	case"个人会员":
     		po.setEnterprise(false);
@@ -89,8 +100,18 @@ public class MemberVO {
     	this.memberid=po.getId();
     	this.memberlevel=String.valueOf(po.getLevel());
     	this.membername=po.getName();
-    	this.phonenumber=po.getConnection();
-    	this.password=po.getPassword();
+    	try {
+			
+			this.phonenumber=DES.decrypt(po.getConnection());
+	    	this.password=DES.decrypt(po.getPassword());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     	if(po.isEnterprise()){
     		this.memberproperty="企业会员";
     	}else{
