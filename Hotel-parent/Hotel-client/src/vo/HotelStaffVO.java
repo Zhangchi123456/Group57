@@ -20,12 +20,12 @@ public class HotelStaffVO {
 	public void setbypo(HotelStaffPO po){
     	 this.name = po.getName();
     	 try {
-			this.hotelname=DES.decrypt(po.getHotelName());
+			this.password=DES.decrypt(po.getPassword());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	 this.password=po.getPassword();
+    	 this.hotelname=po.getHotelName();
      }
      
     public HotelStaffPO  settopo(HotelStaffVO vo){
