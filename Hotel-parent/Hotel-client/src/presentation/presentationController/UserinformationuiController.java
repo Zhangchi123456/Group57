@@ -99,7 +99,7 @@ public class UserinformationuiController implements Initializable{
 		MembercharacterLabel.setText(membervo.getproperty());
 		MemberlevelLabel.setText(membervo.getlevel());
 		MembercreditvalueLabel.setText(String.valueOf(membervo.getcredit()));
-		System.out.println(membervo.getcredit());
+		
 		PhonenumberText.setText(membervo.getphonenumber());
 		
 		if(membervo.getBirthday()!=null){
