@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsercreditrecorduiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.UsercreditrecorduiController">
    <top>
       <HBox alignment="CENTER" prefHeight="120.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="100.0" text="返回">
+            <Button fx:id="ReturnButton" mnemonicParsing="false" onAction="#ReturnButtonClicked" prefHeight="50.0" prefWidth="100.0" styleClass="bton1" text="返回">
                <font>
                   <Font size="20.0" />
                </font>
