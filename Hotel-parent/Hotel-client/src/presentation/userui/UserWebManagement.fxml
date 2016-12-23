@@ -23,7 +23,7 @@
    <children>
       <BorderPane layoutX="-14.0" layoutY="-7.0" prefHeight="650.0" prefWidth="1000.0">
          <left>
-            <VBox prefHeight="519.0" prefWidth="150.0" spacing="60.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="530.0" prefWidth="170.0" spacing="60.0" BorderPane.alignment="CENTER">
                <children>
                   <Button blendMode="MULTIPLY" mnemonicParsing="false" prefHeight="61.0" prefWidth="110.0" styleClass="bton1" text="会员管理" textAlignment="CENTER">
                      <VBox.margin>
@@ -108,15 +108,15 @@
             </HBox>
          </top>
          <center>
-            <SplitPane blendMode="MULTIPLY" dividerPositions="0.16238317757009346" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <SplitPane blendMode="MULTIPLY" dividerPositions="0.19451073985680192" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="528.0" prefWidth="144.0">
                      <children>
-                        <VBox prefHeight="520.0" prefWidth="136.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox prefHeight="528.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TableView fx:id="table" prefHeight="484.0" prefWidth="136.0">
+                              <TableView fx:id="table" prefHeight="483.0" prefWidth="141.0">
                                 <columns>
-                                  <TableColumn fx:id="nameColumn" prefWidth="120.0" sortable="false" text="姓名" />
+                                  <TableColumn fx:id="nameColumn" prefWidth="157.0" sortable="false" text="姓名" />
                                 </columns>
                                  <padding>
                                     <Insets bottom="4.0" left="2.0" right="2.0" top="2.0" />
@@ -128,7 +128,10 @@
                                  </VBox.margin>
                                  <children>
                                     <Region prefHeight="0.0" prefWidth="10.0" HBox.hgrow="ALWAYS" />
-                                    <Button mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="22.0" prefWidth="60.0" text="修改" />
+                                    <Button mnemonicParsing="false" onAction="#modifyButtonClicked" prefHeight="36.0" prefWidth="81.0" text="修改">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font></Button>
                                  </children>
                               </HBox>
                            </children>
@@ -279,7 +282,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="29.0" prefWidth="71.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                              <Button mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="52.0" prefWidth="102.0" styleClass="bton1" text="保存" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="20.0" />
                                  </font>

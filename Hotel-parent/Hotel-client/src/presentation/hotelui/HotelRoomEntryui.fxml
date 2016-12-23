@@ -8,12 +8,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane hgap="19.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" vgap="25.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelRoomEntryuiController">
+<GridPane hgap="19.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@../userui/user.css" vgap="25.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.HotelRoomEntryuiController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.66668701171875" minWidth="10.0" prefWidth="140.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.33331298828125" minWidth="10.0" prefWidth="133.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.66668701171875" minWidth="10.0" prefWidth="138.3333740234375" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.33331298828125" minWidth="10.0" prefWidth="130.66668701171875" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.0" minWidth="10.0" prefWidth="282.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.33331298828125" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="264.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="89.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -24,59 +25,24 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label alignment="CENTER" prefHeight="51.0" prefWidth="358.0" text="录入可用客房" GridPane.columnSpan="2">
+      <Label alignment="CENTER" prefHeight="50.0" prefWidth="360.0" text="录入可用客房" GridPane.columnSpan="2">
          <font>
             <Font size="33.0" />
          </font>
       </Label>
-      <Label prefHeight="20.0" prefWidth="143.0" text="单人房          数量：" GridPane.rowIndex="1">
+      <Label prefHeight="56.0" prefWidth="286.0" text="          单人房       数量：" GridPane.rowIndex="1">
          <font>
-            <Font size="15.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <Label text="标准间          数量：" GridPane.rowIndex="3">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="133.0" text="价格：" GridPane.rowIndex="2">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="132.0" text="价格：" GridPane.rowIndex="4">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label text="家庭房          数量：" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="132.0" text="价格：" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label prefHeight="20.0" prefWidth="133.0" text="套间            数量：" GridPane.columnIndex="2" GridPane.rowIndex="3">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="130.0" text="价格：" GridPane.columnIndex="2" GridPane.rowIndex="4">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <TextField fx:id="singleroomnum" prefHeight="23.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="singleroomprice" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="standardroomnum" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="standardroomprice" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="familyroomnum" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <TextField fx:id="familyroomprice" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <TextField fx:id="suiteroomnum" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <TextField fx:id="suiteroomprice" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <TextField fx:id="singleroomnum" prefHeight="35.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="singleroomprice" prefHeight="35.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="standardroomnum" prefHeight="35.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="standardroomprice" prefHeight="35.0" prefWidth="146.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="familyroomnum" prefHeight="35.0" prefWidth="141.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+      <TextField fx:id="familyroomprice" prefHeight="36.0" prefWidth="141.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <TextField fx:id="suiteroomnum" prefHeight="36.0" prefWidth="141.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <TextField fx:id="suiteroomprice" prefHeight="36.0" prefWidth="141.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       <Button fx:id="save" blendMode="MULTIPLY" mnemonicParsing="false" onAction="#SaveButtonClicked" prefHeight="45.0" prefWidth="133.0" styleClass="bton1" text="保存" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <font>
             <Font size="20.0" />
@@ -87,5 +53,40 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Label prefHeight="56.0" prefWidth="286.0" text="                          价格：" GridPane.rowIndex="2">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="          标准房       数量：" GridPane.rowIndex="3">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="  家庭房         数量：" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="  套间           数量：" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="                          价格：" GridPane.rowIndex="4">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="                    价格：" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label prefHeight="56.0" prefWidth="286.0" text="                    价格：" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>

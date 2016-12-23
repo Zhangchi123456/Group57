@@ -64,11 +64,12 @@ public class OrderlistuiController implements Initializable{
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
 	   if(temp.get(selectnumber).getOrderstation().equals("已执行")){
 		   Orderid=  temp.get(selectnumber).getOrder();
-		   Hotelname  = temp.get(selectnumber).getHotel();}
+		   Hotelname  = temp.get(selectnumber).getHotel();
+		   UiswitchHelper.getApplication().goto_OrderEvaluateui();}
 	   else{
 		   alt.display("未完成订单不能评价");
 	   }
-	   UiswitchHelper.getApplication().goto_OrderEvaluateui();
+	   
    }
    //撤销按钮的监听
    @FXML 
