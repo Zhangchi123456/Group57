@@ -216,14 +216,14 @@ public class HotelDataImpl extends UnicastRemoteObject implements HotelDataServi
 			while(iterator.hasNext()){
 				Entry<Integer, RoomPO> entry=iterator.next();
 				po=entry.getValue();
-				if(roomid == po.getRoomid()&&hotelname == po.getHotelid()){
+				if(roomid == po.getRoomid()&&hotelname.equals(po.getHotelid())){
 					return po;
 				}
 			}
 			return null;
 	}
 	
-	//显示城市里的所有商圈
+	//显示所有城市
 	public ArrayList<String> cityShowAll()throws RemoteException{
 			ArrayList<String> citylist = new ArrayList<String>();
 			CirclePO po = new CirclePO();

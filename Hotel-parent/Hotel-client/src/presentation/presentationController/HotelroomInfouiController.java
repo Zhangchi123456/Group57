@@ -46,13 +46,15 @@ public class HotelroomInfouiController implements Initializable{
 	
 	public ObservableList<SimpleRoom> temp;
 		
-	String Name = HotelmanageController.getHotelVO().getName();
+	static String Name = HotelmanageController.getHotelVO().getName();
 	HotelStaffLogicService hser = new HotelStaffLogicServiceImpl();
 	OrderLogicService oser = new OrderLogicServiceImpl();
 	ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
      
 	AlertBox alt;
 	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
@@ -72,6 +74,10 @@ public class HotelroomInfouiController implements Initializable{
 			vo = hser.FindRoomByID(Name, roomid);
 			vo.setRoomstate("可用");
 			int orderid = vo.getOrderid();
+			if(orderid==0){
+				alt = new AlertBox();
+				alt.display("无效房间！");
+			}
 			ordervo = oser.orderShowAll(orderid);
 			realleavetime = nowtime.format(new Date());
 			vo.setLeavetime(realleavetime);
@@ -130,7 +136,7 @@ public class HotelroomInfouiController implements Initializable{
 	public void  Roomlist(ArrayList<RoomVO> roomlist){
     	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
     	for(int i=0;i<roomlist.size();i++){
-    	temp.add(new SimpleRoom(String.valueOf(roomlist.get(i).getId()), 
+    	temp.add(new SimpleRoom(String.valueOf(roomlist.get(i).getRoomid()), 
     			roomlist.get(i).getRoomtype(), 
     			roomlist.get(i).getRoomstate(), 
     			roomlist.get(i).getLeavetime()));
