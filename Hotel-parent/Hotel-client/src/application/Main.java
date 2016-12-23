@@ -186,6 +186,7 @@ public class Main extends Application {
 			}
 	    }
 	    
+	    
 	    //跳转到注册界面
 	    public void goto_Registerui(){
 	    	try {

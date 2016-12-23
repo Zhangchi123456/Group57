@@ -30,7 +30,7 @@ public class RegisteruiController implements Initializable {
 	 private String name,password,confirmpassword,phonenumber;
 	 MemberLogicService memberlogic = new MemberLogicServiceImpl();
 	 LocalDate birthday;
-	  
+	  AlertBox alt=new AlertBox();
      @FXML
      private TextField NameText,PhonenumberText;
      //                姓名，     手机号码
@@ -95,34 +95,27 @@ public class RegisteruiController implements Initializable {
     		 birthday=BirthdayDatepicker.getValue();
     		 
     		 membervo.setbyString("个人会员", name, password, birthday,phonenumber);
-    		 try {
-				helper.insertMember(membervo);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		 
+			if(helper.insertMember(membervo)){
+					alt.display("注册成功");
+				}else {
+					alt.display("请勿频繁注册");
+				}
     	 }else if(Company.isSelected()){
     		 name=NameText.getText();
     		 password=PasswordText.getText();
     		 confirmpassword=PasswordconfirmText.getText();
     		 phonenumber=PhonenumberText.getText();
-    		 birthday=null;
+    		 birthday=BirthdayDatepicker.getValue();
     		 membervo.setbyString("企业会员", name, password, birthday,phonenumber);
-    		 try {
-				helper.insertMember(membervo);
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    	 }
-    	     AlertBox alt = new AlertBox();
-				alt.display("注册成功");
+    	   
+				if(helper.insertMember(membervo)){
+					alt.display("注册成功");
+				}else{
+					alt.display("请勿频繁注册");
+				}
+	    	 }
+    	    
     	 }
      }
      

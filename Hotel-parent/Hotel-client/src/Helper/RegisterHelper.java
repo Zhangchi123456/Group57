@@ -19,11 +19,24 @@ public class RegisterHelper {
 		
 	}
 	 
-	public boolean insertMember(MemberVO vo) throws ParseException, RemoteException{
-		MemberPO po=vo.topo();
-		if(memberService.insert(po)){
-		return true;
-	}
+	public boolean insertMember(MemberVO vo){
+		MemberPO po;
+		try {
+			po = vo.topo();
+			try {
+				if(memberService.insert(po)){
+					
+					return true;
+				}
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		return false;
 	
 	
