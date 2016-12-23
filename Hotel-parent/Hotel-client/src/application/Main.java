@@ -72,6 +72,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -95,6 +96,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -117,6 +119,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
@@ -139,6 +142,7 @@ public class Main extends Application {
 			} 
 			mainStage.setX(140);
 			mainStage.setY(50);
+			mainStage.setTitle("ORHS酒店管理系统");
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.sizeToScene();
