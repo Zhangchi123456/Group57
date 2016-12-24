@@ -1,11 +1,16 @@
 package Controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import vo.HotelVO;
 import vo.RoomVO;
 
+/*酒店工作人员流程控制器
+ * 持有当前酒店，酒店当前房间
+ * 
+ */
 public class HotelmanageController {
 	private final static Map<String,Object> Hotelmanagemap = new HashMap<>();
 	private final static String Hotelkey="hotelvo";
