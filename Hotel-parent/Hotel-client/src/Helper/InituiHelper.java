@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import vo.MemberVO;
-
+//界面初始化帮助类
 public class InituiHelper {
 	private static MemberVO membervo;
        private InituiHelper(){}

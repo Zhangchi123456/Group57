@@ -168,7 +168,6 @@ public class UsermainuiController implements Initializable{
 		PekingList.add("崇文门商圈");
 		PekingList.add("中关村商圈");
 		PekingList.add("三里屯商圈");
-		
 		NanjingList.add("新街口商圈");
 		NanjingList.add("山西路商圈");
 		NanjingList.add("夫子庙商圈");

@@ -18,7 +18,7 @@ public class RegisterHelper {
 	public RegisterHelper(){
 		
 	}
-	 
+	 //注册会员方法
 	public boolean insertMember(MemberVO vo){
 		MemberPO po;
 		try {

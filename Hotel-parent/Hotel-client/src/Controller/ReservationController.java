@@ -2,6 +2,7 @@ package Controller;
 
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,10 @@ import vo.MemberVO;
 import vo.OrderVO;
 import vo.WebPromotionVO;
 
+
+/*客户预定流程控制器，保存与预定有关的信息
+ * 持有当前会员，当前网站营销策略列表，当前酒店，当前订单，酒店列表，酒店促销策略列表
+ */
 public class ReservationController {
 	private final static Map<String,Object> reservationmap = new HashMap<>();
 	private final static String membervokey = "vo";	
