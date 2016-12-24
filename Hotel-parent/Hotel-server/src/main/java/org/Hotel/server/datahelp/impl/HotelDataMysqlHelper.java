@@ -200,7 +200,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 				String starttime=roomrs.getString("start_time");
 				String leavetime=roomrs.getString("leave_time");
 				
-				RoomPO po=new RoomPO(roomtype,id, hotelname, roomstate,starttime, leavetime, orderid,roomid);
+				RoomPO po=new RoomPO(roomtype,roomid, hotelname, roomstate,starttime, leavetime, orderid,id);
 				map.put(id, po);
 			}//end while
 			return map;
