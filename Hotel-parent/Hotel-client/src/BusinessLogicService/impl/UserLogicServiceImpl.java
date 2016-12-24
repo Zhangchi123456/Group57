@@ -138,7 +138,8 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 	@Override
 	public void saveHotelStaff(HotelStaffVO vo) {
 		HotelStaffPO po=new HotelStaffPO();
-		vo.settopo(vo);
+		po=vo.settopo(vo);
+		
 		try {
 			userdata.update(po);
 		} catch (RemoteException e) {
