@@ -11,7 +11,7 @@ import vo.MemberVO;
 public interface MemberInfo {
 	
     //通过会员名得到会员信息
-	public MemberPO findMemberByName(String name);
+	public MemberVO findMemberByName(String name);
 	//展示所有会员
 	public ArrayList<MemberVO> showall()throws RemoteException ;
 	//保存会员信息
