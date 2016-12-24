@@ -8,6 +8,5 @@ public interface LoginLogicService {
 	//operate current user
 	public void addCurrentUser(String name);	
 	public boolean isCurrentUser(String name);
-	public void removeCurrentUser(String name);
 	
 }

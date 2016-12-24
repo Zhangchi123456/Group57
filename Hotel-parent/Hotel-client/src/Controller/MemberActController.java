@@ -9,6 +9,10 @@ import vo.HotelVO;
 import vo.MemberVO;
 import vo.OrderVO;
 
+/* 客户行为辅助控制器，保存与客户行为有关的客户信息
+ * 持有客户vo，客户信用记录volist，客户曾预定酒店list，客户订单；
+ *  
+ */
 public class MemberActController {
 	private final static Map<String,Object> memberactmap = new HashMap<>();
 	private final static String memberVokey="memberVo";

@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
@@ -33,7 +35,7 @@ public class CreatorderController implements Initializable{
 	 private AlertBox alt2 = new AlertBox();
 	 //界面项目
 	 @FXML
-	 private TextField UserNum,RoomnumText;//人数，电话
+	 private TextField UserNum,RoomnumText;//人数,房间数
 	 @FXML 
 	 private Label UserName;
 	 @FXML
@@ -60,7 +62,10 @@ public class CreatorderController implements Initializable{
 			alt2.display("无法当天入住当天离开");
     	}else if(ReservationController.getMembervo().getcredit()<0){
 			alt2.display("信用值为负无法预订，请先充值");
-    	}else if(!reservationService.roomleft(ReservationController.getCurrentHotelvo(), 
+    	}else if(!isNumeric(UserNum.getText())||!isNumeric(RoomnumText.getText())){
+    		alt2.display("人数和房间数必须为不小于1的正数");
+    	}
+    	else if(!reservationService.roomleft(ReservationController.getCurrentHotelvo(), 
     orderService.findUserOrderListHotel(ReservationController.getCurrentHotelvo().getName()),TimeBegin.getValue(),TimeEnd.getValue(),Integer.parseInt(RoomnumText.getText().toString()), RoomType.getValue().toString())){
 			alt2.display("抱歉，剩余房间数量不足");
     	}else if(TimeBegin.getValue().isBefore(LocalDate.now())){
@@ -117,6 +122,15 @@ public class CreatorderController implements Initializable{
     	}
     	
     }
+    //判断是否为数字
+    public boolean isNumeric(String str){ 
+    	   Pattern pattern = Pattern.compile("[0-9]*"); 
+    	   Matcher isNum = pattern.matcher(str);
+    	   if( !isNum.matches() ){
+    	       return false; 
+    	   } 
+    	   return true; 
+    	}
   //判断信息是否填写完整  
     private boolean Allisfilled(){
         	if(UserNum.getText().isEmpty()||RoomnumText.getText().isEmpty()||RoomType.getValue().toString().equals(null)||Child.getValue().toString().equals(null)||

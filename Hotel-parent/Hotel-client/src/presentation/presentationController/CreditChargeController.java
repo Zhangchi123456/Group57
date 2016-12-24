@@ -2,10 +2,12 @@ package presentation.presentationController;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import BusinessLogicService.Service.MemberLogicService;
 import BusinessLogicService.impl.MemberLogicServiceImpl;
+import Controller.MemberActController;
 import Helper.UiswitchHelper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import presentation.userui.AlertBox;
+import vo.CreditRecordVO;
 import vo.MemberVO;
 
 public class CreditChargeController implements Initializable{
@@ -44,7 +47,14 @@ public class CreditChargeController implements Initializable{
     		Chargenum=ChargenumText.getText().toString();
             vo=memberlogic.Findmemberbyname(Username);
             vo.setMembercreditvalue(vo.getMembercreditvalue()+Integer.parseInt(Chargenum)*100);
-			memberlogic.updateMemberinfo(vo);
+            CreditRecordVO creditvo=new CreditRecordVO();
+            SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+            creditvo.setTime(sdf2.format(System.currentTimeMillis()));
+            creditvo.setAction("信用充值");
+            creditvo.setCreditchange(Chargenum+"00");
+            creditvo.setCreditlast(String.valueOf(vo.getcredit()));
+            memberlogic.addCreditRecord(creditvo);
+			memberlogic.updateMemberinfo(vo);		
 			AlertBox alt = new AlertBox();
 			alt.display("充值成功");
 			

@@ -17,18 +17,19 @@ import vo.HotelStaffVO;
 import vo.WebStaffVO;
 
 public class AddHotelStuffController implements Initializable{
+	 //持有的类
 		UserLogicService userblservice =new UserLogicServiceImpl();
 	 	@FXML
 	    private TextField nameText,hotelName;
-	    
+	    //          持有的文本框
 	    @FXML
 	    private PasswordField password,ensurePassword;
-	    
+	    //         持有的密码框
 	    @FXML
 	    private void ReturnButtonClicked(ActionEvent event){
 	    	UiswitchHelper.getApplication().goto_UserWebAddHotelui();
 	    }
-	    
+	    //添加按钮的监听方法
 	    @FXML
 	    private void AddButtonClicked(ActionEvent event){
 	    	String name=nameText.getText().trim();

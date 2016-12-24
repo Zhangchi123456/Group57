@@ -104,6 +104,7 @@ public class MemberVO {
 			
 			this.phonenumber=DES.decrypt(po.getConnection());
 	    	this.password=DES.decrypt(po.getPassword());
+	    	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

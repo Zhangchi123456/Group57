@@ -150,12 +150,16 @@ public class MemberLogicServiceImpl implements MemberLogicService,MemberInfo{
 	//method for interface memberinfo
 	//pass member po to other bl
 	@Override
-	public MemberPO findMemberByName(String name) {
-		MemberPO po=null;
+	public MemberVO findMemberByName(String name) {
+		MemberPO po=new MemberPO();
+		MemberVO vo = new MemberVO();
 		try {
 			po=memberService.find(name);
-			if(po!=null)
-				return po;
+		
+			if(po!=null){
+				vo.setbypo(po);
+				return vo;
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

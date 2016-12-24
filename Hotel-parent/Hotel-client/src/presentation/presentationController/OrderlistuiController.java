@@ -13,6 +13,8 @@ import BusinessLogicService.Service.OrderLogicService;
 import BusinessLogicService.impl.MemberLogicServiceImpl;
 import BusinessLogicService.impl.OrderLogicServiceImpl;
 import Controller.MemberActController;
+import Controller.ReservationController;
+import vo.CreditRecordVO;
 import vo.MemberVO;
 import vo.OrderVO;
 import Helper.UiswitchHelper;
@@ -97,14 +99,24 @@ public class OrderlistuiController implements Initializable{
 		   Date startdate=sdf.parse(starttime);
 		   String nowdate=sdf2.format(System.currentTimeMillis());
 		   Date today=sdf2.parse(nowdate);
+		   CreditRecordVO creditvo=new CreditRecordVO();
+		   creditvo.setAction("撤销订单");
+		   creditvo.setOrderid(Orderid);
+		   creditvo.setTime(nowdate);
+		   creditvo.setCreditchange("0");
 		   if((startdate.getTime()-today.getTime())/1000<21600){
 			   MemberVO member=MemberActController.getmemberVo();
-			   member.setMembercreditvalue(member.getcredit()-cutcredit);
+			   member.setMembercreditvalue(member.getcredit()-cutcredit/2);
+			   creditvo.setCreditchange(String.valueOf(cutcredit/2));
 			   memberservice.updateMemberinfo(member);
+			   creditvo.setCreditlast(String.valueOf(member.getcredit()));
 			   MemberActController.setMembervo(member);
+			   ReservationController.setMembervo(member);
 			    
 		   }
+		   creditvo.setCreditlast(String.valueOf(MemberActController.getmemberVo().getcredit()));
 		   if(bool){ 
+			   memberservice.addCreditRecord(creditvo);
 			   alt.display("订单已撤销");
 			   String tem = (String) OrderStationChoiceBox.getValue();
 			   if(tem.equals("未执行订单")){

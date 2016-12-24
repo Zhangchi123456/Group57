@@ -45,16 +45,16 @@ public class UserLogicServiceImpl implements UserLogicService,UserInfo,LogoutLog
 		WebStaffPO po1=null;
 		HotelStaffPO po2=null;
 		WebManagerPO po3=null;
-		MemberPO po4=null;
+		MemberVO vo4=null;
 		try {
 			po1=userdata.findByWebStaff(name);
 			po2=userdata.findByHotelStaff(name);
 			po3=userdata.findByWebManager(name);
-			po4=memberInfo.findMemberByName(name);
+			vo4=memberInfo.findMemberByName(name);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		if(po1==null&&po2==null&&po3==null&&po4==null){
+		if(po1==null&&po2==null&&po3==null&&vo4==null){
 			return false;
 		}else 
 			return true;

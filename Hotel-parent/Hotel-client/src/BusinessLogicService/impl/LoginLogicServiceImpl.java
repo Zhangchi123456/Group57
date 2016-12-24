@@ -24,10 +24,8 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			HotelStaffVO hotelstaffvo=userservice.findHotelStaffByName(name);
 			WebStaffVO webstaffvo=userservice.findWebStaffByName(name);
 			WebManagerVO webmanagervo=userservice.findWebManagerByName(name);
-			MemberPO memberpo=memberservice.findMemberByName(name);
-			MemberVO membervo = null;
-			if(memberpo!=null)
-			membervo.setbypo(memberpo);
+			MemberVO membervo=memberservice.findMemberByName(name);				
+			
 			if(hotelstaffvo!=null){
 				if(hotelstaffvo.getPassword().equals(password))
 					
@@ -50,7 +48,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			hotelstaffvo=null;
 			webstaffvo =null;
 			webmanagervo=null;
-			memberpo=null;
 			membervo=null;
 		}catch (Exception e){
 			e.printStackTrace();
@@ -69,8 +66,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		return userservice.isCurrentUser(name);		
 	}
 	
-	public void removeCurrentUser(String name) {
-		
-	}
+	
 	
 }
