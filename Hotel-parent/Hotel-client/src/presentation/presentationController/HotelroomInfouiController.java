@@ -39,7 +39,7 @@ public class HotelroomInfouiController implements Initializable{
 	private TableView<SimpleRoom> table;
 	
 	@FXML
-	private TableColumn<SimpleRoom, String> roomNum,RoomInfo,State,Last;
+	private TableColumn<SimpleRoom, String> roomNum,RoomInfo,State,Last;//房间号，房间类型，状态，最后一次退房时间
 	
 	@FXML
 	private Label roomList;
@@ -55,7 +55,7 @@ public class HotelroomInfouiController implements Initializable{
 	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
-	@FXML
+	@FXML//返回按钮
 	private void ReturnButtonClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
@@ -118,7 +118,7 @@ public class HotelroomInfouiController implements Initializable{
 			alt.display("请先选择！");
 		}
 	}
-	@Override
+	@Override//界面初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			roomlist = hser.roomShowAll(Name);
@@ -132,7 +132,7 @@ public class HotelroomInfouiController implements Initializable{
 	}
 	
 	
-	
+	//表中项
 	public void  Roomlist(ArrayList<RoomVO> roomlist){
     	ObservableList<SimpleRoom> temp =FXCollections.observableArrayList();
     	for(int i=0;i<roomlist.size();i++){

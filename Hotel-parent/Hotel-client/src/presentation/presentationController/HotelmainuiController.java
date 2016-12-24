@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 
 public class HotelmainuiController implements Initializable{
 	@FXML
-	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion,Return,RoomEntry;
+	private Button RoomInfo,Update,Order,HotelInfo,HotelPromotion,Return,RoomEntry;//跳转按钮
 	
 	@FXML
 	private Label title,welcome;
@@ -28,34 +28,34 @@ public class HotelmainuiController implements Initializable{
 	private void RoomInfoButtonClicked(ActionEvent event) {
 	    UiswitchHelper.getApplication().goto_roomInfoui();
 		
-	}
+	}//房间列表界面
 	@FXML
 	private void OrderButtonClicked(ActionEvent event) {
 	    UiswitchHelper.getApplication().goto_orderui();
-	}
+	}//订单界面
 	@FXML
 	private void UpdateButtonClicked(ActionEvent event) {
 	    UiswitchHelper.getApplication().goto_updateui();
-	}
+	}//更新入住界面
 	@FXML
 	private void HotelInfoButtonClicked(ActionEvent event) {
 		UiswitchHelper.getApplication().goto_hotelInfoui();
-	}
+	}//酒店信息界面
 	@FXML
 	private void HotelPromotionClicked(ActionEvent event) {
 		UiswitchHelper.getApplication().goto_birthdayui();
-	}
+	}//促销策略界面
 	@FXML
 	private void ReturnClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_Loginui();
-	}
+	}//返回
 	@FXML
 	private void RoomEntryButtonClicked(ActionEvent event){
 		UiswitchHelper.getApplication().goto_HotelRoomEntryui();
-	}
+	}//输入可用客房
 	
 	
-	@Override
+	@Override//初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		HotelStaffLogicService ser = new HotelStaffLogicServiceImpl();
