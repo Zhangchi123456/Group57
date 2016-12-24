@@ -152,7 +152,7 @@ public class RoomVO {
 		this.starttime = roompo.getStarttime();
 		this.leavetime = roompo.getLeavetime();	
 		this.orderid = roompo.getOrderid();
-		
+		this.id = roompo.getId();
 	}
 	
 	public RoomPO toRoomPO(RoomVO vo){
@@ -165,7 +165,7 @@ public class RoomVO {
 		po.setStarttime(starttime);
 		po.setLeavetime(leavetime);
 		po.setOrderid(orderid);
-		
+		po.setId(id);
 		return po;
 	}
 
