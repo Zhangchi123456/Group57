@@ -66,8 +66,6 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 		return userservice.isCurrentUser(name);		
 	}
 	
-	public void removeCurrentUser(String name) {
-		
-	}
+	
 	
 }

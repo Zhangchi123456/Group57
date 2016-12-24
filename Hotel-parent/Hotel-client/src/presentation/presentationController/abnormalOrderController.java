@@ -55,6 +55,7 @@ public class abnormalOrderController implements Initializable{
 	private void DeleteClicked(ActionEvent event){
 	
 		int selectnumber=Table.getSelectionModel().getSelectedIndex();
+		
 		if(halfcredit.isSelected()&&allcredit.isSelected()){
 			alt.display("选择错误");
 		}

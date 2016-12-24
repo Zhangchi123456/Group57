@@ -18,18 +18,19 @@ public class AddWebStuffController implements Initializable{
 	UserLogicService userblservice =new UserLogicServiceImpl();
     @FXML
     private TextField NameText,PhonenumberText;
-    
+    //     持有的文本框
     @FXML
     private PasswordField password,ensurepassword;
-    
+    //        持有的密码框
     @FXML
     private PasswordField PasswordText,ConfirmTextField;
-    
+   
+    //返回按钮的监听
     @FXML
     private void ReturnButtonClicked(ActionEvent event){
     	UiswitchHelper.getApplication().goto_UserWebManagermentWebui();
     }
-    
+    //        添加按钮的监听
     @FXML
     private void AddButtonClicked(ActionEvent event){
     	String name=NameText.getText().trim();

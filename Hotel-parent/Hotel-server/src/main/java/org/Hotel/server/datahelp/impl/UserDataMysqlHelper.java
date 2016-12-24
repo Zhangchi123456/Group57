@@ -116,6 +116,7 @@ public class UserDataMysqlHelper implements UserDataHelper {
 		int id=po.getId();
 		String name=po.getName();
 		String password=po.getPassword();
+		System.out.println("password"+password);
 		
 		String query="UPDATE hotel_staff SET "
 				+ "password="+"'"+password+"'"
