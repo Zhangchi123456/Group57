@@ -99,7 +99,7 @@ public class OrderlistuiController implements Initializable{
 		   Date today=sdf2.parse(nowdate);
 		   if((startdate.getTime()-today.getTime())/1000<21600){
 			   MemberVO member=MemberActController.getmemberVo();
-			   member.setMembercreditvalue(member.getcredit()-cutcredit);
+			   member.setMembercreditvalue(member.getcredit()-cutcredit/2);
 			   memberservice.updateMemberinfo(member);
 			   MemberActController.setMembervo(member);
 			    
