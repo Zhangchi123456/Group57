@@ -25,9 +25,12 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			WebStaffVO webstaffvo=userservice.findWebStaffByName(name);
 			WebManagerVO webmanagervo=userservice.findWebManagerByName(name);
 			MemberPO memberpo=memberservice.findMemberByName(name);
-			MemberVO membervo = null;
-			if(memberpo!=null)
+			MemberVO membervo = new MemberVO();
+			if(memberpo!=null){
+			
 			membervo.setbypo(memberpo);
+			
+			}
 			if(hotelstaffvo!=null){
 				if(hotelstaffvo.getPassword().equals(password))
 					
