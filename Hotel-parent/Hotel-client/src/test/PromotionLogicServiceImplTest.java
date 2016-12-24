@@ -17,12 +17,22 @@ public class PromotionLogicServiceImplTest extends TestCase {
 	
 	@Test
 	public void test2(){
-		assertEquals(100,promotion.getMemberLevel(1).getCredit());
+		assertEquals(1000,promotion.getMemberLevel(2).getCredit());
 	}
 	
 	@Test
 	public void test3(){
 		assertEquals("王府井商圈",promotion.getCircle("北京","王府井商圈").getName());
+	}
+	
+	@Test
+	public void test4(){
+		assertEquals("南行酒店",promotion.getHotelPromotionList("日期折扣","南行酒店").get(0).getHotelName());
+	}
+	
+	@Test
+	public void test5(){
+		assertEquals("北京",promotion.getCircle("北京").get(0).getCity());
 	}
 
 }
