@@ -28,7 +28,7 @@ public class HotelupdateuiController implements Initializable{
 	private Button ok,back;
 	
 	@FXML
-	private TextField roomNumtx,orderNumtx;
+	private TextField roomNumtx,orderNumtx;//房间号，订单号
 	
 	@FXML
 	private Label Update,roomNum,INtime,OutTime,orderNum,INtimetx,OutTimetx;
@@ -39,12 +39,14 @@ public class HotelupdateuiController implements Initializable{
 
 	AlertBox alt;
 	SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	@FXML
+	
+	@FXML//返回按钮
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
-	@FXML
+	
+	@FXML//确认按钮
 	private void SureClicked(ActionEvent event){
 		if(roomNum.getText()==null||orderNumtx.getText()==null){
 			alt = new AlertBox();
@@ -109,7 +111,7 @@ public class HotelupdateuiController implements Initializable{
 		}
 
 	}
-	@Override
+	@Override//界面初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		INtimetx.setText(null);
 		OutTimetx.setText(null);

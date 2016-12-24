@@ -34,13 +34,13 @@ public class HotelorderuiController implements Initializable{
 	private TableView<SimpleHotelOrder> table;
 	
 	@FXML
-	private TableColumn<SimpleHotelOrder, String> OrderNum,OrderInfo,State;
+	private TableColumn<SimpleHotelOrder, String> OrderNum,OrderInfo,State;//订单号，订单人数，状态
 	
 	@FXML
 	private Label OrderList;
 	
 	@FXML
-	private ChoiceBox<String> stateFind;
+	private ChoiceBox<String> stateFind;//订单状态选择框
 	
     public ObservableList<SimpleHotelOrder> temp;
 	public static String Orderid;
@@ -50,12 +50,12 @@ public class HotelorderuiController implements Initializable{
 	ArrayList<OrderVO> orderlist = new ArrayList<OrderVO>();
      
 	AlertBox alt;
-	@FXML
+	@FXML//返回按钮
 	private void ReturnClicked(ActionEvent event) throws IOException{
 		UiswitchHelper.getApplication().goto_HotelMainui();
 		
 	}
-	@FXML
+	@FXML//跳转至订单信息界面
 	private void CheckClicked(ActionEvent event) throws IOException{
 		if(!table.getSelectionModel().isEmpty()){
 		int selectnumber=table.getSelectionModel().getSelectedIndex();
@@ -71,7 +71,7 @@ public class HotelorderuiController implements Initializable{
 	}
 	
 	 @SuppressWarnings("unused")
-	@FXML 
+	@FXML //选择框监听
 	private void ChoiceBoxClicked(ActionEvent event){
 		 orderlist = am.findUserOrderListHotel(Name);
 		 ArrayList<OrderVO> templist = new ArrayList<OrderVO>();
@@ -140,7 +140,7 @@ public class HotelorderuiController implements Initializable{
 	 
 	 }
 	 
-	@Override
+	@Override//界面初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		stateFind.setValue("所有订单"); 
 		orderlist = am.findUserOrderListHotel(Name);
@@ -204,12 +204,12 @@ public class HotelorderuiController implements Initializable{
 		state.set(string);
 	}
 	}
-	
+	//表中项
 	public void  HotelOrderlist(ArrayList<OrderVO> list){
     	ObservableList<SimpleHotelOrder> temp =FXCollections.observableArrayList();
     	for(int i=0;i<list.size();i++){
     	temp.add(new SimpleHotelOrder(String.valueOf(list.get(i).getId()), 
-    			String.valueOf(list.get(i).getPeoplenum()), 
+    			String.valueOf(list.get(i).getPeoplenum())+" "+list.get(i).isHavekids(), 
     			list.get(i).getState()
     			));
     	}

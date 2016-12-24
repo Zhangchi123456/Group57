@@ -42,7 +42,7 @@ public class HotelRoomEntryuiController implements Initializable {
 		UiswitchHelper.getApplication().goto_HotelMainui();
 	}
 	
-	@FXML
+	@FXML//保存按钮
 	private void SaveButtonClicked(ActionEvent event){
 		if(singleroomnum.getText().equals("")||singleroomprice.getText().equals("")
 				||standardroomnum.getText().equals("")||standardroomprice.getText().equals("")
@@ -150,7 +150,7 @@ public class HotelRoomEntryuiController implements Initializable {
 		
 	}
 	
-	@Override
+	@Override//界面初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		singleroomnum.setText("");
         singleroomprice.setText("");

@@ -38,7 +38,7 @@ public class HotelorderInfouiController implements Initializable{
 	private Label INtimetx,OutTimetx;//入住时间，离开时间，订单持有者
 	
 	@FXML
-	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State,SingleRoom,StandardRoom,FamilyRoom,SuiteRoom,singlenumber,standardnumber,familynumber,suitenumber;//订单持有者
+	private Label Person,CurrentState,OrderId,orderInfo,INtime,OutTime,State,SingleRoom,StandardRoom,FamilyRoom,SuiteRoom,singlenumber,standardnumber,familynumber,suitenumber;
 	
 	@SuppressWarnings("rawtypes")
 	@FXML
@@ -58,21 +58,21 @@ public class HotelorderInfouiController implements Initializable{
 			
 		UiswitchHelper.getApplication().goto_orderui();
 		
-	}
+	}//返回至订单列表界面
 	@FXML
 	private void RefrashClicked(ActionEvent event){
-		
-		SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//刷新
+		SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//日期格式
 		String lasttime = ordervo.getLasttime();
 	
-		int judge;
+		int judge;//日期判断辅助变量
 		CreditRecordVO creditvo = null;
 		MemberVO membervo = null;
 		membervo = mser.Findmemberbyname(ordervo.getName());;
 		ArrayList<CreditRecordVO> creditlist = new ArrayList<CreditRecordVO>();
 		creditlist = mser.FindCreditbyname(ordervo.getName());
 		int tempcredit = 0;
-		try {
+		try {//处理异常订单
 			judge = nowtime.parse(nowtime.format(new Date())).compareTo(nowtime.parse(lasttime));
 			if(judge==1){
 				CurrentState.setText("异常");
@@ -110,6 +110,7 @@ public class HotelorderInfouiController implements Initializable{
 		suitenumber.setText(ordervo.getSuiteRoom());
 		
 		if(CurrentState.getText().toString().equals("已执行")){
+			//处理已执行订单
 			ordervo.setState("已执行");
 			ser.changeOrderStation(String.valueOf(orderid), "已执行");
 			
@@ -129,6 +130,7 @@ public class HotelorderInfouiController implements Initializable{
 		}
 		
 		if(CurrentState.getText().toString().equals("已撤销")){
+			//处理已撤销订单
 			ordervo.setState("已撤销");
 			ser.changeOrderStation(String.valueOf(orderid), "已撤销");
 			
@@ -147,7 +149,7 @@ public class HotelorderInfouiController implements Initializable{
 		}
 	}
 	@SuppressWarnings("unchecked")
-	@Override
+	@Override//界面初始化方法
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		SimpleDateFormat nowtime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -232,7 +234,7 @@ public class HotelorderInfouiController implements Initializable{
 			mser.updateMemberinfo(membervo);
 		}
 		
-		ArrayList<String> statelist = new ArrayList<String>();
+		ArrayList<String> statelist = new ArrayList<String>();//选择框
 		statelist.add("未执行");
 		statelist.add("已执行");
 		statelist.add("异常");
