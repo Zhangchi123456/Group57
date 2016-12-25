@@ -54,7 +54,7 @@ public class HotelInfoBrowseuiController implements Initializable{
 	Star.setText(String.valueOf(hotelvo.getStar()));
 	address.setText(hotelvo.getAddress());
 	SingleLabel.setText(String.valueOf(hotelvo.getSingleRoomPrice()));
-	
+	introduction.setText(hotelvo.getIntroduction());
 	
 	StandardLabel.setText(String.valueOf(hotelvo.getStandardRoomPrice()));
 	FamilyLabel.setText(String.valueOf(hotelvo.getFamilyRoomPrice()));
