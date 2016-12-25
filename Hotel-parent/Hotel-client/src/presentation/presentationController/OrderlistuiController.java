@@ -64,6 +64,10 @@ public class OrderlistuiController implements Initializable{
    @FXML 
    private void EvaluateClicked(ActionEvent event){	   
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
+	   if(selectnumber==-1){
+		   alt.display("未选中订单");
+	   }
+	   else{
 	   if(temp.get(selectnumber).getOrderstation().equals("已执行")){
 		   Orderid=  temp.get(selectnumber).getOrder();
 		   Hotelname  = temp.get(selectnumber).getHotel();
@@ -71,12 +75,16 @@ public class OrderlistuiController implements Initializable{
 	   else{
 		   alt.display("未完成订单不能评价");
 	   }
-	   
+	   }
    }
    //撤销按钮的监听
    @FXML 
    private void  DeleteOrderClicked(ActionEvent event) throws ParseException{        
 	   int selectnumber=OrderList.getSelectionModel().getSelectedIndex();
+	   if(selectnumber==-1){
+	       alt.display("未选中订单");
+	   }
+	   else{
 	   if(!temp.get(selectnumber).getOrderstation().equals("未执行")){
 		   alt.display("不能撤销该订单");
 	   }
@@ -128,7 +136,7 @@ public class OrderlistuiController implements Initializable{
 			   if(orderlist!=null);
 			   Orderlist(orderlist);
 		   }
-	   }
+	   }}
    }
    //订单查询的监听
    @FXML 
