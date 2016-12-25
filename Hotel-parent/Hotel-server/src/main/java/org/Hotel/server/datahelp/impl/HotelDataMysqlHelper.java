@@ -84,19 +84,42 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		double score=hotelpo.getGrade();
 		String address=hotelpo.getAddress();
 		String introduction=hotelpo.getIntroduction();
+		//left room nums
 		int lsingler=hotelpo.getLeftSingleRoom();
 		int lstandardr=hotelpo.getLeftStandardRoom();
 		int lfamilyr=hotelpo.getLeftFamilyRoom();
 		int lsuiter=hotelpo.getLeftSuiteRoom();
+		//total room nums 
+		int single=hotelpo.getSingleRoom();
+		int dou=hotelpo.getSingleRoom();
+		int tri=hotelpo.getFamilyRoom();
+		int suite=hotelpo.getSuiteRoom();
+		//room price
+		double sinPri=hotelpo.getSingleRoomPrice();
+		double douPri=hotelpo.getStandardRoomPrice();
+		double triPri=hotelpo.getFamilyRoomPrice();
+		double suiPri=hotelpo.getSuiteRoomPrice();
 		
 		String query="UPDATE hotel SET star="+"'"+star+"',"
 				+ "score="+"'"+score+"',"
-				 + "address="+"'"+address+"',"
-				 + "introduction="+"'"+introduction+"',"
+				+ "address="+"'"+address+"',"
+				+ "introduction="+"'"+introduction+"',"
+				
+				+ "single_room="+"'"+single+"',"
+				+ "standard_room="+"'"+dou+"',"
+				+ "family_room="+"'"+tri+"',"
+				+ "suite_room="+"'"+suite+"',"
+				
 				+ "single_room_left="+"'"+lsingler+"',"
 				+ "standard_room_left="+"'"+lstandardr+"',"
 				+ "family_room_left="+"'"+lfamilyr+"',"
-				+ "suite_room_left="+"'"+lsuiter+"'"
+				+ "suite_room_left="+"'"+lsuiter+"',"
+				
+				+ "single_room_price="+"'"+sinPri+"',"
+				+ "standard_room_price="+"'"+douPri+"',"
+				+ "family_room_price="+"'"+triPri+"',"
+				+ "suite_room_price="+"'"+suiPri+"'"
+				
 				+" WHERE name="+"'"+name+"'";
 		
 		try{
@@ -136,6 +159,7 @@ public class HotelDataMysqlHelper implements HotelDataHelper {
 		double pstandardRoom=hotelpo.getSingleRoomPrice();
 		double pfamilyRoom=hotelpo.getFamilyRoomPrice();
 		double psuiteRoom=hotelpo.getSuiteRoomPrice();
+
 		
 		try{
 			String query="INSERT INTO hotel(name,star,score,city,address,introduction,circle_name,"

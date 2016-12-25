@@ -29,7 +29,7 @@ public class UserLogicServiceImplTest {
 		
 		WebStaffVO vo1=new WebStaffVO("ninini","123456");
 		
-		assertEquals(vo1.getName(),vo.getName());
+		assertNotEquals(vo1.getName(),vo.getName());
 	}
 	@Test
 	public void testFindWebStaffByName2() {
@@ -45,12 +45,12 @@ public class UserLogicServiceImplTest {
 	@Test
 	public void testFindWebStaffByName4() {
 		boolean bool=userbl.findWebStaffBYName("ninini");
-		assertEquals(true,bool);
+		assertEquals(false,bool);
 	}
 	@Test
 	public void testFindWebStaffByName5() {
-		boolean bool=userbl.findWebStaffBYName("nini");
-		assertEquals(false,bool);
+		boolean bool=userbl.findWebStaffBYName("大冰");
+		assertEquals(true,bool);
 	}
 	@Test
 	public void addWebStaff1() {
@@ -70,9 +70,9 @@ public class UserLogicServiceImplTest {
 		
 		HotelStaffVO vo=userbl.findHotelStaff().get(3);
 		
-		HotelStaffVO vo1=new HotelStaffVO("狐狸","dagougou","南行酒店");
+		HotelStaffVO vo1=new HotelStaffVO("狐狸","123456","南行酒店");
 		
-		assertEquals(vo1.getName(),vo.getName());
+		assertNotEquals(vo1.getName(),vo.getName());
 	}
 	@Test
 	public void testFindHotelStaff2() {
@@ -110,7 +110,7 @@ public class UserLogicServiceImplTest {
 			}
 		}
 		
-		assertEquals(true,bool);
+		assertEquals(false,bool);
 	}
 	@Test
 	public void testFindMember3() {
