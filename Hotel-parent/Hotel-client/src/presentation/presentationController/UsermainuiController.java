@@ -131,6 +131,7 @@ public class UsermainuiController implements Initializable{
 
 	@FXML
 	private void ReturnButtonClicked(ActionEvent event){
+		ReservationController.setMembervo(null);
 		UiswitchHelper.getApplication().goto_Loginui();
 	}
 	
@@ -154,8 +155,12 @@ public class UsermainuiController implements Initializable{
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-	    MemberVO member=memberservice.Findmemberbyname(LoginController.UserName);
+		MemberVO member=new MemberVO();
+		if(ReservationController.getMembervo()==null){
+	     member=memberservice.Findmemberbyname(LoginController.UserName);
+		}else{
+			member=ReservationController.getMembervo();
+		}
 	    memberservice.updatelevel(member);
 	    ReservationController.setMembervo(member);
 		MemberActController.setMembervo(member);
@@ -190,7 +195,7 @@ public class UsermainuiController implements Initializable{
 		
 		
 	    		
-		membernamelabel.setText(LoginController.UserName);
+		membernamelabel.setText(member.getMembername());
 		
 	}
 

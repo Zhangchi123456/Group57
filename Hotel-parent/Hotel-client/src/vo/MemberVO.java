@@ -58,6 +58,7 @@ public class MemberVO {
     	this.memberbirthday=Date;
     	this.membername=name;
     	this.phonenumber=phonenumber;
+    	this.Birthday=Date.toString();
     }
     
     public MemberPO topo() throws ParseException{
