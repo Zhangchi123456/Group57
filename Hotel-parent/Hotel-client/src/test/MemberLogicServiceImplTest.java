@@ -24,11 +24,10 @@ public class MemberLogicServiceImplTest {
 	public void testMembershowall() throws RemoteException{
 		ArrayList<MemberVO> memberlist=member.showall();
 		boolean result = false;
-		for(int i=0;i<memberlist.size();i++){
-			if(memberlist.get(i).getname()=="高晓晓"){
-				result=true;
-			}
+		if(memberlist.size()>0){
+			result=true;
 		}
+		
 		assertTrue(result);
 	}
 	@Test

@@ -98,12 +98,12 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 break;
             	 }
              }		 
-			return finalprice;
+			return Math.floor(finalprice);
             }
             catch(ParseException e){
             	e.printStackTrace();
             }
-            return price*num;
+            return Math.floor(price*num);
 	}
 	
 	//判断是否曾预定过这个酒店方法的实现
