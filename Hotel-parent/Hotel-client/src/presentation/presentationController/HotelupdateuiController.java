@@ -58,7 +58,7 @@ public class HotelupdateuiController implements Initializable{
 		RoomVO roomvo;
 		String realstarttime;
 		try {
-		if(ordervo==null||ordervo.getState()=="已撤销"){
+		if(ordervo==null||ordervo.getState().equals("已撤销")){
 			alt = new AlertBox();
 			alt.display("请填写正确订单号！");
 		}
