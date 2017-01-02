@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.roomnumberuiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.roomnumberuiController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0" stylesheets="@../userui/promotion.css">
          <padding>
@@ -96,7 +96,7 @@
             <Insets bottom="30.0" left="20.0" right="10.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="confirm" blendMode="MULTIPLY" layoutX="653.0" layoutY="514.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="82.0" styleClass="bton1" text="返回">
+      <Button fx:id="confirm" blendMode="MULTIPLY" layoutX="653.0" layoutY="514.0" mnemonicParsing="false" onAction="#toBack" prefHeight="50.0" prefWidth="96.0" styleClass="bton1" text="返回">
          <font>
             <Font size="23.0" />
          </font>

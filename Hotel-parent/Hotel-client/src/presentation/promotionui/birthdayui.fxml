@@ -12,14 +12,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.birthdayuiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="background" stylesheets="@promotion.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.presentationController.birthdayuiController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="800.0">
          <padding>
             <Insets bottom="30.0" left="10.0" right="30.0" top="20.0" />
          </padding>
          <children>
-            <Label alignment="CENTER" prefHeight="118.0" prefWidth="360.0" text="制定酒店营销策略">
+            <Label alignment="CENTER" prefHeight="70.0" prefWidth="683.0" text="               制定酒店营销策略">
                <font>
                   <Font name="Yuanti SC Regular" size="40.0" />
                </font>
@@ -43,7 +43,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="birthdaydiscount" prefHeight="27.0" prefWidth="113.0" />
+                  <TextField fx:id="birthdaydiscount" prefHeight="33.0" prefWidth="124.0" />
                   <Label text="\%">
                      <font>
                         <Font size="20.0" />
@@ -66,7 +66,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="397.0" prefWidth="253.0" spacing="40.0">
+      <VBox blendMode="MULTIPLY" layoutY="120.0" prefHeight="429.0" prefWidth="253.0" spacing="40.0">
          <children>
             <Button id="hotelpro1" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="bton1" text="会员生日特惠">
                <font>
@@ -96,7 +96,7 @@
             <Insets bottom="30.0" left="20.0" right="10.0" top="30.0" />
          </padding>
       </VBox>
-      <Button fx:id="confirm" blendMode="MULTIPLY" layoutX="607.0" layoutY="500.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="89.0" styleClass="bton1" text="返回">
+      <Button fx:id="confirm" blendMode="MULTIPLY" layoutX="607.0" layoutY="500.0" mnemonicParsing="false" onAction="#ReturnClicked" prefHeight="50.0" prefWidth="114.0" styleClass="bton1" text="返回">
          <font>
             <Font size="21.0" />
          </font>
@@ -104,7 +104,7 @@
             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                <stops>
                   <Stop color="#a46868" />
-                  <Stop color="#a80909" offset="1.0" />
+                  <Stop color="#282323" offset="1.0" />
                </stops>
             </RadialGradient>
          </textFill>

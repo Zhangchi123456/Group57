@@ -23,7 +23,7 @@ public class DES {
     private final static String defaultKey = "test1234";
 
     public static void main(String[] args) throws Exception {
-        String data = "123";
+        String data = "admin";
         // System.err.println(encrypt(data, key));
         // System.err.println(decrypt(encrypt(data, key), key));
         System.out.println(encrypt(data));

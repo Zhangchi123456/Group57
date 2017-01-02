@@ -41,7 +41,7 @@ public class discarriedorderlistController implements Initializable{
   @FXML
   private TableView<SimpleOrder> Table;//未执行订单表
   @FXML
-  private TableColumn<SimpleOrder,String> OrderId,User,HotelName,OrderPrice;//表中项
+  private TableColumn<SimpleOrder,String> OrderId,User,HotelName,OrderPrice,OrderTime;//表中项
   @FXML
   private RadioButton  halfcredit,allcredit;
 
@@ -66,7 +66,7 @@ public class discarriedorderlistController implements Initializable{
   	 temp =FXCollections.observableArrayList();
   	 for(int i=0;i<orderlist.size();i++){
   		 temp.add(new SimpleOrder(orderlist.get(i).getHotelid(),orderlist.get(i).getId(),
-  				 orderlist.get(i).getName(),orderlist.get(i).getPrice()));   		 
+  				 orderlist.get(i).getName(),orderlist.get(i).getPrice(),orderlist.get(i).getStarttime()));   		 
   	}
 		  HotelName.setCellValueFactory(
 		            new PropertyValueFactory<>("hotel"));		 
@@ -88,14 +88,14 @@ public class discarriedorderlistController implements Initializable{
 		                        ).setOrder(t.getNewValue());
 		        });
 		  User.setCellValueFactory(
-		            new PropertyValueFactory<>("time"));
+		            new PropertyValueFactory<>("name"));
 		 
 		  User.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());
 		  User.setOnEditCommit(
 		            (CellEditEvent<SimpleOrder, String> t) -> {
 		                ((SimpleOrder) t.getTableView().getItems().get(
 		                        t.getTablePosition().getRow())
-		                        ).setTime(t.getNewValue());
+		                        ).setName(t.getNewValue());
 		        });
 		  OrderPrice.setCellValueFactory(
 		            new PropertyValueFactory<>("price"));
@@ -107,6 +107,16 @@ public class discarriedorderlistController implements Initializable{
 		                        t.getTablePosition().getRow())
 		                        ).setPrice(t.getNewValue());
 		        });
+		  OrderTime.setCellValueFactory(
+		            new PropertyValueFactory<>("time"));
+		 
+		  OrderTime.setCellFactory(TextFieldTableCell.<SimpleOrder>forTableColumn());
+		  OrderTime.setOnEditCommit(
+		            (CellEditEvent<SimpleOrder, String> t) -> {
+		                ((SimpleOrder) t.getTableView().getItems().get(
+		                        t.getTablePosition().getRow())
+		                        ).setTime(t.getNewValue());
+		        });
 		    Table.setItems(temp);
 	 }
 	//Order 的简化
@@ -115,11 +125,13 @@ public class discarriedorderlistController implements Initializable{
 		         SimpleStringProperty price;		         
 		         SimpleStringProperty hotel;
 		         SimpleStringProperty order;
-		        private SimpleOrder(String hotelName,String orderid,String time,String price){
+		         SimpleStringProperty name;
+		        private SimpleOrder(String hotelName,String orderid,String name,String price,String time){
 		        	  this.hotel = new SimpleStringProperty(hotelName);
 		        	  this.order = new SimpleStringProperty(orderid);
 		        	  this.time = new SimpleStringProperty(time);    	  
 		        	  this.price = new SimpleStringProperty(price);
+		        	  this.name = new SimpleStringProperty(name);
 		   
 		        }  
 		       public void setHotel(String hotelName){
@@ -127,6 +139,12 @@ public class discarriedorderlistController implements Initializable{
 		       }
 		       public String getHotel(){
 		    	   return hotel.get();
+		       }
+		       public void setName(String hotelName){
+		    	   name.set(hotelName);
+		       }
+		       public String getName(){
+		    	   return name.get();
 		       }
 		       public void setOrder(String hotelName){
 		    	   order.set(hotelName);
