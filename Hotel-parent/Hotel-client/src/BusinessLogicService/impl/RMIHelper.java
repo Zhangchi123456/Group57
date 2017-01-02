@@ -4,7 +4,7 @@ import java.rmi.Naming;
 
 import org.Hotel.common.config.XMLReader;
 import org.Hotel.common.dataService.HotelDataService;
-
+//负责rmi连接
 public class RMIHelper {
 	
 	public static final String IP = XMLReader.loadipconfig("src/resources/config.xml").getIP(); 

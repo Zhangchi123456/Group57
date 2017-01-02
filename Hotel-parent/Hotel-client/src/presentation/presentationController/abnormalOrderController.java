@@ -108,7 +108,7 @@ public class abnormalOrderController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		
-		orderlist=am.orderShowAllByStation("异常订单");
+		orderlist=am.orderShowAllByStation("异常");
 		 if(orderlist!=null);
     	 Orderlist(orderlist);
     	 

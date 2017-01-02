@@ -11,7 +11,9 @@ import org.Hotel.common.po.MemberPO;
 import BusinessLogicService.impl.RMIHelper;
 import vo.MemberVO;
 import vo.WebPromotionVO;
-
+/*
+ * 注册帮助类
+ */
 public class RegisterHelper {
       MemberDataService memberService=(MemberDataService)RMIHelper.find("MemberDataService");
 	

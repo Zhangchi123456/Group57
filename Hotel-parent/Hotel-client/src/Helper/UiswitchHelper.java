@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import application.Main;
-
+/*
+ * 界面跳转帮助类
+ */
 
 
 public class UiswitchHelper {

@@ -42,14 +42,14 @@ public class OrderLogicServiceImplTest extends TestCase {
      
      @Test
      public void testfindOrderStation() throws RemoteException{
-    	 ArrayList<OrderVO> order1=order.findUserOrderListStation("高晓晓", "已执行");
+    	 ArrayList<OrderVO> order1=order.findUserOrderListStation("高晓晓", "未执行");
     	 assertEquals("高晓晓",order1.get(0).getName());
     	
      } 
      @Test
      public void testfindorderbystation() throws RemoteException{
-    	 ArrayList<OrderVO> order1=order.orderShowAllByStation( "已执行");
-    	 assertEquals("已执行",order1.get(0).getState());
+    	 ArrayList<OrderVO> order1=order.orderShowAllByStation( "未执行");
+    	 assertEquals("未执行",order1.get(0).getState());
      }
      
      @Test

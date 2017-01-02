@@ -50,20 +50,9 @@ public class UserLogicServiceImplTest {
 	@Test
 	public void testFindWebStaffByName5() {
 		boolean bool=userbl.findWebStaffBYName("大冰");
-		assertEquals(true,bool);
-	}
-	@Test
-	public void addWebStaff1() {
-		WebStaffVO vo=new WebStaffVO("刑天","123456789");
-		boolean bool=userbl.addWebStaff(vo);
 		assertEquals(false,bool);
 	}
-	@Test
-	public void addWebStaff2() {
-		WebStaffVO vo=new WebStaffVO("老王","123456789");
-		boolean bool=userbl.addWebStaff(vo);
-		assertEquals(false,bool);
-	}
+	
 	@Test
 	public void testFindHotelStaff1() {
 		ArrayList<HotelStaffVO> list=userbl.findHotelStaff();

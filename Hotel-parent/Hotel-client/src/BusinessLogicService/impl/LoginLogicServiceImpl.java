@@ -17,7 +17,7 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 
 	UserInfo userservice=new UserLogicServiceImpl();
 	MemberInfo memberservice=new MemberLogicServiceImpl();
-	
+	//判断登陆人员的类型
 	@Override
 	public UserType findUser(String name, String password) {
 		try{
