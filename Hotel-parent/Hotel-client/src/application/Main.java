@@ -18,12 +18,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+/*main函数
+ * 相当于整个系统的启动类，并且包含了各个界面的场景替换方法
+ * @author 钟文康
+ * version1.1
+ * 
+ */
 public class Main extends Application {
 	 private Stage mainStage;
 		public static void main(String args[]){
 			launch(args);
 		}
+		
+		//stage的start方法
 		@Override
 		public void start(Stage primaryStage) throws Exception {
 			init(primaryStage);

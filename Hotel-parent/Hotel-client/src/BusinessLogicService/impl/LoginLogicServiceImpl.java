@@ -12,7 +12,10 @@ import vo.HotelStaffVO;
 import vo.MemberVO;
 import vo.WebManagerVO;
 import vo.WebStaffVO;
-
+/*
+ * 
+ * 
+ */
 public class LoginLogicServiceImpl implements LoginLogicService {
 
 	UserInfo userservice=new UserLogicServiceImpl();
@@ -26,6 +29,7 @@ public class LoginLogicServiceImpl implements LoginLogicService {
 			WebManagerVO webmanagervo=userservice.findWebManagerByName(name);
 			MemberVO membervo=memberservice.findMemberByName(name);				
 			
+			//if结构判断是哪种类型的使用者
 			if(hotelstaffvo!=null){
 				if(hotelstaffvo.getPassword().equals(password))
 					

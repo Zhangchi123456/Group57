@@ -1,16 +1,13 @@
 package BusinessLogicService.impl;
 
 import java.rmi.RemoteException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.Hotel.common.po.HotelPO;
-import org.Hotel.common.po.HotelPromotionPO;
-
-import BusinessLogicService.impl.RMIHelper;
 import vo.HotelPromotionVO;
 import vo.HotelVO;
 import vo.MemberLevelVO;
@@ -19,13 +16,15 @@ import vo.OrderVO;
 import vo.WebPromotionVO;
 import BusinessLogicService.Service.HotelInfo;
 import BusinessLogicService.Service.OrderInfo;
-import BusinessLogicService.Service.OrderLogicService;
-import BusinessLogicService.Service.PromotionInfo;
-import BusinessLogicService.Service.PromotionLogicService;
-import BusinessLogicService.Service.ReservationLogicService;
 
-import org.Hotel.common.dataService.HotelDataService;
-import org.Hotel.common.dataService.PromotionDataService;
+import BusinessLogicService.Service.PromotionInfo;
+
+import BusinessLogicService.Service.ReservationLogicService;
+/*
+ * @author 钟文康
+ * @version 1.1
+ */
+
 
 public class ReservationLogicServiceImpl implements ReservationLogicService{
 	//持有hotelservice。promotionservice。orderservice接口
@@ -36,6 +35,16 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	
 	
 	//计算订单价格方法的实现
+    /*
+     *@param member;membervo型，会员值对象
+     *@param webprolist,酒店营销策略列表
+     *@param hotelprolist，酒店营销策略列表
+     * @param num，int型，房间数量
+     * @param price，double型，单房价格
+     * @return 最终价格
+     * 
+     * @see BusinessLogicService.Service.ReservationLogicService#Computeprice(vo.MemberVO, java.util.ArrayList, java.util.ArrayList, int, double, java.time.LocalDate, java.time.LocalDate)
+     */
 	public double Computeprice(MemberVO member,ArrayList<WebPromotionVO> webprolist,ArrayList<HotelPromotionVO> hotelprolist,int num,double price,LocalDate checkindate,LocalDate checkoutdate){
             try{
 		    double finalprice=0.0;
@@ -58,6 +67,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 WebPromotionVO webpro=webprolist.get(i);
             	 Date start=sdf.parse(webpro.getStartDate());
             	 Date end=sdf.parse(webpro.getEndDate());
+            	 //if判断是否在折扣日期内
             	 if((Datein.after(start)||Datein.equals(start))&&(Dateout.before(end)||Dateout.equals(end))){
             		 if(webpro.getDateDiscount()!=0){
             		 finalprice=finalprice*webpro.getDateDiscount();
@@ -131,6 +141,14 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 return list;
 	 }
 	 //根据搜索条件过滤酒店的方法实现
+	 /*@param hotellist;酒店列表
+      *@param roomtype,string型  房间类型
+      * @param num，int型，房间数量
+      * @param price，double型，价格
+      * @return筛选后的酒店列表
+	  * 
+	  * @see BusinessLogicService.Service.ReservationLogicService#filtbysearch(java.util.ArrayList, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+	  */
 	 public ArrayList<HotelVO> filtbysearch(ArrayList<HotelVO> hotellist,String roomtype,String roomnum,String hotelstar,String hotelgrade,String hotelprice,String Hotelname){
 		 int star=-1;
 		 double grade=-1;
@@ -141,7 +159,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		 if(Hotelname=="null"){
 			 Hotelname="";
 		 }
-		 
+		 //根据房间数量初始化筛选条件
 		switch(roomnum){
 		case"1间":
 			Roomnum=1;
@@ -153,6 +171,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			Roomnum=3;
 			break;
 		}
+		//根据根据酒店星级初始化筛选条件
 		switch(hotelstar){
 		case"5星":
 			star=5;
@@ -163,6 +182,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 		case "3星及以上":
 			star=3;
 		}
+		//根据酒店评分初始化筛选条件
 		switch(hotelgrade){
 		case"10分":
 			grade=10;
@@ -174,6 +194,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			grade=5;
 		
 		}
+		//根据酒店价格初始化筛选条件
 		switch(hotelprice){
 		case"300元以下":
 			highprice=300;
@@ -221,18 +242,27 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 	 
 	 
 	 //检查是否有房间剩余的方法实现
+	 /*
+	  * @param orderlist；订单列表
+	  * @param checkindate，checkoutdate，localdate型，入住退房时间
+	  * @see BusinessLogicService.Service.ReservationLogicService#roomleft(vo.HotelVO, java.util.ArrayList, java.time.LocalDate, java.time.LocalDate, int, java.lang.String)
+	  */
 	 public boolean roomleft(HotelVO hotel,ArrayList<OrderVO> orderlist,LocalDate checkindate,LocalDate checkoutdate,int num,String roomtype){
 		try{
 		int leftsingle=hotel.getSingleRoom();
 		int leftstandard=hotel.getStandardRoom();
 		int leftfamily=hotel.getFamilyRoom();
 		int leftsuite=hotel.getSuiteRoom();
+		
 		ArrayList<HotelVO> hotellist=new ArrayList<HotelVO>();
+		
+		//将string型通过格式转换为date型
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd"); 
         String strin=checkindate.toString();
         String strout=checkoutdate.toString();
         Date Datein=sdf.parse(strin);
         Date Dateout=sdf.parse(strout);
+        
         switch(roomtype){
 			case"单人房":
 				if(num>hotel.getSingleRoom()){
@@ -261,6 +291,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
 			 OrderVO vo=orderlist.get(i);
 			 Date startdate=sdf.parse(vo.getStarttime());
 			 Date enddate=sdf.parse(vo.getLeavetime());
+			 
 			 if(startdate.before(Datein)||startdate.equals(Datein)||enddate.after(Dateout)||enddate.equals(Dateout)){
 				leftsingle=leftsingle-Integer.parseInt(vo.getSingleRoom());
 				leftstandard=leftstandard-Integer.parseInt(vo.getStandardRoom());

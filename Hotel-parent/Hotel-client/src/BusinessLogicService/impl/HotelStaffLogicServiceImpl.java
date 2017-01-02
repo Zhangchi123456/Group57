@@ -17,7 +17,10 @@ import vo.CreditRecordVO;
 import vo.HotelStaffVO;
 import vo.HotelVO;
 import vo.RoomVO;
-
+/*@author 周霁初
+ * @version 1.1
+ * 酒店管理人员逻辑接口实现
+ */
 public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , HotelInfo{
 
 	HotelDataService hds = (HotelDataService) RMIHelper.find("HotelDataService");
@@ -29,6 +32,11 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	
 	
 	//根据工作人员显示所在酒店
+	/*
+	 * @param name String型，工作人员姓名
+	 * 
+	 * @see BusinessLogicService.Service.HotelStaffLogicService#findHotel(java.lang.String)
+	 */
 	public HotelVO findHotel(String name) {
 		
 		HotelStaffVO vo = uds.findHotelStaffByName(name);
@@ -48,6 +56,11 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//根据酒店名查找酒店
+	/*
+	 * @param name String型，酒店姓名
+	 * 
+	 * @see BusinessLogicService.Service.HotelInfo#findbyname(java.lang.String)
+	 */
 	public HotelVO findbyname(String name) {
 		  
 		 HotelVO vo=new HotelVO();
@@ -66,13 +79,18 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 
 	
 	//显示所有客房
+	/*
+	 * @param hotelid String型，酒店id
+	 * 
+	 * @see BusinessLogicService.Service.HotelStaffLogicService#roomShowAll(java.lang.String)
+	 */
 	public ArrayList<RoomVO> roomShowAll(String hotelid) {
 
 		ArrayList<RoomVO> roomlist = new ArrayList<RoomVO>();
 		ArrayList<RoomPO> list = new ArrayList<RoomPO>();
 		try {
 			list = hds.roomShowAll(hotelid);
-			for(int i=0;i<list.size();i++){
+			for(int i=0;i<list.size();i++){//遍历房间列表来得到所有房间
 				RoomVO roomvo = new RoomVO();
 				
 				roomvo.setRoomPO(list.get(i));
@@ -89,6 +107,11 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//房间信息更新
+	/*
+	 * @return 正确返回true，错误返回false；
+	 * @param roomvo;RoomVO型，房间的值对象
+	 * @see BusinessLogicService.Service.HotelStaffLogicService#changeRoomInfo(vo.RoomVO)
+	 */
 	public boolean changeRoomInfo(RoomVO roomvo) {
 	
 		boolean info = false;
@@ -123,6 +146,13 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//入住信息更新
+	/*@param hotelname , string型，酒店名字
+	 * @param roomid  ，string型，房间编号
+	 * @param  orderid ，int型，订单编号
+	 * @param     singleroom，int型，单人房总数量
+	 * @return   成功返回true，失败返回false；
+	 * @see BusinessLogicService.Service.HotelStaffLogicService#changeCheckInInfo(java.lang.String, int, int, int, int, int, int, java.lang.String, java.lang.String)
+	 */
 	public boolean changeCheckInInfo(String hotelname, int roomid, int orderid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String starttime, String leavetime) {
 		
 		boolean info = false;
@@ -157,6 +187,13 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 	}
 	
 	//退房信息更新
+	/*@param hotelname , string型，酒店名字
+	 * @param roomid  ，string型，房间编号
+	 * @param  orderid ，int型，订单编号
+	 * @param     singleroom，int型，单人房总数量
+	 * @return   成功返回true，失败返回false；
+	 * @see BusinessLogicService.Service.HotelStaffLogicService#changeCheckInInfo(java.lang.String, int, int, int, int, int, int, java.lang.String, java.lang.String)
+	 */
 	public boolean changeCheckOutInfo(String hotelname, int roomid, int singleRoom, int standardRoom, int familyRoom, int suiteRoom, String roomstate, String leavetime) {
 		
 		boolean info = false;
@@ -172,7 +209,8 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		hotelvo.setLeftSingleRoom(new_singleRoom);
 		hotelvo.setLeftStandardRoom(new_standardRoom);
 		hotelvo.setLeftFamilyRoom(new_familyRoom);
-		hotelvo.setLeftSuiteRoom(new_suiteRoom);		
+		hotelvo.setLeftSuiteRoom(new_suiteRoom);
+		
 		roomvo.setRoomstate(roomstate);
 		roomvo.setLeavetime(leavetime);
 		
@@ -223,14 +261,14 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		}
 		return new ArrayList<String>();
 	}
-
+   //根据城市名找到商圈
 	@Override
 	public ArrayList<String> showCircle(String city) {
 		ArrayList<CirclePO> list;
 		ArrayList<String> circleList=new ArrayList<>();
 		try{
 			list = hds.circleShowAll(city);
-			for(CirclePO po:list){
+			for(CirclePO po:list){//遍历商圈列表
 				circleList.add(po.getName());
 			}
 			return circleList;
@@ -239,7 +277,7 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		}
 		return new ArrayList<String>();
 	}
-
+   //添加酒店
 	@Override
 	public void addHotel(HotelVO vo) {
 		HotelPO po=vo.Tohotelpo(vo);
@@ -294,7 +332,13 @@ public class HotelStaffLogicServiceImpl implements HotelStaffLogicService , Hote
 		}
 		return null;
 	}
-
+   /*
+    * @param city_name,string 型，城市名
+    * @param  circle，string型，商圈名
+    * @see BusinessLogicService.Service.HotelInfo#getCircle(java.lang.String, java.lang.String)
+    */
+    
+    
 	@Override
 	public CircleVO getCircle(String city_name, String circle) {
 	//获取商圈的折扣信息
