@@ -573,8 +573,15 @@ public class Main extends Application {
 	     }
 		
 	     
-	     
-	     
+	     //跳转到未执行订单
+	     public void goto_discarriedui(){
+	    	 try {
+					PreplaceSceneContent("/presentation/orderui/discarriedorderlist.fxml");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	     }
 	     
 	     
 }

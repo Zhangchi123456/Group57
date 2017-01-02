@@ -23,6 +23,10 @@ public class UserWebPromotionMainController implements Initializable{
     	UiswitchHelper.getApplication().goto_abnormalorderui();
     }
     @FXML
+    private void discarriedbuttonClicked(ActionEvent event){
+    	UiswitchHelper.getApplication().goto_discarriedui();
+    }
+    @FXML
     private void WebPromotionClicked(ActionEvent event){
     	UiswitchHelper.getApplication().goto_webdiscoutdatenui();
     }

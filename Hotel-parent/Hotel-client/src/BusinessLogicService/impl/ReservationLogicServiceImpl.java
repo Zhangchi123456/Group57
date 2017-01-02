@@ -52,12 +52,13 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             MemberLevelVO level=promotionService.getMemberLevel(Integer.parseInt(member.getlevel()));
           //根据会员等级和商圈折扣计算价格
             finalprice=day*num*price*level.getDiscount();
+           
           //根据网站营销策略优惠计算价格
             for(int i=0;i<webprolist.size();i++){
             	 WebPromotionVO webpro=webprolist.get(i);
             	 Date start=sdf.parse(webpro.getStartDate());
             	 Date end=sdf.parse(webpro.getEndDate());
-            	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+            	 if((Datein.after(start)||Datein.equals(start))&&(Dateout.before(end)||Dateout.equals(end))){
             		 if(webpro.getDateDiscount()!=0){
             		 finalprice=finalprice*webpro.getDateDiscount();
             		 }
@@ -90,7 +91,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             	 case"日期折扣":
             		 Date start=sdf.parse(hotelpro.getStartDate());
                 	 Date end=sdf.parse(hotelpro.getEndDate());
-                	 if(Datein.after(start)||Datein.equals(start)||Dateout.before(end)||Dateout.equals(end)){
+                	 if((Datein.after(start)||Datein.equals(start))&&(Dateout.before(end)||Dateout.equals(end))){
                 		 if(hotelpro.getDateDiscount()!=0){
                 		 finalprice=finalprice*hotelpro.getDateDiscount();
                 		 }
@@ -98,6 +99,7 @@ public class ReservationLogicServiceImpl implements ReservationLogicService{
             		 break;
             	 }
              }		 
+            
 			return Math.floor(finalprice);
             }
             catch(ParseException e){
